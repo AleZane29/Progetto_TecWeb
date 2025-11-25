@@ -18,6 +18,8 @@ session_start();
     include 'components/header.html';
     ?>
 
+    <p>ciao mondo</p>
+
 </body>
 
 </html>
