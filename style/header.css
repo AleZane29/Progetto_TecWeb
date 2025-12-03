@@ -1,0 +1,147 @@
+/* Navigazione */
+.navbar {
+	background: white;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	padding: 0 2rem;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+}
+
+.nav-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 70px;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: var(--text-bold);
+	text-decoration: none;
+	transition: color 0.3s;
+}
+
+.logo-icon {
+	width: 50px;
+	height: 50px;
+}
+
+.nav-menu {
+	display: flex;
+	list-style: none;
+	gap: 2rem;
+	align-items: center;
+}
+
+.nav-menu a {
+	color: var(--text);
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.3s;
+	position: relative;
+	padding: 0.5rem;
+}
+
+.nav-menu a::after {
+	content: '';
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background: var(--primary-600);
+	transition: width 0.3s;
+}
+
+.nav-menu a:hover::after {
+	width: 100%;
+}
+
+.nav-menu a.active {
+	color: var(--primary-600);
+}
+
+.nav-menu a.active::after {
+	width: 100%;
+}
+
+.cta-button {
+	background: var(--primary-600);
+	color: white !important;
+	padding: 0.6rem 1.5rem;
+	border-radius: 15px;
+	font-weight: 600;
+	transition: all 0.3s ease-in-out;
+	border: 2px solid var(--primary-600);
+	cursor: pointer;
+	text-decoration: none;
+	display: inline-block;
+}
+
+.cta-button:hover {
+	background: var(--primary-800);
+}
+
+.cta-button::after {
+	display: none;
+}
+
+.menu-toggle {
+	display: none;
+	flex-direction: column;
+	cursor: pointer;
+	gap: 5px;
+	background: none;
+	border: none;
+	padding: 0.5rem;
+	border-radius: 4px;
+}
+
+.menu-toggle:focus {
+	outline: 2px solid var(--primary-600);
+	outline-offset: 2px;
+}
+
+.menu-toggle span {
+	width: 25px;
+	height: 3px;
+	background: var(--text-bold);
+	border-radius: 3px;
+	transition: 0.3s;
+}
+
+/*Navbar responsive*/
+@media (max-width: 768px) {
+	.menu-toggle {
+		display: flex;
+	}
+
+	.nav-menu {
+		position: absolute;
+		top: 70px;
+		left: 0;
+		right: 0;
+		background: white;
+		flex-direction: column;
+		padding: 2rem;
+		gap: 1.5rem;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		transform: translateY(-100%);
+		opacity: 0;
+		pointer-events: none;
+		transition: transform 0.3s, opacity 0.3s;
+	}
+
+	.nav-menu.active {
+		transform: translateY(0);
+		opacity: 1;
+		pointer-events: all;
+	}
+}

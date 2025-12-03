@@ -3,14 +3,14 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="it">
+<html data-theme="light" lang="it">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Centro sportivo - Presentazione del centro, orari di apertura, informazioni di contatto e annunci speciali">
+    <meta name="description" content="SportLab - Presentazione del centro, orari di apertura, informazioni di contatto e annunci speciali">
     <meta name="language" content="it">
-    <title>Home - Centro Sportivo</title>
+    <title>Home - SportLab</title>
     <link href="style/style.css" rel="stylesheet">
 </head>
 
@@ -24,7 +24,7 @@ session_start();
         <!-- Hero Section con presentazione -->
         <section class="hero" aria-labelledby="hero-title">
             <div class="hero-container">
-                <h1 id="hero-title">Benvenuto al Centro Sportivo</h1>
+                <h1 id="hero-title">Benvenuto allo SportLab</h1>
                 <p class="hero-subtitle">La tua destinazione per uno stile di vita sano e attivo</p>
             </div>
         </section>
@@ -156,7 +156,7 @@ session_start();
     <!-- Footer -->
     <footer class="footer" role="contentinfo" aria-label="Piè di pagina">
         <div class="container">
-            <p>&copy; 2025 Centro Sportivo. Tutti i diritti riservati.</p>
+            <p>&copy; 2025 SportLab. Tutti i diritti riservati.</p>
             <ul class="footer-links">
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Termini e Condizioni</a></li>
