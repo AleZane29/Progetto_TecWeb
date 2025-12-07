@@ -15,15 +15,27 @@
 <body>
   <?php
   include 'components/header.html';
+  require "../controller/loginController.php";
   ?>
 
   <main id="main-content" tabindex="-1">
     <div class="login-container">
-      <form class="login-form" id="loginForm" method="POST" action="">
+      <form class="login-form" id="loginForm" method="POST" action="login.php">
         <div class="login-header">
           <h1>Benvenuto in SportLab</h1>
           <p>Accedi al tuo account</p>
+
         </div>
+
+
+        <?php if (!empty($error)) {
+          echo ("<p class='error-message' role='alert'>$errore</p>");
+        } else {
+          if (!empty($success)) {
+            echo ("<p class='success-message' role='alert'>$success</p>");
+          }
+        }
+        ?>
 
         <div class="form-group">
           <label for="email">Email</label>
@@ -37,7 +49,6 @@
               required
               aria-describedby="email-error">
           </div>
-          <span id="email-error" class="error-message" role="alert"></span>
         </div>
 
         <div class="form-group">
@@ -53,7 +64,6 @@
               aria-describedby="password-error">
             <span class="toggle-password" onclick="togglePassword()" role="button" tabindex="0" aria-label="Mostra/nascondi password">👁️</span>
           </div>
-          <span id="password-error" class="error-message" role="alert"></span>
         </div>
 
         <button type="submit" class="btn-login">Accedi</button>

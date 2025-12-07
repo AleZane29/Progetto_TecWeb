@@ -96,13 +96,13 @@ main {
 
 .error-message {
 	color: var(--error);
-	font-size: 0.85rem;
-	margin-top: 0.5rem;
-	display: none;
+	font-weight: 600;
+	text-align: center;
 }
-
-.error-message.show {
-	display: block;
+.success-message {
+	color: var(--success);
+	font-weight: 600;
+	text-align: center;
 }
 
 .btn-login {
