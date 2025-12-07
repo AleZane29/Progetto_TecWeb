@@ -1,0 +1,307 @@
+/* Sport Page Styles */
+
+/* banner Section */
+.sport-banner {
+	background: linear-gradient(135deg, var(--primary-600) 0%, #1a5fb8 100%);
+	color: white;
+	padding: 5rem 2rem;
+	text-align: center;
+	margin-bottom: 3rem;
+}
+
+.sport-banner-container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.sport-banner-container h1 {
+	font-size: 2.5rem;
+	margin-bottom: 1rem;
+	font-weight: 700;
+}
+
+.sport-banner-subtitle {
+	font-size: 1.15rem;
+	font-weight: 300;
+	opacity: 0.95;
+}
+
+/* Intro Section */
+.sport-intro {
+	background: white;
+	padding: 3rem 2rem;
+	margin-bottom: 3rem;
+}
+
+.sport-intro h2 {
+	font-size: 1.75rem;
+	margin-bottom: 1.5rem;
+	color: var(--primary-600);
+}
+
+.sport-intro p {
+	font-size: 1rem;
+	line-height: 1.8;
+	margin-bottom: 1rem;
+	color: var(--text);
+}
+
+/* Sport Detail Sections */
+.sport-detail {
+	background: var(--neutral-100);
+	padding: 3rem 2rem;
+	margin-bottom: 3rem;
+}
+
+.sport-detail-alt {
+	background: white;
+}
+
+.sport-card {
+	max-width: 1000px;
+	margin: 0 auto;
+	background: white;
+	border-radius: 8px;
+	padding: 2.5rem;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.sport-detail-alt .sport-card {
+	background: var(--neutral-100);
+	box-shadow: none;
+	border: 1px solid var(--neutral-200);
+}
+
+.sport-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 2rem;
+	padding-bottom: 1.5rem;
+	border-bottom: 3px solid var(--primary-600);
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.sport-header h2 {
+	font-size: 2rem;
+	color: var(--text-bold);
+	margin: 0;
+}
+
+.sport-badge {
+	background: var(--primary-600);
+	color: white;
+	padding: 0.5rem 1.25rem;
+	border-radius: 20px;
+	font-size: 0.9rem;
+	font-weight: 600;
+	display: inline-block;
+}
+
+.sport-content {
+	display: grid;
+	gap: 2rem;
+}
+
+.sport-info h3 {
+	font-size: 1.25rem;
+	color: var(--primary-600);
+	margin-top: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+.sport-info h3:first-child {
+	margin-top: 0;
+}
+
+.sport-info p {
+	font-size: 1rem;
+	line-height: 1.8;
+	color: var(--text);
+	margin-bottom: 1rem;
+}
+
+.sport-info ul {
+	list-style: none;
+	padding-left: 0;
+	margin: 1rem 0 1.5rem 0;
+}
+
+.sport-info li {
+	padding: 0.5rem 0 0.5rem 1.75rem;
+	position: relative;
+	color: var(--text);
+	line-height: 1.6;
+}
+
+.sport-info li::before {
+	content: "•";
+	color: var(--primary-600);
+	font-weight: bold;
+	font-size: 1.5rem;
+	position: absolute;
+	left: 0.25rem;
+	top: 0.1rem;
+}
+
+.sport-info strong {
+	color: var(--text-bold);
+	font-weight: 600;
+}
+
+/* Facility Map Section */
+.facility-map {
+	background: white;
+	padding: 4rem 2rem;
+	margin-bottom: 3rem;
+}
+
+.facility-map h2 {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+	text-align: center;
+	color: var(--primary-600);
+}
+
+.map-description {
+	text-align: center;
+	color: var(--text);
+	font-size: 1.05rem;
+	margin-bottom: 2.5rem;
+	max-width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.map-placeholder {
+	max-width: 1000px;
+	margin: 0 auto;
+	background: var(--neutral-100);
+	border: 2px dashed var(--neutral-300);
+	border-radius: 8px;
+	padding: 4rem 2rem;
+	min-height: 400px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.map-placeholder-content {
+	text-align: center;
+	color: var(--neutral-400);
+}
+
+.map-placeholder-content svg {
+	color: var(--primary-600);
+	margin-bottom: 1rem;
+	opacity: 0.6;
+}
+
+.map-placeholder-content p {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: var(--text-bold);
+	margin-bottom: 0.5rem;
+}
+
+.map-placeholder-note {
+	font-size: 0.95rem;
+	color: var(--neutral-400);
+	font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.sport-hero-container h1 {
+		font-size: 2rem;
+	}
+
+	.sport-hero-subtitle {
+		font-size: 1rem;
+	}
+
+	.sport-hero {
+		padding: 3.5rem 1.5rem;
+	}
+
+	.sport-intro,
+	.sport-detail,
+	.facility-map {
+		padding: 2rem 1.5rem;
+	}
+
+	.sport-card {
+		padding: 1.5rem;
+	}
+
+	.sport-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.sport-header h2 {
+		font-size: 1.5rem;
+	}
+
+	.sport-badge {
+		align-self: flex-start;
+	}
+
+	.sport-info h3 {
+		font-size: 1.1rem;
+	}
+
+	.map-placeholder {
+		padding: 3rem 1.5rem;
+		min-height: 300px;
+	}
+
+	.facility-map h2 {
+		font-size: 1.75rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.sport-hero-container h1 {
+		font-size: 1.75rem;
+	}
+
+	.sport-info li {
+		padding-left: 1.5rem;
+	}
+
+	.sport-card {
+		padding: 1.25rem;
+	}
+}
+
+/* Focus States for Accessibility */
+.sport-card:focus-within {
+	outline: 2px solid var(--primary-600);
+	outline-offset: 4px;
+}
+
+a.cta-primary-button:focus {
+	outline: 2px solid white;
+	outline-offset: 4px;
+}
+
+/* Print Styles */
+@media print {
+	.sport-hero,
+	.cta-section {
+		background: white;
+		color: black;
+	}
+
+	.sport-badge {
+		border: 2px solid black;
+		color: black;
+		background: white;
+	}
+
+	.map-placeholder {
+		border: 1px solid black;
+	}
+}
