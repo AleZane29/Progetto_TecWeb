@@ -1,0 +1,108 @@
+.footer {
+	background: var(--text-bold);
+	color: white;
+	padding: 2rem;
+	text-align: center;
+	border-top: 1px solid var(--neutral-200);
+}
+
+.footer p {
+	margin-bottom: 1rem;
+}
+
+.footer .cta-primary-button.icon-button {
+	padding: 0.7rem 1rem 0.3rem 1rem;
+	margin-bottom: 1rem;
+}
+
+.footer-links {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	flex-wrap: wrap;
+}
+
+.footer-links a {
+	color: white;
+	text-decoration: none;
+	transition: color 0.3s;
+}
+
+.footer-links a:hover {
+	color: var(--primary-600);
+	text-decoration: underline;
+}
+
+.footer-links a:focus {
+	outline: 2px solid white;
+	outline-offset: 2px;
+	border-radius: 2px;
+}
+
+/* Media queries per responsività */
+@media (max-width: 768px) {
+	.hero-container h1 {
+		font-size: 2rem;
+	}
+
+	.hero-subtitle {
+		font-size: 1rem;
+	}
+
+	.about-section h2,
+	.hours-section h2,
+	.contact-section h2,
+	.location-section h2,
+	.announcements-section h2,
+	.cta-section h2 {
+		font-size: 1.5rem;
+	}
+
+	.hours-grid,
+	.contact-grid,
+	.announcements-grid {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+
+	.container {
+		padding: 0 1rem;
+	}
+}
+
+@media (max-width: 480px) {
+	body {
+		font-size: 14px;
+	}
+
+	.hero {
+		padding: 3rem 1rem;
+	}
+
+	.hero-container h1 {
+		font-size: 1.5rem;
+	}
+
+	.hero-subtitle {
+		font-size: 0.95rem;
+	}
+
+	main {
+		min-height: auto;
+	}
+
+	.about-section,
+	.hours-section,
+	.contact-section,
+	.location-section,
+	.announcements-section,
+	.cta-section {
+		padding: 2rem 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.footer-links {
+		gap: 1rem;
+	}
+}

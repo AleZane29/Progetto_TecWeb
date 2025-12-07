@@ -37,6 +37,7 @@
 	--neutral-500: #57534e;
 	--neutral-600: #44403c;
 
+	--shadow-primary: rgba(15, 104, 181, 0.3);
 	/*
 	--accent-200: #e2b6c2;
 	--accent-300: #d392a4;
@@ -105,23 +106,6 @@ body {
 	color: var(--text-bold);
 	line-height: 1.6;
 	font-size: 16px;
-}
-
-/* Skip to main content link - accessibilità */
-.skip-link {
-	position: absolute;
-	top: -40px;
-	left: 0;
-	background: var(--primary-600);
-	color: white;
-	padding: 8px;
-	text-decoration: none;
-	z-index: 100;
-	border-radius: 0 0 4px 0;
-}
-
-.skip-link:focus {
-	top: 0;
 }
 
 /* Screen reader only content */
@@ -450,109 +434,4 @@ main {
 
 .cta-primary-button:active {
 	transform: translateY(0);
-}
-
-/* Footer */
-.footer {
-	background: var(--text-bold);
-	color: white;
-	padding: 2rem;
-	text-align: center;
-	border-top: 1px solid var(--neutral-200);
-}
-
-.footer p {
-	margin-bottom: 1rem;
-}
-
-.footer-links {
-	list-style: none;
-	display: flex;
-	justify-content: center;
-	gap: 2rem;
-	flex-wrap: wrap;
-}
-
-.footer-links a {
-	color: white;
-	text-decoration: none;
-	transition: color 0.3s;
-}
-
-.footer-links a:hover {
-	color: var(--primary-600);
-	text-decoration: underline;
-}
-
-.footer-links a:focus {
-	outline: 2px solid white;
-	outline-offset: 2px;
-	border-radius: 2px;
-}
-
-/* Media queries per responsività */
-@media (max-width: 768px) {
-	.hero-container h1 {
-		font-size: 2rem;
-	}
-
-	.hero-subtitle {
-		font-size: 1rem;
-	}
-
-	.about-section h2,
-	.hours-section h2,
-	.contact-section h2,
-	.location-section h2,
-	.announcements-section h2,
-	.cta-section h2 {
-		font-size: 1.5rem;
-	}
-
-	.hours-grid,
-	.contact-grid,
-	.announcements-grid {
-		grid-template-columns: 1fr;
-		gap: 1.5rem;
-	}
-
-	.container {
-		padding: 0 1rem;
-	}
-}
-
-@media (max-width: 480px) {
-	body {
-		font-size: 14px;
-	}
-
-	.hero {
-		padding: 3rem 1rem;
-	}
-
-	.hero-container h1 {
-		font-size: 1.5rem;
-	}
-
-	.hero-subtitle {
-		font-size: 0.95rem;
-	}
-
-	main {
-		min-height: auto;
-	}
-
-	.about-section,
-	.hours-section,
-	.contact-section,
-	.location-section,
-	.announcements-section,
-	.cta-section {
-		padding: 2rem 1rem;
-		margin-bottom: 2rem;
-	}
-
-	.footer-links {
-		gap: 1rem;
-	}
 }

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../assets/logo_white.png" rel="icon">
+  <meta name="description" content="SportLab - Pagina di login">
+  <meta name="language" content="it">
+  <title>Login - SportLab</title>
+  <link href="../style/style.css" rel="stylesheet">
+  <link href="../style/login.css" rel="stylesheet">
+</head>
+
+<body>
+  <?php
+  include 'components/header.html';
+  ?>
+
+  <main id="main-content" tabindex="-1">
+    <div class="login-container">
+      <form class="login-form" id="loginForm" method="POST" action="">
+        <div class="login-header">
+          <h1>Benvenuto in SportLab</h1>
+          <p>Accedi al tuo account</p>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="form-input">
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="tua@email.com"
+              autocomplete="email"
+              required
+              aria-describedby="email-error">
+          </div>
+          <span id="email-error" class="error-message" role="alert"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="form-input">
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Inserisci la tua password"
+              autocomplete="current-password"
+              required
+              aria-describedby="password-error">
+            <span class="toggle-password" onclick="togglePassword()" role="button" tabindex="0" aria-label="Mostra/nascondi password">👁️</span>
+          </div>
+          <span id="password-error" class="error-message" role="alert"></span>
+        </div>
+
+        <button type="submit" class="btn-login">Accedi</button>
+
+        <div class="divider">oppure</div>
+
+        <div class="form-footer">
+          <span>Non hai un account? </span>
+          <a href="#" tabindex="0">Registrati ora</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <?php
+  include 'components/footer.html';
+  ?>
+</body>
+
+<script>
+  document.getElementById("navMenuAccount").classList.add("active");
+
+  function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const toggleIcon = document.querySelector('.toggle-password');
+
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      toggleIcon.textContent = '🙈';
+    } else {
+      passwordInput.type = 'password';
+      toggleIcon.textContent = '👁️';
+    }
+  }
+</script>
+
+</html>

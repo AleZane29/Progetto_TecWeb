@@ -3,16 +3,14 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="style/header.css" rel="stylesheet" />
+		<link href="../style/header.css" rel="stylesheet" />
 	</head>
 	<body>
-		<a href="#main-content" class="skip-link">Vai al contenuto principale</a>
-
 		<nav class="navbar" role="navigation" aria-label="Navigazione principale">
 			<div class="nav-container">
 				<div class="logo">
 					<img
-						src="assets/logo_white.png"
+						src="../assets/logo_white.png"
 						class="logo-icon"
 						alt="Logo del Centro Sportivo" />
 					<span>SportLab</span>
@@ -20,10 +18,32 @@
 
 				<ul class="nav-menu" id="navMenu">
 					<li>
-						<a href="index.php" class="active" aria-current="page">Home</a>
+						<a
+							href="../views/home.php"
+							aria-current="page"
+							class="cta-link"
+							id="navMenuHome"
+							>Home</a
+						>
 					</li>
-					<li><a href="#" aria-label="Vai a Servizi">Servizi</a></li>
-					<li><a href="#" aria-label="Accedi al tuo account">Account</a></li>
+					<li>
+						<a
+							href="#"
+							aria-label="Vai a Servizi"
+							class="cta-link"
+							id="navMenuServizi"
+							>Servizi</a
+						>
+					</li>
+					<li>
+						<a
+							href="../views/login.php"
+							aria-label="Accedi al tuo account"
+							id="navMenuAccount"
+							class="cta-link"
+							>Account</a
+						>
+					</li>
 					<li>
 						<a href="#" class="cta-button" aria-label="Prenota una sessione"
 							>Prenota</a
