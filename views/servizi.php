@@ -79,6 +79,24 @@
                 <strong>Costo orario:</strong> €60 per campo<br>
                 <strong>Abbonamento mensile:</strong> €200 (4 ore a settimana)
               </p>
+              <!-- Gallery predefinita per Calcio a 5 -->
+              <div class="sport-gallery">
+                <h3>Galleria del Campo</h3>
+                <div class="gallery-grid" role="region" aria-label="Immagini campo calcio a 5">
+                  <figure class="gallery-item">
+                    <img src="../assets/soccer1.png" alt="Campo di calcio a 5 con pavimento sintetico e illuminazione" loading="lazy" width="400" height="300">
+                    <figcaption>Uno dei nostri due campi regolamentari</figcaption>
+                  </figure>
+                  <figure class="gallery-item">
+                    <img src="../assets/soccer2.png" alt="Palloni da calcio professionali sul campo" loading="lazy" width="400" height="300">
+                    <figcaption>Attrezzatura fornita dai nostri centri</figcaption>
+                  </figure>
+                  <figure class="gallery-item">
+                    <img src="../assets/soccer3.png" alt="Giocatori in azione durante una partita di calcio a 5" loading="lazy" width="400" height="300">
+                    <figcaption>Partita amichevole tra i nostri soci</figcaption>
+                  </figure>
+                </div>
+              </div>
             </div>
           </div>
         </article>
@@ -122,6 +140,24 @@
                 <strong>Lezione individuale:</strong> €40 (1 ora)<br>
                 <strong>Abbonamento 10 ingressi:</strong> €200
               </p>
+              <!-- Gallery predefinita per Tennis -->
+              <div class="sport-gallery">
+                <h3>Galleria dei Campi da Tennis</h3>
+                <div class="gallery-grid" role="region" aria-label="Immagini campi da tennis">
+                  <figure class="gallery-item">
+                    <img src="../assets/tennis1.png" alt="Campo da tennis in terra rossa sintetica con rete professionista" loading="lazy" width="400" height="300">
+                    <figcaption>Uno dei nostri tre campi professionali</figcaption>
+                  </figure>
+                  <figure class="gallery-item">
+                    <img src="../assets/tennis2.png" alt="Racchetta da tennis e pallina su superficie in terra rossa" loading="lazy" width="400" height="300">
+                    <figcaption>Attrezzatura fornita: racchette e palline</figcaption>
+                  </figure>
+                  <figure class="gallery-item">
+                    <img src="../assets/tennis3.png" alt="Due giocatori durante una partita di tennis" loading="lazy" width="400" height="300">
+                    <figcaption>Partita tra i nostri associati</figcaption>
+                  </figure>
+                </div>
+              </div>
             </div>
           </div>
         </article>
@@ -164,6 +200,24 @@
                 <strong>Costo orario:</strong> €70 per campo<br>
                 <strong>Abbonamento mensile:</strong> €240 (4 ore a settimana)
               </p>
+              <!-- Gallery predefinita per Basket -->
+              <div class="sport-gallery">
+                <h3>Galleria del Campo da Basket</h3>
+                <div class="gallery-grid" role="region" aria-label="Immagini campo da basket">
+                  <figure class="gallery-item">
+                    <img src="../assets/basketball1.png" alt="Campo da basket coperto con parquet professionale e illuminazione a LED" loading="lazy" width="400" height="300">
+                    <figcaption>Il nostro campo regolamentare coperto</figcaption>
+                  </figure>
+                  <figure class="gallery-item">
+                    <img src="../assets/basketball2.png" alt="Canestro da basket con pallone in volo durante una partita" loading="lazy" width="400" height="300">
+                    <figcaption>Canestri omologati FIP professionali</figcaption>
+                  </figure>
+                  <figure class="gallery-item">
+                    <img src="../assets/basketball3.png" alt="Giocatori durante una partita di basket al nostro centro" loading="lazy" width="400" height="300">
+                    <figcaption>Azione di gioco tra i nostri associati</figcaption>
+                  </figure>
+                </div>
+              </div>
             </div>
           </div>
         </article>

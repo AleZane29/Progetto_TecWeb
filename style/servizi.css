@@ -207,7 +207,7 @@
 
 .map-placeholder-note {
 	font-size: 0.95rem;
-	color: var(--neutral-400);
+	color: var(--neutral-600);
 	font-style: italic;
 }
 
@@ -303,5 +303,81 @@ a.cta-primary-button:focus {
 
 	.map-placeholder {
 		border: 1px solid black;
+	}
+}
+
+/* Stili galleria immagini sport */
+.sport-gallery {
+	margin-top: 2rem;
+	padding-top: 2rem;
+	border-top: 2px solid var(--neutral-200);
+}
+
+.sport-gallery h3 {
+	font-size: 1.25rem;
+	color: var(--primary-600);
+	margin-bottom: 1.5rem;
+}
+
+.gallery-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 1.5rem;
+}
+
+.gallery-item {
+	margin: 0;
+	overflow: hidden;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	background: var(--neutral-100);
+}
+
+.gallery-item:hover,
+.gallery-item:focus-within {
+	transform: translateY(-4px);
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item img {
+	display: block;
+	width: 100%;
+	height: 300px;
+	object-fit: cover;
+}
+
+.gallery-item figcaption {
+	padding: 1rem;
+	font-size: 0.95rem;
+	line-height: 1.6;
+	color: var(--text);
+	background: white;
+	font-weight: 500;
+}
+
+@media (max-width: 768px) {
+	.gallery-grid {
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 1rem;
+	}
+
+	.gallery-item img {
+		height: 220px;
+	}
+
+	.gallery-item figcaption {
+		padding: 0.75rem;
+		font-size: 0.9rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.gallery-grid {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
+	.gallery-item img {
+		height: 240px;
 	}
 }
