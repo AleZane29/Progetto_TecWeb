@@ -32,12 +32,12 @@
       <div class="container">
         <h2 id="intro-title">Una Struttura Completa per Ogni Esigenza</h2>
         <p>
-          Al nostro centro non ci si allena solo in sala pesi. Abbiamo tre campi dedicati agli sport di squadra, 
-          tutti con pavimentazione professionale e illuminazione a LED per giocare anche la sera. 
+          Al nostro centro non ci si allena solo in sala pesi. Abbiamo tre campi dedicati agli sport di squadra,
+          tutti con pavimentazione professionale e illuminazione a LED per giocare anche la sera.
           Puoi prenotare un campo per una partita con gli amici, iscriverti ai corsi oppure unirti ai tornei interni.
         </p>
         <p>
-          L'attrezzatura viene controllata regolarmente e negli spogliatoi trovi tutto quello che serve. 
+          L'attrezzatura viene controllata regolarmente e negli spogliatoi trovi tutto quello che serve.
           Se preferisci giocare con la tua squadra, nessun problema: accettiamo prenotazioni anche da gruppi esterni.
         </p>
       </div>
@@ -51,16 +51,16 @@
             <h2 id="calcio-title">Calcio a 5</h2>
             <span class="sport-badge" aria-label="Numero campi disponibili">2 campi</span>
           </div>
-          
+
           <div class="sport-content">
             <div class="sport-info">
               <h3>Il Campo</h3>
               <p>
-                Due campi regolamentari con pavimento in parquet sintetico di ultima generazione. 
-                Misure standard 40x20 metri, perfetti sia per partite amichevoli che per allenamenti più intensi. 
+                Due campi regolamentari con pavimento in parquet sintetico di ultima generazione.
+                Misure standard 40x20 metri, perfetti sia per partite amichevoli che per allenamenti più intensi.
                 Le porte sono omologate FIGC e le reti vengono cambiate ogni stagione.
               </p>
-              
+
               <h3>Attrezzatura Disponibile</h3>
               <ul>
                 <li>Palloni da gara e da allenamento (taglia 4)</li>
@@ -68,11 +68,11 @@
                 <li>Coni e delimitatori per esercizi specifici</li>
                 <li>Portiere mobile per chi vuole allenarsi da solo</li>
               </ul>
-              
+
               <h3>Informazioni Utili</h3>
               <p>
-                I campi si possono prenotare a ore o per abbonamenti mensili. Durante la settimana organizziamo 
-                anche partite libere dove ci si iscrive singolarmente e noi formiamo le squadre. 
+                I campi si possono prenotare a ore o per abbonamenti mensili. Durante la settimana organizziamo
+                anche partite libere dove ci si iscrive singolarmente e noi formiamo le squadre.
                 Il mercoledì sera c'è il torneo amatoriale, aperto a tutti i tesserati.
               </p>
               <p>
@@ -111,16 +111,16 @@
             <h2 id="tennis-title">Tennis</h2>
             <span class="sport-badge" aria-label="Numero campi disponibili">3 campi</span>
           </div>
-          
+
           <div class="sport-content">
             <div class="sport-info">
               <h3>I Campi</h3>
               <p>
-                Tre campi in terra rossa sintetica, con superficie Rebound Ace che ammortizza bene e riduce 
-                lo stress su ginocchia e caviglie. Sono campi scoperti ma con illuminazione per giocare fino alle 22:00. 
+                Tre campi in terra rossa sintetica, con superficie Rebound Ace che ammortizza bene e riduce
+                lo stress su ginocchia e caviglie. Sono campi scoperti ma con illuminazione per giocare fino alle 22:00.
                 Abbiamo anche una piccola tribuna per chi vuole seguire le partite o aspettare il proprio turno.
               </p>
-              
+
               <h3>Attrezzatura Disponibile</h3>
               <ul>
                 <li>Racchette di diverse grammature (anche per principianti)</li>
@@ -128,11 +128,11 @@
                 <li>Macchina lanciapalle disponibile su prenotazione</li>
                 <li>Rete regolamentare con tensionamento professionale</li>
               </ul>
-              
+
               <h3>Informazioni Utili</h3>
               <p>
-                Oltre alla prenotazione libera, teniamo corsi per adulti e ragazzi con il maestro federale Alessandro. 
-                Le lezioni sono individuali o in piccoli gruppi, massimo quattro persone. 
+                Oltre alla prenotazione libera, teniamo corsi per adulti e ragazzi con il maestro federale Alessandro.
+                Le lezioni sono individuali o in piccoli gruppi, massimo quattro persone.
                 Una volta al mese organizziamo un torneo sociale, aperto sia ai soci che agli esterni.
               </p>
               <p>
@@ -172,16 +172,16 @@
             <h2 id="basket-title">Basket</h2>
             <span class="sport-badge" aria-label="Numero campi disponibili">1 campo</span>
           </div>
-          
+
           <div class="sport-content">
             <div class="sport-info">
               <h3>Il Campo</h3>
               <p>
-                Un campo coperto regolamentare con parquet professionale della Mondo Sport. 
-                Dimensioni 28x15 metri, canestri omologati FIP con tabellone trasparente in policarbonato. 
+                Un campo coperto regolamentare con parquet professionale della Mondo Sport.
+                Dimensioni 28x15 metri, canestri omologati FIP con tabellone trasparente in policarbonato.
                 L'illuminazione è a LED e garantisce una visibilità perfetta anche negli orari serali.
               </p>
-              
+
               <h3>Attrezzatura Disponibile</h3>
               <ul>
                 <li>Palloni ufficiali Molten (misura 7 e 6)</li>
@@ -189,11 +189,11 @@
                 <li>Canestro mobile regolabile in altezza per i più giovani</li>
                 <li>Cronometro e tabellone segnapunti elettronico</li>
               </ul>
-              
+
               <h3>Informazioni Utili</h3>
               <p>
-                Il campo viene usato principalmente la sera e nel weekend. C'è anche una squadra amatoriale 
-                che si allena il martedì e il giovedì: se ti interessa giocare con loro, chiedi in reception. 
+                Il campo viene usato principalmente la sera e nel weekend. C'è anche una squadra amatoriale
+                che si allena il martedì e il giovedì: se ti interessa giocare con loro, chiedi in reception.
                 Per i ragazzi under 16 organizziamo mini camp durante le vacanze scolastiche.
               </p>
               <p>
@@ -229,7 +229,7 @@
       <div class="container">
         <h2 id="map-title">Mappa della Struttura</h2>
         <p class="map-description">
-          Qui sotto troverai la disposizione dei campi e delle varie aree del centro. 
+          Qui sotto troverai la disposizione dei campi e delle varie aree del centro.
           La mappa ti aiuta a orientarti e a capire dove si trova ogni spazio.
         </p>
         <div class="map-placeholder">
@@ -264,5 +264,5 @@
 </html>
 
 <script>
-  document.getElementById("navMenuSport").classList.add("active");
+  document.getElementById("navMenuServizi").classList.add("active");
 </script>
