@@ -1,96 +1,63 @@
-<!DOCTYPE html>
-<html lang="it">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="../style/header.css" rel="stylesheet" />
-	</head>
-	<body>
-		<nav class="navbar" role="navigation" aria-label="Navigazione principale">
-			<div class="nav-container">
-				<div class="logo">
-					<img
-						src="../assets/logo_white.png"
-						class="logo-icon"
-						alt="Logo del Centro Sportivo" />
-					<span>SportLab</span>
-				</div>
-
-				<ul class="nav-menu" id="navMenu">
-					<li>
-						<a
-							href="../views/home.php"
-							aria-current="page"
-							class="cta-link"
-							id="navMenuHome"
-							lang="en"
-							>Home</a
-						>
-					</li>
-					<li>
-						<a
-							href="../views/servizi.php"
-							aria-label="Vai a Servizi"
-							class="cta-link"
-							id="navMenuServizi"
-							>Servizi</a
-						>
-					</li>
-					<li>
-						<a
-							href="../views/login.php"
-							aria-label="Accedi al tuo account"
-							id="navMenuAccount"
-							class="cta-link"
-							>Account</a
-						>
-					</li>
-					<li>
-						<a href="#" class="cta-button" aria-label="Prenota una sessione"
-							>Prenota</a
-						>
-					</li>
-				</ul>
-
-				<button
-					class="menu-toggle"
-					id="menuToggle"
-					aria-label="Apri menu di navigazione"
-					aria-expanded="false"
-					aria-controls="navMenu"
-					type="button">
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-				</button>
+<header>
+	<nav class="navbar" role="navigation" aria-label="Navigazione principale">
+		<div class="nav-container">
+			<div class="logo">
+				<img src="../assets/logo_white.png" class="logo-icon" alt="Logo del Centro Sportivo" />
+				<span>SportLab</span>
 			</div>
-		</nav>
 
-		<script>
-			const menuToggle = document.getElementById('menuToggle');
-			const navMenu = document.getElementById('navMenu');
+			<ul class="nav-menu" id="navMenu">
+				<li>
+					<a href="../views/home.php" aria-current="page" class="cta-link" id="navMenuHome" lang="en">Home</a>
+				</li>
+				<li>
+					<a href="../views/servizi.php" aria-label="Vai a Servizi" class="cta-link"
+						id="navMenuServizi">Servizi</a>
+				</li>
+				<li>
+					<a href="../views/login.php" aria-label="Accedi al tuo account" id="navMenuAccount"
+						class="cta-link">Account</a>
+				</li>
+				<li>
+					<a href="#" class="cta-button" aria-label="Prenota una sessione">Prenota</a>
+				</li>
+			</ul>
 
-			menuToggle.addEventListener('click', () => {
-				const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-				menuToggle.setAttribute('aria-expanded', !isExpanded);
-				navMenu.classList.toggle('active');
-			});
+			<button class="menu-toggle" id="menuToggle" aria-label="Apri menu di navigazione" aria-expanded="false"
+				aria-controls="navMenu" type="button">
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+			</button>
+		</div>
+	</nav>
+</header>
 
-			// Chiudi il menu quando si clicca su un link
-			document.querySelectorAll('.nav-menu a').forEach((link) => {
-				link.addEventListener('click', () => {
-					navMenu.classList.remove('active');
-					menuToggle.setAttribute('aria-expanded', 'false');
-				});
-			});
 
-			// Chiudi il menu con il tasto Escape
-			document.addEventListener('keydown', (e) => {
-				if (e.key === 'Escape') {
-					navMenu.classList.remove('active');
-					menuToggle.setAttribute('aria-expanded', 'false');
-				}
-			});
-		</script>
-	</body>
-</html>
+
+<script>
+	const menuToggle = document.getElementById('menuToggle');
+	const navMenu = document.getElementById('navMenu');
+
+	menuToggle.addEventListener('click', () => {
+		const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+		menuToggle.setAttribute('aria-expanded', !isExpanded);
+		navMenu.classList.toggle('active');
+	});
+
+	// Chiudi il menu quando si clicca su un link
+	document.querySelectorAll('.nav-menu a').forEach((link) => {
+		link.addEventListener('click', () => {
+			navMenu.classList.remove('active');
+			menuToggle.setAttribute('aria-expanded', 'false');
+		});
+	});
+
+	// Chiudi il menu con il tasto Escape
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') {
+			navMenu.classList.remove('active');
+			menuToggle.setAttribute('aria-expanded', 'false');
+		}
+	});
+</script>
