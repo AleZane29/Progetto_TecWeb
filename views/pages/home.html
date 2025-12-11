@@ -1,197 +1,261 @@
 <!DOCTYPE html>
 <html data-theme="light" lang="it">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="../assets/logo_white.png" rel="icon" />
-		<meta
-			name="description"
-			content="SportLab - Presentazione, orari, contatti e annunci speciali" />
-		<meta name="language" content="it" />
-		<title>Home - SportLab</title>
-		<link href="../style/style.css" rel="stylesheet" />
-		<link href="../style/header.css" rel="stylesheet" />
-		<link href="../style/footer.css" rel="stylesheet" />
-	</head>
 
-	<body>
-		<main id="main-content" tabindex="-1">
-			<!-- Presentation Section con presentazione -->
-			<section class="banner" aria-labelledby="banner-title">
-				<div class="banner-container">
-					<h1 id="banner-title">Benvenuto allo SportLab</h1>
-					<p class="banner-subtitle">
-						La tua destinazione per uno stile di vita sano e attivo
-					</p>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="../assets/logo_white.png" rel="icon" />
+	<meta name="description" content="SportLab - Presentazione, orari, contatti e annunci speciali" />
+	<meta name="language" content="it" />
+	<title>Home - SportLab</title>
+	<link href="../style/style.css" rel="stylesheet" />
+	<link href="../style/header.css" rel="stylesheet" />
+	<link href="../style/footer.css" rel="stylesheet" />
+</head>
+
+<body>
+	<header>
+		<nav class="navbar" role="navigation" aria-label="Navigazione principale">
+			<div class="nav-container">
+				<div class="logo">
+					<img src="../assets/logo_white.png" class="logo-icon" alt="Logo del Centro Sportivo" />
+					<span>SportLab</span>
 				</div>
-			</section>
 
-			<!-- Sezione Chi Siamo -->
-			<section class="about-section" aria-labelledby="about-title">
-				<div class="container">
-					<h2 id="about-title">Chi Siamo</h2>
-					<p>
-						Da oltre vent’anni siamo un punto di riferimento per chi vuole
-						allenarsi, rimettersi in forma o semplicemente ritagliarsi un’ora
-						per sé.
-					</p>
-					<p>
-						SportLab nasce nel 2003 dall’idea di tre istruttori romani che
-						volevano creare un centro sportivo meno “palestra impersonale” e più
-						luogo di incontro. Oggi abbiamo una sala pesi rinnovata, corsi per
-						ogni livello e istruttori che seguono davvero le persone, non solo
-						numeri. Qui trovi allenamenti personalizzati, lezioni di gruppo e un
-						ambiente tranquillo dove conoscere persone con i tuoi stessi
-						obiettivi. Il nostro obiettivo è semplice: aiutarti a trovare una
-						routine sostenibile, senza pressioni e senza promesse irrealistiche.
-						Solo buon lavoro, fatto bene.
-					</p>
+				<ul class="nav-menu" id="navMenu">
+					<li>
+						<a href="../views/home.php" aria-current="page" class="nav-link" id="navMenuHome"
+							lang="en">Home</a>
+					</li>
+					<li>
+						<a href="../views/servizi.php" aria-label="Vai a Servizi" class="nav-link"
+							id="navMenuServizi">Servizi</a>
+					</li>
+					<li>
+						<a href="../views/login.php" aria-label="Accedi al tuo account" id="navMenuAccount"
+							class="nav-link">Account</a>
+					</li>
+					<li>
+						<a href="#" class="cta-button" aria-label="Prenota una sessione">Prenota</a>
+					</li>
+				</ul>
+
+				<button class="menu-toggle" id="menuToggle" aria-label="Apri menu di navigazione" aria-expanded="false"
+					aria-controls="navMenu" type="button">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</button>
+			</div>
+		</nav>
+	</header>
+	<main id="main-content" tabindex="-1">
+		<!-- Presentation Section con presentazione -->
+		<section class="banner" aria-labelledby="banner-title">
+			<div class="banner-container">
+				<h1 id="banner-title">Benvenuto allo SportLab</h1>
+				<p class="banner-subtitle">
+					La tua destinazione per uno stile di vita sano e attivo
+				</p>
+			</div>
+		</section>
+
+		<!-- Sezione Chi Siamo -->
+		<section class="about-section" aria-labelledby="about-title">
+			<div class="container">
+				<h2 id="about-title">Chi Siamo</h2>
+				<p>
+					Da oltre vent’anni siamo un punto di riferimento per chi vuole
+					allenarsi, rimettersi in forma o semplicemente ritagliarsi un’ora
+					per sé.
+				</p>
+				<p>
+					SportLab nasce nel 2003 dall’idea di tre istruttori romani che
+					volevano creare un centro sportivo meno “palestra impersonale” e più
+					luogo di incontro. Oggi abbiamo una sala pesi rinnovata, corsi per
+					ogni livello e istruttori che seguono davvero le persone, non solo
+					numeri. Qui trovi allenamenti personalizzati, lezioni di gruppo e un
+					ambiente tranquillo dove conoscere persone con i tuoi stessi
+					obiettivi. Il nostro obiettivo è semplice: aiutarti a trovare una
+					routine sostenibile, senza pressioni e senza promesse irrealistiche.
+					Solo buon lavoro, fatto bene.
+				</p>
+			</div>
+		</section>
+
+		<!-- Sezione Orari di Apertura -->
+		<section class="hours-section" aria-labelledby="hours-title">
+			<div class="container">
+				<h2 id="hours-title">Orari di Apertura</h2>
+				<div class="hours-grid">
+					<article class="hours-card">
+						<h3>Lunedì - Venerdì</h3>
+						<p><span class="sr-only">Apertura</span>06:00 - 22:00</p>
+					</article>
+					<article class="hours-card">
+						<h3>Sabato</h3>
+						<p><span class="sr-only">Apertura</span>08:00 - 20:00</p>
+					</article>
+					<article class="hours-card">
+						<h3>Domenica</h3>
+						<p><span class="sr-only">Apertura</span>09:00 - 18:00</p>
+					</article>
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<!-- Sezione Orari di Apertura -->
-			<section class="hours-section" aria-labelledby="hours-title">
-				<div class="container">
-					<h2 id="hours-title">Orari di Apertura</h2>
-					<div class="hours-grid">
-						<article class="hours-card">
-							<h3>Lunedì - Venerdì</h3>
-							<p><span class="sr-only">Apertura</span>06:00 - 22:00</p>
-						</article>
-						<article class="hours-card">
-							<h3>Sabato</h3>
-							<p><span class="sr-only">Apertura</span>08:00 - 20:00</p>
-						</article>
-						<article class="hours-card">
-							<h3>Domenica</h3>
-							<p><span class="sr-only">Apertura</span>09:00 - 18:00</p>
-						</article>
-					</div>
+		<!-- Sezione Informazioni di Contatto -->
+		<section class="contact-section" aria-labelledby="contact-title">
+			<div class="container">
+				<h2 id="contact-title">Contatti</h2>
+				<div class="contact-grid">
+					<article class="contact-card">
+						<h3>Telefono</h3>
+						<p><a href="tel:+390123456789">+39 0123 456789</a></p>
+					</article>
+					<article class="contact-card">
+						<h3>Email</h3>
+						<p>
+							<a href="mailto:info@centrosportivo.it">info@sportlab.it</a>
+						</p>
+					</article>
+					<article class="contact-card">
+						<h3>Indirizzo</h3>
+						<p>Via dello Sport, 10<br />00100 Roma (RM)</p>
+					</article>
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<!-- Sezione Informazioni di Contatto -->
-			<section class="contact-section" aria-labelledby="contact-title">
-				<div class="container">
-					<h2 id="contact-title">Contatti</h2>
-					<div class="contact-grid">
-						<article class="contact-card">
-							<h3>Telefono</h3>
-							<p><a href="tel:+390123456789">+39 0123 456789</a></p>
-						</article>
-						<article class="contact-card">
-							<h3>Email</h3>
-							<p>
-								<a href="mailto:info@centrosportivo.it">info@sportlab.it</a>
-							</p>
-						</article>
-						<article class="contact-card">
-							<h3>Indirizzo</h3>
-							<p>Via dello Sport, 10<br />00100 Roma (RM)</p>
-						</article>
-					</div>
+		<!-- Sezione Posizione della Sede -->
+		<section class="location-section" aria-labelledby="location-title">
+			<div class="container">
+				<h2 id="location-title">Trova la Nostra Sede</h2>
+				<p>
+					Ci trovi in una zona comoda da raggiungere sia in auto che con i
+					mezzi. Molti iscritti vengono direttamente dal lavoro: per questo
+					abbiamo spogliatoi ampi, docce e un bar interno per chi vuole
+					fermarsi dopo l’allenamento.
+				</p>
+				<div class="map-container">
+					<iframe title="Posizione del centro sportivo su Google Maps"
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.0440315639997!2d12.496365712347656!3d41.90274097104768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f61a751ec65cd%3A0x1234567890abcdef!2sVia%20dello%20Sport%2C%2010%2C%20Roma!5e0!3m2!1sit!2sit!4v1234567890"
+						width="100%" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade">
+					</iframe>
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<!-- Sezione Posizione della Sede -->
-			<section class="location-section" aria-labelledby="location-title">
-				<div class="container">
-					<h2 id="location-title">Trova la Nostra Sede</h2>
-					<p>
-						Ci trovi in una zona comoda da raggiungere sia in auto che con i
-						mezzi. Molti iscritti vengono direttamente dal lavoro: per questo
-						abbiamo spogliatoi ampi, docce e un bar interno per chi vuole
-						fermarsi dopo l’allenamento.
-					</p>
-					<div class="map-container">
-						<iframe
-							title="Posizione del centro sportivo su Google Maps"
-							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.0440315639997!2d12.496365712347656!3d41.90274097104768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f61a751ec65cd%3A0x1234567890abcdef!2sVia%20dello%20Sport%2C%2010%2C%20Roma!5e0!3m2!1sit!2sit!4v1234567890"
-							width="100%"
-							height="450"
-							style="border: 0"
-							allowfullscreen=""
-							loading="lazy"
-							referrerpolicy="no-referrer-when-downgrade">
-						</iframe>
-					</div>
+		<!-- Sezione Annunci Speciali -->
+		<section class="announcements-section" aria-labelledby="announcements-title">
+			<div class="container">
+				<h2 id="announcements-title">Annunci Speciali</h2>
+				<div class="announcements-grid">
+					<article class="announcement-card" role="article">
+						<span class="announcement-info">SCONTO</span>
+						<h3>Promozione Iniziale - 30% di Sconto</h3>
+						<p>
+							Se ti iscrivi entro il 30 novembre 2025, il primo mese lo paghi
+							con uno sconto del 30%. Un modo semplice per iniziare senza
+							spendere troppo.
+						</p>
+						<p class="announcement-date">
+							<span class="sr-only">Data annuncio:</span>Valido fino al 30
+							novembre 2025
+						</p>
+					</article>
+
+					<article class="announcement-card" role="article">
+						<span class="announcement-info">NUOVO</span>
+						<h3>Nuovi Corsi di Yoga</h3>
+						<p>Nuovo corso di yoga tenuto dalla nostra istruttrice Sara.</p>
+						<p class="announcement-date">
+							<span class="sr-only">Data annuncio:</span>Disponibile da
+							novembre 2025
+						</p>
+					</article>
+
+					<article class="announcement-card" role="article">
+						<span class="announcement-info">EVENTO</span>
+						<h3>Maratona Fitness Autunnale</h3>
+						<p>
+							Corso di preparazione alla maratona autunnale, allenamenti
+							gratuiti con il nostro istruttore Marco. Aperto solo agli
+							iscritti
+						</p>
+						<p class="announcement-date">
+							<span class="sr-only">Data evento:</span>Sabato 14 dicembre 2025
+						</p>
+					</article>
+
+					<article class="announcement-card" role="article">
+						<span class="announcement-info">SPECIAL</span>
+						<h3>Personal Training - Prima Sessione Gratuita</h3>
+						<p>
+							Al primo allenamento nel nostro centro é disponibile la
+							supervisione di uno dei nostri istruttori
+						</p>
+						<p class="announcement-date">
+							<span class="sr-only">Data annuncio:</span>Offerta disponibile
+							tutto l'anno
+						</p>
+					</article>
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<!-- Sezione Annunci Speciali -->
-			<section
-				class="announcements-section"
-				aria-labelledby="announcements-title">
-				<div class="container">
-					<h2 id="announcements-title">Annunci Speciali</h2>
-					<div class="announcements-grid">
-						<article class="announcement-card" role="article">
-							<span class="announcement-info">SCONTO</span>
-							<h3>Promozione Iniziale - 30% di Sconto</h3>
-							<p>
-								Se ti iscrivi entro il 30 novembre 2025, il primo mese lo paghi
-								con uno sconto del 30%. Un modo semplice per iniziare senza
-								spendere troppo.
-							</p>
-							<p class="announcement-date">
-								<span class="sr-only">Data annuncio:</span>Valido fino al 30
-								novembre 2025
-							</p>
-						</article>
+		<section class="cta-section" aria-labelledby="cta-title">
+			<div class="container">
+				<h2 id="cta-title">Inizia il Tuo Percorso Oggi</h2>
+				<p>
+					Unisciti a centinaia di membri soddisfatti e raggiungi i tuoi
+					obiettivi di fitness.
+				</p>
+				<a href="#" class="cta-primary-button">Iscriviti Ora</a>
+			</div>
+		</section>
+	</main>
+	<footer class="footer" role="contentinfo" aria-label="Piè di pagina">
+		<a href="#main-content" class="cta-primary-button icon-button"><img src="../assets/arrowUp.png"
+				alt="Torna su" /></a>
+		<div class="container">
+			<p>&copy; 2025 SportLab. Tutti i diritti riservati.</p>
+			<ul class="footer-links">
+				<li><a href="#" lang="en">Privacy Policy</a></li>
+				<li><a href="#">Termini e Condizioni</a></li>
+				<li><a href="#">Accessibilità</a></li>
+			</ul>
+		</div>
+	</footer>
+</body>
 
-						<article class="announcement-card" role="article">
-							<span class="announcement-info">NUOVO</span>
-							<h3>Nuovi Corsi di Yoga</h3>
-							<p>Nuovo corso di yoga tenuto dalla nostra istruttrice Sara.</p>
-							<p class="announcement-date">
-								<span class="sr-only">Data annuncio:</span>Disponibile da
-								novembre 2025
-							</p>
-						</article>
-
-						<article class="announcement-card" role="article">
-							<span class="announcement-info">EVENTO</span>
-							<h3>Maratona Fitness Autunnale</h3>
-							<p>
-								Corso di preparazione alla maratona autunnale, allenamenti
-								gratuiti con il nostro istruttore Marco. Aperto solo agli
-								iscritti
-							</p>
-							<p class="announcement-date">
-								<span class="sr-only">Data evento:</span>Sabato 14 dicembre 2025
-							</p>
-						</article>
-
-						<article class="announcement-card" role="article">
-							<span class="announcement-info">SPECIAL</span>
-							<h3>Personal Training - Prima Sessione Gratuita</h3>
-							<p>
-								Al primo allenamento nel nostro centro é disponibile la
-								supervisione di uno dei nostri istruttori
-							</p>
-							<p class="announcement-date">
-								<span class="sr-only">Data annuncio:</span>Offerta disponibile
-								tutto l'anno
-							</p>
-						</article>
-					</div>
-				</div>
-			</section>
-
-			<section class="cta-section" aria-labelledby="cta-title">
-				<div class="container">
-					<h2 id="cta-title">Inizia il Tuo Percorso Oggi</h2>
-					<p>
-						Unisciti a centinaia di membri soddisfatti e raggiungi i tuoi
-						obiettivi di fitness.
-					</p>
-					<a href="#" class="cta-primary-button">Iscriviti Ora</a>
-				</div>
-			</section>
-		</main>
-	</body>
 </html>
 
 <script>
 	document.getElementById('navMenuHome').classList.add('active');
+	const menuToggle = document.getElementById('menuToggle');
+	const navMenu = document.getElementById('navMenu');
+
+	menuToggle.addEventListener('click', () => {
+		const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+		menuToggle.setAttribute('aria-expanded', !isExpanded);
+		navMenu.classList.toggle('active');
+	});
+
+	// Chiudi il menu quando si clicca su un link
+	document.querySelectorAll('.nav-menu a').forEach((link) => {
+		link.addEventListener('click', () => {
+			navMenu.classList.remove('active');
+			menuToggle.setAttribute('aria-expanded', 'false');
+		});
+	});
+
+	// Chiudi il menu con il tasto Escape
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') {
+			navMenu.classList.remove('active');
+			menuToggle.setAttribute('aria-expanded', 'false');
+		}
+	});
 </script>

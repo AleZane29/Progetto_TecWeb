@@ -39,7 +39,7 @@
 	align-items: center;
 }
 
-.nav-menu .cta-link {
+.nav-menu .nav-link {
 	color: var(--text);
 	text-decoration: none;
 	font-weight: 500;
@@ -48,7 +48,7 @@
 	padding: 0.5rem;
 }
 
-.nav-menu .cta-link::after {
+.nav-menu .nav-link::after {
 	content: '';
 	position: absolute;
 	bottom: -5px;
@@ -59,15 +59,15 @@
 	transition: width 0.3s;
 }
 
-.nav-menu .cta-link:hover::after {
+.nav-menu .nav-link:hover::after {
 	width: 100%;
 }
 
-.nav-menu .cta-link.active {
+.nav-menu .nav-link.active {
 	color: var(--primary-600);
 }
 
-.nav-menu .cta-link.active::after {
+.nav-menu .nav-link.active::after {
 	width: 100%;
 }
 

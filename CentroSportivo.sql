@@ -1,6 +1,5 @@
 CREATE TABLE utente (
     id SERIAL PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
     nome VARCHAR(100) NOT NULL,
     cognome VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
