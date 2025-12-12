@@ -7,9 +7,11 @@
 	--primary-300: #4997d6ff;
 	--primary-400: #2e86d0ff;
 	--primary-500: #1275caff;
-	--primary-600: #0f68b5ff; /*colore primario*/
+	--primary-600: #0f68b5ff;
+	/*colore primario*/
 	--primary-700: #0c589dff;
-	--primary-800: #0a4c88ff; /*button:hover*/
+	--primary-800: #0a4c88ff;
+	/*button:hover*/
 	--primary-900: #004699ff;
 
 	--secondary-100: #ffe6cc;
@@ -129,6 +131,68 @@ body {
 	width: 100%;
 }
 
+.container-info {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 2rem;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 8rem;
+}
+
+.container-paragraph {
+	flex: 1;
+}
+
+.container-image img {
+	max-width: 400px;
+	max-height: auto;
+	border-radius: 5%;
+}
+
+.container-table {
+	background-color: var(--neutral-0);
+	border: 2px solid #004a99;
+	max-width: 900px;
+	margin: 0 auto;
+	border-radius: 5%;
+    overflow: hidden;
+}
+
+.timetable {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+	color: #333;
+}
+
+.timetable th,
+.timetable td {
+	padding: 12px 15px;
+}
+
+.timetable thead th {
+	background-color: #004a99;
+	color: var(--neutral-0);
+	font-weight: bold;
+}
+
+.timetable td {
+	border-bottom: 1px solid #d0e8ff;
+}
+
+.timetable td:first-child {
+	font-weight: bold;
+	color: #004a99;
+	background-color: var(--neutral-0);
+}
+
+.timetable tbody tr:nth-child(even) {
+	background-color: var(--neutral-0);
+}
+
+
 /* Main content area */
 main {
 	min-height: calc(100vh - 140px);
@@ -136,11 +200,18 @@ main {
 
 /* banner Section */
 .banner {
-	background: linear-gradient(135deg, var(--primary-600) 0%, #1a5fb8 100%);
-	color: white;
+	width: 100%;
+    height: 300px;
+    background: linear-gradient(
+        rgba(0,0,0,0.5),   /* 0.5 = 50% opaco */
+        rgba(0,0,0,0.5)
+    ),
+    url("../assets/bannerhome.png");
+    background-size: cover;
+    background-position: center;
+    color: var(--neutral-0);
 	padding: 6rem 2rem;
 	text-align: center;
-	margin-bottom: 3rem;
 }
 
 .banner-container {
@@ -149,22 +220,23 @@ main {
 }
 
 .banner-container h1 {
-	font-size: 3rem;
+	font-size: 4rem;
 	margin-bottom: 1rem;
 	font-weight: 700;
+	color: var(--neutral-0);
 }
 
 .banner-subtitle {
-	font-size: 1.25rem;
+	font-size: 0rem;
 	font-weight: 300;
 	margin-bottom: 2rem;
+	color: var(--neutral-0);
 }
 
 /* About Section */
 .about-section {
-	background: white;
+	background: var(--neutral-0);
 	padding: 4rem 2rem;
-	margin-bottom: 3rem;
 }
 
 .about-section h2 {
@@ -321,21 +393,21 @@ main {
 	border: none;
 }
 
-/* Announcements Section */
-.announcements-section {
+/* notices Section */
+.notices-section {
 	background: white;
 	padding: 4rem 2rem;
 	margin-bottom: 3rem;
 }
 
-.announcements-section h2 {
+.notices-section h2 {
 	font-size: 2rem;
 	margin-bottom: 3rem;
 	text-align: center;
 	color: var(--primary-600);
 }
 
-.announcements-grid {
+.notices-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 	gap: 2rem;
@@ -343,7 +415,7 @@ main {
 	margin: 0 auto;
 }
 
-.announcement-card {
+.notice-card {
 	background: var(--neutral-0);
 	border: 1px solid var(--neutral-200);
 	border-radius: 8px;
@@ -353,12 +425,12 @@ main {
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.announcement-card:hover {
+.notice-card:hover {
 	transform: translateY(-4px);
 	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-.announcement-info {
+.notice-info {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -371,26 +443,26 @@ main {
 	letter-spacing: 0.05em;
 }
 
-.announcement-card h3 {
+.notice-card h3 {
 	font-size: 1.25rem;
-	margin: 2rem 0 1rem 0;
+	margin: 0rem 0 0.5rem 0;
 	color: var(--text-bold);
 }
 
-.announcement-card p {
+.notice-card p {
 	color: var(--text);
 	line-height: 1.8;
 	margin-bottom: 1rem;
 }
 
-.announcement-date {
+.notice-date {
 	font-size: 0.9rem;
 	color: #888;
 	font-style: italic;
 }
 
 /* CTA Section */
-.cta-section {
+.subscribe-section {
 	background: linear-gradient(135deg, var(--primary-600) 0%, #1a5fb8 100%);
 	color: white;
 	padding: 4rem 2rem;
@@ -398,17 +470,17 @@ main {
 	margin-bottom: 0;
 }
 
-.cta-section h2 {
+.subscribe-section h2 {
 	font-size: 2rem;
 	margin-bottom: 1rem;
 }
 
-.cta-section p {
+.subscribe-section p {
 	font-size: 1.1rem;
 	margin-bottom: 2rem;
 }
 
-.cta-primary-button {
+.primary-button {
 	background: white;
 	color: var(--primary-600);
 	padding: 0.8rem 2rem;
@@ -421,17 +493,17 @@ main {
 	display: inline-block;
 }
 
-.cta-primary-button:hover {
+.primary-button:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 	background: var(--neutral-100);
 }
 
-.cta-primary-button:focus {
+.primary-button:focus {
 	outline: 2px solid var(--text-bold);
 	outline-offset: 2px;
 }
 
-.cta-primary-button:active {
+.primary-button:active {
 	transform: translateY(0);
 }
