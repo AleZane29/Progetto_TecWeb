@@ -4,4 +4,4 @@ if (!isset($_SESSION)) {
 }
 session_destroy();
 $_SESSION['logged_in'] = false;
-header("Location: ../views/login.php");
+header("Location: ../views/account.php");

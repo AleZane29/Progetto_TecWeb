@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!empty($password) && $password === "admin") {
       session_regenerate_id(true);
       $_SESSION["user"] = $email;
-      header("Location: ./account.php");
     } else {
       $loginResult = "<p class='error-message' role='alert'>Password errata</p>";
     }
