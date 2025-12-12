@@ -1,7 +1,7 @@
 /* Sport Page Styles */
 
 /* banner Section */
-.sport-banner {
+.service-banner {
 	background: linear-gradient(135deg, var(--primary-600) 0%, #1a5fb8 100%);
 	color: white;
 	padding: 5rem 2rem;
@@ -9,37 +9,37 @@
 	margin-bottom: 3rem;
 }
 
-.sport-banner-container {
+.service-banner-container {
 	max-width: 1200px;
 	margin: 0 auto;
 }
 
-.sport-banner-container h1 {
+.service-banner-container h1 {
 	font-size: 2.5rem;
 	margin-bottom: 1rem;
 	font-weight: 700;
 }
 
-.sport-banner-subtitle {
+.service-banner-subtitle {
 	font-size: 1.15rem;
 	font-weight: 300;
 	opacity: 0.95;
 }
 
 /* Intro Section */
-.sport-intro {
+.service-intro {
 	background: white;
 	padding: 3rem 2rem;
 	margin-bottom: 3rem;
 }
 
-.sport-intro h2 {
+.service-intro h2 {
 	font-size: 1.75rem;
 	margin-bottom: 1.5rem;
 	color: var(--primary-600);
 }
 
-.sport-intro p {
+.service-intro p {
 	font-size: 1rem;
 	line-height: 1.8;
 	margin-bottom: 1rem;
@@ -47,17 +47,17 @@
 }
 
 /* Sport Detail Sections */
-.sport-detail {
+.service-detail {
 	background: var(--neutral-100);
 	padding: 3rem 2rem;
 	margin-bottom: 3rem;
 }
 
-.sport-detail-alt {
+.service-detail-alt {
 	background: white;
 }
 
-.sport-card {
+.service-card {
 	max-width: 1000px;
 	margin: 0 auto;
 	background: white;
@@ -66,13 +66,13 @@
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
-.sport-detail-alt .sport-card {
+.service-detail-alt .service-card {
 	background: var(--neutral-100);
 	box-shadow: none;
 	border: 1px solid var(--neutral-200);
 }
 
-.sport-header {
+.service-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -83,13 +83,13 @@
 	gap: 1rem;
 }
 
-.sport-header h2 {
+.service-header h2 {
 	font-size: 2rem;
 	color: var(--text-bold);
 	margin: 0;
 }
 
-.sport-badge {
+.service-badge {
 	background: var(--primary-600);
 	color: white;
 	padding: 0.5rem 1.25rem;
@@ -99,44 +99,44 @@
 	display: inline-block;
 }
 
-.sport-content {
+.service-content {
 	display: grid;
 	gap: 2rem;
 }
 
-.sport-info h3 {
+.service-info h3 {
 	font-size: 1.25rem;
 	color: var(--primary-600);
 	margin-top: 1.5rem;
 	margin-bottom: 1rem;
 }
 
-.sport-info h3:first-child {
+.service-info h3:first-child {
 	margin-top: 0;
 }
 
-.sport-info p {
+.service-info p {
 	font-size: 1rem;
 	line-height: 1.8;
 	color: var(--text);
 	margin-bottom: 1rem;
 }
 
-.sport-info ul {
+.service-info ul {
 	list-style: none;
 	padding-left: 0;
 	margin: 1rem 0 1.5rem 0;
 }
 
-.sport-info li {
+.service-info li {
 	padding: 0.5rem 0 0.5rem 1.75rem;
 	position: relative;
 	color: var(--text);
 	line-height: 1.6;
 }
 
-.sport-info li::before {
-	content: "•";
+.service-info li::before {
+	content: '•';
 	color: var(--primary-600);
 	font-weight: bold;
 	font-size: 1.5rem;
@@ -145,7 +145,7 @@
 	top: 0.1rem;
 }
 
-.sport-info strong {
+.service-info strong {
 	color: var(--text-bold);
 	font-weight: 600;
 }
@@ -213,42 +213,42 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-	.sport-hero-container h1 {
+	.service-hero-container h1 {
 		font-size: 2rem;
 	}
 
-	.sport-hero-subtitle {
+	.service-hero-subtitle {
 		font-size: 1rem;
 	}
 
-	.sport-hero {
+	.service-hero {
 		padding: 3.5rem 1.5rem;
 	}
 
-	.sport-intro,
-	.sport-detail,
+	.service-intro,
+	.service-detail,
 	.facility-map {
 		padding: 2rem 1.5rem;
 	}
 
-	.sport-card {
+	.service-card {
 		padding: 1.5rem;
 	}
 
-	.sport-header {
+	.service-header {
 		flex-direction: column;
 		align-items: flex-start;
 	}
 
-	.sport-header h2 {
+	.service-header h2 {
 		font-size: 1.5rem;
 	}
 
-	.sport-badge {
+	.service-badge {
 		align-self: flex-start;
 	}
 
-	.sport-info h3 {
+	.service-info h3 {
 		font-size: 1.1rem;
 	}
 
@@ -263,21 +263,21 @@
 }
 
 @media (max-width: 480px) {
-	.sport-hero-container h1 {
+	.service-hero-container h1 {
 		font-size: 1.75rem;
 	}
 
-	.sport-info li {
+	.service-info li {
 		padding-left: 1.5rem;
 	}
 
-	.sport-card {
+	.service-card {
 		padding: 1.25rem;
 	}
 }
 
 /* Focus States for Accessibility */
-.sport-card:focus-within {
+.service-card:focus-within {
 	outline: 2px solid var(--primary-600);
 	outline-offset: 4px;
 }
@@ -289,13 +289,13 @@ a.cta-primary-button:focus {
 
 /* Print Styles */
 @media print {
-	.sport-hero,
+	.service-hero,
 	.cta-section {
 		background: white;
 		color: black;
 	}
 
-	.sport-badge {
+	.service-badge {
 		border: 2px solid black;
 		color: black;
 		background: white;
@@ -307,13 +307,13 @@ a.cta-primary-button:focus {
 }
 
 /* Stili galleria immagini sport */
-.sport-gallery {
+.service-gallery {
 	margin-top: 2rem;
 	padding-top: 2rem;
 	border-top: 2px solid var(--neutral-200);
 }
 
-.sport-gallery h3 {
+.service-gallery h3 {
 	font-size: 1.25rem;
 	color: var(--primary-600);
 	margin-bottom: 1.5rem;

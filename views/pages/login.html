@@ -14,6 +14,67 @@
 	</head>
 
 	<body>
+		<header>
+			<nav class="navbar" role="navigation" aria-label="Navigazione principale">
+				<div class="nav-container">
+					<div class="logo">
+						<img
+							src="../assets/logo_white.png"
+							class="logo-icon"
+							alt="Logo del Centro Sportivo" />
+						<span>SportLab</span>
+					</div>
+
+					<ul class="nav-menu" id="navMenu">
+						<li>
+							<a
+								href="../views/home.php"
+								aria-current="page"
+								class="nav-link"
+								id="navMenuHome"
+								lang="en"
+								>Home</a
+							>
+						</li>
+						<li>
+							<a
+								href="../views/service.php"
+								aria-label="Vai a Servizi"
+								class="nav-link"
+								id="navMenuServizi"
+								>Servizi</a
+							>
+						</li>
+						<li>
+							<a
+								href="../views/login.php"
+								aria-label="Accedi al tuo account"
+								id="navMenuAccount"
+								class="nav-link active"
+								>Account</a
+							>
+						</li>
+						<li>
+							<a href="#" class="cta-button" aria-label="Prenota una sessione"
+								>Prenota</a
+							>
+						</li>
+					</ul>
+
+					<button
+						class="menu-toggle"
+						id="menuToggle"
+						aria-label="Apri menu di navigazione"
+						aria-expanded="false"
+						aria-controls="navMenu"
+						type="button">
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+					</button>
+				</div>
+			</nav>
+		</header>
 		<main id="main-content" tabindex="-1">
 			<div class="login-container">
 				<form
@@ -25,7 +86,7 @@
 						<h1>Benvenuto in SportLab</h1>
 						<p>Accedi al tuo account</p>
 					</div>
-
+					[loginResult]
 					<div class="form-group">
 						<label for="email">Email</label>
 						<div class="form-input">
@@ -68,7 +129,7 @@
 
 					<div class="form-footer">
 						<span>Non hai un account? </span>
-						<a href="#" tabindex="0">Registrati ora</a>
+						<a href="./login.php" tabindex="0">Registrati ora</a>
 					</div>
 				</form>
 			</div>
@@ -76,8 +137,6 @@
 	</body>
 
 	<script>
-		document.getElementById('navMenuAccount').classList.add('active');
-
 		function togglePassword() {
 			const passwordInput = document.getElementById('password');
 			const toggleIcon = document.querySelector('.toggle-password');

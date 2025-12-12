@@ -8,27 +8,88 @@
 			name="description"
 			content="SportLab - Scopri i nostri campi e le discipline sportive: calcio a 5, tennis e basket" />
 		<meta name="language" content="it" />
-		<title>Sport - SportLab</title>
+		<title>Servizi - SportLab</title>
 		<link href="../style/style.css" rel="stylesheet" />
-		<link href="../style/servizi.css" rel="stylesheet" />
+		<link href="../style/service.css" rel="stylesheet" />
 		<link href="../style/header.css" rel="stylesheet" />
 		<link href="../style/footer.css" rel="stylesheet" />
 	</head>
 
 	<body>
+		<header>
+			<nav class="navbar" role="navigation" aria-label="Navigazione principale">
+				<div class="nav-container">
+					<div class="logo">
+						<img
+							src="../assets/logo_white.png"
+							class="logo-icon"
+							alt="Logo del Centro Sportivo" />
+						<span>SportLab</span>
+					</div>
+
+					<ul class="nav-menu" id="navMenu">
+						<li>
+							<a
+								href="../views/home.php"
+								aria-current="page"
+								class="nav-link"
+								id="navMenuHome"
+								lang="en"
+								>Home</a
+							>
+						</li>
+						<li>
+							<a
+								href="../views/service.php"
+								aria-label="Vai a Servizi"
+								class="nav-link active"
+								id="navMenuServizi"
+								>Servizi</a
+							>
+						</li>
+						<li>
+							<a
+								href="../views/login.php"
+								aria-label="Accedi al tuo account"
+								id="navMenuAccount"
+								class="nav-link"
+								>Account</a
+							>
+						</li>
+						<li>
+							<a href="#" class="cta-button" aria-label="Prenota una sessione"
+								>Prenota</a
+							>
+						</li>
+					</ul>
+
+					<button
+						class="menu-toggle"
+						id="menuToggle"
+						aria-label="Apri menu di navigazione"
+						aria-expanded="false"
+						aria-controls="navMenu"
+						type="button">
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+					</button>
+				</div>
+			</nav>
+		</header>
 		<main id="main-content" tabindex="-1">
 			<!-- banner Section -->
-			<section class="sport-banner" aria-labelledby="sport-banner-title">
-				<div class="sport-banner-container">
-					<h1 id="sport-banner-title">I Nostri Sport</h1>
-					<p class="sport-banner-subtitle">
+			<section class="service-banner" aria-labelledby="service-banner-title">
+				<div class="service-banner-container">
+					<h1 id="service-banner-title">I Nostri Servizi</h1>
+					<p class="service-banner-subtitle">
 						Campi moderni e attrezzature di qualità per giocare al meglio
 					</p>
 				</div>
 			</section>
 
 			<!-- Introduzione -->
-			<section class="sport-intro" aria-labelledby="intro-title">
+			<section class="service-intro" aria-labelledby="intro-title">
 				<div class="container">
 					<h2 id="intro-title">Una Struttura Completa per Ogni Esigenza</h2>
 					<p>
@@ -48,18 +109,18 @@
 			</section>
 
 			<!-- Calcio a 5 -->
-			<section class="sport-detail" aria-labelledby="calcio-title">
+			<section class="service-detail" aria-labelledby="calcio-title">
 				<div class="container">
-					<article class="sport-card">
-						<div class="sport-header">
+					<article class="service-card">
+						<div class="service-header">
 							<h2 id="calcio-title">Calcio a 5</h2>
-							<span class="sport-badge" aria-label="Numero campi disponibili"
+							<span class="service-badge" aria-label="Numero campi disponibili"
 								>2 campi</span
 							>
 						</div>
 
-						<div class="sport-content">
-							<div class="sport-info">
+						<div class="service-content">
+							<div class="service-info">
 								<h3>Il Campo</h3>
 								<p>
 									Due campi regolamentari con pavimento in parquet sintetico di
@@ -92,7 +153,7 @@
 									<strong>Abbonamento mensile:</strong> €200 (4 ore a settimana)
 								</p>
 								<!-- Gallery predefinita per Calcio a 5 -->
-								<div class="sport-gallery">
+								<div class="service-gallery">
 									<h3>Galleria del Campo</h3>
 									<div
 										class="gallery-grid"
@@ -141,19 +202,19 @@
 
 			<!-- Tennis -->
 			<section
-				class="sport-detail sport-detail-alt"
+				class="service-detail service-detail-alt"
 				aria-labelledby="tennis-title">
 				<div class="container">
-					<article class="sport-card">
-						<div class="sport-header">
+					<article class="service-card">
+						<div class="service-header">
 							<h2 id="tennis-title">Tennis</h2>
-							<span class="sport-badge" aria-label="Numero campi disponibili"
+							<span class="service-badge" aria-label="Numero campi disponibili"
 								>3 campi</span
 							>
 						</div>
 
-						<div class="sport-content">
-							<div class="sport-info">
+						<div class="service-content">
+							<div class="service-info">
 								<h3>I Campi</h3>
 								<p>
 									Tre campi in terra rossa sintetica, con superficie Rebound Ace
@@ -187,7 +248,7 @@
 									<strong>Abbonamento 10 ingressi:</strong> €200
 								</p>
 								<!-- Gallery predefinita per Tennis -->
-								<div class="sport-gallery">
+								<div class="service-gallery">
 									<h3>Galleria dei Campi da Tennis</h3>
 									<div
 										class="gallery-grid"
@@ -233,18 +294,18 @@
 			</section>
 
 			<!-- Basket -->
-			<section class="sport-detail" aria-labelledby="basket-title">
+			<section class="service-detail" aria-labelledby="basket-title">
 				<div class="container">
-					<article class="sport-card">
-						<div class="sport-header">
+					<article class="service-card">
+						<div class="service-header">
 							<h2 id="basket-title">Basket</h2>
-							<span class="sport-badge" aria-label="Numero campi disponibili"
+							<span class="service-badge" aria-label="Numero campi disponibili"
 								>1 campo</span
 							>
 						</div>
 
-						<div class="sport-content">
-							<div class="sport-info">
+						<div class="service-content">
+							<div class="service-info">
 								<h3>Il Campo</h3>
 								<p>
 									Un campo coperto regolamentare con parquet professionale della
@@ -277,7 +338,7 @@
 									<strong>Abbonamento mensile:</strong> €240 (4 ore a settimana)
 								</p>
 								<!-- Gallery predefinita per Basket -->
-								<div class="sport-gallery">
+								<div class="service-gallery">
 									<h3>Galleria del Campo da Basket</h3>
 									<div
 										class="gallery-grid"
@@ -360,18 +421,12 @@
 				<div class="container">
 					<h2 id="cta-title">Prenota il Tuo Campo</h2>
 					<p>
-						Contattaci per verificare la disponibilità e prenotare il campo che
-						preferisci.
+						Consulta la pagina di prenotazione per visualizzare la disponibilità
+						e prenotare il campo che preferisci.
 					</p>
-					<a href="tel:+390123456789" class="cta-primary-button"
-						>Chiamaci Ora</a
-					>
+					<a href="./reservation.php" class="cta-primary-button">Prenota Ora</a>
 				</div>
 			</section>
 		</main>
 	</body>
 </html>
-
-<script>
-	document.getElementById('navMenuServizi').classList.add('active');
-</script>
