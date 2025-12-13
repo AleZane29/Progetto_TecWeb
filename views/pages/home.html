@@ -237,8 +237,7 @@
 				<div class="map-container">
 					<iframe title="Posizione centro sportivo" width="100%" height="450"
 						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1933.6320488253502!2d12.146314825867151!3d45.49257761140524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477ecb8785c6ca79%3A0x8f35cf4129a370fb!2sParco%20di%20via%20Baseggio!5e0!3m2!1sit!2sit!4v1765482611417!5m2!1sit!2sit"
-						loading="lazy"
-						referrerpolicy="no-referrer-when-downgrade">
+						loading="lazy" referrerpolicy="no-referrer-when-downgrade">
 					</iframe>
 				</div>
 			</div>
@@ -246,32 +245,48 @@
 
 		<!-- Sezione Annunci Speciali -->
 		<section class="notices-section" aria-labelledby="notices-title">
-			<div class="container">
-				<h2 id="notices-title">Annunci Speciali</h2>
-				<div class="notices-grid">
+			<h2 id="notices-title">Annunci speciali</h2>
+			<div class="slideshow-container">
+
+				<div class="mySlides fade">
 					<article class="notice-card" role="article">
 						<h3>Campo da calcetto inutilizzabile</h3>
 						<p>
 							Durante l'ultima partita una delle reti del campo 1 è stata strappata
 						</p>
 					</article>
-
-					<article class="notice-card" role="article">
-						<h3>campo da basket a metà prezzo</h3>
-						<p>
-							Per le vacanze di Natale il campo da basket avrà una riduzione di prezzo
-						</p>
-					</article>
-
-					<article class="notice-card" role="article">
-						<h3>Nuove racchette acquistabili</h3>
-						<p>
-							Nel nostro negozio fisico sono arrivate nuove attrezzature
-						</p>
-					</article>
-
 				</div>
+
+				<div class="mySlides fade">
+					<article class="notice-card" role="article">
+						<h3>Nuova attrezzatura</h3>
+						<p>
+							Arrivate nuove attrzzature ai campi da tennis
+						</p>
+					</article>
+				</div>
+
+				<div class="mySlides fade">
+					<article class="notice-card" role="article">
+						<h3>Campo da basket a metà prezzo</h3>
+						<p>
+							Durante le vacanze di Natale il campo da basket sarà scontato a metà prezzo
+						</p>
+					</article>
+				</div>
+
+				<a class="prev" onclick="plusSlides(-1)">❮</a>
+				<a class="next" onclick="plusSlides(1)">❯</a>
+
 			</div>
+			<br>
+
+			<div style="text-align:center">
+				<span class="dot" onclick="currentSlide(1)"></span>
+				<span class="dot" onclick="currentSlide(2)"></span>
+				<span class="dot" onclick="currentSlide(3)"></span>
+			</div>
+
 		</section>
 
 		<section class="subscribe-section" aria-labelledby="subscribe-title">
@@ -327,4 +342,33 @@
 			menuToggle.setAttribute('aria-expanded', 'false');
 		}
 	});
+</script>
+
+<script>
+	let slideIndex = 1;
+	showSlides(slideIndex);
+
+	function plusSlides(n) {
+		showSlides(slideIndex += n);
+	}
+
+	function currentSlide(n) {
+		showSlides(slideIndex = n);
+	}
+
+	function showSlides(n) {
+		let i;
+		let slides = document.getElementsByClassName("mySlides");
+		let dots = document.getElementsByClassName("dot");
+		if (n > slides.length) { slideIndex = 1 }
+		if (n < 1) { slideIndex = slides.length }
+		for (i = 0; i < slides.length; i++) {
+			slides[i].style.display = "none";
+		}
+		for (i = 0; i < dots.length; i++) {
+			dots[i].className = dots[i].className.replace(" actual", "");
+		}
+		slides[slideIndex - 1].style.display = "block";
+		dots[slideIndex - 1].className += " actual";
+	}
 </script>
