@@ -71,7 +71,7 @@
 	width: 100%;
 }
 
-.cta-button {
+.subscribe-button {
 	background: var(--primary-600);
 	color: white !important;
 	padding: 0.6rem 1.5rem;
@@ -82,7 +82,7 @@
 	display: inline-block;
 }
 
-.cta-button:hover {
+.subscribe-button:hover {
 	background: var(--primary-800);
 	transform: translateY(-2px);
 	box-shadow: 0 4px 12px var(--shadow-primary);

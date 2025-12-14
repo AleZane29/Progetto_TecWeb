@@ -1,13 +1,13 @@
 <?php
 
-namespace Model;
+namespace DB;
 
-class Database
+class DBConn
 {
 	private const HOST_DB = "localhost";
-	private const DATABASE_NAME = "lpasqual";
-	private const USERNAME = "lpasqual";
-	private const PASSWORD = "ohSh3thipo7toavi";
+	private const DATABASE_NAME = "alzanell";
+	private const USERNAME = "root";
+	private const PASSWORD = "";
 
 	private $connection;
 
@@ -45,5 +45,19 @@ class Database
 			echo "Error while closing connection: " . $e->getMessage();
 			return false;
 		}
+	}
+
+	public function checkLogin($email, $password)
+	{
+		$query = "SELECT * FROM Utente WHERE email=\"$email\" AND password=\"$password\"";
+		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
+		return mysqli_num_rows($queryResult) > 0;
+	}
+
+	public function getUser($email)
+	{
+		$query = "SELECT * FROM Utente WHERE email=\"$email\" ";
+		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
+		return mysqli_num_rows($queryResult) > 0;
 	}
 }

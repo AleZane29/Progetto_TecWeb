@@ -1,54 +1,39 @@
 <?php
 
+require_once "../model/database/database.php";
+
+use DB\DBConn;
+
 $HTMLPage = file_get_contents('../views/pages/login.html');
 
-$loginResult = "<p>Non è stato possibile effettuare il login, riprovare più tardi</p>";
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  $email = $_POST["email"] ?? "";
-  $password = $_POST["password"] ?? "";
-  if (!empty($email) && $email === "admin@test.it") {
-    if (!empty($password) && $password === "admin") {
-      session_regenerate_id(true);
+//Controllo se utente già autenticato
+if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
+  return $HTMLPage = '';
+}
+
+$conn = new DBConn();
+$connessioneOK = $conn->openConnection();
+$loginResult = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if ($connessioneOK) {
+    $email = $_POST["email"] ?? "";
+    $password = $_POST["password"] ?? "";
+    $user = $conn->checkLogin($email, $password);
+    if ($user) {
       $_SESSION["user"] = $email;
+      return $HTMLPage = '';
     } else {
-      $loginResult = "<p class='error-message' role='alert'>Password errata</p>";
+      // Verifica se l'utente esiste ed è stata inserita una password sbagliata 
+      $user = $conn->getUser($email);
+      if ($user) {
+        $loginResult = "<p class='error-message' role='alert'>Password errata</p>";
+      } else {
+        $loginResult = "<p class='error-message' role='alert'>Email errata</p>";
+      }
     }
   } else {
-    $loginResult = "<p class='error-message' role='alert'>Email errata</p>";
+    $loginResult = "<p class='error-message' role='alert'>Non è stato possibile effettuare il login, riprovare più tardi</p>";
   }
-  $HTMLPage = str_replace("[loginResult]", $loginResult, $HTMLPage);
-} else {
-  $HTMLPage = '';
 }
+$HTMLPage = str_replace("[loginResult]", $loginResult, $HTMLPage);
 return $HTMLPage;
-
-
-// return $error;
-
-
-// <?php
-
-// require_once ".." . DIRECTORY_SEPARATOR . "php". DIRECTORY_SEPARATOR . "dbConnection.php";
-// use DB\DBAccess;
-
-// $paginaHTML = file_get_contents('..' . DIRECTORY_SEPARATOR .'php'. DIRECTORY_SEPARATOR . 'squadra_php.html');
-
-// $connessione = new DBAccess();
-
-// $connessioneOK = $connessione->openDBConnection();
-
-// $atleti = "";
-// $stringaAtleti = "";
-// $paginaHTML = "";
-
-// if ($connessioneOK) {
-// 	$stringaAtleti = .....
-
-// } else {
-// 	$stringaAtleti = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
-// }
-
-// $paginaHTML = str_replace("[listaAtleti]", $stringaAtleti, $paginaHTML);
-// echo $paginaHTML;
-
-// 

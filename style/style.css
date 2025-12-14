@@ -192,7 +192,6 @@ body {
 	background-color: var(--neutral-0);
 }
 
-
 /* Main content area */
 main {
 	min-height: calc(100vh - 140px);
@@ -202,10 +201,8 @@ main {
 .banner {
 	width: 100%;
 	height: 300px;
-	background: linear-gradient(rgba(0, 0, 0, 0.5),
-			/* 0.5 = 50% opaco */
-			rgba(0, 0, 0, 0.5)),
-		url("../assets/bannerhome.png");
+	background: linear-gradient(135deg, var(--primary-600) 0%, #1a5fb8 100%);
+
 	background-size: cover;
 	background-position: center;
 	color: var(--neutral-0);
@@ -416,7 +413,6 @@ main {
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 .notice-info {
 	position: absolute;
 	top: 0;
@@ -443,9 +439,8 @@ main {
 }
 
 .mySlides {
-	display: none
+	display: none;
 }
-
 
 /* Slideshow container */
 .slideshow-container {
@@ -528,25 +523,22 @@ main {
 
 @keyframes fade {
 	from {
-		opacity: .4
+		opacity: 0.4;
 	}
 
 	to {
-		opacity: 1
+		opacity: 1;
 	}
 }
 
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
-
 	.prev,
 	.next,
 	.text {
-		font-size: 11px
+		font-size: 11px;
 	}
 }
-
-
 
 /* CTA Section */
 .subscribe-section {
@@ -593,4 +585,10 @@ main {
 
 .primary-button:active {
 	transform: translateY(0);
+}
+
+.icon-button {
+	margin-bottom: 1rem;
+	border-radius: 20px;
+	padding: 0.8rem 1rem 0.5rem 1rem;
 }

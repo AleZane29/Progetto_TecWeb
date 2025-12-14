@@ -1,5 +1,11 @@
-CREATE TABLE utente (
-    id SERIAL PRIMARY KEY,
+USE DATABASE alzanell;
+DROP TABLE IF EXISTS Campo;
+DROP TABLE IF EXISTS TipoCampo;
+DROP TABLE IF EXISTS Prenotazione;
+DROP TABLE IF EXISTS Utente;
+
+CREATE TABLE Utente (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     cognome VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
@@ -8,52 +14,45 @@ CREATE TABLE utente (
     ruolo ENUM('Cliente', 'Admin') DEFAULT 'Cliente'
 );
 
-CREATE TABLE tipocampo (
+CREATE TABLE TipoCampo (
     nome VARCHAR(20) PRIMARY KEY,
     costo_orario INTEGER NOT NULL CHECK(costo_orario > 0)
 );
 
-CREATE TABLE campo (
-    numero SERIAL NOT NULL,
+CREATE TABLE Campo (
+    numero INT NOT NULL AUTO_INCREMENT NOT NULL,
     tipo VARCHAR(20),
     PRIMARY KEY (numero, tipo),
-    FOREIGN KEY (tipo) REFERENCES tipocampo(nome) ON DELETE CASCADE
+    FOREIGN KEY (tipo) REFERENCES TipoCampo(nome) ON DELETE CASCADE
 );
 
-CREATE EXTENSION IF NOT EXISTS btree_gist;
 
-CREATE TABLE prenotazione (
-    id SERIAL PRIMARY KEY,
-    utente VARCHAR(50) NOT NULL,
+CREATE TABLE Prenotazione (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    utente INTEGER NOT NULL,
     numero_campo INTEGER NOT NULL,
     tipo_campo VARCHAR(20) NOT NULL,
-    dataora_inizio TIMESTAMP NOT NULL,
-    dataora_fine TIMESTAMP NOT NULL,
+    dataora_inizio DATETIME NOT NULL,
+    dataora_fine DATETIME NOT NULL,
 
-    EXCLUDE USING gist (
-        numero_campo WITH =,
-        tipo_campo WITH =,
-        tstzrange(dataora_inizio, dataora_fine) WITH &&
-    ),
-
-    FOREIGN KEY (utente) REFERENCES utente(username) ON DELETE CASCADE,
-    FOREIGN KEY (numero_campo, tipo_campo) REFERENCES campo(numero, tipo) ON DELETE CASCADE
+    FOREIGN KEY (utente) REFERENCES Utente(id) ON DELETE CASCADE,
+    FOREIGN KEY (numero_campo, tipo_campo) REFERENCES Campo(numero, tipo) ON DELETE CASCADE
 );
 
 
-INSERT INTO utente (username, nome, cognome, email, data_nascita, password, ruolo) VALUES
-('user', 'User', 'User', 'user@email.com', '1990-01-01', 'password', 'Cliente'),
-('admin', 'Admin', 'Admin', 'admin@email.com', '1985-05-10', 'password', 'Admin');
+INSERT INTO Utente (nome, cognome, email, data_nascita, password, ruolo) VALUES
+('User', 'User', 'user@email.com', '1990-01-01', 'user', 'Cliente'),
+('Admin', 'Admin', 'admin@email.com', '1985-05-10', 'admin', 'Admin');
 
-INSERT INTO tipocampo (nome, costo_orario) VALUES
+INSERT INTO TipoCampo (nome, costo_orario) VALUES
 ('Tennis', 10),
-('Beach volley', 20),
-('Padel', 12);
+('Basket', 12),
+('Calcio5', 20);
 
-INSERT INTO campo (numero, tipo) VALUES
+INSERT INTO Campo (numero, tipo) VALUES
 (1, 'Tennis'),
 (2, 'Tennis'),
 (3, 'Tennis'),
-(1, 'Padel'),
-(1, 'Beach volley'),
-(2, 'Beach volley');
+(1, 'Calcio5'),
+(1, 'Basket'),
+(2, 'Basket');

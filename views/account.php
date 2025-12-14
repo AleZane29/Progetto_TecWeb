@@ -3,6 +3,8 @@
 if (!isset($_SESSION)) {
   session_start();
 }
+
+//Controllo se l'utente non è autenticato ed eventuale reindirizzamento a login
 require '../controller/loginController.php';
 if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
   include "pages/account.html";
