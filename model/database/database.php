@@ -49,15 +49,29 @@ class DBConn
 
 	public function checkLogin($email, $password)
 	{
-		$query = "SELECT * FROM Utente WHERE email=\"$email\" AND password=\"$password\"";
+		$query = "SELECT id FROM Utente WHERE email=\"$email\" AND password=\"$password\"";
 		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
-		return mysqli_num_rows($queryResult) > 0;
+		if ($queryResult) {
+			return mysqli_fetch_assoc($queryResult)['id'];
+		}
+		return null;
 	}
 
-	public function getUser($email)
+	public function getUserByEmail($email)
 	{
-		$query = "SELECT * FROM Utente WHERE email=\"$email\" ";
+		$query = "SELECT id FROM Utente WHERE email=\"$email\" ";
 		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
-		return mysqli_num_rows($queryResult) > 0;
+		if ($queryResult) {
+			return mysqli_fetch_assoc($queryResult)['id'];
+		}
+		return null;
+	}
+
+	public function createUser($name, $surname, $email, $birth, $password)
+	{
+		$query = "INSERT INTO Utente (nome, cognome, email, data_nascita, password) VALUES
+(\"$name\", \"$surname\", \"$email\", \"$birth\", \"$password\")";
+		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
+		return mysqli_affected_rows($this->connection) > 0;
 	}
 }

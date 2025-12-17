@@ -20,11 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"] ?? "";
     $user = $conn->checkLogin($email, $password);
     if ($user) {
-      $_SESSION["user"] = $email;
+      $_SESSION["user"] = $user;
       return $HTMLPage = '';
     } else {
       // Verifica se l'utente esiste ed è stata inserita una password sbagliata 
-      $user = $conn->getUser($email);
+      $user = $conn->getUserByEmail($email);
       if ($user) {
         $loginResult = "<p class='error-message' role='alert'>Password errata</p>";
       } else {
