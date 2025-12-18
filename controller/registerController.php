@@ -21,16 +21,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST["name"] ?? "";
     $surname = $_POST["surname"] ?? "";
     $birth = $_POST["birth"] ?? "";
-    $queryRes = '';
+    $user = '';
     try {
-      $queryRes = $conn->createUser($name, $surname, $email, $birth, $password);
+      $user = $conn->createUser($name, $surname, $email, $birth, $password);
+      $_SESSION["user"] = $user;
+      $_SESSION["nameUser"] = $name;
+      $_SESSION["surnameUser"] = $surname;
+      $_SESSION["emailUser"] = $email;
+      $_SESSION["dateUser"] = $birth;
+      return $HTMLPage = '';
     } catch (Exception $e) {
       $registerResult = "<p class='error-message' role='alert'>Email già utilizzata</p>";
-    }
-    if ($queryRes) {
-      $user = $conn->getUserByEmail($email);
-      $_SESSION["user"] = $user;
-      return $HTMLPage = '';
     }
   } else {
     $registerResult = "<p class='error-message' role='alert'>Non è stato possibile effettuare la registrazione, riprovare più tardi</p>";

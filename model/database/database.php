@@ -49,10 +49,19 @@ class DBConn
 
 	public function checkLogin($email, $password)
 	{
-		$query = "SELECT id FROM Utente WHERE email=\"$email\" AND password=\"$password\"";
+		$query = "SELECT * FROM Utente WHERE email=\"$email\" AND password=\"$password\"";
 		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
 		if ($queryResult) {
-			return mysqli_fetch_assoc($queryResult)['id'];
+			$result = mysqli_fetch_assoc($queryResult);
+			if ($result) {
+				return array(
+					'idUser' => $result['id'],
+					'nameUser' => $result['nome'],
+					'surnameUser' => $result['cognome'],
+					'emailUser' => $result['email'],
+					'dateUser' => $result['data_nascita']
+				);
+			}
 		}
 		return null;
 	}

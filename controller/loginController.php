@@ -20,7 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"] ?? "";
     $user = $conn->checkLogin($email, $password);
     if ($user) {
-      $_SESSION["user"] = $user;
+      $_SESSION["user"] = $user["idUser"];
+      $_SESSION["nameUser"] = $user["nameUser"];
+      $_SESSION["surnameUser"] = $user["surnameUser"];
+      $_SESSION["emailUser"] = $user["emailUser"];
+      $_SESSION["dateUser"] = $user["dateUser"];
       return $HTMLPage = '';
     } else {
       // Verifica se l'utente esiste ed è stata inserita una password sbagliata 
