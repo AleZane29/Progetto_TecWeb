@@ -1,93 +1,29 @@
 <!DOCTYPE html>
 <html data-theme="light" lang="it">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="../assets/logo_white.jpg" rel="icon" />
-		<meta
-			name="description"
-			content="SportLab - Scopri i nostri campi e le discipline sportive: calcio a 5, tennis e basket" />
-		<meta name="language" content="it" />
-		<title>Servizi - SportLab</title>
-		<link href="../style/style.css" rel="stylesheet" />
-		<link href="../style/service.css" rel="stylesheet" />
-		<link href="../style/header.css" rel="stylesheet" />
-		<link href="../style/footer.css" rel="stylesheet" />
-	</head>
 
-	<body>
-		<header>
-			<nav class="navbar" role="navigation" aria-label="Navigazione principale">
-				<div class="nav-container">
-					<div class="logo">
-						<img
-							src="../assets/logo_white.jpg"
-							class="logo-icon"
-							alt="Logo del Centro Sportivo" />
-						<span>SportLab</span>
-					</div>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="../assets/logo_white.jpg" rel="icon" />
+	<meta name="description"
+		content="SportLab - Scopri i nostri campi e le discipline sportive: calcio a 5, tennis e basket" />
+	<meta name="language" content="it" />
+	<title>Servizi - SportLab</title>
+	<link href="../style/style.css" rel="stylesheet" />
+	<link href="../style/service.css" rel="stylesheet" />
+	<link href="../style/header.css" rel="stylesheet" />
+	<link href="../style/footer.css" rel="stylesheet" />
+</head>
 
-					<ul class="nav-menu" id="navMenu">
-						<li>
-							<a
-								href="../views/home.php"
-								aria-current="page"
-								class="nav-link"
-								id="navMenuHome"
-								lang="en"
-								>Home</a
-							>
-						</li>
-						<li>
-							<a
-								href="../views/service.php"
-								aria-label="Vai a Servizi"
-								class="nav-link active"
-								id="navMenuServizi"
-								>Servizi</a
-							>
-						</li>
-						<li>
-							<a
-								href="../views/account.php"
-								aria-label="Accedi al tuo account"
-								id="navMenuAccount"
-								class="nav-link"
-								>Account</a
-							>
-						</li>
-						<li>
-							<a
-								href="reservation.php"
-								class="subscribe-button"
-								aria-label="Prenota una sessione"
-								>Prenota</a
-							>
-						</li>
-					</ul>
+<body>
 
-					<button
-						class="menu-toggle"
-						id="menuToggle"
-						aria-label="Apri menu di navigazione"
-						aria-expanded="false"
-						aria-controls="navMenu"
-						type="button">
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
-					</button>
-				</div>
-			</nav>
-		</header>
+	<<-HEADER->>
+
 		<main id="main-content" tabindex="-1">
 			<!-- banner Section -->
-			<section class="service-banner" aria-labelledby="service-banner-title">
-				<div class="service-banner-container">
-					<h1 id="service-banner-title">I Nostri Servizi</h1>
-					<p class="service-banner-subtitle">
-						Campi moderni e attrezzature di qualità per giocare al meglio
-					</p>
+			<section class="banner" aria-labelledby="banner-title">
+				<div class="banner-container">
+					<h1 id="banner-title">I nostri servizi</h1>
 				</div>
 			</section>
 
@@ -117,9 +53,7 @@
 					<article class="service-card">
 						<div class="service-header">
 							<h2 id="calcio-title">Calcio a 5</h2>
-							<span class="service-badge" aria-label="Numero campi disponibili"
-								>2 campi</span
-							>
+							<span class="service-badge" aria-label="Numero campi disponibili">2 campi</span>
 						</div>
 
 						<div class="service-content">
@@ -156,46 +90,34 @@
 									<strong>Abbonamento mensile:</strong> €200 (4 ore a settimana)
 								</p>
 								<!-- Gallery predefinita per Calcio a 5 -->
-								<div class="service-gallery">
-									<h3>Galleria del Campo</h3>
-									<div
-										class="gallery-grid"
-										role="region"
-										aria-label="Immagini campo calcio a 5">
-										<figure class="gallery-item">
-											<img
-												src="../assets/soccer1.jpg"
-												alt="Campo di calcio a 5 con pavimento sintetico e illuminazione"
-												loading="lazy"
-												width="400"
-												height="300" />
-											<figcaption>
-												Uno dei nostri due campi regolamentari
-											</figcaption>
-										</figure>
-										<figure class="gallery-item">
-											<img
-												src="../assets/soccer2.jpg"
-												alt="Palloni da calcio professionali sul campo"
-												loading="lazy"
-												width="400"
-												height="300" />
-											<figcaption>
-												Attrezzatura fornita dai nostri centri
-											</figcaption>
-										</figure>
-										<figure class="gallery-item">
-											<img
-												src="../assets/soccer3.jpg"
-												alt="Giocatori in azione durante una partita di calcio a 5"
-												loading="lazy"
-												width="400"
-												height="300" />
-											<figcaption>
-												Partita amichevole tra i nostri soci
-											</figcaption>
-										</figure>
-									</div>
+
+							</div>
+							<div class="service-gallery">
+								<h3>Galleria del Campo</h3>
+								<div class="gallery-grid" role="region" aria-label="Immagini campo calcio a 5">
+									<figure class="gallery-item">
+										<img src="../assets/soccer1.jpg"
+											alt="Campo di calcio a 5 con pavimento sintetico e illuminazione"
+											loading="lazy" width="400" height="300" />
+										<figcaption>
+											Uno dei nostri due campi regolamentari
+										</figcaption>
+									</figure>
+									<figure class="gallery-item">
+										<img src="../assets/soccer2.jpg" alt="Palloni da calcio professionali sul campo"
+											loading="lazy" width="400" height="300" />
+										<figcaption>
+											Attrezzatura fornita dai nostri centri
+										</figcaption>
+									</figure>
+									<figure class="gallery-item">
+										<img src="../assets/soccer3.jpg"
+											alt="Giocatori in azione durante una partita di calcio a 5" loading="lazy"
+											width="400" height="300" />
+										<figcaption>
+											Partita amichevole tra i nostri soci
+										</figcaption>
+									</figure>
 								</div>
 							</div>
 						</div>
@@ -204,16 +126,12 @@
 			</section>
 
 			<!-- Tennis -->
-			<section
-				class="service-detail service-detail-alt"
-				aria-labelledby="tennis-title">
+			<section class="service-detail service-detail-alt" aria-labelledby="tennis-title">
 				<div class="container">
 					<article class="service-card">
 						<div class="service-header">
 							<h2 id="tennis-title">Tennis</h2>
-							<span class="service-badge" aria-label="Numero campi disponibili"
-								>3 campi</span
-							>
+							<span class="service-badge" aria-label="Numero campi disponibili">3 campi</span>
 						</div>
 
 						<div class="service-content">
@@ -250,49 +168,35 @@
 									<strong>Lezione individuale:</strong> €40 (1 ora)<br />
 									<strong>Abbonamento 10 ingressi:</strong> €200
 								</p>
-								<!-- Gallery predefinita per Tennis -->
-								<div class="service-gallery">
-									<h3>Galleria dei Campi da Tennis</h3>
-									<div
-										class="gallery-grid"
-										role="region"
-										aria-label="Immagini campi da tennis">
-										<figure class="gallery-item">
-											<img
-												src="../assets/tennis1.jpg"
-												alt="Campo da tennis in terra rossa sintetica con rete professionista"
-												loading="lazy"
-												width="400"
-												height="300" />
-											<figcaption>
-												Uno dei nostri tre campi professionali
-											</figcaption>
-										</figure>
-										<figure class="gallery-item">
-											<img
-												src="../assets/tennis2.jpg"
-												alt="Racchetta da tennis e pallina su superficie in terra rossa"
-												loading="lazy"
-												width="400"
-												height="300" />
-											<figcaption>
-												Attrezzatura fornita: racchette e palline
-											</figcaption>
-										</figure>
-										<figure class="gallery-item">
-											<img
-												src="../assets/tennis3.jpg"
-												alt="Due giocatori durante una partita di tennis"
-												loading="lazy"
-												width="400"
-												height="300" />
-											<figcaption>Partita tra i nostri associati</figcaption>
-										</figure>
+
+							</div>
+
+							<!-- Gallery predefinita per Tennis -->
+							<div class="service-gallery">
+								<h3>Galleria dei Campi da Tennis</h3>
+								<div class="grid-wrapper">
+									<div>
+										<img src="../assets/tennis1.jpg"
+											alt="Campo da tennis in terra rossa sintetica con rete professionista"
+											loading="lazy" width="400" height="300" />
+									</div>
+									<div>
+										<img src="../assets/tennis2.jpg"
+											alt="Racchetta da tennis e pallina su superficie in terra rossa"
+											loading="lazy" width="400" height="300" />
+									</div>
+									<div class="wide">
+										<img src="../assets/tennis3.jpg"
+											alt="Due giocatori durante una partita di tennis" loading="lazy" width="400"
+											height="300" />
 									</div>
 								</div>
+
+
 							</div>
 						</div>
-					</article>
+				</div>
+				</article>
 				</div>
 			</section>
 
@@ -302,9 +206,7 @@
 					<article class="service-card">
 						<div class="service-header">
 							<h2 id="basket-title">Basket</h2>
-							<span class="service-badge" aria-label="Numero campi disponibili"
-								>1 campo</span
-							>
+							<span class="service-badge" aria-label="Numero campi disponibili">1 campo</span>
 						</div>
 
 						<div class="service-content">
@@ -340,47 +242,45 @@
 									<strong>Costo orario:</strong> €70 per campo<br />
 									<strong>Abbonamento mensile:</strong> €240 (4 ore a settimana)
 								</p>
-								<!-- Gallery predefinita per Basket -->
-								<div class="service-gallery">
-									<h3>Galleria del Campo da Basket</h3>
-									<div
-										class="gallery-grid"
-										role="region"
-										aria-label="Immagini campo da basket">
-										<figure class="gallery-item">
-											<img
-												src="../assets/basketball1.jpg"
-												alt="Campo da basket coperto con parquet professionale e illuminazione a LED"
-												loading="lazy"
-												width="400"
-												height="300" />
-											<figcaption>
-												Il nostro campo regolamentare coperto
-											</figcaption>
-										</figure>
-										<figure class="gallery-item">
-											<img
-												src="../assets/basketball2.jpg"
-												alt="Canestro da basket con pallone in volo durante una partita"
-												loading="lazy"
-												width="400"
-												height="300" />
-											<figcaption>
-												Canestri omologati FIP professionali
-											</figcaption>
-										</figure>
-										<figure class="gallery-item">
-											<img
-												src="../assets/basketball3.jpg"
-												alt="Giocatori durante una partita di basket al nostro centro"
-												loading="lazy"
-												width="400"
-												height="300" />
-											<figcaption>
-												Azione di gioco tra i nostri associati
-											</figcaption>
-										</figure>
-									</div>
+
+							</div>
+
+							<!-- Gallery predefinita per Basket -->
+
+							<div class="slideshow-container">
+								<div class="mySlides fade">
+									<figure class="gallery-item">
+										<img src="../assets/basketball1.jpg"
+											alt="Campo da basket coperto con parquet professionale e illuminazione a LED"
+											loading="lazy" width="400" height="300" />
+										<figcaption>basket</figcaption>
+									</figure>
+
+								</div>
+
+								<div class="mySlides fade">
+									<figure class="gallery-item">
+										<img src="../assets/basketball3.jpg"
+											alt="Giocatori durante una partita di basket al nostro centro"
+											loading="lazy" width="400" height="300" />
+										<figcaption>basket</figcaption>
+									</figure>
+
+								</div>
+
+								<div class="mySlides fade">
+									<figure class="gallery-item">
+										<img src="../assets/basketball2.jpg"
+											alt="Canestro da basket con pallone in volo durante una partita"
+											loading="lazy" width="400" height="300" />
+										<figcaption>basket</figcaption>
+									</figure>
+
+								</div>
+								<div class="carousel-button">
+									<span class="dot" onclick="currentSlide(1)"></span>
+									<span class="dot" onclick="currentSlide(2)"></span>
+									<span class="dot" onclick="currentSlide(3)"></span>
 								</div>
 							</div>
 						</div>
@@ -399,21 +299,14 @@
 					</p>
 					<div class="map-placeholder">
 						<div class="map-placeholder-content">
-							<svg
-								aria-hidden="true"
-								width="80"
-								height="80"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2">
+							<svg aria-hidden="true" width="80" height="80" viewBox="0 0 24 24" fill="none"
+								stroke="currentColor" stroke-width="2">
 								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
 								<circle cx="12" cy="10" r="3"></circle>
 							</svg>
 							<p>Mappa in arrivo</p>
-							<span class="map-placeholder-note"
-								>Stiamo preparando una mappa dettagliata della struttura</span
-							>
+							<span class="map-placeholder-note">Stiamo preparando una mappa dettagliata della
+								struttura</span>
 						</div>
 					</div>
 				</div>
@@ -431,5 +324,42 @@
 				</div>
 			</section>
 		</main>
-	</body>
+
+		<<-FOOTER->>
+
+</body>
+
 </html>
+
+<script>
+	let slideIndex = 1;
+	showSlides(slideIndex);
+
+	function plusSlides(n) {
+		showSlides((slideIndex += n));
+	}
+
+	function currentSlide(n) {
+		showSlides((slideIndex = n));
+	}
+
+	function showSlides(n) {
+		let i;
+		let slides = document.getElementsByClassName('mySlides');
+		let dots = document.getElementsByClassName('dot');
+		if (n > slides.length) {
+			slideIndex = 1;
+		}
+		if (n < 1) {
+			slideIndex = slides.length;
+		}
+		for (i = 0; i < slides.length; i++) {
+			slides[i].style.display = 'none';
+		}
+		for (i = 0; i < dots.length; i++) {
+			dots[i].className = dots[i].className.replace(' actual', '');
+		}
+		slides[slideIndex - 1].style.display = 'block';
+		dots[slideIndex - 1].className += ' actual';
+	}
+</script>

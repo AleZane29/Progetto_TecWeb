@@ -1,6 +1,15 @@
 /* Sport Page Styles */
 
+
+.container {
+	max-width: 1500px;
+	margin: 0 auto;
+	padding: 3 2rem;
+	width: 100%;
+}
+
 /* banner Section */
+
 .service-banner {
 	background: linear-gradient(135deg, var(--primary-600) 0%, #1a5fb8 100%);
 	color: white;
@@ -30,7 +39,6 @@
 .service-intro {
 	background: white;
 	padding: 3rem 2rem;
-	margin-bottom: 3rem;
 }
 
 .service-intro h2 {
@@ -49,8 +57,7 @@
 /* Sport Detail Sections */
 .service-detail {
 	background: var(--neutral-100);
-	padding: 3rem 2rem;
-	margin-bottom: 3rem;
+	padding: 3rem;
 }
 
 .service-detail-alt {
@@ -58,7 +65,6 @@
 }
 
 .service-card {
-	max-width: 1000px;
 	margin: 0 auto;
 	background: white;
 	border-radius: 8px;
@@ -100,8 +106,12 @@
 }
 
 .service-content {
-	display: grid;
+	display: flex;
 	gap: 2rem;
+}
+
+.service-info {
+	max-width:50%
 }
 
 .service-info h3 {
@@ -154,7 +164,6 @@
 .facility-map {
 	background: white;
 	padding: 4rem 2rem;
-	margin-bottom: 3rem;
 }
 
 .facility-map h2 {
@@ -380,4 +389,86 @@ a.cta-primary-button:focus {
 	.gallery-item img {
 		height: 240px;
 	}
+}
+
+
+
+/* Carousel */
+
+/* Slideshow container */
+.slideshow-container {
+	max-width: 1400px;
+	position: relative;
+	margin: auto;
+}
+
+.carousel-button {
+	text-align: center;
+	padding-top: 1rem;
+}
+
+
+/* The dots/bullets/indicators */
+.dot {
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+}
+
+.actual,
+.dot:hover {
+	background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+	animation-name: fade;
+	animation-duration: 1.5s;
+}
+
+@keyframes fade {
+	from {
+		opacity: 0.4;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+
+/* mosaico CSS */
+.grid-wrapper > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.grid-wrapper > div > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 5px;
+}
+
+.grid-wrapper {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-auto-rows: 200px;
+	grid-auto-flow: dense;
+}
+.grid-wrapper .wide {
+	grid-column: span 2;
+}
+.grid-wrapper .tall {
+	grid-row: span 2;
+}
+.grid-wrapper .big {
+	grid-column: span 2;
+	grid-row: span 2;
 }
