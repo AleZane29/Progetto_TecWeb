@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html data-theme="light" lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="../assets/logo_white.png" rel="icon" />
+		<meta
+			name="description"
+			content="SportLab - Presentazione, orari, contatti e annunci speciali" />
+		<meta name="language" content="it" />
+		<title>Home - SportLab</title>
+		<link href="../style/style.css" rel="stylesheet" />
+		<link href="../style/home.css" rel="stylesheet" />
+		<link href="../style/header.css" rel="stylesheet" />
+		<link href="../style/footer.css" rel="stylesheet" />
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link href="../assets/logo_white.jpg" rel="icon" />
-	<meta name="description" content="SportLab - Presentazione, orari, contatti e annunci speciali" />
-	<meta name="language" content="it" />
-	<title>Home - SportLab</title>
-	<link href="../style/style.css" rel="stylesheet" />
-	<link href="../style/home.css" rel="stylesheet" />
-	<link href="../style/header.css" rel="stylesheet" />
-	<link href="../style/footer.css" rel="stylesheet" />
+	<body>
+		<<-HEADER->>
 
-</head>
-
-<body>
-	<<-HEADER->>
-
+		<nav id="breadcrumb">
+			<p>Ti trovi in: <span lang="en" class="breadcrumb-page">Home</span></p>
+		</nav>
 		<main id="main-content" tabindex="-1">
 			<!-- Presentation Section con presentazione -->
 			<section class="banner" aria-labelledby="banner-title">
@@ -46,7 +49,10 @@
 						</p>
 					</div>
 					<div class="container-image">
-						<img src="../assets/basketimmaginehome.jpg" alt="Uomo che gioca a basket" width="400"
+						<img
+							src="../assets/basketimmaginehome.jpg"
+							alt="Uomo che gioca a basket"
+							width="400"
 							height="400" />
 					</div>
 				</div>
@@ -56,7 +62,9 @@
 			<section class="about-section" aria-labelledby="about-sport-title">
 				<div class="container-info">
 					<div class="container-image">
-						<img src="../assets/tennisimmaginehome.jpg" alt="Uomo che gioca a basket" />
+						<img
+							src="../assets/tennisimmaginehome.jpg"
+							alt="Uomo che gioca a basket" />
 					</div>
 					<div class="container-paragraph">
 						<h2 id="about-sport-title">Benefici dello sport</h2>
@@ -93,7 +101,9 @@
 						</p>
 					</div>
 					<div class="container-image">
-						<img src="../assets/calcettoimmaginehome.jpg" alt="Uomo che gioca a basket" />
+						<img
+							src="../assets/calcettoimmaginehome.jpg"
+							alt="Uomo che gioca a basket" />
 					</div>
 				</div>
 			</section>
@@ -141,7 +151,6 @@
 					</div>
 				</div>
 			</section>
-
 
 			<!-- Sezione Annunci Speciali -->
 			<section class="notices-section" aria-labelledby="notices-title">
@@ -195,11 +204,12 @@
 		</main>
 
 		<<-FOOTER->>
-</body>
-
+	</body>
 </html>
 
 <script>
+	document.getElementById('navMenuHome').classList.add('active');
+
 	let slideIndex = 1;
 	showSlides(slideIndex);
 

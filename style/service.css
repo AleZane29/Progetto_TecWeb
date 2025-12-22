@@ -1,6 +1,5 @@
 /* Sport Page Styles */
 
-
 .container {
 	max-width: 1500px;
 	margin: 0 auto;
@@ -111,7 +110,7 @@
 }
 
 .service-info {
-	max-width:50%
+	max-width: 50%;
 }
 
 .service-info h3 {
@@ -391,8 +390,6 @@ a.cta-primary-button:focus {
 	}
 }
 
-
-
 /* Carousel */
 
 /* Slideshow container */
@@ -406,7 +403,6 @@ a.cta-primary-button:focus {
 	text-align: center;
 	padding-top: 1rem;
 }
-
 
 /* The dots/bullets/indicators */
 .dot {
@@ -441,7 +437,6 @@ a.cta-primary-button:focus {
 	}
 }
 
-
 /* mosaico CSS */
 .grid-wrapper > div {
 	display: flex;
@@ -471,4 +466,22 @@ a.cta-primary-button:focus {
 .grid-wrapper .big {
 	grid-column: span 2;
 	grid-row: span 2;
+}
+
+.subscribe-section {
+	background: linear-gradient(135deg, var(--primary-600) 0%, #1a5fb8 100%);
+	color: white;
+	padding: 4rem 2rem;
+	text-align: center;
+	margin-bottom: 0;
+}
+
+.subscribe-section h2 {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+
+.subscribe-section p {
+	font-size: 1.1rem;
+	margin-bottom: 2rem;
 }

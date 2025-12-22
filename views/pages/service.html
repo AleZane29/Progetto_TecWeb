@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link href="../assets/logo_white.jpg" rel="icon" />
+	<link href="../assets/logo_white.png" rel="icon" />
 	<meta name="description"
 		content="SportLab - Scopri i nostri campi e le discipline sportive: calcio a 5, tennis e basket" />
 	<meta name="language" content="it" />
@@ -18,6 +18,10 @@
 <body>
 
 	<<-HEADER->>
+
+		<nav id="breadcrumb">
+			<p>Ti trovi in: <span class="breadcrumb-page">Servizi</span></p>
+		</nav>
 
 		<main id="main-content" tabindex="-1">
 			<!-- banner Section -->
@@ -332,6 +336,7 @@
 </html>
 
 <script>
+	document.getElementById('navMenuServizi').classList.add('active');
 	let slideIndex = 1;
 	showSlides(slideIndex);
 

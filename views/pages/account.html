@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="../assets/logo_white.jpg" rel="icon" />
+		<link href="../assets/logo_white.png" rel="icon" />
 		<meta name="description" content="SportLab - Pagina di login" />
 		<meta name="language" content="it" />
 		<title>Account - SportLab</title>
@@ -16,7 +16,9 @@
 	<body>
 
 	<<-HEADER->>
-
+		<nav id="breadcrumb">
+			<p>Ti trovi in: <span lang="en" class="breadcrumb-page">Account</span></p>
+		</nav>
 	<main>
 		<<-NOME->> </br>
 		<<-COGNOME->> </br>
@@ -33,3 +35,6 @@
 	
 
 </html>
+<script>
+	document.getElementById('navMenuAccount').classList.add('active');
+</script>
