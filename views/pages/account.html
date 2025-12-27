@@ -10,6 +10,7 @@
 		<link href="../style/style.css" rel="stylesheet" />
 		<link href="../style/header.css" rel="stylesheet" />
 		<link href="../style/footer.css" rel="stylesheet" />
+		<link href="../style/account.css" rel="stylesheet" />
 	</head>
 
 
@@ -20,12 +21,16 @@
 			<p>Ti trovi in: <span lang="en" class="breadcrumb-page">Account</span></p>
 		</nav>
 	<main>
-		<<-NOME->> </br>
-		<<-COGNOME->> </br>
-		<<-DN->> </br>
-		<<-EMAIL->> </br>
+		<div class="info-account-container">
+			<p class="info-account"> <<-NOME->> </p>
+			<p class="info-account"> <<-COGNOME->> </p>
+			<p class="info-account"> <<-DN->> </p>
+			<p class="info-account"> <<-EMAIL->> </p>
+			<a class="logout-button" href="../controller/logoutController.php">LOGOUT</a>
+		</div>
+
 		
-		<a href="../controller/logoutController.php">LOGOUT</a>
+		
 	</main>
 	
 
