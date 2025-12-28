@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="it">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../assets/logo_white.png" rel="icon" />
+    <meta name="description" content="SportLab - Pagina di prenotazione" />
+    <meta name="language" content="it" />
+    <title>Prenotazioni - SportLab</title>
+    <link href="../style/style.css" rel="stylesheet" />
+    <link href="../style/reservation.css" rel="stylesheet" />
+    <link href="../style/header.css" rel="stylesheet" />
+    <link href="../style/footer.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <<-HEADER->>
+
+
+        <nav id="breadcrumb">
+            <p>Ti trovi in: <span class="breadcrumb-page">Prenotazioni User</span></p>
+        </nav>
+        <main>
+            <div class="form-container">
+                <form action="reservationRequest.php" method="post">
+
+                        <legend>1. Seleziona il tipo di campo</legend>
+                        <div class="options-grid">
+                            <label>
+                                <input type="radio" name="tipo_campo" value="calcetto" class="visually-hidden">
+                                <span class="option-card">
+                                    <span>Calcetto</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input type="radio" name="tipo_campo" value="tennis" class="visually-hidden" checked>
+                                <span class="option-card">
+                                    <span>Tennis</span>
+                                </span>
+                            </label>
+
+                            <label>
+                                <input type="radio" name="tipo_campo" value="basket" class="visually-hidden">
+                                <span class="option-card">
+                                    <span>Basket</span>
+                                </span>
+                            </label>
+
+                        </div>
+
+                        <legend>2. Scegli una fascia oraria disponibile</legend>
+                        <div class="options-grid">
+
+                            <label>
+                                <input type="radio" name="orario" value="18:00" class="visually-hidden">
+                                <span class="option-card">18:00 - 19:00</span>
+                            </label>
+
+                            <label>
+                                <input type="radio" name="orario" value="19:00" class="visually-hidden">
+                                <span class="option-card">19:00 - 20:00</span>
+                            </label>
+
+                            <label>
+                                <input type="radio" name="orario" value="20:00" class="visually-hidden" disabled>
+                                <span class="option-card">
+                                    20:00 - 21:00 <br>
+                                </span>
+                            </label>
+
+                            <label>
+                                <input type="radio" name="orario" value="21:00" class="visually-hidden">
+                                <span class="option-card">21:00 - 22:00</span>
+                            </label>
+
+                        </div>
+
+                    <button type="submit" class="submit-button">Conferma Prenotazione</button>
+                </form>
+            </div>
+        </main>
+        <<-FOOTER->>
+
+            <body>
+
+</html>

@@ -63,4 +63,25 @@ class Builder
 
     return $page;
   }
+
+  function build_reservation(){
+
+    if($_SESSION["user"]=="2"){
+      $paginaHTML = file_get_contents("pages/reservationAdmin.html");
+      $page = str_replace("<<-HEADER->>", $this->headerHTML, $paginaHTML);
+      $page = str_replace("<<-FOOTER->>", $this->footerHTML, $page);
+    }else{
+      $paginaHTML = file_get_contents("pages/reservationUser.html");
+      $page = str_replace("<<-HEADER->>", $this->headerHTML, $paginaHTML);
+      $page = str_replace("<<-FOOTER->>", $this->footerHTML, $page);
+    }
+    return $page;
+  }
+
+
+
+
+
+
+
 }
