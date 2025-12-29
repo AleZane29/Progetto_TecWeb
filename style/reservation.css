@@ -164,7 +164,7 @@ tbody tr:hover {
     text-align: center;
     background-color: var(--neutral-0);
     margin: auto;
-    width: 30%;
+    width: 50%;
     padding: 10px;
     border-collapse: collapse;
 	overflow: hidden;
@@ -173,20 +173,128 @@ tbody tr:hover {
 }
 
 .submit-button {
-	background: var(--primary-600);
-	color: white !important;
-	padding: 0.6rem 1.5rem;
-	border-radius: 15px;
-	font-weight: 600;
-	transition: all 0.3s ease;
-	text-decoration: none;
-	display: inline-block;
-    margin-top: 1rem;
+    /* Stili Base */
+    background: var(--primary-600);
+    color: white !important;
+    padding: 0.6rem 1.5rem;
+    border-radius: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    
+    border: none;             
+    cursor: pointer;           
+    font-family: inherit;     
+    font-size: inherit;        
+    line-height: normal;       
+    
+    /* Reset per mobile (iOS in particolare) */
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .submit-button:hover {
-	background: var(--primary-800);
-	transform: translateY(-2px);
-	box-shadow: 0 4px 12px var(--shadow-primary);
+    background: var(--primary-800);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-primary);
 }
+
+form{
+	text-align: center;
+}
+
+
+.form-separation {
+  display: flex;
+  gap: 2rem;
+}
+
+.separation{
+    flex: 1;  
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 2rem 2rem 2rem 2rem;
+}
+
+.sport-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.sport-form label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.date-form{
+	width: 100%;
+	border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.timetable-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.timetable-form label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.sport-form input[type="radio"],
+.timetable-form input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.sport-form label:has(input:checked),
+.timetable-form label:has(input:checked) {
+  border-color: var(--primary-600);
+}
+
+.sport-form label:has(input:focus-visible),
+.timetable-form label:has(input:focus-visible) {
+  outline: 3px solid var(--primary-600);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+
+
 

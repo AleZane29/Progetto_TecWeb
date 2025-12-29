@@ -19,70 +19,64 @@
     <<-HEADER->>
 
 
-        <nav id="breadcrumb">
-            <p>Ti trovi in: <span class="breadcrumb-page">Prenotazioni User</span></p>
-        </nav>
         <main>
-            <div class="form-container">
-                <form action="reservationRequest.php" method="post">
 
-                        <legend>1. Seleziona il tipo di campo</legend>
-                        <div class="options-grid">
-                            <label>
-                                <input type="radio" name="tipo_campo" value="calcetto" class="visually-hidden">
-                                <span class="option-card">
-                                    <span>Calcetto</span>
-                                </span>
-                            </label>
-                            <label>
-                                <input type="radio" name="tipo_campo" value="tennis" class="visually-hidden" checked>
-                                <span class="option-card">
-                                    <span>Tennis</span>
-                                </span>
-                            </label>
+            <form action="reservationController.php" method="post">
+                <div class="form-separation">
+                    <div class="separation">
+                        <fieldset>
+                            <legend>1. Scegli lo sport</legend>
+                            <div class="sport-form">
+                                <label>
+                                    <input type="radio" name="sport" value="tennis" required>
+                                    <img src="../assets/icon-tennis.png" alt="" aria-hidden="true">
+                                    <span class="visually-hidden">Tennis</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="sport" value="basket">
+                                    <img src="../assets/icon-basketball.png" alt="" aria-hidden="true">
+                                    <span class="visually-hidden">Basket</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="sport" value="calcetto">
+                                    <img src="../assets/icon-soccer.png" alt="" aria-hidden="true">
+                                    <span class="visually-hidden">Calcetto</span>
+                                </label>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>2. Scegli la data</legend>
+                            <div class="date-form"> <label> <input type="date" name="date" value="" required> Giorno</label> </div>
+                        </fieldset>
+                    </div>
+                    <div class="separation">
+                        <fieldset>
+                            <legend>3. Scegli la fascia oraria</legend>
+                            <div class="timetable-form">
+                                <label> <input type="radio" name="timetable" value="1" required> 8:00-9:30 </label>
+                                <label> <input type="radio" name="timetable" value="2"> 9:30-11:00 </label>
+                                <label> <input type="radio" name="timetable" value="3"> 11:00-12:30 </label>
+                                <label> <input type="radio" name="timetable" value="4" required> 13:00-14:30 </label>
+                                <label> <input type="radio" name="timetable" value="5"> 14:30-16:00 </label>
+                                <label> <input type="radio" name="timetable" value="6"> 16:00-17:30 </label>
+                                <label> <input type="radio" name="timetable" value="7" required> 17:30-19:00 </label>
+                                <label> <input type="radio" name="timetable" value="8"> 19:00-20:30 </label>
+                                <label> <input type="radio" name="timetable" value="9"> 20:30-22:00 </label>
 
-                            <label>
-                                <input type="radio" name="tipo_campo" value="basket" class="visually-hidden">
-                                <span class="option-card">
-                                    <span>Basket</span>
-                                </span>
-                            </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
 
-                        </div>
+                <input class="submit-button" type="submit" value="Submit">
+            </form>
 
-                        <legend>2. Scegli una fascia oraria disponibile</legend>
-                        <div class="options-grid">
 
-                            <label>
-                                <input type="radio" name="orario" value="18:00" class="visually-hidden">
-                                <span class="option-card">18:00 - 19:00</span>
-                            </label>
 
-                            <label>
-                                <input type="radio" name="orario" value="19:00" class="visually-hidden">
-                                <span class="option-card">19:00 - 20:00</span>
-                            </label>
-
-                            <label>
-                                <input type="radio" name="orario" value="20:00" class="visually-hidden" disabled>
-                                <span class="option-card">
-                                    20:00 - 21:00 <br>
-                                </span>
-                            </label>
-
-                            <label>
-                                <input type="radio" name="orario" value="21:00" class="visually-hidden">
-                                <span class="option-card">21:00 - 22:00</span>
-                            </label>
-
-                        </div>
-
-                    <button type="submit" class="submit-button">Conferma Prenotazione</button>
-                </form>
-            </div>
         </main>
+
         <<-FOOTER->>
 
-            <body>
+</body>
 
 </html>
