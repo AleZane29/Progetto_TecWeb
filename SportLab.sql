@@ -32,8 +32,9 @@ CREATE TABLE Prenotazione (
     utente INTEGER NOT NULL,
     numero_campo INTEGER NOT NULL,
     tipo_campo VARCHAR(20) NOT NULL,
-    dataora_inizio DATETIME NOT NULL,
-    dataora_fine DATETIME NOT NULL,
+    data_ DATE NOT NULL,
+    ora_inizio DATETIME NOT NULL,
+    ora_fine DATETIME NOT NULL,
 
     FOREIGN KEY (utente) REFERENCES Utente(id) ON DELETE CASCADE,
     FOREIGN KEY (numero_campo, tipo_campo) REFERENCES Campo(numero, tipo) ON DELETE CASCADE
@@ -56,3 +57,17 @@ INSERT INTO Campo (numero, tipo) VALUES
 (1, 'Calcio5'),
 (1, 'Basket'),
 (2, 'Basket');
+
+
+
+-- CREATE TABLE Prenotazione (
+--     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     utente INTEGER NOT NULL,
+--     numero_campo INTEGER NOT NULL,
+--     tipo_campo VARCHAR(20) NOT NULL,
+--     dataora_inizio DATETIME NOT NULL,
+--     dataora_fine DATETIME NOT NULL,
+
+--     FOREIGN KEY (utente) REFERENCES Utente(id) ON DELETE CASCADE,
+--     FOREIGN KEY (numero_campo, tipo_campo) REFERENCES Campo(numero, tipo) ON DELETE CASCADE
+-- );

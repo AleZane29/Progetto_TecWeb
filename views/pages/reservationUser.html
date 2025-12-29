@@ -21,7 +21,7 @@
 
         <main>
 
-            <form action="reservationController.php" method="post">
+            <form action="../controller/reservationController.php" method="post">
                 <div class="form-separation">
                     <div class="separation">
                         <fieldset>
@@ -44,24 +44,26 @@
                                 </label>
                             </div>
                         </fieldset>
+
+                            
+                        
                         <fieldset>
                             <legend>2. Scegli la data</legend>
                             <div class="date-form"> <label> <input type="date" name="date" value="" required> Giorno</label> </div>
                         </fieldset>
-                    </div>
-                    <div class="separation">
+
                         <fieldset>
                             <legend>3. Scegli la fascia oraria</legend>
                             <div class="timetable-form">
-                                <label> <input type="radio" name="timetable" value="1" required> 8:00-9:30 </label>
-                                <label> <input type="radio" name="timetable" value="2"> 9:30-11:00 </label>
-                                <label> <input type="radio" name="timetable" value="3"> 11:00-12:30 </label>
-                                <label> <input type="radio" name="timetable" value="4" required> 13:00-14:30 </label>
-                                <label> <input type="radio" name="timetable" value="5"> 14:30-16:00 </label>
-                                <label> <input type="radio" name="timetable" value="6"> 16:00-17:30 </label>
-                                <label> <input type="radio" name="timetable" value="7" required> 17:30-19:00 </label>
-                                <label> <input type="radio" name="timetable" value="8"> 19:00-20:30 </label>
-                                <label> <input type="radio" name="timetable" value="9"> 20:30-22:00 </label>
+                                <label> <input type="radio" name="timetable" value="8:00-9:30" required> 8:00-9:30 </label>
+                                <label> <input type="radio" name="timetable" value="9:30-11:00"> 9:30-11:00 </label>
+                                <label> <input type="radio" name="timetable" value="11:00-12:30"> 11:00-12:30 </label>
+                                <label> <input type="radio" name="timetable" value="13:00-14:30" required> 13:00-14:30 </label>
+                                <label> <input type="radio" name="timetable" value="14:30-16:00"> 14:30-16:00 </label>
+                                <label> <input type="radio" name="timetable" value="16:00-17:30"> 16:00-17:30 </label>
+                                <label> <input type="radio" name="timetable" value="17:30-19:00" required> 17:30-19:00 </label>
+                                <label> <input type="radio" name="timetable" value="19:00-20:30"> 19:00-20:30 </label>
+                                <label> <input type="radio" name="timetable" value="20:30-22:00"> 20:30-22:00 </label>
 
                             </div>
                         </fieldset>

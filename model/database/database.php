@@ -83,4 +83,6 @@ class DBConn
 		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
 		return mysqli_affected_rows($this->connection) > 0;
 	}
+
+	
 }
