@@ -4,12 +4,13 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="../assets/logo_white.png" rel="icon" />
-		<meta name="description" content="SportLab - Pagina di login" />
+		<meta name="description" content="SportLab - Pagina profilo utente" />
 		<meta name="language" content="it" />
 		<title>Account - SportLab</title>
 		<link href="../style/style.css" rel="stylesheet" />
 		<link href="../style/header.css" rel="stylesheet" />
 		<link href="../style/footer.css" rel="stylesheet" />
+		<link href="../style/account.css" rel="stylesheet" />
 	</head>
 
 
@@ -20,12 +21,22 @@
 			<p>Ti trovi in: <span lang="en" class="breadcrumb-page">Account</span></p>
 		</nav>
 	<main>
-		<<-NOME->> </br>
-		<<-COGNOME->> </br>
-		<<-DN->> </br>
-		<<-EMAIL->> </br>
 		
-		<a href="../controller/logoutController.php">LOGOUT</a>
+		<dl class="info-account-container">
+			<h1>Informazioni account</h1>
+			<dt class="info-account-label">Nome:</dt>
+			<dd class="info-account"> <<-NOME->> </dd>
+			<dt class="info-account-label">Cognome:</dt>
+			<dd class="info-account"> <<-COGNOME->> </dd>
+			<dt class="info-account-label">Data di nascita:</dt>
+			<dd class="info-account"> <<-DN->> </dd>
+			<dt class="info-account-label">Email:</dt>
+			<dd class="info-account"> <<-EMAIL->> </dd>
+			<a class="logout-button" href="../controller/logoutController.php">LOGOUT</a>
+		</dl>
+
+		
+		
 	</main>
 	
 

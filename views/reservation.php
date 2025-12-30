@@ -1,14 +1,11 @@
 <?php
-if (!isset($_SESSION)) {
-  session_start();
-}
+require_once "builder.php";
 
-//Controllo se l'utente non è autenticato ed eventuale reindirizzamento a login
-if (!(isset($_SESSION["user"]) && $_SESSION["user"] !== null)) {
-  header("Location: login.php");
-} else {
-  require '../controller/reservationController.php';
-  include 'pages/reservation.html';
-}
+use Builder\Builder;
 
-include 'components/footer.html';
+
+$builder = new Builder();
+$page = $builder->build_reservation();
+
+
+echo $page;
