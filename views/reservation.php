@@ -1,5 +1,4 @@
 <?php
-
 require_once "builder.php";
 
 use Builder\Builder;
@@ -10,5 +9,3 @@ $page = $builder->build_reservation();
 
 
 echo $page;
-
-?>
