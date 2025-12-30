@@ -32,9 +32,10 @@ CREATE TABLE Prenotazione (
     utente INTEGER NOT NULL,
     numero_campo INTEGER NOT NULL,
     tipo_campo VARCHAR(20) NOT NULL,
-    data_ DATE NOT NULL,
-    ora_inizio DATETIME NOT NULL,
-    ora_fine DATETIME NOT NULL,
+    data DATE NOT NULL,
+    ora_inizio TIME NOT NULL,
+    ora_fine TIME NOT NULL,
+    pprezzo DECIMAL(10, 2) NOT NULL,
 
     FOREIGN KEY (utente) REFERENCES Utente(id) ON DELETE CASCADE,
     FOREIGN KEY (numero_campo, tipo_campo) REFERENCES Campo(numero, tipo) ON DELETE CASCADE

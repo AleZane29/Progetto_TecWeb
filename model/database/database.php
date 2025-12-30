@@ -47,6 +47,7 @@ class DBConn
 		}
 	}
 
+
 	public function checkLogin($email, $password)
 	{
 		$query = "SELECT * FROM Utente WHERE email=\"$email\" AND password=\"$password\"";
@@ -96,8 +97,33 @@ class DBConn
 					'utente' => $row['utente'],
 					'numero_campo' => $row['numero_campo'],
 					'tipo_campo' => $row['tipo_campo'],
-					'dataora_inizio' => $row['dataora_inizio'],
-					'dataora_fine' => $row['dataora_fine']
+					'data' => $row['data'],
+					'ora_inizio' => substr($row['ora_inizio'], 0, 5),
+					'ora_fine' => substr($row['ora_fine'], 0, 5),
+					'prezzo' => $row['prezzo']
+				);
+			}
+			mysqli_free_result($queryResult);
+			return $result;
+		}
+	}
+
+	public function getAllReservations()
+	{
+		$query = "SELECT * FROM Prenotazione";
+		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
+		if (mysqli_num_rows($queryResult) != 0) {
+			$result = array();
+			while ($row = mysqli_fetch_assoc($queryResult)) {
+				$result[] = array(
+					'id' => $row['id'],
+					'utente' => $row['utente'],
+					'numero_campo' => $row['numero_campo'],
+					'tipo_campo' => $row['tipo_campo'],
+					'data' => $row['data'],
+					'ora_inizio' => substr($row['ora_inizio'], 0, 5),
+					'ora_fine' => substr($row['ora_fine'], 0, 5),
+					'prezzo' => $row['prezzo']
 				);
 			}
 			mysqli_free_result($queryResult);
