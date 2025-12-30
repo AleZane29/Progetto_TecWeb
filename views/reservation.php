@@ -7,6 +7,7 @@ if (!isset($_SESSION)) {
 if (!(isset($_SESSION["user"]) && $_SESSION["user"] !== null)) {
   header("Location: login.php");
 } else {
+  require '../controller/reservationController.php';
   include 'pages/reservation.html';
 }
 
