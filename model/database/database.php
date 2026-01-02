@@ -110,14 +110,31 @@ class DBConn
 
 	public function getAllReservations()
 	{
-		$query = "SELECT * FROM Prenotazione";
-		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
-		if (mysqli_num_rows($queryResult) != 0) {
+		$query = "
+        SELECT 
+            P.id AS prenotazione_id,
+            P.numero_campo,
+            P.tipo_campo,
+            P.data,
+            P.ora_inizio,
+            P.ora_fine,
+            P.prezzo,
+            U.nome AS nome_utente,
+            U.cognome AS cognome_utente
+        FROM Prenotazione AS P
+        INNER JOIN Utente AS U ON P.utente = U.id
+    ";
+
+		$queryResult = mysqli_query($this->connection, $query)
+			or die("Errore in DBAccess: " . mysqli_error($this->connection));
+
+		if (mysqli_num_rows($queryResult) > 0) {
 			$result = array();
+
 			while ($row = mysqli_fetch_assoc($queryResult)) {
 				$result[] = array(
-					'id' => $row['id'],
-					'utente' => $row['utente'],
+					'id' => $row['prenotazione_id'],
+					'utente' => $row['nome_utente'] . ' ' . $row['cognome_utente'],
 					'numero_campo' => $row['numero_campo'],
 					'tipo_campo' => $row['tipo_campo'],
 					'data' => $row['data'],
@@ -126,8 +143,20 @@ class DBConn
 					'prezzo' => $row['prezzo']
 				);
 			}
+
 			mysqli_free_result($queryResult);
 			return $result;
 		}
+
+		return [];
+	}
+
+	public function removePrenotation($id)
+	{
+		$query = "DELETE FROM Prenotazione WHERE id=\"$id\"";
+
+		mysqli_query($this->connection, $query) or die(mysqli_error($this->connection));
+
+		return mysqli_affected_rows($this->connection) > 0;
 	}
 }

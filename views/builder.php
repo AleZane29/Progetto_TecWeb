@@ -17,9 +17,14 @@ class Builder
 
     $this->headerHTML = file_get_contents("components/header.html");
     if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
-      $this->headerHTML = str_replace("<<-BENVENUTO->>", $_SESSION["user"], $this->headerHTML);
+      $this->headerHTML = str_replace("<<-ACCOUNT->>", $_SESSION["nameUser"], $this->headerHTML);
+      if ($_SESSION["user"] == "2") {
+        $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenotazioni", $this->headerHTML);
+      } else {
+        $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenota", $this->headerHTML);
+      }
     } else {
-      $this->headerHTML = str_replace("<<-BENVENUTO->>", "non loggato", $this->headerHTML);
+      $this->headerHTML = str_replace("<<-ACCOUNT->>", "Account", $this->headerHTML);
     }
 
 
@@ -66,6 +71,10 @@ class Builder
 
   function build_reservation()
   {
+    //Controllo se l'utente non è autenticato ed eventuale reindirizzamento a login
+    if (!(isset($_SESSION["user"]) && $_SESSION["user"] !== null)) {
+      header("Location: login.php");
+    }
     if ($_SESSION["user"] == "2") {
       $paginaHTML = require_once '../controller/reservationAdminController.php';
       $page = str_replace("<<-HEADER->>", $this->headerHTML, $paginaHTML);

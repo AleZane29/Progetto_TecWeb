@@ -11,51 +11,49 @@
 		<link href="../style/reservation.css" rel="stylesheet" />
 		<link href="../style/header.css" rel="stylesheet" />
 		<link href="../style/footer.css" rel="stylesheet" />
+        <script src="../scripts/reservationAdmin.js"></script>
 	</head>
 	<body>
 	
         <<-HEADER->>
         
+        <nav id="breadcrumb">
+            <p>Ti trovi in: <span class="breadcrumb-page">Prenotazioni Admin</span></p>
+        </nav>
 
-	<nav id="breadcrumb">
-		<p>Ti trovi in: <span class="breadcrumb-page">Prenotazioni Admin</span></p>
-	</nav>
-
-	<main id="main-content" tabindex="-1">
-	<div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Cliente</th>
-                        <th>Sport</th>
-                        <th>Campo</th>
-                        <th>Data</th>
-                        <th>Orario</th>
-                        <th>Prezzo</th>
-                        <th>Azioni</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    [adminReservations]
-                    <tr>
-                        <td>Giulia Marino</td>
-                        <td>Tennis</td>
-                        <td>Campo 1</td>
-                        <td>26/12/2024</td>
-                        <td>10:30 - 11:30</td>
-                        <td>€25</td>
-                        <td>
-                            <div class="actions">
-                                <button class="action-btn btn-edit">Modifica</button>
-                                <button class="action-btn btn-delete">Elimina</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <main id="main-content" tabindex="-1">
+        <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Sport</th>
+                            <th>Campo</th>
+                            <th>Data</th>
+                            <th>Orario</th>
+                            <th>Prezzo</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        [adminReservations]
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-		</main>
+        </main>
+        <div class="overlay" id="overlay">
+            <div class="dialog">
+                <div class="dialog-icon">⚠️</div>
+                <h3>Conferma Eliminazione</h3>
+                <p>Sei sicuro di voler eliminare questa prenotazione? Questa azione non può essere annullata.</p>
+                <div class="dialog-actions">
+                    <button class="btn btn-dl-cancel" onclick="closeDeleteDialog()">Annulla</button>
+                    <button class="btn btn-dl-delete" onclick="deleteReservation()">Elimina</button>
+                </div>
+            </div>
+        </div>
+
         <<-FOOTER->>
-		<body>
+    </body>
 </html>

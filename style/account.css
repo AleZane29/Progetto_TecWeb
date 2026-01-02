@@ -1,10 +1,16 @@
-.info-account-container{
-    text-align: center;
-    background-color: var(--neutral-0);
-    margin: auto;
-    width: 30%;
-    padding: 10px;
-    border-collapse: collapse;
+main {
+	display: grid;
+	place-items: center;
+	padding: 3rem;
+}
+
+.info-account-container {
+	text-align: center;
+	background-color: var(--neutral-0);
+	margin: auto;
+	width: 30%;
+	padding: 10px;
+	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 	border-radius: 1em;
@@ -19,7 +25,7 @@
 	transition: all 0.3s ease;
 	text-decoration: none;
 	display: inline-block;
-    margin-top: 1rem;
+	margin-top: 1rem;
 }
 
 .logout-button:hover {
