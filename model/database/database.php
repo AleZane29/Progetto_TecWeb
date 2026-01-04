@@ -85,6 +85,28 @@ class DBConn
 		return mysqli_affected_rows($this->connection) > 0;
 	}
 
+public function updateUser($id, $name, $surname, $birth)
+{
+    $name = mysqli_real_escape_string($this->connection, $name);
+    $surname = mysqli_real_escape_string($this->connection, $surname);
+    $birth = mysqli_real_escape_string($this->connection, $birth);
+    $id = mysqli_real_escape_string($this->connection, $id);
+
+    $query = "UPDATE Utente SET 
+              nome = '$name', 
+              cognome = '$surname', 
+              data_nascita = '$birth' 
+              WHERE id = '$id'";
+
+    $queryResult = mysqli_query($this->connection, $query);
+
+    if (!$queryResult) {
+        die("Errore SQL: " . mysqli_error($this->connection));
+    }
+
+    return true; 
+}
+
 	public function getUserReservations($userId)
 	{
 		$query = "SELECT * FROM Prenotazione WHERE utente=\"$userId\" ";
