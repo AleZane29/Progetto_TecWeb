@@ -1,17 +1,20 @@
 let reservation = null;
 function openDeleteDialog(id) {
 	reservation = id;
-	document.getElementById('overlay').classList.add('active');
+	document.getElementById('dialogDelete').classList.add('active');
 }
+
 function closeDeleteDialog() {
-	document.getElementById('overlay').classList.remove('active');
+	document.getElementById('dialogDelete').classList.remove('active');
 	reservation = null;
 }
-document.getElementById('overlay').addEventListener('click', function (e) {
+
+document.getElementById('dialogDelete').addEventListener('click', function (e) {
 	if (e.target === this) {
 		closeDeleteDialog();
 	}
 });
+
 document.addEventListener('keydown', function (e) {
 	if (e.key === 'Escape') {
 		closeDeleteDialog();

@@ -50,62 +50,93 @@ class DBConn
 
 	public function checkLogin($email, $password)
 	{
-		$query = "SELECT * FROM Utente WHERE email=\"$email\" AND password=\"$password\"";
-		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
-		if ($queryResult) {
-			$result = mysqli_fetch_assoc($queryResult);
-			if ($result) {
-				return array(
-					'idUser' => $result['id'],
-					'nameUser' => $result['nome'],
-					'surnameUser' => $result['cognome'],
-					'emailUser' => $result['email'],
-					'dateUser' => $result['data_nascita']
-				);
+		$query = "SELECT id, nome, cognome, email, data_nascita
+    FROM Utente WHERE email=? AND password=?";
+		$stmt = mysqli_prepare($this->connection, $query);
+		mysqli_stmt_bind_param($stmt, "ss", $email, $password);
+		mysqli_stmt_execute($stmt);
+
+		$result = mysqli_stmt_get_result($stmt);
+
+		if ($result) {
+			$row = mysqli_fetch_assoc($result);
+			if ($row) {
+				mysqli_stmt_close($stmt);
+				return [
+					'idUser'      => $row['id'],
+					'nameUser'    => $row['nome'],
+					'surnameUser' => $row['cognome'],
+					'emailUser'   => $row['email'],
+					'dateUser'    => $row['data_nascita']
+				];
 			}
 		}
+
+		mysqli_stmt_close($stmt);
 		return null;
 	}
 
 	public function getUserByEmail($email)
 	{
-		$query = "SELECT id FROM Utente WHERE email=\"$email\" ";
-		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
-		if ($queryResult) {
-			return mysqli_fetch_assoc($queryResult)['id'];
-		}
-		return null;
+		$query = "SELECT id FROM Utente WHERE email=? ";
+
+		$stmt = mysqli_prepare($this->connection, $query);
+		mysqli_stmt_bind_param($stmt, "s", $email);
+		mysqli_stmt_execute($stmt);
+
+		mysqli_stmt_bind_result($stmt, $id);
+		$found = mysqli_stmt_fetch($stmt);
+
+		mysqli_stmt_close($stmt);
+		return $found ? $id : null;
 	}
 
 	public function createUser($name, $surname, $email, $birth, $password)
 	{
 		$query = "INSERT INTO Utente (nome, cognome, email, data_nascita, password) VALUES
-(\"$name\", \"$surname\", \"$email\", \"$birth\", \"$password\")";
-		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
-		return mysqli_affected_rows($this->connection) > 0;
+(?,?,?,?,?)";
+		$stmt = mysqli_prepare($this->connection, $query);
+		mysqli_stmt_bind_param($stmt, "sssss", $name, $surname, $email, $birth, $password);
+		mysqli_stmt_execute($stmt);
+
+		if (mysqli_stmt_affected_rows($stmt) < 0) {
+			mysqli_stmt_close($stmt);
+			die("Errore SQL");
+		}
+
+		mysqli_stmt_close($stmt);
+		return true;
 	}
 
-public function updateUser($id, $name, $surname, $birth)
-{
-    $name = mysqli_real_escape_string($this->connection, $name);
-    $surname = mysqli_real_escape_string($this->connection, $surname);
-    $birth = mysqli_real_escape_string($this->connection, $birth);
-    $id = mysqli_real_escape_string($this->connection, $id);
+	public function updateUser($id, $name, $surname, $birth)
+	{
+		$query = "
+    UPDATE Utente 
+    SET nome = ?, cognome = ?, data_nascita = ?
+    WHERE id = ?
+";
 
-    $query = "UPDATE Utente SET 
-              nome = '$name', 
-              cognome = '$surname', 
-              data_nascita = '$birth' 
-              WHERE id = '$id'";
+		$stmt = mysqli_prepare($this->connection, $query);
 
-    $queryResult = mysqli_query($this->connection, $query);
+		mysqli_stmt_bind_param(
+			$stmt,
+			"sssi",
+			$name,
+			$surname,
+			$birth,
+			$id
+		);
 
-    if (!$queryResult) {
-        die("Errore SQL: " . mysqli_error($this->connection));
-    }
+		mysqli_stmt_execute($stmt);
 
-    return true; 
-}
+		if (mysqli_stmt_affected_rows($stmt) < 0) {
+			mysqli_stmt_close($stmt);
+			die("Errore SQL");
+		}
+
+		mysqli_stmt_close($stmt);
+		return true;
+	}
 
 	public function getUserReservations($userId)
 	{

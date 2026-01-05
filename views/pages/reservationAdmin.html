@@ -42,7 +42,8 @@
             </div>
         </div>
         </main>
-        <div class="overlay" id="overlay">
+
+        <div class="overlay" id="dialogDelete">
             <div class="dialog">
                 <div class="dialog-icon">⚠️</div>
                 <h3>Conferma Eliminazione</h3>
@@ -50,6 +51,24 @@
                 <div class="dialog-actions">
                     <button class="btn btn-dl-cancel" onclick="closeDeleteDialog()">Annulla</button>
                     <button class="btn btn-dl-delete" onclick="deleteReservation()">Elimina</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="overlay" id="dialogEdit">
+            <div class="dialog">
+                <div class="dialog-icon">⚠️</div>
+                <h3>Modifica Prenotazione</h3>
+                <!-- <p>Modifica i dettagli della prenotazione qui sotto:</p> -->
+                <div class="dialog-content">
+                    <label for="editDate">Data:</label>
+                    <input type="date" id="editDate" name="editDate" />
+                    <label for="editTime">Orario:</label>
+                    <input type="time" id="editTime" name="editTime" />
+                </div>
+                <div class="dialog-actions">
+                    <button class="btn btn-dl-cancel" onclick="closeEditDialog()">Annulla</button>
+                    <button class="btn btn-dl-submit" onclick="editReservation()">Conferma</button>
                 </div>
             </div>
         </div>

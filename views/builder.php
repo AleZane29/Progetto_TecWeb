@@ -25,6 +25,7 @@ class Builder
       }
     } else {
       $this->headerHTML = str_replace("<<-ACCOUNT->>", "Account", $this->headerHTML);
+      $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenota", $this->headerHTML);
     }
 
 
