@@ -67,7 +67,6 @@ function filterTable() {
 	const filterDate = document.getElementById('filterDate').value;
 
 	const rows = document.querySelectorAll('#tableBody tr');
-	console.log(rows);
 	rows.forEach((row) => {
 		const name = row.cells[0].textContent.toLowerCase();
 		const sport = row.cells[1].textContent.toLowerCase();
@@ -100,5 +99,22 @@ function resetFilters() {
 	document.getElementById('filterSport').value = '';
 	document.getElementById('filterCourt').value = '';
 	document.getElementById('filterDate').value = '';
+	filterTable();
+}
+
+function changeSport() {
+	const sportSelect = document.getElementById('filterSport');
+	const courtsSelect = document.getElementById('filterCourt');
+	const sport = sportSelect.value;
+	const courts = document.querySelectorAll('#filterCourt option');
+
+	courtsSelect.value = '';
+	courts.forEach((court) => {
+		if (court.id == '' || (sport != '' && court.id.includes(sport))) {
+			court.style.display = '';
+		} else {
+			court.style.display = 'none';
+		}
+	});
 	filterTable();
 }

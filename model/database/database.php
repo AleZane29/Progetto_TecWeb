@@ -213,4 +213,37 @@ class DBConn
 
 		return mysqli_affected_rows($this->connection) > 0;
 	}
+
+	public function getAllSports()
+	{
+		$query = "SELECT nome FROM tipocampo ";
+		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
+		if (mysqli_num_rows($queryResult) != 0) {
+			$result = array();
+			while ($row = mysqli_fetch_assoc($queryResult)) {
+				$result[] = array(
+					'nome' => $row['nome']
+				);
+			}
+			mysqli_free_result($queryResult);
+			return $result;
+		}
+	}
+
+	public function getAllCourts()
+	{
+		$query = "SELECT numero, tipo FROM campo ";
+		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
+		if (mysqli_num_rows($queryResult) != 0) {
+			$result = array();
+			while ($row = mysqli_fetch_assoc($queryResult)) {
+				$result[] = array(
+					'numero' => $row['numero'],
+					'tipo' => $row['tipo']
+				);
+			}
+			mysqli_free_result($queryResult);
+			return $result;
+		}
+	}
 }

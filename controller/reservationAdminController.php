@@ -11,15 +11,19 @@ $HTMLPage = file_get_contents('../views/pages/reservationAdmin.html');
 $conn = new DBConn();
 $connessioneOK = $conn->openConnection();
 $reservationResult = '';
+$sportsResult = '';
+$courtsResult = '';
 if ($connessioneOK) {
-  $reservations = $conn->getAllReservations();
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST["searchName"] ?? "";
-    $surname = $_POST["searchSurname"] ?? "";
-    $sport = $_POST["filterSport"] ?? "";
-    $court = $_POST["filterCourt"] ?? "";
-    $date = $_POST["filterDate"] ?? "";
+  $sports = $conn->getAllSports();
+  foreach ($sports as $res) {
+    $sportsResult .= "<option value=" . $res["nome"] . ">" . $res["nome"] . "</option>";
   }
+  $courts = $conn->getAllCourts();
+  foreach ($courts as $res) {
+    $courtsResult .= "<option style='display: none;' id=" . $res["tipo"] . $res["numero"] . " value=" . $res["numero"] . "> Campo " . $res["numero"] . "</option>";
+  }
+
+  $reservations = $conn->getAllReservations();
   foreach ($reservations as $res) {
     $reservationResult .= "<tr>
                         <td>" . $res["utente"] . "</td>
@@ -42,5 +46,8 @@ if ($connessioneOK) {
 if ($reservationResult == '') {
   $reservationResult = "<tr><td>Nessuna prenotazione</td></tr>";
 }
+$HTMLPage = str_replace("[sports]", $sportsResult, $HTMLPage);
+$HTMLPage = str_replace("[courts]", $courtsResult, $HTMLPage);
 $HTMLPage = str_replace("[adminReservations]", $reservationResult, $HTMLPage);
+
 return $HTMLPage;

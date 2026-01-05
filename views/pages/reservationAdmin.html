@@ -29,20 +29,16 @@
             </div>
             <div class="filter-group">
                 <label for="filterSport">Sport</label>
-                <select id="filterSport" onchange="filterTable()">
+                <select id="filterSport" onchange="changeSport()">
                     <option value="">Tutti</option>
-                    <option value="Basket">Basket</option>
-                    <option value="Calcio5">Calcio a 5</option>
-                    <option value="Tennis">Tennis</option>
+                    [sports]
                 </select>
             </div>
             <div class="filter-group">
                 <label for="filterCourt">Campo</label>
                 <select id="filterCourt" onchange="filterTable()">
                     <option value="">Tutti</option>
-                    <option value="1">Campo 1</option>
-                    <option value="2">Campo 2</option>
-                    <option value="3">Campo 3</option>
+                    [courts]
                 </select>
             </div>
             <div class="filter-group">
@@ -85,23 +81,69 @@
             </div>
         </div>
 
-        <div class="overlay" id="dialogEdit">
-            <div class="dialog">
-                <div class="dialog-icon">⚠️</div>
-                <h3>Modifica Prenotazione</h3>
-                <!-- <p>Modifica i dettagli della prenotazione qui sotto:</p> -->
-                <div class="dialog-content">
-                    <label for="editDate">Data:</label>
-                    <input type="date" id="editDate" name="editDate" />
-                    <label for="editTime">Orario:</label>
-                    <input type="time" id="editTime" name="editTime" />
-                </div>
-                <div class="dialog-actions">
-                    <button class="btn btn-dl-cancel" onclick="closeEditDialog()">Annulla</button>
-                    <button class="btn btn-dl-submit" onclick="editReservation()">Conferma</button>
-                </div>
+        <!-- Dialog Modifica Prenotazione -->
+    <div class="dialog-overlay" id="editDialog">
+        <div class="dialog-box dialog-edit">
+            <div class="dialog-header">
+                <h2>Modifica Prenotazione</h2>
+            </div>
+            <div class="dialog-content">
+                <form id="editForm">
+                    <div class="form-group">
+                        <label for="editCliente">Cliente</label>
+                        <input type="text" id="editCliente" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editSport">Sport</label>
+                            <select id="editSport" required>
+                                <option value="Tennis">Tennis</option>
+                                <option value="Calcetto">Calcetto</option>
+                                <option value="Padel">Padel</option>
+                                <option value="Basket">Basket</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCampo">Campo</label>
+                            <input type="text" id="editCampo" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editData">Data</label>
+                            <input type="date" id="editData" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editOrario">Orario</label>
+                            <input type="text" id="editOrario" placeholder="10:00 - 11:00" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editDurata">Durata</label>
+                            <input type="text" id="editDurata" placeholder="1h" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPrezzo">Prezzo</label>
+                            <input type="text" id="editPrezzo" placeholder="€25" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editStato">Stato</label>
+                        <select id="editStato" required>
+                            <option value="confermata">Confermata</option>
+                            <option value="in-attesa">In Attesa</option>
+                            <option value="annullata">Annullata</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="dialog-actions">
+                <button class="dialog-btn btn-cancel" onclick="closeEditDialog()">Annulla</button>
+                <button class="dialog-btn btn-confirm" onclick="confirmEdit()">Salva Modifiche</button>
             </div>
         </div>
+    </div>
 
         <<-FOOTER->>
     </body>
