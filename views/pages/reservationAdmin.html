@@ -22,22 +22,14 @@
         </nav>
 
         <main id="main-content" tabindex="-1">
-            <form
-					id="filtersForm"
-					method="POST"
-					action="reservation.php">
             <div class="filters">
             <div class="filter-group">
-                <label for="searchName">Nome Cliente</label>
-                <input type="text" id="searchName" placeholder="Nome cliente">
-            </div>
-            <div class="filter-group">
-                <label for="searchSurname">Cognome Cliente</label>
-                <input type="text" id="searchSurname" placeholder="Cognome cliente">
+                <label for="searchName">Nome o cognome cliente</label>
+                <input type="text" id="searchName" placeholder="Nome cliente" onkeyup="filterTable()" />
             </div>
             <div class="filter-group">
                 <label for="filterSport">Sport</label>
-                <select id="filterSport">
+                <select id="filterSport" onchange="filterTable()">
                     <option value="">Tutti</option>
                     <option value="Basket">Basket</option>
                     <option value="Calcio5">Calcio a 5</option>
@@ -46,7 +38,7 @@
             </div>
             <div class="filter-group">
                 <label for="filterCourt">Campo</label>
-                <select id="filterCourt">
+                <select id="filterCourt" onchange="filterTable()">
                     <option value="">Tutti</option>
                     <option value="1">Campo 1</option>
                     <option value="2">Campo 2</option>
@@ -55,9 +47,9 @@
             </div>
             <div class="filter-group">
                 <label for="filterDate">Data</label>
-                <input type="date" id="filterDate">
+                <input type="date" id="filterDate" onchange="filterTable()" />
             </div>
-            <button class="filter-button" type="submit">Filtra</button>
+            <button class="filter-button" onclick="resetFilters()">Resetta filtri</button>
         </div>
     </form>
         <div class="table-container">
