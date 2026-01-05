@@ -1,52 +1,123 @@
 <!DOCTYPE html>
 <html data-theme="light" lang="it">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="../assets/logo_white.png" rel="icon" />
-		<meta name="description" content="SportLab - Pagina profilo utente" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="../assets/logo_white.png" rel="icon" />
+        <meta name="description" content="SportLab - Profilo utente" />
 		<meta name="language" content="it" />
-		<title>Account - SportLab</title>
-		<link href="../style/style.css" rel="stylesheet" />
-		<link href="../style/header.css" rel="stylesheet" />
-		<link href="../style/footer.css" rel="stylesheet" />
-		<link href="../style/account.css" rel="stylesheet" />
-	</head>
+        <title>Account - SportLab</title>
+        <link href="../style/style.css" rel="stylesheet" />
+        <link href="../style/header.css" rel="stylesheet" />
+        <link href="../style/footer.css" rel="stylesheet" />
+        <link href="../style/account.css" rel="stylesheet" />
+    </head>
 
+    <body>
 
-	<body>
+    <<-HEADER->>
+        <nav id="breadcrumb">
+            <p>Ti trovi in: <span lang="en" class="breadcrumb-page">Account</span></p>
+        </nav>
+    <main>
+        <div class="info-container">
+			<form 
+				class="info-form" 
+				id="profileForm" 
+				method="POST" 
+				action="../controller/editAccountController.php">
+				<div class="info-header">
+					<h1>Informazioni account</h1>
+				</div>
+				
+				<div class="form-group">
+					<label for="name">Nome:</label>
+					<div class="form-input">
+						<input 
+							id="name" 
+							type="text" 
+							name="name" 
+							value="<<-NOME->>" 
+							readonly 
+							required 
+						/>
+					</div>
+				</div>
 
-	<<-HEADER->>
-		<nav id="breadcrumb">
-			<p>Ti trovi in: <span lang="en" class="breadcrumb-page">Account</span></p>
-		</nav>
-	<main>
-		
-		<dl class="info-account-container">
-			<h1>Informazioni account</h1>
-			<dt class="info-account-label">Nome:</dt>
-			<dd class="info-account"> <<-NOME->> </dd>
-			<dt class="info-account-label">Cognome:</dt>
-			<dd class="info-account"> <<-COGNOME->> </dd>
-			<dt class="info-account-label">Data di nascita:</dt>
-			<dd class="info-account"> <<-DN->> </dd>
-			<dt class="info-account-label">Email:</dt>
-			<dd class="info-account"> <<-EMAIL->> </dd>
-			<a class="logout-button" style="background-color: #2c3e50;" href="edit_account.php">Modifica Dati</a>
-			<a class="logout-button" href="../controller/logoutController.php">LOGOUT</a>
-		</dl>
+				<div class="form-group">
+					<label for="surname">Cognome:</label>
+					<div class="form-input">
+						<input 
+							id="surname" 
+							type="text" 
+							name="surname" 
+							value="<<-COGNOME->>" 
+							readonly 
+							required 
+						/>
+					</div>
+				</div>
 
-		
-		
-	</main>
-	
+				<div class="form-group">
+					<label for="birth">Data di nascita:</label>
+					<div class="form-input">
+						<input 
+							id="birth" 
+							type="date" 
+							name="birth" 
+							value="<<-DN->>" 
+							readonly 
+							required 
+						/>
+					</div>
+				</div>
 
-	<<-FOOTER->>
+				<div class="form-group">
+					<label for="email">Email (non modificabile):</label>
+					<div class="form-input">
+						<input 
+							id="email" 
+							type="email" 
+							name="email" 
+							value="<<-EMAIL->>" 
+							readonly 
+						/>
+					</div>
+				</div>
 
-	</body>
-	
+				<div class="button-container">
+					
+					<button type="button" id="editBtn" class="logout-button">Modifica Dati</button>
+					
+					<button type="submit" id="saveBtn" class="logout-button">Salva Modifiche</button>
+					
+					<a class="logout-button" href="../controller/logoutController.php">LOGOUT</a>
+				</div>
 
+			</form>
+        </div>
+    </main>
+
+    <<-FOOTER->>
+
+    </body>
 </html>
+
 <script>
-	document.getElementById('navMenuAccount').classList.add('active');
+    document.getElementById('navMenuAccount').classList.add('active');
+
+    const editBtn = document.getElementById('editBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const editableInputs = document.querySelectorAll('#profileForm input:not(#email)');
+
+    editBtn.addEventListener('click', function() {
+        editableInputs.forEach(input => {
+            input.removeAttribute('readonly');
+        });
+
+        document.getElementById('name').focus();
+
+        editBtn.style.display = 'none';
+        saveBtn.style.display = 'block';
+    });
 </script>

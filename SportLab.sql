@@ -35,7 +35,7 @@ CREATE TABLE Prenotazione (
     data DATE NOT NULL,
     ora_inizio TIME NOT NULL,
     ora_fine TIME NOT NULL,
-    pprezzo DECIMAL(10, 2) NOT NULL,
+    prezzo DECIMAL(10, 2) NOT NULL,
 
     FOREIGN KEY (utente) REFERENCES Utente(id) ON DELETE CASCADE,
     FOREIGN KEY (numero_campo, tipo_campo) REFERENCES Campo(numero, tipo) ON DELETE CASCADE
