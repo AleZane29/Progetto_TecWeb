@@ -176,6 +176,7 @@ class DBConn
             U.cognome AS cognome_utente
         FROM Prenotazione AS P
         INNER JOIN Utente AS U ON P.utente = U.id
+				ORDER BY P.DATA DESC
     ";
 
 		$queryResult = mysqli_query($this->connection, $query)

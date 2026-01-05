@@ -13,6 +13,13 @@ $connessioneOK = $conn->openConnection();
 $reservationResult = '';
 if ($connessioneOK) {
   $reservations = $conn->getAllReservations();
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST["searchName"] ?? "";
+    $surname = $_POST["searchSurname"] ?? "";
+    $sport = $_POST["filterSport"] ?? "";
+    $court = $_POST["filterCourt"] ?? "";
+    $date = $_POST["filterDate"] ?? "";
+  }
   foreach ($reservations as $res) {
     $reservationResult .= "<tr>
                         <td>" . $res["utente"] . "</td>
@@ -30,7 +37,10 @@ if ($connessioneOK) {
                     </tr>";
   }
 } else {
-  $reservationResult = "<p class='error-message' role='alert'>Non è possibile visualizzare le prenotazioni, riprovare più tardi</p>";
+  $reservationResult = "<tr><td>Non è possibile visualizzare le prenotazioni, riprovare più tardi</td></tr>";
+}
+if ($reservationResult == '') {
+  $reservationResult = "<tr><td>Nessuna prenotazione</td></tr>";
 }
 $HTMLPage = str_replace("[adminReservations]", $reservationResult, $HTMLPage);
 return $HTMLPage;
