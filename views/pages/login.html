@@ -11,6 +11,7 @@
 		<link href="../style/login.css" rel="stylesheet" />
 		<link href="../style/header.css" rel="stylesheet" />
 		<link href="../style/footer.css" rel="stylesheet" />
+		<script src="../scripts/togglePassword.js"></script>
 	</head>
 
 	<body>
@@ -141,19 +142,4 @@
 			</div>
 		</main>
 	</body>
-
-	<script>
-		function togglePassword() {
-			const passwordInput = document.getElementById('password');
-			const toggleIcon = document.querySelector('.toggle-password');
-
-			if (passwordInput.type === 'password') {
-				passwordInput.type = 'text';
-				toggleIcon.textContent = '🙈';
-			} else {
-				passwordInput.type = 'password';
-				toggleIcon.textContent = '👁️';
-			}
-		}
-	</script>
 </html>
