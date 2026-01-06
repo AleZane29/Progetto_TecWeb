@@ -18,13 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($connessioneOK) {
     $email = $_POST["email"] ?? "";
     $password = $_POST["password"] ?? "";
-    $user = $conn->checkLogin($email, $password);
-    if ($user) {
-      $_SESSION["user"] = $user["idUser"];
-      $_SESSION["nameUser"] = $user["nameUser"];
-      $_SESSION["surnameUser"] = $user["surnameUser"];
-      $_SESSION["emailUser"] = $user["emailUser"];
-      $_SESSION["dateUser"] = $user["dateUser"];
+    $user = $conn->getUserByEmail($email);
+
+    if ($user && password_verify($password, $user['password'])) {
+      $_SESSION["user"] = $user["id"];
+      $_SESSION["nameUser"] = $user["nome"];
+      $_SESSION["surnameUser"] = $user["cognome"];
+      $_SESSION["emailUser"] = $user["email"];
+      $_SESSION["dateUser"] = $user["data_nascita"];
       return $HTMLPage = '';
     } else {
       // Verifica se l'utente esiste ed è stata inserita una password sbagliata 

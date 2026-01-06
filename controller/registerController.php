@@ -17,7 +17,8 @@ $registerResult = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($connessioneOK) {
     $email = $_POST["email"] ?? "";
-    $password = $_POST["password"] ?? "";
+    $passwordInChiaro = $_POST["password"] ?? "";
+    $password = password_hash($passwordInChiaro, PASSWORD_DEFAULT);
     $name = $_POST["name"] ?? "";
     $surname = $_POST["surname"] ?? "";
     $birth = $_POST["birth"] ?? "";

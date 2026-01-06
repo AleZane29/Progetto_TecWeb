@@ -78,17 +78,17 @@ class DBConn
 
 	public function getUserByEmail($email)
 	{
-		$query = "SELECT id FROM Utente WHERE email=? ";
+		$query = "SELECT * FROM Utente WHERE email=? ";
 
 		$stmt = mysqli_prepare($this->connection, $query);
 		mysqli_stmt_bind_param($stmt, "s", $email);
 		mysqli_stmt_execute($stmt);
 
-		mysqli_stmt_bind_result($stmt, $id);
-		$found = mysqli_stmt_fetch($stmt);
+		$result = mysqli_stmt_get_result($stmt);
+		$found = mysqli_fetch_assoc($result);
 
 		mysqli_stmt_close($stmt);
-		return $found ? $id : null;
+		return $found;
 	}
 
 	public function createUser($name, $surname, $email, $birth, $password)
