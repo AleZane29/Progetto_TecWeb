@@ -77,7 +77,7 @@ class Builder
       header("Location: login.php");
     }
 
-    if ($_SESSION["user"] === "2") {
+    if ($_SESSION["user"] === 2) {
       $paginaHTML = require_once '../controller/reservationAdminController.php';
       $page = str_replace("<<-HEADER->>", $this->headerHTML, $paginaHTML);
       $page = str_replace("<<-FOOTER->>", $this->footerHTML, $page);
