@@ -146,6 +146,18 @@ tbody tr:hover {
 	.actions {
 		flex-direction: column;
 	}
+
+	.dialog-box {
+		padding: 1.5rem;
+	}
+
+	.dialog-actions {
+		flex-direction: column;
+	}
+
+	.dialog-btn {
+		width: 100%;
+	}
 }
 
 /* --------------------------------------------------------------------------------------------- */
@@ -373,6 +385,71 @@ fieldset {
 	background: var(--error);
 	transform: translateY(-1px);
 	box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* Dialog edit */
+.dialog-box {
+	background: var(--neutral-0);
+	border-radius: 12px;
+	padding: 2rem;
+	max-width: 500px;
+	width: 90%;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+	animation: slideIn 0.3s ease-out;
+}
+
+.dialog-edit .dialog-icon {
+	background: #e6f3ff;
+}
+
+.dialog-edit .dialog-header h2 {
+	color: var(--primary-700);
+	margin-bottom: 1rem;
+}
+
+.btn-dl-confirm {
+	background: var(--primary-600);
+	color: white;
+}
+
+.btn-dl-confirm:hover {
+	background: var(--primary-800);
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px var(--shadow-primary);
+}
+
+.form-group {
+	margin-bottom: 1.2rem;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 0.4rem;
+	color: var(--text-bold);
+	font-weight: 500;
+	font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select {
+	width: 100%;
+	padding: 0.7rem;
+	border: 2px solid var(--neutral-250);
+	border-radius: 8px;
+	font-size: 0.95rem;
+	transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+	outline: none;
+	border-color: var(--primary-600);
+}
+
+.form-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
 }
 
 /* Filtri tabella prenotazioni */

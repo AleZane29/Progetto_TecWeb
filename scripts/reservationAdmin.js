@@ -33,6 +33,7 @@ function deleteReservation() {
 	})
 		.then(() => {
 			location.reload();
+			alert('Prenotazione eliminata con successo!');
 		})
 		.catch((error) => {
 			console.error('Error:', error);
@@ -40,16 +41,25 @@ function deleteReservation() {
 	closeDeleteDialog();
 }
 
-function editReservation(id) {
+function editReservation(sport, court, date, timeStart, timeEnd) {
+	const data = new URLSearchParams();
+	data.append('idPrenotazione', reservation);
+	data.append('sport', sport);
+	data.append('court', court);
+	data.append('date', date);
+	data.append('timeStart', timeStart);
+	data.append('timeEnd', timeEnd);
+
 	fetch('../controller/editReservation.php', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
 		},
-		body: 'idPrenotazione=' + encodeURIComponent(id)
+		body: data
 	})
 		.then(() => {
-			location.reload();
+			// location.reload();
+			alert('Prenotazione modificata con successo!');
 		})
 		.catch((error) => {
 			console.error('Error:', error);
@@ -106,10 +116,10 @@ function changeSport() {
 	const sportSelect = document.getElementById('filterSport');
 	const courtsSelect = document.getElementById('filterCourt');
 	const sport = sportSelect.value;
-	const courts = document.querySelectorAll('#filterCourt option');
+	const court = document.querySelectorAll('#filterCourt option');
 
 	courtsSelect.value = '';
-	courts.forEach((court) => {
+	court.forEach((court) => {
 		if (court.id == '' || (sport != '' && court.id.includes(sport))) {
 			court.style.display = '';
 		} else {
@@ -117,4 +127,80 @@ function changeSport() {
 		}
 	});
 	filterTable();
+}
+
+let currentRow = null;
+function openEditDialog(id, button) {
+	reservation = id;
+	currentRow = button.closest('tr');
+	const cells = currentRow.cells;
+
+	document.getElementById('editCliente').value = cells[0].textContent;
+	document.getElementById('editSport').value = cells[1].textContent;
+	changeSportDialog();
+	document.getElementById('editCampo').value =
+		cells[2].textContent.split(' ')[1];
+	// const dateIta = cells[3].textContent;
+	// const dateParts = dateIta.split('/');
+	// if (dateParts.length === 3) {
+	// 	document.getElementById(
+	// 		'editData'
+	// 	).value = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+	// }
+	document.getElementById('editData').value = cells[3].textContent;
+
+	document.getElementById('editOrario').value = cells[4].textContent;
+
+	document.getElementById('editDialog').classList.add('active');
+
+	document.getElementById('editDialog').addEventListener('click', function (e) {
+		if (e.target === this) {
+			closeEditDialog();
+		}
+	});
+
+	document.addEventListener('keydown', function (e) {
+		if (e.key === 'Escape') {
+			closeEditDialog();
+		}
+	});
+}
+
+function closeEditDialog() {
+	document.getElementById('editDialog').classList.remove('active');
+	currentRow = null;
+	reservation = null;
+}
+
+function confirmEdit() {
+	const sport = document.getElementById('editSport').value;
+	const court = document.getElementById('editCampo').value;
+	const data = document.getElementById('editData').value;
+
+	// const dateInput = document.getElementById('editData').value;
+	// const dateParts = dateInput.split('-');
+	// if (dateParts.length === 3) {
+	// 	cells[3].textContent = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+	// }
+
+	const timeStart = document.getElementById('editOrario').value.split(' - ')[0];
+	const timeEnd = document.getElementById('editOrario').value.split(' - ')[1];
+	editReservation(sport, court, data, timeStart, timeEnd);
+	closeEditDialog();
+}
+
+function changeSportDialog() {
+	const sportSelect = document.getElementById('editSport');
+	const courtsSelect = document.getElementById('editCampo');
+	const sport = sportSelect.value;
+	const courts = document.querySelectorAll('#editCampo option');
+	courtsSelect.value = '';
+
+	courts.forEach((court) => {
+		if (court.id == '' || (sport != '' && court.id.includes(sport))) {
+			court.style.display = '';
+		} else {
+			court.style.display = 'none';
+		}
+	});
 }

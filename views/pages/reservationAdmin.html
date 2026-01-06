@@ -82,30 +82,29 @@
         </div>
 
         <!-- Dialog Modifica Prenotazione -->
-    <div class="dialog-overlay" id="editDialog">
+    <div class="overlay" id="editDialog">
         <div class="dialog-box dialog-edit">
             <div class="dialog-header">
                 <h2>Modifica Prenotazione</h2>
             </div>
             <div class="dialog-content">
-                <form id="editForm">
+                <form id="editForm" onsubmit="return confirmEdit()">
                     <div class="form-group">
                         <label for="editCliente">Cliente</label>
-                        <input type="text" id="editCliente" required>
+                        <input type="text" id="editCliente" disabled>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="editSport">Sport</label>
-                            <select id="editSport" required>
-                                <option value="Tennis">Tennis</option>
-                                <option value="Calcetto">Calcetto</option>
-                                <option value="Padel">Padel</option>
-                                <option value="Basket">Basket</option>
+                            <select id="editSport" onchange="changeSportDialog()" required>
+                                [sports]
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="editCampo">Campo</label>
-                            <input type="text" id="editCampo" required>
+                            <select id="editCampo" required>
+                                [courts]
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
@@ -114,33 +113,25 @@
                             <input type="date" id="editData" required>
                         </div>
                         <div class="form-group">
-                            <label for="editOrario">Orario</label>
-                            <input type="text" id="editOrario" placeholder="10:00 - 11:00" required>
+                            <label for="editOrarioInizio">Fascia oraria</label>
+                            <select id="editOrario" required>
+                                <option value="08:00 - 09:30">08:00 - 09:30</option>
+                                <option value="09:30 - 11:00">09:30 - 11:00</option>
+                                <option value="11:00 - 12:30">11:00 - 12:30</option>
+                                <option value="13:00 - 14:30">13:00 - 14:30</option>
+                                <option value="14:30 - 16:00">14:30 - 16:00</option>
+                                <option value="16:00 - 17:30">16:00 - 17:30</option>
+                                <option value="17:30 - 19:00">17:30 - 19:00</option>
+                                <option value="19:00 - 20:30">19:00 - 20:30</option>
+                                <option value="20:30 - 22:00">20:30 - 22:00</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="editDurata">Durata</label>
-                            <input type="text" id="editDurata" placeholder="1h" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editPrezzo">Prezzo</label>
-                            <input type="text" id="editPrezzo" placeholder="€25" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="editStato">Stato</label>
-                        <select id="editStato" required>
-                            <option value="confermata">Confermata</option>
-                            <option value="in-attesa">In Attesa</option>
-                            <option value="annullata">Annullata</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
             <div class="dialog-actions">
-                <button class="dialog-btn btn-cancel" onclick="closeEditDialog()">Annulla</button>
-                <button class="dialog-btn btn-confirm" onclick="confirmEdit()">Salva Modifiche</button>
+                <div class="btn btn-dl-cancel" onclick="closeEditDialog()">Annulla</div>
+                <button class="btn btn-dl-confirm" type="submit">Salva Modifiche</button>
+            </div>
+                </form>
             </div>
         </div>
     </div>

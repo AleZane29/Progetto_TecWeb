@@ -246,4 +246,55 @@ class DBConn
 			return $result;
 		}
 	}
+
+	public function getPriceSport($sport)
+	{
+		$query = "SELECT costo_orario FROM TipoCampo WHERE nome=? ";
+
+		$stmt = mysqli_prepare($this->connection, $query);
+		mysqli_stmt_bind_param($stmt, "s", $sport);
+		mysqli_stmt_execute($stmt);
+
+		mysqli_stmt_bind_result($stmt, $costo);
+		$found = mysqli_stmt_fetch($stmt);
+
+		mysqli_stmt_close($stmt);
+		return $found ? $costo : null;
+	}
+
+	public function updateReservation($id, $sport, $court, $data, $timeStart, $timeEnd, $price)
+	{
+		$query = "UPDATE Prenotazione SET numero_campo = \"$court\", tipo_campo = \"$sport\" , data = \"$data\" , ora_inizio = \"$timeStart\" , ora_fine = \"$timeEnd\", prezzo = \"$price\" WHERE id=\"$id\"";
+
+		mysqli_query($this->connection, $query) or die(mysqli_error($this->connection));
+		echo mysqli_affected_rows($this->connection) > 0;
+		return mysqli_affected_rows($this->connection) > 0;
+		// 		$query = "
+		// 		UPDATE prenotazione SET numero_campo = ?, tipo_campo = ? , data = ? , ora_inizio = ? , ora_fine = ?, prezzo = ? WHERE id = ?
+		// ";
+
+		// 		$stmt = mysqli_prepare($this->connection, $query);
+
+		// 		mysqli_stmt_bind_param(
+		// 			$stmt,
+		// 			"issssii",
+		// 			$court,
+		// 			$sport,
+		// 			$data,
+		// 			$timeStart,
+		// 			$timeEnd,
+		// 			$price,
+		// 			$id
+		// 		);
+
+		// 		mysqli_stmt_execute($stmt);
+
+		// 		if (mysqli_stmt_affected_rows($stmt) < 0) {
+		// 			mysqli_stmt_close($stmt);
+		// 			die("Errore SQL");
+		// 		}
+
+		// 		mysqli_stmt_close($stmt);
+		// 		return true;
+	}
 }
