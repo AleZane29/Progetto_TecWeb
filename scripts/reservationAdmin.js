@@ -58,7 +58,7 @@ function editReservation(sport, court, date, timeStart, timeEnd) {
 		body: data
 	})
 		.then(() => {
-			// location.reload();
+			location.reload();
 			alert('Prenotazione modificata con successo!');
 		})
 		.catch((error) => {
@@ -150,7 +150,7 @@ function openEditDialog(id, button) {
 	document.getElementById('editData').value = cells[3].textContent;
 
 	document.getElementById('editOrario').value = cells[4].textContent;
-
+	changeDateDialog();
 	document.getElementById('editDialog').classList.add('active');
 
 	document.getElementById('editDialog').addEventListener('click', function (e) {
@@ -203,4 +203,44 @@ function changeSportDialog() {
 			court.style.display = 'none';
 		}
 	});
+	changeDateDialog();
+}
+
+function changeDateDialog() {
+	const filterDate = document.getElementById('editData').value;
+	const sport = document.getElementById('editSport').value;
+	const court = document.getElementById('editCampo').value;
+
+	const rows = document.querySelectorAll('#tableBody tr');
+	const timeOptions = document.querySelectorAll('#editOrario option');
+
+	const bookedTimes = new Set();
+
+	rows.forEach((row) => {
+		if (row !== currentRow) {
+			const rowCourt = row.cells[2].textContent;
+			const rowSport = row.cells[1].textContent;
+			const date = row.cells[3].textContent;
+			const time = row.cells[4].textContent;
+			const matchSport = !sport || rowSport.includes(sport);
+			const matchCourt = !court || rowCourt.includes(court);
+			const matchDate = !filterDate || convertDate(date) === filterDate;
+
+			if (filterDate && matchSport && matchCourt && matchDate) {
+				bookedTimes.add(time);
+			}
+		}
+	});
+
+	timeOptions.forEach((option) => {
+		if (bookedTimes.has(option.value)) {
+			option.disabled = true;
+		} else {
+			option.disabled = false;
+		}
+	});
+
+	if (bookedTimes.has(document.getElementById('editOrario').value)) {
+		document.getElementById('editOrario').value = '';
+	}
 }

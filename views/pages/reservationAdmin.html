@@ -102,7 +102,7 @@
                         </div>
                         <div class="form-group">
                             <label for="editCampo">Campo</label>
-                            <select id="editCampo" required>
+                            <select id="editCampo" onchange="changeDateDialog()" required>
                                 [courts]
                             </select>
                         </div>
@@ -110,10 +110,10 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="editData">Data</label>
-                            <input type="date" id="editData" required>
+                            <input type="date" id="editData" onchange="changeDateDialog()" required>
                         </div>
                         <div class="form-group">
-                            <label for="editOrarioInizio">Fascia oraria</label>
+                            <label for="editOrario">Fascia oraria</label>
                             <select id="editOrario" required>
                                 <option value="08:00 - 09:30">08:00 - 09:30</option>
                                 <option value="09:30 - 11:00">09:30 - 11:00</option>
