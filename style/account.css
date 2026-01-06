@@ -10,10 +10,10 @@ main {
 }
 
 .info-form {
-	background: white;
+	background: var(--neutral-0);
 	padding: 3rem;
 	border-radius: 12px;
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 20px var(--shadow-primary);
 }
 
 .info-header {
@@ -73,14 +73,14 @@ main {
 
 .form-input input:not([readonly]) {
     background: var(--neutral-0);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px var(--shadow-primary);
 	color: var(--text-bold);
 }
 
 .form-input input:not([readonly]):focus {
     outline: none;
     border-color: var(--primary-800);
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    box-shadow: 0 0 0 3px var(--shadow-primary);
 }
 
 

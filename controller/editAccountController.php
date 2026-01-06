@@ -6,8 +6,7 @@ require_once "../model/database/database.php";
 use DB\DBConn;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    // Aggiornati per corrispondere ai nuovi name dell'HTML
+
     $nuovoNome = $_POST['name'];
     $nuovoCognome = $_POST['surname'];
     $nuovaData = $_POST['birth'];
@@ -21,30 +20,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $db = new DBConn();
     if ($db->openConnection()) {
-        
-        // Assicurati che updateUser nel database accetti questi parametri
+ 
         $success = $db->updateUser($idUtente, $nuovoNome, $nuovoCognome, $nuovaData);
         
         $db->closeConnection();
 
         if ($success) {
-            // Aggiorniamo la sessione con i nuovi dati per vederli subito
             $_SESSION["nameUser"] = $nuovoNome;
             $_SESSION["surnameUser"] = $nuovoCognome;
             $_SESSION["dateUser"] = $nuovaData;
 
-            // Rimandiamo alla pagina account (che ora è anche la pagina di modifica)
             header("Location: ../views/account.php");
             exit;
         } else {
-            // Qui potresti gestire l'errore meglio, magari con un parametro GET ?error=1
-            echo "Errore durante l'aggiornamento dei dati.";
+            header("Location: ../views/500.php");;
         }
     } else {
-        echo "Impossibile connettersi al database.";
+        header("Location: ../views/500.php");
     }
 } else {
-    header("Location: ../views/index.php"); 
+    header("Location: ../views/500.php");
     exit;
 }
 ?>

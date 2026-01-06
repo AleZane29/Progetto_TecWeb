@@ -11,6 +11,7 @@
         <link href="../style/header.css" rel="stylesheet" />
         <link href="../style/footer.css" rel="stylesheet" />
         <link href="../style/account.css" rel="stylesheet" />
+		<script src="../scripts/account.js" defer></script>
     </head>
 
     <body>
@@ -102,22 +103,3 @@
 
     </body>
 </html>
-
-<script>
-    document.getElementById('navMenuAccount').classList.add('active');
-
-    const editBtn = document.getElementById('editBtn');
-    const saveBtn = document.getElementById('saveBtn');
-    const editableInputs = document.querySelectorAll('#profileForm input:not(#email)');
-
-    editBtn.addEventListener('click', function() {
-        editableInputs.forEach(input => {
-            input.removeAttribute('readonly');
-        });
-
-        document.getElementById('name').focus();
-
-        editBtn.style.display = 'none';
-        saveBtn.style.display = 'block';
-    });
-</script>
