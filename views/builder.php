@@ -18,7 +18,7 @@ class Builder
     $this->headerHTML = file_get_contents("components/header.html");
     if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
       $this->headerHTML = str_replace("<<-ACCOUNT->>", $_SESSION["nameUser"], $this->headerHTML);
-      if ($_SESSION["user"] == "2") {
+      if ($_SESSION["user"] === "2") {
         $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenotazioni", $this->headerHTML);
       } else {
         $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenota", $this->headerHTML);
@@ -76,7 +76,8 @@ class Builder
     if (!(isset($_SESSION["user"]) && $_SESSION["user"] !== null)) {
       header("Location: login.php");
     }
-    if ($_SESSION["user"] == "2") {
+
+    if ($_SESSION["user"] === "2") {
       $paginaHTML = require_once '../controller/reservationAdminController.php';
       $page = str_replace("<<-HEADER->>", $this->headerHTML, $paginaHTML);
       $page = str_replace("<<-FOOTER->>", $this->footerHTML, $page);
@@ -87,4 +88,57 @@ class Builder
     }
     return $page;
   }
+
+  function build_login()
+  {
+    
+    require '../controller/loginController.php';
+
+
+    //Controllo se l'utente è autenticato e viene reindirizzato alla sua pagina account
+    if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
+      header("Location: account.php");
+    } else {
+      //Aggiorno pagina in base ai risultati generati dal controller
+      
+      if (!$HTMLPage) {
+        $HTMLPage = file_get_contents('pages/login.html');
+        $HTMLPage = str_replace("[loginResult]", ' ', $HTMLPage);
+      }
+      $HTMLPage = str_replace("<<-HEADER->>", $this->headerHTML, $HTMLPage);
+      return ($HTMLPage);
+    }
+  }
+
+  function build_register()
+  {
+    
+    require '../controller/registerController.php';
+
+
+    //Controllo se l'utente è autenticato e viene reindirizzato alla sua pagina account
+    if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
+      header("Location: account.php");
+    } else {
+      //Aggiorno pagina in base ai risultati generati dal controller
+      
+      if (!$HTMLPage) {
+        $HTMLPage = file_get_contents('pages/register.html');
+        $HTMLPage = str_replace("[registerResult]", ' ', $HTMLPage);
+      }
+      $HTMLPage = str_replace("<<-HEADER->>", $this->headerHTML, $HTMLPage);
+      $HTMLPage = str_replace("<<-FOOTER->>", $this->footerHTML, $HTMLPage);
+      return ($HTMLPage);
+    }
+  }
+
+
+
+
+
+
+
+
+
+
 }

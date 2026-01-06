@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $birth = $_POST["birth"] ?? "";
     $user = '';
     try {
-      $user = $conn->createUser($name, $surname, $email, $birth, $password);
-      $_SESSION["user"] = $user;
+      $conn->createUser($name, $surname, $email, $birth, $password);
+      $_SESSION["user"] = $conn->getUserByEmail($email)["id"];
       $_SESSION["nameUser"] = $name;
       $_SESSION["surnameUser"] = $surname;
       $_SESSION["emailUser"] = $email;

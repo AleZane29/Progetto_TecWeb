@@ -1,0 +1,3 @@
+-fare bene il model
+-rendere il sito responsive
+-aggiungere i controlli per gli input sia con js che con php
