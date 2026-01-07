@@ -10,6 +10,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nuovoNome = $_POST['name'];
     $nuovoCognome = $_POST['surname'];
     $nuovaData = $_POST['birth'];
+
+    $minage = 14;
+
+    $birthdate = new DateTime($birth);
+    $todaydate = new DateTime();
+
+    $age = $todaydate->diff($birthdate);
+
+    if($age->y < $minAge) {
+    
+    $registerResult = "<p class='error-message' role='alert'>Devi avere almeno $minAge anni per registrarti.</p>";
+    
+    $HTMLPage = str_replace("[registerResult]", $registerResult, $HTMLPage);
+    return $HTMLPage;
+    }
     
     if (!isset($_SESSION['user'])) {
         header("Location: ../views/login.php"); 

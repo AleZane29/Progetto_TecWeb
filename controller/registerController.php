@@ -22,7 +22,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST["name"] ?? "";
     $surname = $_POST["surname"] ?? "";
     $birth = $_POST["birth"] ?? "";
+
+    $minage = 14;
+
+    $birthdate = new DateTime($birth);
+    $todaydate = new DateTime();
+
+    $age = $todaydate->diff($birthdate);
+
+    if($age->y < $minAge) {
+    
+    $registerResult = "<p class='error-message' role='alert'>Devi avere almeno $minAge anni per registrarti.</p>";
+    
+    $HTMLPage = str_replace("[registerResult]", $registerResult, $HTMLPage);
+    return $HTMLPage;
+    }
+
     $user = '';
+
     try {
       $conn->createUser($name, $surname, $email, $birth, $password);
       $_SESSION["user"] = $conn->getUserByEmail($email)["id"];
