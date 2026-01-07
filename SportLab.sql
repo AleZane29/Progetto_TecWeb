@@ -43,8 +43,10 @@ CREATE TABLE Prenotazione (
 
 
 INSERT INTO Utente (nome, cognome, email, data_nascita, password, ruolo) VALUES
-('User', 'User', 'user@email.com', '1990-01-01', '$2y$10$.uX6d0tCFaxjb/nzmhl7O.LgdBX0v4b5vFrmVL5HULtsQXa1OQIFa', 'Cliente'),
-('Admin', 'Admin', 'admin@email.com', '1985-05-10', '$2y$10$CcPWagnuFtg7T..hE4QB3eGJzHYiwx762eivxqpJQaMrN/LxbMt0W', 'Admin');
+('User', 'User', 'user@email.com', '1990-01-01', '$2y$10$Br3zzgw8yid4tWA906YI8OPGRaeAjAU6GFjVi9GHdVu6GA2MXY00m', 'Cliente'),
+('Admin', 'Admin', 'admin@email.com', '1985-05-10', '$2y$10$7z0CA06KVMGqMUCaD8HfAOP.wHDdk6pkcyCN8r3DTK5IbCcCOOVMK', 'Admin');
+-- psw di admin: Admin
+-- psw di user: User
 
 INSERT INTO TipoCampo (nome, costo_orario) VALUES
 ('Tennis', 10),
