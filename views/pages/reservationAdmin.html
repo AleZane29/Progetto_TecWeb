@@ -67,6 +67,20 @@
                 </table>
             </div>
         </div>
+        <div class="pagination-container">
+            <div class="pagination-info">
+                Mostrando <strong id="showingFrom">1</strong>-<strong id="showingTo">10</strong> di <strong id="totalRecords">24</strong> prenotazioni
+            </div>
+            <div class="pagination-controls">
+                <button class="pagination-btn" id="prevBtn" onclick="goToPreviousPage()">
+                    ← Precedente
+                </button>
+                <div id="pageNumbers"></div>
+                <button class="pagination-btn" id="nextBtn" onclick="goToNextPage()">
+                    Successivo →
+                </button>
+            </div>
+        </div>
         </main>
 
         <div class="overlay" id="dialogDelete">

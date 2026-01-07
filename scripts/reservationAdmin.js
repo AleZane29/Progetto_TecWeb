@@ -1,4 +1,114 @@
 let reservation = null;
+let currentRow = null;
+let currentPage = 1;
+let rowsPerPage = 10;
+let allRows = [];
+
+document.addEventListener('DOMContentLoaded', function () {
+	allRows = Array.from(document.querySelectorAll('#tableBody tr'));
+	updatePagination();
+});
+
+function updatePagination() {
+	const filteredRows = allRows.filter((row) => row.style.display !== 'none');
+	const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+
+	allRows.forEach((row) => row.classList.add('pagination-hidden'));
+
+	const start = (currentPage - 1) * rowsPerPage;
+	const end = start + rowsPerPage;
+	const rowsToShow = filteredRows.slice(start, end);
+	rowsToShow.forEach((row) => row.classList.remove('pagination-hidden'));
+
+	document.getElementById('showingFrom').textContent =
+		filteredRows.length > 0 ? start + 1 : 0;
+	document.getElementById('showingTo').textContent = Math.min(
+		end,
+		filteredRows.length
+	);
+	document.getElementById('totalRecords').textContent = filteredRows.length;
+
+	document.getElementById('prevBtn').disabled = currentPage === 1;
+	document.getElementById('nextBtn').disabled =
+		currentPage === totalPages || totalPages === 0;
+
+	generatePageNumbers(totalPages);
+}
+
+function generatePageNumbers(totalPages) {
+	const pageNumbersDiv = document.getElementById('pageNumbers');
+	pageNumbersDiv.innerHTML = '';
+
+	if (totalPages <= 7) {
+		for (let i = 1; i <= totalPages; i++) {
+			pageNumbersDiv.appendChild(createPageButton(i));
+		}
+	} else {
+		pageNumbersDiv.appendChild(createPageButton(1));
+
+		if (currentPage > 3) {
+			pageNumbersDiv.appendChild(createDots());
+		}
+
+		let startPage = Math.max(2, currentPage - 1);
+		let endPage = Math.min(totalPages - 1, currentPage + 1);
+
+		for (let i = startPage; i <= endPage; i++) {
+			pageNumbersDiv.appendChild(createPageButton(i));
+		}
+
+		if (currentPage < totalPages - 2) {
+			pageNumbersDiv.appendChild(createDots());
+		}
+
+		if (totalPages > 1) {
+			pageNumbersDiv.appendChild(createPageButton(totalPages));
+		}
+	}
+}
+
+function createPageButton(pageNum) {
+	const button = document.createElement('button');
+	button.className = 'pagination-btn page-number';
+	button.textContent = pageNum;
+	button.onclick = () => goToPage(pageNum);
+
+	if (pageNum === currentPage) {
+		button.classList.add('active');
+	}
+
+	return button;
+}
+
+function createDots() {
+	const span = document.createElement('span');
+	span.className = 'pagination-dots';
+	span.textContent = '...';
+	return span;
+}
+
+function goToPage(page) {
+	currentPage = page;
+	updatePagination();
+}
+
+function goToNextPage() {
+	const filteredRows = allRows.filter((row) => row.style.display !== 'none');
+	const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+
+	if (currentPage < totalPages) {
+		currentPage++;
+		updatePagination();
+	}
+}
+
+function goToPreviousPage() {
+	if (currentPage > 1) {
+		currentPage--;
+		updatePagination();
+	}
+}
+
 function openDeleteDialog(id) {
 	reservation = id;
 	document.getElementById('dialogDelete').classList.add('active');
@@ -94,6 +204,7 @@ function filterTable() {
 			row.style.display = 'none';
 		}
 	});
+	updatePagination();
 }
 
 function convertDate(dateStr) {
@@ -129,7 +240,6 @@ function changeSport() {
 	filterTable();
 }
 
-let currentRow = null;
 function openEditDialog(id, button) {
 	reservation = id;
 	currentRow = button.closest('tr');

@@ -28,8 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION["dateUser"] = $user["data_nascita"];
       return $HTMLPage = '';
     } else {
-      // Verifica se l'utente esiste ed è stata inserita una password sbagliata 
-      $user = $conn->getUserByEmail($email);
       if ($user) {
         $loginResult = "<p class='error-message' role='alert'>Password errata</p>";
       } else {
