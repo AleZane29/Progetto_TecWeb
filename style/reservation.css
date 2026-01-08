@@ -272,6 +272,29 @@ fieldset {
 	margin: 2rem 2rem 2rem 2rem;
 }
 
+
+.timetable-form label.disabled {
+    color: #ccc; 
+    cursor: not-allowed;
+    text-decoration: line-through; 
+}
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sport-form {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
