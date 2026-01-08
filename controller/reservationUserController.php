@@ -1,38 +1,59 @@
 <?php
+session_start();
 
-require_once "../model/reservationModel.php";
 
-use reservationModel\reservationModel;
+require_once "../model/database/database.php";
+// require_once "../model/reservationModel.php";
 
-$sport = htmlspecialchars($_POST['sport']);
-$date = htmlspecialchars($_POST['date']);
-$timetable = htmlspecialchars($_POST['timetable']);
+use DB\DBConn;
+// use reservationModel\reservationModel;
 
-$utente = $_SESSION["user"];
+header('Content-Type: application/json');
 
-#intanto
-switch ($sport) {
-  case 'calcetto':
-    $numero_campo = 1;
-    break;
+$conn = new DBConn();
+$connessioneOK = $conn->openConnection();
 
-  case 'basket':
-    $numero_campo = 6;
-    break;
+// Controllo parametri
+if (!isset($_GET['sport']) || !isset($_GET['campo']) || !isset($_GET['data'])) {
+  if ($connessioneOK) {
+    $user_id = $_SESSION["user"];
+    $sport = isset($_POST['sport']) ? $_POST['sport'] : null;
+    $court = isset($_POST['campo']) ? $_POST['campo'] : null;
+    $date = isset($_POST['date']) ? $_POST['date'] : null;
 
-  case 'tennis':
-    $numero_campo = 3;
-    break;
+    $timetable = isset($_POST['timetable']) ? $_POST['timetable'] : null;
 
-  default:
-    // Eseguito se nessuno dei casi precedenti corrisponde
-    echo "campo non riconosciuto.";
-    break;
+    $parts = explode("-", $timetable);
+
+    $timeStart = trim($parts[0]);
+    $timeEnd = trim($parts[1]);
+    $price = $conn->getPriceSport($sport);
+    $result = false;
+
+    $reservationResult = $conn->createReservation($user_id, $sport, $court, $date, $timeStart, $timeEnd, $price);
+
+    header("Location: ../views/account.php");
+  } else {
+
+    header("Location: ../views/500.php");
+  }
+} else {
+  $sport = $_GET['sport'];
+  $campo = $_GET['campo'];
+  $data = $_GET['data'];
+  $listaOrariOccupati = [];
+
+
+  if ($connessioneOK) {
+    $reservationResult = $conn->getSelectedReservations($sport, $campo, $data);
+
+    if ($reservationResult) {
+      foreach ($reservationResult as $row) {
+        // Deve corrispondere ESATTAMENTE al formato usato in JS (es. "9:30-11:00" o "09:30")
+        $listaOrariOccupati[] = $row['ora_inizio'] . "-" . $row['ora_fine'];
+      }
+    }
+  }
+
+  echo json_encode($listaOrariOccupati);
 }
-
-$parti = explode("-", $timetable, 2);
-$orario_inizio = $parti[0];
-$orario_fine = $parti[1];
-
-$reservation = new reservationModel();
-$reservation->createReservation($utente, $numero_campo, $sport, $date, $orario_inizio, $orario_fine);

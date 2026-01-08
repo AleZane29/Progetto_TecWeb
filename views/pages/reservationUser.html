@@ -18,14 +18,14 @@
 		<<-HEADER->>
 
 		<main id="main-content" tabindex="-1">
-			<form action="../controller/reservationController.php" method="post">
+			<form action="../controller/reservationUserController.php" method="post">
 				<div class="form-separation">
 					<div class="separation">
 						<fieldset>
 							<legend>1. Scegli lo sport</legend>
 							<div class="sport-form">
 								<label>
-									<input type="radio" name="sport" value="tennis" required />
+									<input type="radio" name="sport" value="Tennis" onclick="clearInput('tennis')" required />
 									<img
 										src="../assets/icon-tennis.png"
 										alt=""
@@ -33,7 +33,7 @@
 									<span class="visually-hidden">Tennis</span>
 								</label>
 								<label>
-									<input type="radio" name="sport" value="basket" />
+									<input type="radio" name="sport" value="Basket" onclick="clearInput('basket')" />
 									<img
 										src="../assets/icon-basketball.png"
 										alt=""
@@ -41,7 +41,7 @@
 									<span class="visually-hidden">Basket</span>
 								</label>
 								<label>
-									<input type="radio" name="sport" value="calcetto" />
+									<input type="radio" name="sport" value="Calcio5" onclick="clearInput('calcetto')" />
 									<img
 										src="../assets/icon-soccer.png"
 										alt=""
@@ -50,19 +50,38 @@
 								</label>
 							</div>
 						</fieldset>
-
 						<fieldset>
-							<legend>2. Scegli la data</legend>
+							<legend>2. Scegli il campo</legend>
+							<div class="sport-form">
+								<label>
+									<input type="radio" name="campo" value="1" onclick="clearInput('none')" required />
+									<p>1</p>
+									<span class="visually-hidden">1</span>
+								</label>
+								<label>
+									<input type="radio" name="campo" value="2" onclick="clearInput('none')" />
+									<p>2</p>
+									<span class="visually-hidden">2</span>
+								</label>
+								<label>
+									<input type="radio" name="campo" value="3" onclick="clearInput('none')" />
+									<p>3</p>
+									<span class="visually-hidden">3</span>
+								</label>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>3. Scegli la data</legend>
 							<div class="date-form">
 								<label>
-									<input type="date" name="date" value="" required />
+									<input id="date" type="date" name="date" value="" onchange="getReservations()" required />
 									Giorno</label
 								>
 							</div>
 						</fieldset>
 
 						<fieldset>
-							<legend>3. Scegli la fascia oraria</legend>
+							<legend>4. Scegli la fascia oraria</legend>
 							<div class="timetable-form" id="timetable-container">
 								
 							</div>

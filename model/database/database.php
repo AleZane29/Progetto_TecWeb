@@ -269,4 +269,48 @@ class DBConn
 		mysqli_query($this->connection, $query) or die(mysqli_error($this->connection));
 		return mysqli_affected_rows($this->connection) > 0;
 	}
+
+
+	public function createReservation($userId, $sport, $court, $data, $timeStart, $timeEnd, $price)
+	{
+		$query = "INSERT INTO Prenotazione (utente, numero_campo, tipo_campo, data, ora_inizio, ora_fine, prezzo) 
+	VALUES (?,?,?,?,?,?,?)";
+		$stmt = mysqli_prepare($this->connection, $query);
+		mysqli_stmt_bind_param($stmt, "issssss", $userId, $court, $sport, $data, $timeStart, $timeEnd, $price);
+		mysqli_stmt_execute($stmt);
+
+		if (mysqli_stmt_affected_rows($stmt) < 0) {
+			mysqli_stmt_close($stmt);
+			die("Errore SQL");
+		}
+
+		mysqli_stmt_close($stmt);
+		return true;
+	}
+
+	/**
+     * Recupera le prenotazioni filtrate per sport, campo e data.
+     * @param string $sport
+     * @param string $campo
+     * @param string $data
+     * @return array
+     */
+    public function getSelectedReservations($sport, $campo, $data) {
+
+		$resultArray = array();
+
+        $query = "SELECT * FROM prenotazione WHERE tipo_campo = ? AND numero_campo = ? AND data = ?";
+
+        if ($stmt = $this->connection->prepare($query)) {
+            $stmt->bind_param("sss", $sport, $campo, $data);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = $result->fetch_assoc()) {
+                $resultArray[] = $row;
+            }
+            $stmt->close();
+        }
+
+        return $resultArray;
+    }
 }
