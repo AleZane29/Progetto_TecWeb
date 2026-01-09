@@ -30,23 +30,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $age = $todaydate->diff($birthdate);
 
-    if($age->y < $minAge) {
-    
-    $registerResult = "<p class='error-message' role='alert'>Devi avere almeno $minAge anni per registrarti.</p>";
-    
-    $HTMLPage = str_replace("[registerResult]", $registerResult, $HTMLPage);
-    return $HTMLPage;
+    if ($age->y < $minAge) {
+
+      $registerResult = "<p class='error-message' role='alert'>Devi avere almeno $minAge anni per registrarti.</p>";
+
+      $HTMLPage = str_replace("[registerResult]", $registerResult, $HTMLPage);
+      return $HTMLPage;
     }
 
-    $user = '';
 
     try {
       $conn->createUser($name, $surname, $email, $birth, $password);
-      $_SESSION["user"] = $conn->getUserByEmail($email)["id"];
+      $user = $conn->getUserByEmail($email);
+      $_SESSION["user"] = $user;
       $_SESSION["nameUser"] = $name;
       $_SESSION["surnameUser"] = $surname;
       $_SESSION["emailUser"] = $email;
       $_SESSION["dateUser"] = $birth;
+      $_SESSION["roleUser"] = $user["ruolo"];
       return $HTMLPage = '';
     } catch (Exception $e) {
       $registerResult = "<p class='error-message' role='alert'>Email già utilizzata</p>";

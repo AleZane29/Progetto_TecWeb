@@ -1,8 +1,6 @@
+document.getElementById('navMenuAccount').classList.add('active');
+
 document.addEventListener('DOMContentLoaded', function () {
-	const navMenu = document.getElementById('navMenuAccount');
-	if (navMenu) {
-		navMenu.classList.add('active');
-	}
 	const editBtn = document.getElementById('editBtn');
 	const saveBtn = document.getElementById('saveBtn');
 

@@ -1,106 +1,107 @@
 <!DOCTYPE html>
 <html data-theme="light" lang="it">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="../assets/logo_white.png" rel="icon" />
-        <meta name="description" content="SportLab - Profilo utente" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="../assets/logo_white.png" rel="icon" />
+		<meta name="description" content="SportLab - Profilo utente" />
 		<meta name="language" content="it" />
-        <title>Account - SportLab</title>
-        <link href="../style/style.css" rel="stylesheet" />
-        <link href="../style/header.css" rel="stylesheet" />
-        <link href="../style/footer.css" rel="stylesheet" />
-        <link href="../style/account.css" rel="stylesheet" />
+		<title>Account - SportLab</title>
+		<link href="../style/style.css" rel="stylesheet" />
+		<link href="../style/header.css" rel="stylesheet" />
+		<link href="../style/footer.css" rel="stylesheet" />
+		<link href="../style/account.css" rel="stylesheet" />
 		<script src="../scripts/account.js" defer></script>
 		<script src="../scripts/ageCheck.js" defer></script>
-    </head>
+	</head>
 
-    <body>
-
-    <<-HEADER->>
-        <nav id="breadcrumb">
-            <p>Ti trovi in: <span lang="en" class="breadcrumb-page">Account</span></p>
-        </nav>
-    <main>
-        <div class="info-container">
-			<form 
-				class="info-form" 
-				id="profileForm" 
-				method="POST" 
-				action="../controller/editAccountController.php">
-				<div class="info-header">
-					<h1>Informazioni account</h1>
-				</div>
-				
-				<div class="form-group">
-					<label for="name">Nome:</label>
-					<div class="form-input">
-						<input 
-							id="name" 
-							type="text" 
-							name="name" 
-							value="<<-NOME->>" 
-							readonly 
-							required 
-						/>
+	<body>
+		<<-HEADER->>
+		<div class="sr-only" id="breadcrumb-label">
+			<span lang="en">breadcrumb</span>
+		</div>
+		<nav aria-labelledby="breadcrumb-label" id="breadcrumb">
+			<p>Ti trovi in: <span lang="en" class="breadcrumb-page">Account</span></p>
+		</nav>
+		<main>
+			<div class="info-container">
+				<form
+					class="info-form"
+					id="profileForm"
+					method="POST"
+					action="../controller/editAccountController.php">
+					<div class="info-header">
+						<h1>Informazioni account</h1>
 					</div>
-				</div>
 
-				<div class="form-group">
-					<label for="surname">Cognome:</label>
-					<div class="form-input">
-						<input 
-							id="surname" 
-							type="text" 
-							name="surname" 
-							value="<<-COGNOME->>" 
-							readonly 
-							required 
-						/>
+					<div class="form-group">
+						<label for="name">Nome:</label>
+						<div class="form-input">
+							<input
+								id="name"
+								type="text"
+								name="name"
+								value="<<-NOME->>"
+								readonly
+								required />
+						</div>
 					</div>
-				</div>
 
-				<div class="form-group">
-					<label for="birth">Data di nascita:</label>
-					<div class="form-input">
-						<input 
-							id="birth" 
-							type="date" 
-							name="birth" 
-							value="<<-DN->>" 
-							readonly 
-							required 
-						/>
+					<div class="form-group">
+						<label for="surname">Cognome:</label>
+						<div class="form-input">
+							<input
+								id="surname"
+								type="text"
+								name="surname"
+								value="<<-COGNOME->>"
+								readonly
+								required />
+						</div>
 					</div>
-				</div>
 
-				<div class="form-group">
-					<label for="email">Email (non modificabile):</label>
-					<div class="form-input">
-						<input 
-							id="email" 
-							type="email" 
-							name="email" 
-							value="<<-EMAIL->>" 
-							readonly 
-						/>
+					<div class="form-group">
+						<label for="birth">Data di nascita:</label>
+						<div class="form-input">
+							<input
+								id="birth"
+								type="date"
+								name="birth"
+								value="<<-DN->>"
+								readonly
+								required />
+						</div>
 					</div>
-				</div>
 
-				<div class="button-container">
-					
-					<button type="button" id="editBtn" class="logout-button">Modifica Dati</button>
-					
-					<button type="submit" id="saveBtn" class="logout-button">Salva Modifiche</button>
-					
-					<a class="logout-button" href="../controller/logoutController.php">LOGOUT</a>
-				</div>
+					<div class="form-group">
+						<label for="email">Email (non modificabile):</label>
+						<div class="form-input">
+							<input
+								id="email"
+								type="email"
+								name="email"
+								value="<<-EMAIL->>"
+								readonly />
+						</div>
+					</div>
 
-			</form>
-        </div>
-    </main>
+					<div class="button-container">
+						<button type="button" id="editBtn" class="logout-button">
+							Modifica Dati
+						</button>
 
-    <<-FOOTER->>
+						<button type="submit" id="saveBtn" class="logout-button">
+							Salva Modifiche
+						</button>
 
-    </body>
+						<a class="logout-button" href="../controller/logoutController.php"
+							>LOGOUT</a
+						>
+					</div>
+				</form>
+			</div>
+		</main>
+
+		<<-FOOTER->>
+	</body>
 </html>

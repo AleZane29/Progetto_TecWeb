@@ -18,7 +18,7 @@ class Builder
     $this->headerHTML = file_get_contents("components/header.html");
     if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
       $this->headerHTML = str_replace("<<-ACCOUNT->>", $_SESSION["nameUser"], $this->headerHTML);
-      if ($_SESSION["user"] === "2") {
+      if ($_SESSION["roleUser"] === "Admin") {
         $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenotazioni", $this->headerHTML);
       } else {
         $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenota", $this->headerHTML);
@@ -77,7 +77,7 @@ class Builder
       header("Location: login.php");
     }
 
-    if ($_SESSION["user"] === 2) {
+    if ($_SESSION["roleUser"] === "Admin") {
       $paginaHTML = require_once '../controller/reservationAdminController.php';
       $page = str_replace("<<-HEADER->>", $this->headerHTML, $paginaHTML);
       $page = str_replace("<<-FOOTER->>", $this->footerHTML, $page);
@@ -91,7 +91,7 @@ class Builder
 
   function build_login()
   {
-    
+
     require '../controller/loginController.php';
 
 
@@ -100,7 +100,7 @@ class Builder
       header("Location: account.php");
     } else {
       //Aggiorno pagina in base ai risultati generati dal controller
-      
+
       if (!$HTMLPage) {
         $HTMLPage = file_get_contents('pages/login.html');
         $HTMLPage = str_replace("[loginResult]", ' ', $HTMLPage);
@@ -112,7 +112,7 @@ class Builder
 
   function build_register()
   {
-    
+
     require '../controller/registerController.php';
 
 
@@ -121,7 +121,7 @@ class Builder
       header("Location: account.php");
     } else {
       //Aggiorno pagina in base ai risultati generati dal controller
-      
+
       if (!$HTMLPage) {
         $HTMLPage = file_get_contents('pages/register.html');
         $HTMLPage = str_replace("[registerResult]", ' ', $HTMLPage);
@@ -131,14 +131,4 @@ class Builder
       return ($HTMLPage);
     }
   }
-
-
-
-
-
-
-
-
-
-
 }

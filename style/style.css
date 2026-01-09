@@ -123,6 +123,7 @@ body {
 	color: var(--text-bold);
 	line-height: 1.6;
 	font-size: 16px;
+	min-height: 100vh;
 }
 
 /* Screen reader only content */

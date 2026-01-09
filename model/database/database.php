@@ -47,35 +47,6 @@ class DBConn
 		}
 	}
 
-
-	public function checkLogin($email, $password)
-	{
-		$query = "SELECT id, nome, cognome, email, data_nascita
-    FROM Utente WHERE email=? AND password=?";
-		$stmt = mysqli_prepare($this->connection, $query);
-		mysqli_stmt_bind_param($stmt, "ss", $email, $password);
-		mysqli_stmt_execute($stmt);
-
-		$result = mysqli_stmt_get_result($stmt);
-
-		if ($result) {
-			$row = mysqli_fetch_assoc($result);
-			if ($row) {
-				mysqli_stmt_close($stmt);
-				return [
-					'idUser'      => $row['id'],
-					'nameUser'    => $row['nome'],
-					'surnameUser' => $row['cognome'],
-					'emailUser'   => $row['email'],
-					'dateUser'    => $row['data_nascita']
-				];
-			}
-		}
-
-		mysqli_stmt_close($stmt);
-		return null;
-	}
-
 	public function getUserByEmail($email)
 	{
 		$query = "SELECT * FROM Utente WHERE email=? ";
@@ -289,28 +260,29 @@ class DBConn
 	}
 
 	/**
-     * Recupera le prenotazioni filtrate per sport, campo e data.
-     * @param string $sport
-     * @param string $campo
-     * @param string $data
-     * @return array
-     */
-    public function getSelectedReservations($sport, $campo, $data) {
+	 * Recupera le prenotazioni filtrate per sport, campo e data.
+	 * @param string $sport
+	 * @param string $campo
+	 * @param string $data
+	 * @return array
+	 */
+	public function getSelectedReservations($sport, $campo, $data)
+	{
 
 		$resultArray = array();
 
-        $query = "SELECT * FROM prenotazione WHERE tipo_campo = ? AND numero_campo = ? AND data = ?";
+		$query = "SELECT * FROM prenotazione WHERE tipo_campo = ? AND numero_campo = ? AND data = ?";
 
-        if ($stmt = $this->connection->prepare($query)) {
-            $stmt->bind_param("sss", $sport, $campo, $data);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = $result->fetch_assoc()) {
-                $resultArray[] = $row;
-            }
-            $stmt->close();
-        }
+		if ($stmt = $this->connection->prepare($query)) {
+			$stmt->bind_param("sss", $sport, $campo, $data);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			while ($row = $result->fetch_assoc()) {
+				$resultArray[] = $row;
+			}
+			$stmt->close();
+		}
 
-        return $resultArray;
-    }
+		return $resultArray;
+	}
 }

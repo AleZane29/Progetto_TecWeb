@@ -19,19 +19,20 @@
 
 	<<-HEADER->>
 
-		<nav id="breadcrumb">
+		<div class="sr-only" id="breadcrumb-label">
+			<span lang="en">breadcrumb</span>
+		</div>
+		<nav aria-labelledby="breadcrumb-label" id="breadcrumb">
 			<p>Ti trovi in: <span class="breadcrumb-page">Servizi</span></p>
 		</nav>
 
 		<main id="main-content" tabindex="-1">
-			<!-- banner Section -->
 			<section class="banner" aria-labelledby="banner-title">
 				<div class="banner-container">
 					<h1 id="banner-title">I nostri servizi</h1>
 				</div>
 			</section>
 
-			<!-- Introduzione -->
 			<section class="service-intro" aria-labelledby="intro-title">
 				<div class="container">
 					<h2 id="intro-title">Una Struttura Completa per Ogni Esigenza</h2>
@@ -51,7 +52,6 @@
 				</div>
 			</section>
 
-			<!-- Calcio a 5 -->
 			<section class="service-detail" aria-labelledby="calcio-title">
 				<div class="container">
 					<article class="service-card">
@@ -83,7 +83,7 @@
 
 								<h3>Informazioni Utili</h3>
 								<p>
-									I campi si possono prenotare a ore o per abbonamenti mensili.
+									I campi si possono prenotare per fasce orarie.
 									Durante la settimana organizziamo anche partite libere dove ci
 									si iscrive singolarmente e noi formiamo le squadre. Il
 									mercoledì sera c'è il torneo amatoriale, aperto a tutti i
@@ -91,9 +91,7 @@
 								</p>
 								<p>
 									<strong>Costo orario:</strong> €60 per campo<br />
-									<strong>Abbonamento mensile:</strong> €200 (4 ore a settimana)
 								</p>
-								<!-- Gallery predefinita per Calcio a 5 -->
 
 							</div>
 							<div class="service-gallery">
@@ -123,7 +121,6 @@
 				</div>
 			</section>
 
-			<!-- Tennis -->
 			<section class="service-detail service-detail-alt" aria-labelledby="tennis-title">
 				<div class="container">
 					<article class="service-card">
@@ -163,13 +160,10 @@
 								</p>
 								<p>
 									<strong>Costo orario:</strong> €25 per campo<br />
-									<strong>Lezione individuale:</strong> €40 (1 ora)<br />
-									<strong>Abbonamento 10 ingressi:</strong> €200
 								</p>
 
 							</div>
 
-							<!-- Gallery predefinita per Tennis -->
 							<div class="service-gallery">
 								<h3>Galleria dei Campi da Tennis</h3>
 								<div class="grid-wrapper">
@@ -198,7 +192,6 @@
 				</div>
 			</section>
 
-			<!-- Basket -->
 			<section class="service-detail" aria-labelledby="basket-title">
 				<div class="container">
 					<article class="service-card">
@@ -238,12 +231,9 @@
 								</p>
 								<p>
 									<strong>Costo orario:</strong> €70 per campo<br />
-									<strong>Abbonamento mensile:</strong> €240 (4 ore a settimana)
 								</p>
 
 							</div>
-
-							<!-- Gallery predefinita per Basket -->
 
 							<div class="service-gallery">
 								<h3>Galleria dei Campi da basket</h3>
@@ -274,7 +264,6 @@
 				</div>
 			</section>
 
-			<!-- Mappa della Struttura -->
 			<section class="facility-map" aria-labelledby="map-title">
 				<div class="container">
 					<h2 id="map-title">Mappa della Struttura</h2>
@@ -298,7 +287,6 @@
 				</div>
 			</section>
 
-			<!-- Call to Action -->
 			<section class="subscribe-section" aria-labelledby="subscribe-title">
 				<div class="container">
 					<h2 id="subscribe-title">Prenota il Tuo Campo</h2>
@@ -315,38 +303,7 @@
 
 </body>
 
-</html>
-
 <script>
 	document.getElementById('navMenuServizi').classList.add('active');
-	let slideIndex = 1;
-	showSlides(slideIndex);
-
-	function plusSlides(n) {
-		showSlides((slideIndex += n));
-	}
-
-	function currentSlide(n) {
-		showSlides((slideIndex = n));
-	}
-
-	function showSlides(n) {
-		let i;
-		let slides = document.getElementsByClassName('mySlides');
-		let dots = document.getElementsByClassName('dot');
-		if (n > slides.length) {
-			slideIndex = 1;
-		}
-		if (n < 1) {
-			slideIndex = slides.length;
-		}
-		for (i = 0; i < slides.length; i++) {
-			slides[i].style.display = 'none';
-		}
-		for (i = 0; i < dots.length; i++) {
-			dots[i].className = dots[i].className.replace(' actual', '');
-		}
-		slides[slideIndex - 1].style.display = 'block';
-		dots[slideIndex - 1].className += ' actual';
-	}
 </script>
+</html>

@@ -49,9 +49,9 @@ INSERT INTO Utente (nome, cognome, email, data_nascita, password, ruolo) VALUES
 -- psw di user: User
 
 INSERT INTO TipoCampo (nome, costo_orario) VALUES
-('Tennis', 10),
-('Basket', 12),
-('Calcio5', 20);
+('Tennis', 25),
+('Basket', 70),
+('Calcio5', 60);
 
 INSERT INTO Campo (numero, tipo) VALUES
 (1, 'Tennis'),

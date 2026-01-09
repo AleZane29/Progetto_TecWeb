@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION["surnameUser"] = $user["cognome"];
       $_SESSION["emailUser"] = $user["email"];
       $_SESSION["dateUser"] = $user["data_nascita"];
+      $_SESSION["roleUser"] = $user["ruolo"];
       return $HTMLPage = '';
     } else {
       if ($user) {
