@@ -1,66 +1,50 @@
-// reservationUser.js
 
-// 1. Definiamo tutti gli slot orari possibili del tuo centro sportivo
 const availableTimeSlots = [
-  "08:00:00-09:30:00",
-  "09:30:00-11:00:00",
-  "11:00:00-12:30:00",
-  "13:00:00-14:30:00",
-  "14:30:00-16:00:00",
-  "16:00:00-17:30:00",
-  "17:30:00-19:00:00",
-  "19:00:00-20:30:00",
-  "20:30:00-22:00:00",
+  "08:00-09:30",
+  "09:30-11:00",
+  "11:00-12:30",
+  "13:00-14:30",
+  "14:30-16:00",
+  "16:00-17:30",
+  "17:30-19:00",
+  "19:00-20:30",
+  "20:30-22:00",
 ];
 
 /**
- * Genera l'HTML per la tabella oraria.
- * @param {Array} bookedSlots - Array di stringhe con gli orari già prenotati (es. ["9:30-11:00"])
+ * 
+ * @param {Array} bookedSlots 
  */
 function renderTimetable(bookedSlots = []) {
-//   alert("Risposta ricevuta dal server: " + bookedSlots);
-//   alert(
-//     "Funzione renderTimetable chiamata con slot prenotati: " +
-//       bookedSlots.join(", ")
-//   );
+
 
   const container = document.getElementById("timetable-container");
 
-  // Puliamo il contenitore per evitare duplicati se la funzione viene richiamata
   container.innerHTML = "";
 
   availableTimeSlots.forEach((time) => {
-    // 2. Controlliamo se l'orario attuale è presente nella lista di quelli prenotati
     const isBooked = bookedSlots.includes(time);
 
-    // 3. Creiamo gli elementi HTML
     const label = document.createElement("label");
     const input = document.createElement("input");
-    const span = document.createElement("span"); // Utile per lo stile CSS del testo
+    const span = document.createElement("span"); 
 
-    // Configuriamo l'input radio
     input.type = "radio";
     input.name = "timetable";
     input.value = time;
 
-    // Se è prenotato, lo disabilitiamo
     if (isBooked) {
-    //   alert("L'orario " + time + " è prenotato e sarà disabilitato.");
       input.disabled = true;
-      label.classList.add("disabled"); // Aggiungiamo una classe per lo stile (es. grigio/barrato)
+      label.classList.add("disabled"); 
     } else {
-      // Se vuoi che sia required (basta metterlo su uno del gruppo, ma qui lo mettiamo condizionale)
       input.required = true;
     }
 
-    // Configuriamo il testo
-    span.textContent = ` ${time}`; // Lo spazio iniziale è per separarlo dal radio button visivamente
+    span.textContent = ` ${time}`;
 
-    // 4. Assembliamo l'elemento: <label><input> <span>Testo</span></label>
     label.appendChild(input);
     label.appendChild(span);
 
-    // 5. Inseriamo nel contenitore principale
     container.appendChild(label);
   });
 }
@@ -71,25 +55,19 @@ function getReservations() {
   let dataSelezionata = document.getElementById("date").value;
 
   if (!sportSelezionato || !campoSelezionato || !dataSelezionata) {
-    // Nota: Ho commentato l'alert perché a volte parte al caricamento pagina
-    // alert("Per favore, seleziona sport, campo e data prima di procedere.");
     return;
   }
 
   const xhttp = new XMLHttpRequest();
 
   xhttp.onload = function () {
-    // 1. Controlliamo se la chiamata è andata a buon fine (Status 200 OK)
     if (this.status === 200) {
       try {
-        // 2. Proviamo a convertire la risposta in JSON
         const response = JSON.parse(this.responseText);
         
-        // Se riesce, renderizziamo la tabella
         renderTimetable(response);
 
       } catch (e) {
-        // 3. SE FALLISCE (Qui intercettiamo l'errore "<")
         console.error("ERRORE DI PARSING JSON:", e);
         console.log("Cosa ha risposto il server:", this.responseText);
         alert("Errore nel caricamento dati. Apri la console (F12) per i dettagli.");
@@ -113,46 +91,39 @@ function getReservations() {
 
 function clearInput(app) {
   if (app != "none") {
-    // Usa 'let' o 'const' per definire le variabili (evita variabili globali)
-    let campi = document.getElementsByName("campo");
-    let j = 0; // Inizializziamo j
+    let campi_label = document.getElementsByClassName("campo-label");
+    let campi_input = document.getElementsByName("campo");
+    let j = 0;
 
-    // PRIMA FASE: Resetta tutto (disabilita e toglie la spunta)
-    for (var i = 0; i < campi.length; i++) {
-      campi[i].checked = false;
+    for (var i = 0; i < campi_input.length; i++) {
+      campi_input[i].checked = false;
 
-      // ERRORE 1: .classList.add cambia solo l'estetica.
-      // Devi usare la proprietà .disabled per bloccare il click vero e proprio.
-      campi[i].disabled = true;
-      // Se vuoi anche cambiare l'aspetto visivo mantieni pure la classe:
-      campi[i].classList.add("disabled");
+      campi_input[i].disabled = true;
+      campi_label[i].classList.add("disabled");
     }
 
     switch (app) {
       case "tennis":
-        j = 3; // Abiliterà campi[0] e campi[1]
+        j = 3; 
         break;
 
       case "basket":
-        j = 1; // ATTENZIONE: Con 0, il ciclo sotto non parte mai. Nessun campo si attiverà.
+        j = 1;
         break;
 
       case "calcetto":
-        j = 2; // Abiliterà campi[0]
+        j = 2; 
         break;
 
       default:
         console.log("Errore: sport non riconosciuto");
-        return; // Esce dalla funzione se c'è un errore
+        return; 
     }
 
-    // SECONDA FASE: Riabilita solo quelli necessari
     for (var i = 0; i < j; i++) {
-      // Controllo di sicurezza: verifichiamo che il campo esista
-      if (campi[i]) {
-        campi[i].disabled = false; // Riattiva il click
-        campi[i].classList.remove("disabled"); // Ripristina l'estetica
-      }
+        campi_input[i].disabled = false;
+        campi_label[i].classList.remove("disabled");
+      
     }
   }
 

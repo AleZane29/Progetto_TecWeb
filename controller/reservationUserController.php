@@ -48,12 +48,14 @@ if (!isset($_GET['sport']) || !isset($_GET['campo']) || !isset($_GET['data'])) {
     $reservationResult = $conn->getSelectedReservations($sport, $campo, $data);
 
     if ($reservationResult) {
-      foreach ($reservationResult as $row) {
-        // Deve corrispondere ESATTAMENTE al formato usato in JS (es. "9:30-11:00" o "09:30")
-        $listaOrariOccupati[] = $row['ora_inizio'] . "-" . $row['ora_fine'];
-      }
+        foreach ($reservationResult as $row) {
+            $inizio = date('H:i', strtotime($row['ora_inizio']));
+            $fine   = date('H:i', strtotime($row['ora_fine']));
+
+            $listaOrariOccupati[] = $inizio . "-" . $fine;
+        }
     }
-  }
+}
 
   echo json_encode($listaOrariOccupati);
 }
