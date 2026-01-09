@@ -71,14 +71,34 @@ function getReservations() {
   let dataSelezionata = document.getElementById("date").value;
 
   if (!sportSelezionato || !campoSelezionato || !dataSelezionata) {
-    alert("Per favore, seleziona sport, campo e data prima di procedere.");
+    // Nota: Ho commentato l'alert perché a volte parte al caricamento pagina
+    // alert("Per favore, seleziona sport, campo e data prima di procedere.");
     return;
   }
 
   const xhttp = new XMLHttpRequest();
+
   xhttp.onload = function () {
-    renderTimetable(JSON.parse(this.responseText));
+    // 1. Controlliamo se la chiamata è andata a buon fine (Status 200 OK)
+    if (this.status === 200) {
+      try {
+        // 2. Proviamo a convertire la risposta in JSON
+        const response = JSON.parse(this.responseText);
+        
+        // Se riesce, renderizziamo la tabella
+        renderTimetable(response);
+
+      } catch (e) {
+        // 3. SE FALLISCE (Qui intercettiamo l'errore "<")
+        console.error("ERRORE DI PARSING JSON:", e);
+        console.log("Cosa ha risposto il server:", this.responseText);
+        alert("Errore nel caricamento dati. Apri la console (F12) per i dettagli.");
+      }
+    } else {
+      console.error("Errore del server. Codice:", this.status);
+    }
   };
+
   xhttp.open(
     "GET",
     "../controller/reservationUserController.php?sport=" +

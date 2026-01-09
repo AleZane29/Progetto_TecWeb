@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $surname = $_POST["surname"] ?? "";
     $birth = $_POST["birth"] ?? "";
 
-    $minage = 14;
+    $minAge = 14;
 
     $birthdate = new DateTime($birth);
     $todaydate = new DateTime();

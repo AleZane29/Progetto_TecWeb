@@ -1,0 +1,52 @@
+
+services:
+  # IL TUO SITO WEB
+  web:
+    build: .
+    container_name: sportlab-web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - AM_I_IN_DOCKER=true  # Questo è il segnale per il codice PHP
+    depends_on:
+      - db
+    networks:
+      - sportlab-net
+
+  # IL DATABASE
+  db:
+    image: mysql:8.0
+    container_name: sportlab-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: alzanell
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/mysql
+      # Carica il tuo file SQL automaticamente all'avvio
+      - ./SportLab.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - sportlab-net
+
+  # PHPMYADMIN
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: sportlab-pma
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - sportlab-net
+
+volumes:
+  db_data:
+
+networks:
+  sportlab-net:
