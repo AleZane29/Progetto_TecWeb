@@ -148,7 +148,7 @@ class DBConn
 	{
 		$query = "
         SELECT 
-            P.id AS prenotazione_id,
+            P.id AS Prenotazione_id,
             P.numero_campo,
             P.tipo_campo,
             P.data,
@@ -170,7 +170,7 @@ class DBConn
 
 			while ($row = mysqli_fetch_assoc($queryResult)) {
 				$result[] = array(
-					'id' => $row['prenotazione_id'],
+					'id' => $row['Prenotazione_id'],
 					'utente' => $row['nome_utente'] . ' ' . $row['cognome_utente'],
 					'numero_campo' => $row['numero_campo'],
 					'tipo_campo' => $row['tipo_campo'],
@@ -199,7 +199,7 @@ class DBConn
 
 	public function getAllSports()
 	{
-		$query = "SELECT nome FROM tipocampo ";
+		$query = "SELECT nome FROM TipoCampo ";
 		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
 		if (mysqli_num_rows($queryResult) != 0) {
 			$result = array();
@@ -215,7 +215,7 @@ class DBConn
 
 	public function getAllCourts()
 	{
-		$query = "SELECT numero, tipo FROM campo ";
+		$query = "SELECT numero, tipo FROM Campo ";
 		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
 		if (mysqli_num_rows($queryResult) != 0) {
 			$result = array();
@@ -283,7 +283,7 @@ class DBConn
 
 		$resultArray = array();
 
-		$query = "SELECT * FROM prenotazione WHERE tipo_campo = ? AND numero_campo = ? AND data = ?";
+		$query = "SELECT * FROM Prenotazione WHERE tipo_campo = ? AND numero_campo = ? AND data = ?";
 
 		if ($stmt = $this->connection->prepare($query)) {
 			$stmt->bind_param("sss", $sport, $campo, $data);

@@ -11,9 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nuovoCognome = $_POST['surname'];
     $nuovaData = $_POST['birth'];
 
-    $minage = 14;
+    $minAge = 14;
 
-    $birthdate = new DateTime($birth);
+    $birthdate = new DateTime($nuovaData);
     $todaydate = new DateTime();
 
     $age = $todaydate->diff($birthdate);
