@@ -4,21 +4,33 @@ namespace DB;
 
 class DBConn
 {
-	private const HOST_DB = "localhost";
-	private const DATABASE_NAME = "alzanell";
-	private const USERNAME = "root";
-	private const PASSWORD = "";
 
 	private $connection;
 
 	public function openConnection()
 	{
+		// 1. Impostazioni di default (per XAMPP / Localhost classico)
+		$db_host = "localhost";
+		$db_user = "root";
+		$db_pass = "";
+		$db_name = "alzanell"; // Il nome del tuo DB in XAMPP
+
+		// 2. Controllo se siamo dentro DOCKER
+		// (Questa variabile l'abbiamo settata nel file docker-compose.yml)
+		if (getenv('AM_I_IN_DOCKER')) {
+			$db_host = "db";            // Nome del servizio nel docker-compose
+			$db_user = "user";          // Utente definito nel docker-compose
+			$db_pass = "password";      // Password definita nel docker-compose
+			$db_name = "alzanell";      // ATTENZIONE: Nel docker-compose avevamo messo "SportLab"
+		}
+
 		try {
+			// 3. Uso le variabili dinamiche invece delle costanti
 			$this->connection = mysqli_connect(
-				self::HOST_DB,
-				self::USERNAME,
-				self::PASSWORD,
-				self::DATABASE_NAME
+				$db_host,
+				$db_user,
+				$db_pass,
+				$db_name
 			);
 
 			if (!$this->connection) {
