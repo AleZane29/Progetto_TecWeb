@@ -20,7 +20,7 @@ if ($connessioneOK) {
   }
   $courts = $conn->getAllCourts();
   foreach ($courts as $res) {
-    $courtsResult .= "<option style='display: none;' id=" . $res["tipo"] . $res["numero"] . " value=" . $res["numero"] . "> Campo " . $res["numero"] . "</option>";
+    $courtsResult .= "<option style='display: none;' data-court-id=" . $res["tipo"] . $res["numero"] . " value=" . $res["numero"] . "> Campo " . $res["numero"] . "</option>";
   }
 
   $reservations = $conn->getAllReservations();

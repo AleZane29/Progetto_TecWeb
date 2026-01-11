@@ -231,7 +231,7 @@ function changeSport() {
 
 	courtsSelect.value = '';
 	court.forEach((court) => {
-		if (court.id == '' || (sport != '' && court.id.includes(sport))) {
+		if (!(court.getAttribute("data-court-id")) || (sport != '' && court.getAttribute("data-court-id").includes(sport))) {
 			court.style.display = '';
 		} else {
 			court.style.display = 'none';
@@ -307,7 +307,7 @@ function changeSportDialog() {
 	courtsSelect.value = '';
 
 	courts.forEach((court) => {
-		if (court.id == '' || (sport != '' && court.id.includes(sport))) {
+		if (!(court.getAttribute("data-court-id")) || (sport != '' && court.getAttribute("data-court-id").includes(sport))) {
 			court.style.display = '';
 		} else {
 			court.style.display = 'none';
