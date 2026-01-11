@@ -297,4 +297,38 @@ class DBConn
 
 		return $resultArray;
 	}
+
+	public function checkOverlap($court, $date, $startTime, $endTime, $excludeId = null)
+    {
+        // Query base: Cerca prenotazioni nello stesso campo e stessa data
+        // che iniziano prima che la nuova finisca E finiscono dopo che la nuova inizi.
+        $query = "SELECT COUNT(*) as total FROM Prenotazione 
+                  WHERE numero_campo = ? 
+                  AND data = ? 
+                  AND (ora_inizio < ? AND ora_fine > ?)";
+
+        // Se stiamo modificando, dobbiamo escludere noi stessi dal controllo
+        if ($excludeId) {
+            $query .= " AND id != ?";
+        }
+
+        $stmt = mysqli_prepare($this->connection, $query);
+
+        if ($excludeId) {
+            // Se c'è l'ID: ssss i (string, string, string, string, integer)
+            mysqli_stmt_bind_param($stmt, "ssssi", $court, $date, $endTime, $startTime, $excludeId);
+        } else {
+            // Se non c'è l'ID: ssss
+            mysqli_stmt_bind_param($stmt, "ssss", $court, $date, $endTime, $startTime);
+        }
+
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+        
+        mysqli_stmt_close($stmt);
+
+        // Se total > 0, significa che c'è almeno una sovrapposizione
+        return $row['total'] > 0;
+    }
 }
