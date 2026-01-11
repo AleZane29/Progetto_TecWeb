@@ -59,11 +59,12 @@ class Builder
       header("Location: login.php");
     }
 
-
+    $paginaHTML = require '../controller/reservationViewerController.php';
     $page = str_replace("<<-NOME->>", $_SESSION["nameUser"], $paginaHTML);
     $page = str_replace("<<-COGNOME->>", $_SESSION["surnameUser"], $page);
     $page = str_replace("<<-DN->>", $_SESSION["dateUser"], $page);
     $page = str_replace("<<-EMAIL->>", $_SESSION["emailUser"], $page);
+
     $page = str_replace("<<-HEADER->>", $this->headerHTML, $page);
     $page = str_replace("<<-FOOTER->>", $this->footerHTML, $page);
 
