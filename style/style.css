@@ -160,7 +160,7 @@ body {
 /* banner Section */
 .banner {
 	width: 100%;
-	height: 300px;
+	height: 100%;
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
 		url('../assets/bannerhome.jpg');
 	background-size: cover;
@@ -227,4 +227,10 @@ input,
 button {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
 		Ubuntu, Cantarell, sans-serif;
+}
+
+@media screen and (max-width: 480px) {
+	.banner-container h1 {
+		font-size: 2rem;
+	}
 }

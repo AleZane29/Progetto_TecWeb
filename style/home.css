@@ -24,6 +24,7 @@
 	border: hidden;
 	max-width: 900px;
 	margin: 0 auto;
+	width: 100%;
 
 	font-family: sans-serif;
 	font-weight: 100;
@@ -165,9 +166,8 @@
 	margin-bottom: 2rem;
 }
 
-/* table */
 table {
-	width: 800px;
+	width: 100%;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -210,5 +210,259 @@ tbody {
 				z-index: -1;
 			}
 		}
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.container-info {
+		gap: 4rem;
+		padding: 0 1.5rem;
+	}
+
+	.container-image img {
+		max-width: 350px;
+		max-height: 350px;
+	}
+
+	.about-section h2,
+	.hours-section h2,
+	.notices-section h2,
+	.subscribe-section h2 {
+		font-size: 1.75rem;
+	}
+
+	table {
+		font-size: 0.95rem;
+	}
+
+	th,
+	td {
+		padding: 12px;
+	}
+}
+
+/* Tablet piccolo - fino a 768px */
+@media screen and (max-width: 768px) {
+	.container-info {
+		flex-direction: column;
+
+		gap: 2rem;
+		padding: 0 1rem;
+	}
+
+	.about-section:nth-of-type(odd) .container-info {
+		flex-direction: column-reverse;
+	}
+
+	.container-paragraph {
+		width: 100%;
+	}
+
+	.container-image {
+		width: 100%;
+		text-align: center;
+	}
+
+	.container-image img {
+		max-width: 100%;
+		max-height: 300px;
+	}
+
+	.about-section,
+	.hours-section,
+	.notices-section,
+	.subscribe-section {
+		padding: 3rem 1rem;
+	}
+
+	.about-section h2,
+	.hours-section h2,
+	.notices-section h2 {
+		font-size: 1.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.subscribe-section h2 {
+		font-size: 1.5rem;
+	}
+
+	.subscribe-section p {
+		font-size: 1rem;
+	}
+
+	.hours-section h2 {
+		margin-bottom: 2rem;
+	}
+
+	table {
+		width: 100%;
+		max-width: 800px;
+		border-collapse: collapse;
+		overflow: hidden;
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+		border-radius: 1em;
+		background: linear-gradient(45deg, var(--primary-200), var(--primary-400));
+	}
+
+	th,
+	td {
+		padding: 15px;
+		background-color: rgba(255, 255, 255, 0.2);
+		color: #fff;
+	}
+
+	th {
+		text-align: left;
+	}
+
+	thead th {
+		background-color: var(--primary-600);
+	}
+
+	tbody {
+		tr {
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.3);
+			}
+		}
+		td {
+			position: relative;
+			&:hover {
+				&:before {
+					content: '';
+					position: absolute;
+					left: 0;
+					right: 0;
+					top: -9999px;
+					bottom: -9999px;
+					background-color: rgba(255, 255, 255, 0.2);
+					z-index: -1;
+				}
+			}
+		}
+	}
+
+	.notice-card {
+		padding: 1.5rem;
+	}
+
+	.notice-card h3 {
+		font-size: 1.1rem;
+	}
+
+	.dot {
+		height: 12px;
+		width: 12px;
+	}
+}
+
+/* Mobile - fino a 480px */
+@media screen and (max-width: 480px) {
+	.container-info {
+		padding: 0 0.5rem;
+		gap: 1.5rem;
+	}
+
+	.about-section,
+	.hours-section,
+	.notices-section,
+	.subscribe-section {
+		padding: 2rem 0.5rem;
+	}
+
+	.about-section h2,
+	.hours-section h2,
+	.notices-section h2 {
+		font-size: 1.25rem;
+		margin-bottom: 1rem;
+	}
+
+	.subscribe-section h2 {
+		font-size: 1.25rem;
+	}
+
+	.subscribe-section p {
+		font-size: 0.95rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.about-section p {
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+
+	.container-image img {
+		max-height: 250px;
+		max-width: 250px;
+	}
+
+	table {
+		min-width: 100%;
+		width: 100%;
+		font-size: 0.8rem;
+	}
+
+	th,
+	td {
+		padding: 8px 6px;
+		font-size: 0.75rem;
+	}
+
+	.notice-card {
+		padding: 1rem;
+	}
+
+	.notice-card h3 {
+		font-size: 1rem;
+	}
+
+	.notice-card p {
+		font-size: 0.9rem;
+	}
+
+	.dot {
+		height: 10px;
+		width: 10px;
+		margin: 0 1px;
+	}
+
+	.carousel-button {
+		padding-top: 0.75rem;
+	}
+
+	/* Migliora la leggibilità del breadcrumb */
+	#breadcrumb {
+		font-size: 0.85rem;
+		padding: 0.5rem;
+	}
+}
+
+/* Mobile molto piccolo - fino a 360px */
+@media screen and (max-width: 360px) {
+	.about-section h2,
+	.hours-section h2,
+	.notices-section h2,
+	.subscribe-section h2 {
+		font-size: 1.1rem;
+	}
+
+	.about-section p,
+	.notice-card p {
+		font-size: 0.85rem;
+	}
+
+	table {
+		min-width: 100%;
+		font-size: 0.75rem;
+	}
+
+	th,
+	td {
+		padding: 6px 4px;
+		font-size: 0.7rem;
+	}
+
+	.notice-card {
+		padding: 0.75rem;
 	}
 }

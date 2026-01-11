@@ -106,6 +106,7 @@ class Builder
         $HTMLPage = str_replace("[loginResult]", ' ', $HTMLPage);
       }
       $HTMLPage = str_replace("<<-HEADER->>", $this->headerHTML, $HTMLPage);
+      $HTMLPage = str_replace("<<-FOOTER->>", $this->footerHTML, $HTMLPage);
       return ($HTMLPage);
     }
   }
