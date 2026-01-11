@@ -59,7 +59,7 @@ main {
 
 .form-input input[readonly] {
     background: var(--neutral-100);
-    border: 1px solid transparent; 
+    border: 1px solid var(--neutral-400); 
     color: var(--text-bold);
     cursor: default; 
     font-weight: 500;

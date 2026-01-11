@@ -1,127 +1,136 @@
 <!DOCTYPE html>
 <html data-theme="light" lang="it">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="../assets/logo_white.png" rel="icon" />
-		<meta name="description" content="SportLab - Pagina di registrazione" />
-		<meta name="language" content="it" />
-		<title>Registrazione - SportLab</title>
-		<link href="../style/style.css" rel="stylesheet" />
-		<link href="../style/login.css" rel="stylesheet" />
-		<link href="../style/header.css" rel="stylesheet" />
-		<link href="../style/footer.css" rel="stylesheet" />
-		<script src="../scripts/togglePassword.js"></script>
-		<script src="../scripts/ageCheck.js" defer></script>
-	</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="../assets/logo_white.png" rel="icon" />
+        <meta name="description" content="SportLab - Pagina di registrazione" />
+        <meta name="language" content="it" />
+        <title>Registrazione - SportLab</title>
+        <link href="../style/style.css" rel="stylesheet" />
+        <link href="../style/login.css" rel="stylesheet" />
+        <link href="../style/header.css" rel="stylesheet" />
+        <link href="../style/footer.css" rel="stylesheet" />
+        <script src="../scripts/togglePassword.js"></script>
+        <script src="../scripts/ageCheck.js" defer></script>
+    </head>
 
-	<body>
-		<<-HEADER->>
+    <body>
+        <<-HEADER->>
 
-		<div class="sr-only" id="breadcrumb-label">
-			<span lang="en">breadcrumb</span>
-		</div>
-		<nav aria-labelledby="breadcrumb-label" id="breadcrumb">
-			<p>Ti trovi in: <span class="breadcrumb-page">Registrazione</span></p>
-		</nav>
-		<main id="main-content" tabindex="-1">
-			<div class="login-container">
-				<form
-					class="login-form"
-					id="loginForm"
-					method="POST"
-					action="register.php">
-					<div class="login-header">
-						<h1>Benvenuto in SportLab</h1>
-						<p>Crea un nuovo account</p>
-					</div>
-					[registerResult]
-					<div class="form-group">
-						<label for="name">Nome</label>
-						<div class="form-input">
-							<input
-								id="name"
-								type="text"
-								name="name"
-								placeholder="tuo nome"
-								autocomplete="name"
-								required
-								aria-describedby="name-error" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="surname">Cognome</label>
-						<div class="form-input">
-							<input
-								id="surname"
-								type="text"
-								name="surname"
-								placeholder="tuo cognome"
-								autocomplete="surname"
-								required
-								aria-describedby="surname-error" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="birth">Data di nascita</label>
-						<div class="form-input">
-							<input
-								id="birth"
-								type="date"
-								name="birth"
-								placeholder="tua data di nascita"
-								autocomplete="birth"
-								required
-								aria-describedby="birth-error" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="email">Email</label>
-						<div class="form-input">
-							<input
-								id="email"
-								type="email"
-								name="email"
-								placeholder="tua@email.com"
-								autocomplete="email"
-								required
-								aria-describedby="email-error" />
-						</div>
-					</div>
+        <div class="sr-only" id="breadcrumb-label">
+            <span lang="en">breadcrumb</span>
+        </div>
+        <nav aria-labelledby="breadcrumb-label" id="breadcrumb">
+            <p>Ti trovi in: <span class="breadcrumb-page">Registrazione</span></p>
+        </nav>
+        <main id="main-content" tabindex="-1">
+            <div class="login-container">
+                <form
+                    class="login-form"
+                    id="loginForm"
+                    method="POST"
+                    action="register.php">
+                    <div class="login-header">
+                        <h1>Benvenuto in SportLab</h1>
+                        <p>Crea un nuovo account</p>
+                    </div>
+                    [registerResult]
+                    
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <div class="form-input">
+                            <input
+                                id="name"
+                                type="text"
+                                name="name"
+                                placeholder="tuo nome"
+                                autocomplete="given-name" 
+                                required
+                                aria-describedby="name-error" />
+                        </div>
+                        <span id="name-error" class="error-message" aria-live="polite"></span>
+                    </div>
 
-					<div class="form-group">
-						<label for="password">Password</label>
-						<div class="form-input">
-							<input
-								id="password"
-								type="password"
-								name="password"
-								placeholder="Inserisci la tua password"
-								autocomplete="current-password"
-								required
-								aria-describedby="password-error" />
-							<span
-								class="toggle-password"
-								onclick="togglePassword()"
-								role="button"
-								tabindex="0"
-								aria-label="Mostra/nascondi password"
-								>👁️</span
-							>
-						</div>
-					</div>
+                    <div class="form-group">
+                        <label for="surname">Cognome</label>
+                        <div class="form-input">
+                            <input
+                                id="surname"
+                                type="text"
+                                name="surname"
+                                placeholder="tuo cognome"
+                                autocomplete="family-name"
+                                required
+                                aria-describedby="surname-error" />
+                        </div>
+                        <span id="surname-error" class="error-message" aria-live="polite"></span>
+                    </div>
 
-					<button type="submit" class="btn-login">Registrati</button>
+                    <div class="form-group">
+                        <label for="birth">Data di nascita</label>
+                        <div class="form-input">
+                            <input
+                                id="birth"
+                                type="date"
+                                name="birth"
+                                autocomplete="bday"
+                                required
+                                aria-describedby="birth-error" />
+                        </div>
+                        <span id="birth-error" class="error-message" aria-live="polite"></span>
+                    </div>
 
-					<div class="divider">oppure</div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <div class="form-input">
+                            <input
+                                id="email"
+                                type="email"
+                                name="email"
+                                placeholder="tua@email.com"
+                                autocomplete="email"
+                                required
+                                aria-describedby="email-error" />
+                        </div>
+                        <span id="email-error" class="error-message" aria-live="polite"></span>
+                    </div>
 
-					<div class="form-footer">
-						<span>Hai già un account? </span>
-						<a href="./login.php" tabindex="0">Accedi</a>
-					</div>
-				</form>
-			</div>
-		</main>
-		<<-FOOTER->>
-	</body>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="form-input">
+                            <input
+                                id="password"
+                                type="password"
+                                name="password"
+                                placeholder="Inserisci la tua password"
+                                autocomplete="new-password"
+                                required
+                                aria-describedby="password-error" />
+                                
+                            <button
+                                type="button"
+                                class="toggle-password"
+                                onclick="togglePassword()"
+                                aria-label="Mostra password"
+                                style="background:none; border:none; cursor:pointer;">
+                                👁️
+                            </button>
+                        </div>
+                        <span id="password-error" class="error-message" aria-live="polite"></span>
+                    </div>
+
+                    <button type="submit" class="btn-login">Registrati</button>
+
+                    <div class="divider">oppure</div>
+
+                    <div class="form-footer">
+                        <span>Hai già un account? </span>
+                        <a href="./login.php">Accedi</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <<-FOOTER->>
+    </body>
 </html>

@@ -23,7 +23,7 @@
 		<nav aria-labelledby="breadcrumb-label" id="breadcrumb">
 			<p>Ti trovi in: <span lang="en" class="breadcrumb-page">Account</span></p>
 		</nav>
-		<main>
+		<main id="main-content" tabindex="-1">
 			<div class="info-container">
 				<form
 					class="info-form"
@@ -42,6 +42,7 @@
 								type="text"
 								name="name"
 								value="<<-NOME->>"
+								autocomplete="given-name"
 								readonly
 								required />
 						</div>
@@ -55,6 +56,7 @@
 								type="text"
 								name="surname"
 								value="<<-COGNOME->>"
+								autocomplete="family-name"
 								readonly
 								required />
 						</div>
@@ -68,6 +70,7 @@
 								type="date"
 								name="birth"
 								value="<<-DN->>"
+								autocomplete="bday"
 								readonly
 								required />
 						</div>
@@ -81,6 +84,7 @@
 								type="email"
 								name="email"
 								value="<<-EMAIL->>"
+								autocomplete="email"
 								readonly />
 						</div>
 					</div>

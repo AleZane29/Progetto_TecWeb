@@ -172,7 +172,7 @@ table {
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 	border-radius: 1em;
-	background: linear-gradient(45deg, var(--primary-200), var(--primary-400));
+	background: var(--primary-700);
 }
 
 th,
@@ -211,6 +211,11 @@ tbody {
 			}
 		}
 	}
+}
+
+.container-table:focus {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
 }
 
 @media screen and (max-width: 1024px) {

@@ -87,7 +87,7 @@ tbody tr:hover {
 }
 
 .btn-edit {
-	background: var(--primary-300);
+	background: var(--primary-500);
 	color: var(--neutral-0);
 }
 
@@ -211,6 +211,11 @@ tbody tr.pagination-hidden {
 
 /* --------------------------------------------------------------------------------------------- */
 /* RESERVATION USER */
+
+.reservation-title h1 {
+	text-align: center;
+	margin-bottom: 2rem;
+}
 
 .form-container {
 	text-align: center;
@@ -539,7 +544,7 @@ fieldset {
 .filter-group input,
 .filter-group select {
 	padding: 0.6rem;
-	border: 2px solid var(--neutral-250);
+	border: 2px solid var(--neutral-400);
 	border-radius: 8px;
 	font-size: 0.95rem;
 	transition: border-color 0.3s;
