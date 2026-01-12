@@ -3,6 +3,37 @@ main {
 	padding: 2rem;
 }
 
+.main-user{
+	display: grid;
+	place-items: center;
+	padding: 3rem;
+}
+
+.info-container {
+	max-width: 700px;
+width: 100%;
+}
+.info-form {
+	background: var(--neutral-0);
+	padding: 2rem;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px var(--shadow-primary);
+}
+
+
+.info-header {
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+.info-header h1 {
+	font-size: 1.75rem;
+	color: var(--primary-600);
+	margin-bottom: 0.5rem;
+	font-weight: 700;
+}
+
+
 .table-container {
 	overflow-x: auto;
 	border-radius: 8px;
@@ -166,6 +197,14 @@ tbody tr.pagination-hidden {
 	.container {
 		padding: 1rem;
 	}
+
+	.info-form {
+		padding: 1.5rem;}
+
+	.main-user{
+		padding: 1rem;
+	}
+
 
 	h1 {
 		font-size: 1.5rem;

@@ -22,9 +22,13 @@
 		<nav aria-labelledby="breadcrumb-label" id="breadcrumb">
 			<p>Ti trovi in: <span class="breadcrumb-page">Prenota</span></p>
 		</nav>
-		<main id="main-content" class="reservation-title" tabindex="-1">
-			<h1>Prenota un campo!</h1>
-			<form action="../controller/reservationUserController.php" method="post">
+		<main id="main-content" class="main-user" tabindex="-1">
+			<div class="info-container">
+
+			<form class="info-form" action="../controller/reservationUserController.php" method="post">
+				<div class="info-header">
+					<h1>Prenota un campo!</h1>
+				</div>
 				<div class="form-separation">
 					<div class="separation">
 						<fieldset>
@@ -113,7 +117,7 @@
 										value=""
 										onchange="getReservations()"
 										required />
-									Giorno</label
+									</label
 								>
 							</div>
 						</fieldset>
@@ -127,6 +131,7 @@
 
 				<input class="submit-button" type="submit" value="Conferma" />
 			</form>
+			</div>
 		</main>
 
 		<<-FOOTER->>
