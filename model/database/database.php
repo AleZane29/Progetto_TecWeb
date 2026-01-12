@@ -123,7 +123,7 @@ class DBConn
 
 	public function getUserReservations($userId)
 	{
-		$query = "SELECT * FROM Prenotazione WHERE utente=\"$userId\" ";
+		$query = "SELECT * FROM Prenotazione WHERE utente=\"$userId\" ORDER BY DATA DESC ";
 		$queryResult = mysqli_query($this->connection, $query) or die("Errore in DBAccess" . mysqli_error($this->connection));
 		if (mysqli_num_rows($queryResult) != 0) {
 			$result = array();
@@ -287,13 +287,6 @@ class DBConn
 		return true;
 	}
 
-	/**
-	 * Recupera le prenotazioni filtrate per sport, campo e data.
-	 * @param string $sport
-	 * @param string $campo
-	 * @param string $data
-	 * @return array
-	 */
 	public function getSelectedReservations($sport, $campo, $data)
 	{
 

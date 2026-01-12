@@ -462,7 +462,7 @@ fieldset {
 	padding-bottom: 12px;
 }
 
-.dialog h3 {
+.dialog h1 {
 	color: var(--text-bold);
 	margin-bottom: 15px;
 	text-align: center;
@@ -526,7 +526,7 @@ fieldset {
 	background: #e6f3ff;
 }
 
-.dialog-edit .dialog-header h2 {
+.dialog-edit .dialog-header h1 {
 	color: var(--primary-700);
 	margin-bottom: 1rem;
 }
