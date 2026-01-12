@@ -260,6 +260,23 @@ form {
 	text-align: center;
 }
 
+
+.date-form label {
+    display: flex;       
+    width: 100%;        
+    align-items: center; 
+    gap: 10px;          
+}
+
+.date-form input[type="date"] {
+    flex-grow: 1;       
+    width: 100%;        
+    padding: 0.5rem;    
+    font-size: 1rem;    
+    border: 1px solid #ccc; 
+    border-radius: 6px;
+}
+
 .form-separation {
 	display: flex;
 	gap: 2rem;

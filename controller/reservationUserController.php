@@ -23,6 +23,20 @@ if (!isset($_GET['sport']) || !isset($_GET['campo']) || !isset($_GET['data'])) {
 
     $timetable = isset($_POST['timetable']) ? $_POST['timetable'] : null;
 
+    if ($date && $timetable) {
+        $parts = explode("-", $timetable);
+        $timeStart = trim($parts[0]);
+        
+        $bookingTimestamp = strtotime($date . ' ' . $timeStart);
+        
+        $limitTimestamp = time() + (24 * 60 * 60);
+
+        // Se la prenotazione è prima del limite, blocca tutto
+        if ($bookingTimestamp < $limitTimestamp) {
+            exit;
+        }
+    }
+
     $parts = explode("-", $timetable);
 
     $timeStart = trim($parts[0]);

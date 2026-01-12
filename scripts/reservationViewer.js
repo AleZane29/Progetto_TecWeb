@@ -1,9 +1,8 @@
-/* FILE: reservationViewer.js
+/*
    Questo file configura la gestione prenotazioni per l'UTENTE (Account).
    L'Utente NON vede il proprio nome nella tabella, quindi le colonne scalano.
 */
 
-// Chiamiamo la funzione init definita in reservationShared.js
 initReservations({
     // Mappatura delle colonne
     colIndices: {
@@ -14,5 +13,6 @@ initReservations({
         time: 3     // Colonna "Orario" (indice 3)
     },
     // L'Utente ha la casella di ricerca per nome? NO
-    hasNameSearch: false
+    hasNameSearch: false,
+    isAdmin: false
 });

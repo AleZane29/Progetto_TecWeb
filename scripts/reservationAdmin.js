@@ -1,9 +1,8 @@
-/* FILE: reservationAdmin.js
+/*
    Questo file configura la gestione prenotazioni per l'ADMIN.
    L'Admin ha una colonna in più all'inizio (Cliente).
 */
 
-// Chiamiamo la funzione init definita in reservationShared.js
 initReservations({
     // Mappatura delle colonne (0 è la prima colonna a sinistra)
     colIndices: {
@@ -14,5 +13,6 @@ initReservations({
         time: 4     // Colonna "Orario"  (indice 4)
     },
     // L'Admin ha la casella di ricerca per nome? SI
-    hasNameSearch: true
+    hasNameSearch: true,
+    isAdmin: true
 });

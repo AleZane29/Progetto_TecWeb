@@ -1,5 +1,3 @@
-// scripts/reservationShared.js
-
 // Variabili Globali
 let reservation = null;
 let currentRow = null;
@@ -36,10 +34,6 @@ function initReservations(config) {
     });
 }
 
-/* =========================================
-   LOGICA PAGINAZIONE
-   ========================================= */
-
 function updatePagination() {
     const filteredRows = allRows.filter((row) => row.style.display !== 'none');
     const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
@@ -67,6 +61,8 @@ function updatePagination() {
     if(nextBtn) nextBtn.disabled = currentPage === totalPages || totalPages === 0;
 
     generatePageNumbers(totalPages);
+
+    disableLateReservations();
 }
 
 function generatePageNumbers(totalPages) {
@@ -132,12 +128,9 @@ function goToPreviousPage() {
     }
 }
 
-/* =========================================
-   LOGICA FILTRI
-   ========================================= */
 
 function filterTable() {
-    // Gestione input Search Name (solo se esiste nel DOM e nella config)
+    // Gestione input Search Name 
     let searchName = '';
     const searchInput = document.getElementById('searchName');
     if (tableConfig.hasNameSearch && searchInput) {
@@ -172,7 +165,6 @@ function filterTable() {
         }
     });
     
-    // Reset alla pagina 1 quando si filtra
     currentPage = 1; 
     updatePagination();
 }
@@ -203,7 +195,6 @@ function changeSport() {
 
     courtsSelect.value = '';
     courts.forEach((courtOption) => {
-        // Ignora la prima option vuota se non ha attributi
         if (!courtOption.getAttribute("data-court-id") && courtOption.value === "") {
              courtOption.style.display = '';
              return;
@@ -218,16 +209,12 @@ function changeSport() {
     filterTable();
 }
 
-/* =========================================
-   LOGICA DIALOG DELETE
-   ========================================= */
-
 function openDeleteDialog(id) {
     reservation = id;
     const dialog = document.getElementById('dialogDelete');
     dialog.classList.add('active');
 
-    // Listener click outside (rimuovere listener precedenti per evitare duplicati sarebbe meglio, ma qui semplifichiamo)
+
     dialog.onclick = function (e) {
         if (e.target === this) closeDeleteDialog();
     };
@@ -240,7 +227,7 @@ function openDeleteDialog(id) {
 function closeDeleteDialog() {
     document.getElementById('dialogDelete').classList.remove('active');
     reservation = null;
-    document.onkeydown = null; // Rimuove listener globale escape
+    document.onkeydown = null;
 }
 
 function deleteReservation() {
@@ -258,40 +245,64 @@ function deleteReservation() {
     closeDeleteDialog();
 }
 
-/* =========================================
-   LOGICA DIALOG EDIT
-   ========================================= */
-
 function openEditDialog(id, button) {
-    reservation = id;
-    currentRow = button.closest('tr');
-    const cells = currentRow.cells;
+    const row = button.closest('tr');
+    const cells = row.cells;
     const indices = tableConfig.colIndices;
 
-    // Popola campo Cliente (Solo Admin)
+    // Se NON Admin, non puoi aprire una prenotazione che inizia entro 24 ore
+    if (!tableConfig.isAdmin) {
+        const dateStrCheck = cells[indices.date].textContent;
+        const timeStrCheck = cells[indices.time].textContent.split(' - ')[0];
+        const isoDateCheck = convertDate(dateStrCheck);
+        const reservationDate = new Date(`${isoDateCheck}T${timeStrCheck}:00`);
+        const now = new Date();
+        const limitMs = 24 * 60 * 60 * 1000;
+
+        if ((reservationDate - now) < limitMs) {
+            alert("⚠️ Non modificabile: mancano meno di 24 ore all'evento.");
+            return; // Blocca l'apertura
+        }
+    }
+
+    reservation = id;
+    currentRow = row;
+
+    
+    const today = new Date();
+    let minDateObj = new Date(today);
+
+    if (tableConfig.isAdmin) {
+        // ADMIN: Può selezionare da OGGI in poi
+    } else {
+        // UTENTE: Può selezionare solo da DOMANI in poi
+        minDateObj.setDate(today.getDate() + 1);
+    }
+    
+    const minDateString = minDateObj.toISOString().split('T')[0];
+    
+    const dateInput = document.getElementById('editData');
+    if (dateInput) {
+        dateInput.setAttribute('min', minDateString);
+    }
+
     const editCliente = document.getElementById('editCliente');
     if (editCliente && indices.name !== null) {
         editCliente.value = cells[indices.name].textContent;
     }
 
-    // Popola Sport
     document.getElementById('editSport').value = cells[indices.sport].textContent;
-    changeSportDialog(); // Aggiorna i campi disponibili in base allo sport
+    changeSportDialog(); 
 
-    // Popola Campo (Rimuove "Campo " dalla stringa)
     document.getElementById('editCampo').value = cells[indices.court].textContent.split(' ')[1];
 
-    // Popola Data (Formato DD/MM/YYYY presente in tabella -> input type date vuole YYYY-MM-DD)
-    // Se nel tuo HTML hai già la funzione o il valore pronto, usa quello. 
-    // Qui assumo che nella cella ci sia DD/MM/YYYY e l'input date voglia YYYY-MM-DD
     const dateStr = cells[indices.date].textContent;
-    const dateForInput = convertDate(dateStr); // Riutilizziamo la funzione helper
+    const dateForInput = convertDate(dateStr); 
     document.getElementById('editData').value = dateForInput;
 
-    // Popola Orario
     document.getElementById('editOrario').value = cells[indices.time].textContent;
 
-    changeDateDialog(); // Aggiorna disponibilità orari
+    changeDateDialog(); 
 
     const dialog = document.getElementById('editDialog');
     dialog.classList.add('active');
@@ -332,48 +343,78 @@ function changeSportDialog() {
 }
 
 function changeDateDialog() {
-    const filterDate = document.getElementById('editData').value;
-    const sport = document.getElementById('editSport').value;
-    const court = document.getElementById('editCampo').value;
+    const dateInput = document.getElementById('editData').value;
+    const courtInput = document.getElementById('editCampo').value;
+    const timeSelect = document.getElementById('editOrario');
     
-    // Qui serve sapere gli indici per scansionare le ALTRE righe
-    const indices = tableConfig.colIndices;
-    
-    const rows = document.querySelectorAll('#tableBody tr');
-    const timeOptions = document.querySelectorAll('#editOrario option');
-    const bookedTimes = new Set();
-
-    rows.forEach((row) => {
-        if (row !== currentRow) { // Non controllo me stesso
-            const rowSport = row.cells[indices.sport].textContent;
-            // Nota: nella tabella è scritto "Campo 5", nel value del select è "5". 
-            // Controllo loose con includes per sicurezza
-            const rowCourt = row.cells[indices.court].textContent; 
-            const date = row.cells[indices.date].textContent;
-            const time = row.cells[indices.time].textContent;
-
-            const matchSport = !sport || rowSport.includes(sport);
-            const matchCourt = !court || rowCourt.includes(court);
-            const matchDate = !filterDate || convertDate(date) === filterDate;
-
-            if (filterDate && matchSport && matchCourt && matchDate) {
-                bookedTimes.add(time);
-            }
-        }
-    });
-
-    timeOptions.forEach((option) => {
-        if (bookedTimes.has(option.value)) {
-            option.disabled = true;
-        } else {
-            option.disabled = false;
-        }
-    });
-
-    // Se l'orario attualmente selezionato è diventato non disponibile (conflitto generato) resetta
-    if (bookedTimes.has(document.getElementById('editOrario').value)) {
-        document.getElementById('editOrario').value = '';
+    // Se non ho data o campo, resetto tutto
+    if (!dateInput || !courtInput) {
+        Array.from(timeSelect.options).forEach(opt => {
+            opt.disabled = false;
+            opt.hidden = false;
+            opt.style.display = '';
+        });
+        return;
     }
+
+    const now = new Date(); 
+    const limitTime = new Date(now.getTime() + (24 * 60 * 60 * 1000)); 
+
+
+    const formData = new FormData();
+    formData.append('action', 'get_slots');
+    formData.append('court', courtInput);
+    formData.append('date', dateInput);
+    
+    if (reservation) {
+        formData.append('excludeId', reservation);
+    }
+
+    fetch('../controller/editReservation.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(bookedSlots => {
+
+        const currentVal = timeSelect.value;
+        let currentValIsValid = true;
+
+        Array.from(timeSelect.options).forEach((option) => {
+            
+            const isBooked = bookedSlots.some(slot => slot.trim() === option.value.trim());
+
+            let isTooSoon = false;
+            const startTimeString = option.value.split(' - ')[0]; 
+            if (startTimeString) {
+
+                const slotDate = new Date(`${dateInput}T${startTimeString}`);
+                
+                // Se la data dello slot è precedente al limite delle 24 ore, è troppo presto
+                if (slotDate < limitTime) {
+                    isTooSoon = true;
+                }
+            }
+
+            // SE È OCCUPATO OPPURE È TROPPO PRESTO -> NASCONDI
+            if (isBooked || isTooSoon) {
+                option.disabled = true;
+                option.hidden = true;         
+                option.style.display = 'none'; 
+
+            } else {
+                // LIBERO E VALIDO
+                option.disabled = false;
+                option.hidden = false;
+                option.style.display = ''; 
+            }
+        });
+
+        if (!currentValIsValid) {
+            timeSelect.value = '';
+        }
+    })
+    .catch(err => console.error("Errore recupero orari:", err));
 }
 
 function confirmEdit() {
@@ -382,17 +423,18 @@ function confirmEdit() {
     const data = document.getElementById('editData').value;
     const timeVal = document.getElementById('editOrario').value;
     
-    if(!timeVal) return false; // Sicurezza
+    if(!timeVal) return false; 
 
     const timeStart = timeVal.split(' - ')[0];
     const timeEnd = timeVal.split(' - ')[1];
     
     editReservation(sport, court, data, timeStart, timeEnd);
-    return false; // Previene submit form HTML standard
+    return false; 
 }
 
 function editReservation(sport, court, date, timeStart, timeEnd) {
     const data = new URLSearchParams();
+    data.append('action', 'save');
     data.append('idPrenotazione', reservation);
     data.append('sport', sport);
     data.append('court', court);
@@ -405,9 +447,74 @@ function editReservation(sport, court, date, timeStart, timeEnd) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: data
     })
-    .then(() => {
-        location.reload();
-        alert('Prenotazione modificata con successo!');
+    .then(async (response) => {
+        if (response.ok) {
+            location.reload();
+            alert('Prenotazione modificata con successo!');
+        } else {
+            try {
+                const errorData = await response.json();
+                alert("IMPOSSIBILE MODIFICARE: " + (errorData.message || "Errore sconosciuto"));
+            } catch(e) {
+                alert("Errore server generico.");
+            }
+        }
     })
     .catch((error) => console.error('Error:', error));
+}
+
+/**
+ * Scansiona la tabella e disabilita i bottoni modifica in base alle regole:
+ * - ADMIN: Disabilita solo se l'evento è già passato.
+ * - UTENTE: Disabilita se mancano meno di 24 ore.
+ */
+function disableLateReservations() {
+    // Se non ci sono righe, non fare nulla
+    if (!allRows || allRows.length === 0) return;
+
+    const indices = tableConfig.colIndices;
+    const now = new Date();
+
+    // CALCOLO DEL LIMITE
+    // Se isAdmin è true -> limite 0 (basta che non sia passato)
+    // Se isAdmin è false -> limite 86400000 ms (24 ore)
+    const limitMs = tableConfig.isAdmin ? 0 : (24 * 60 * 60 * 1000);
+
+    allRows.forEach((row) => {
+        // 1. Recuperiamo Data e Ora dalla riga
+        const dateStr = row.cells[indices.date].textContent; 
+        const timeStr = row.cells[indices.time].textContent.split(' - ')[0];
+
+        // 2. Creiamo l'oggetto Date della prenotazione
+        const isoDate = convertDate(dateStr); // Usa la tua funzione helper
+        const reservationDate = new Date(`${isoDate}T${timeStr}:00`);
+
+        // 3. Calcoliamo quanto manca (Differenza in millisecondi)
+        const diff = reservationDate - now;
+
+        // 4. Troviamo il bottone "Modifica" in questa riga
+        const editBtn = row.querySelector('.btn-edit');
+
+        if (editBtn) {
+            // SE SIAMO SOTTO IL LIMITE (Troppo tardi o già passato)
+            if (diff < limitMs) {
+                editBtn.disabled = true;
+                
+                // Stile visivo per far capire che è disabilitato
+                editBtn.style.opacity = "0.4";        // Sbiadito
+                editBtn.style.cursor = "not-allowed"; // Cursore col divieto
+                
+                // Tooltip che spiega perché
+                editBtn.title = tableConfig.isAdmin 
+                    ? "Evento già terminato" 
+                    : "Non modificabile: mancano meno di 24 ore";
+            } else {
+                // Assicuriamoci che sia abilitato (utile se ricarichi o filtri)
+                editBtn.disabled = false;
+                editBtn.style.opacity = "1";
+                editBtn.style.cursor = "pointer";
+                editBtn.removeAttribute('title');
+            }
+        }
+    });
 }

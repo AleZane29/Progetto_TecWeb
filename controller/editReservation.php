@@ -1,65 +1,120 @@
 <?php
 
 require_once "../model/database/database.php";
-
 use DB\DBConn;
 
 if (!isset($_SESSION)) {
-  session_start();
+    session_start();
 }
 
-// Impostiamo l'header per dire che rispondiamo in JSON o Testo
-// (Opzionale ma buona pratica)
 header('Content-Type: application/json');
 
 $conn = new DBConn();
 $connessioneOK = $conn->openConnection();
 
 if ($connessioneOK) {
-  $id = isset($_POST['idPrenotazione']) ? $_POST['idPrenotazione'] : null;
-  $sport = isset($_POST['sport']) ? $_POST['sport'] : null;
-  $court = isset($_POST['court']) ? $_POST['court'] : null;
-  $date = isset($_POST['date']) ? $_POST['date'] : null;
-  $timeStart = isset($_POST['timeStart']) ? $_POST['timeStart'] : null;
-  $timeEnd = isset($_POST['timeEnd']) ? $_POST['timeEnd'] : null;
+    $action = isset($_POST['action']) ? $_POST['action'] : 'save';
 
-  // Controllo base: se mancano dati fondamentali, fermiamo tutto
-  if (!$id || !$court || !$date || !$timeStart || !$timeEnd) {
-      http_response_code(400); // Bad Request
-      echo json_encode(["error" => "Dati mancanti"]);
-      exit;
-  }
+    if ($action === 'get_slots') {
+        $court = $_POST['court'];
+        $date = $_POST['date'];
+        $excludeId = isset($_POST['excludeId']) ? $_POST['excludeId'] : null;
 
-  // 1. CONTROLLO SOVRAPPOSIZIONE
-  // Passiamo $id come 5° parametro per escludere la prenotazione attuale dal controllo
-  // (altrimenti andrebbe in conflitto con se stessa)
-  $isOverlapping = $conn->checkOverlap($court, $date, $timeStart, $timeEnd, $id);
+        $slots = $conn->getBookedSlots($court, $date, $excludeId);
+        echo json_encode($slots);
+        
+        $conn->closeConnection();
+        exit; 
+    }
 
-  if ($isOverlapping) {
-      // Codice 409: Conflict (Risorsa occupata)
-      http_response_code(409); 
-      // Inviamo un messaggio di errore testuale o JSON
-      echo "Attenzione: Il campo $court è già occupato nell'orario selezionato ($timeStart - $timeEnd).";
-      $conn->closeConnection();
-      exit(); // Interrompiamo lo script qui
-  }
+    if ($action === 'save') {
+        $id = isset($_POST['idPrenotazione']) ? $_POST['idPrenotazione'] : null;
+        $sport = isset($_POST['sport']) ? $_POST['sport'] : null;
+        $court = isset($_POST['court']) ? $_POST['court'] : null;
+        $date = isset($_POST['date']) ? $_POST['date'] : null;
+        $timeStart = isset($_POST['timeStart']) ? $_POST['timeStart'] : null;
+        $timeEnd = isset($_POST['timeEnd']) ? $_POST['timeEnd'] : null;
 
-  // 2. RECUPERO PREZZO E AGGIORNAMENTO
-  $price = $conn->getPriceSport($sport);
-  
-  $result = $conn->updateReservation($id, $sport, $court, $date, $timeStart, $timeEnd, $price);
+        if (!$id || !$court || !$date || !$timeStart || !$timeEnd) {
+            http_response_code(400);
+            echo json_encode(["error" => "Dati mancanti"]);
+            exit;
+        }
 
-  if ($result) {
-      http_response_code(200); // OK
-      echo json_encode(["success" => true, "message" => "Prenotazione modificata"]);
-  } else {
-      http_response_code(500); // Server Error
-      echo json_encode(["success" => false, "message" => "Errore durante l'aggiornamento nel database"]);
-  }
+        $ruoloUtente = isset($_SESSION['roleUser']) ? $_SESSION['roleUser'] : 'Cliente';
+        
+        $isAdmin = ($ruoloUtente === 'Admin');
+
+        // SE ADMIN: limite 0 secondi (basta che sia futuro)
+        // SE CLIENTE: limite 86400 secondi (24 ore)
+        $minSeconds = $isAdmin ? 0 : 86400;
+
+        $existingRes = $conn->getReservationById($id);
+        
+        if ($existingRes) {
+            $existingDateTimeStr = $existingRes['data'] . ' ' . $existingRes['ora_inizio']; 
+            
+            try {
+                $existingTime = new DateTime($existingDateTimeStr);
+                $now = new DateTime();
+                
+                $secondsDiff = $existingTime->getTimestamp() - $now->getTimestamp();
+                
+                if ($secondsDiff < $minSeconds) {
+                    http_response_code(403);
+                    $msg = $isAdmin 
+                        ? "Impossibile modificare eventi già passati." 
+                        : "Troppo tardi! Non puoi modificare una prenotazione se mancano meno di 24 ore.";
+                    echo json_encode(["message" => $msg]);
+                    exit;
+                }
+            } catch (Exception $e) {
+                // Errore parsing data
+            }
+        }
+
+        try {
+            $now = new DateTime();
+            $reservationTime = new DateTime("$date $timeStart");
+            $secondsDiff = $reservationTime->getTimestamp() - $now->getTimestamp();
+
+            if ($secondsDiff < $minSeconds) {
+                http_response_code(400);
+                $msg = $isAdmin 
+                    ? "Non puoi spostare una prenotazione nel passato." 
+                    : "La nuova data deve essere tra almeno 24 ore.";
+                echo json_encode(["message" => $msg]);
+                exit;
+            }
+
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(["message" => "Errore nel controllo data."]);
+            exit;
+        }
+        
+        $isOverlapping = $conn->checkOverlap($court, $date, $timeStart, $timeEnd, $id);
+
+        if ($isOverlapping) {
+            http_response_code(409);
+            echo json_encode(["message" => "Orario non disponibile."]);
+            exit;
+        }
+
+        $price = $conn->getPriceSport($sport);
+        $result = $conn->updateReservation($id, $sport, $court, $date, $timeStart, $timeEnd, $price);
+
+        if ($result) {
+            echo json_encode(["success" => true]);
+        } else {
+            http_response_code(500);
+            echo json_encode(["success" => false, "message" => "Errore DB"]);
+        }
+    }
 
 } else {
     http_response_code(500);
-    echo json_encode(["success" => false, "message" => "Errore di connessione al DB"]);
+    echo json_encode(["error" => "Connessione fallita"]);
 }
 
 $conn->closeConnection();

@@ -247,10 +247,26 @@ class DBConn
 
 	public function updateReservation($id, $sport, $court, $data, $timeStart, $timeEnd, $price)
 	{
-		$query = "UPDATE Prenotazione SET numero_campo = \"$court\", tipo_campo = \"$sport\" , data = \"$data\" , ora_inizio = \"$timeStart\" , ora_fine = \"$timeEnd\", prezzo = \"$price\" WHERE id=\"$id\"";
+		$query = "UPDATE Prenotazione SET 
+				numero_campo = \"$court\", 
+				tipo_campo = \"$sport\", 
+				data = \"$data\", 
+				ora_inizio = \"$timeStart\", 
+				ora_fine = \"$timeEnd\", 
+				prezzo = \"$price\" 
+				WHERE id=\"$id\"";
 
-		mysqli_query($this->connection, $query) or die(mysqli_error($this->connection));
-		return mysqli_affected_rows($this->connection) > 0;
+		// Eseguiamo la query
+		$result = mysqli_query($this->connection, $query);
+
+		// Se $result è FALSE, significa che c'è stato un errore SQL grave (sintassi, connessione persa, etc.)
+		if (!$result) {
+			
+			return false;
+		}
+
+		// Ritorniamo TRUE anche se le righe modificate sono 0 (nessun cambiamento ai dati).
+		return true;
 	}
 
 
@@ -330,5 +346,49 @@ class DBConn
 
         // Se total > 0, significa che c'è almeno una sovrapposizione
         return $row['total'] > 0;
+    }
+
+	public function getBookedSlots($court, $date, $excludeId = null)
+	{
+		$query = "SELECT ora_inizio, ora_fine FROM Prenotazione 
+				WHERE numero_campo = ? AND data = ?";
+
+		if ($excludeId) {
+			$query .= " AND id != ?";
+		}
+
+		$stmt = mysqli_prepare($this->connection, $query);
+
+		if ($excludeId) {
+			mysqli_stmt_bind_param($stmt, "ssi", $court, $date, $excludeId);
+		} else {
+			mysqli_stmt_bind_param($stmt, "ss", $court, $date);
+		}
+
+		mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
+		
+		$bookedSlots = [];
+		while ($row = mysqli_fetch_assoc($result)) {
+			$start = substr($row['ora_inizio'], 0, 5); 
+			$end = substr($row['ora_fine'], 0, 5);
+			
+			$bookedSlots[] = $start . " - " . $end;
+		}
+		
+		mysqli_stmt_close($stmt);
+		return $bookedSlots;
+	}
+
+	public function getReservationById($id)
+    {
+        $query = "SELECT * FROM Prenotazione WHERE id = ?";
+        $stmt = mysqli_prepare($this->connection, $query);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+        mysqli_stmt_close($stmt);
+        return $row;
     }
 }
