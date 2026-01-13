@@ -1,0 +1,371 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[absolute]{textpos}
+\usepackage[default]{raleway}
+\usepackage{titlesec, comment, tabularx, makecell, listings, array, setspace, geometry, graphicx, xcolor, xparse, fancyvrb, relsize, fancyhdr, booktabs, hyperref}
+\usepackage{colortbl}
+\usepackage{multirow}
+%\geometry{a4paper, left=2cm, right=2cm, top=2cm, bottom=2.5cm}
+\renewcommand{\headrulewidth}{0pt}
+
+% Definisci uno stile per i comandi git
+\definecolor{light-gray}{gray}{0.92}
+
+\lstdefinestyle{code}{
+    frame=single,
+    framesep=1mm,
+    rulecolor=\color{light-gray},
+    backgroundcolor=\color{light-gray},
+    basicstyle=\ttfamily,
+}
+
+% ----------------------------- Definizione tabella ---------------------------
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+%\setcellgapes{2ex} % Imposta l'altezza dell'header (2ex)
+
+
+% ------------------------------Metadati indice --------------------------------
+\title{\textbf{\fontsize{28}{6}\selectfont Indice}}
+\author{\fontsize{14}{6}\selectfont GammardX}
+\date{Novembre 6, 2025}
+
+
+% -----------------------------Creazione footer --------------------------------
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{
+    \parbox[c]{0.8cm}{\includegraphics[width=0.8cm]{../assets/logo_white.png}}
+    \textcolor[RGB]{120, 120, 120}{$\cdot$ Relazione tecnica}
+}
+\rfoot{\thepage}
+
+% --------------------------Modifica formato hyperlinks ------------------------
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,      
+    pdftitle={Relazione progetto TecWeb 25/26}
+}
+
+% ------------------------------- Valore sotto-paragrafi indice --------------------------------------
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\titleformat{\section}
+{\normalfont\huge\bfseries}{\thesection}{0.2cm}{}
+\titlespacing*{\paragraph}{0pt}{0.5cm}{0.1cm}
+
+\titleformat{\subsection}
+{\normalfont\Large\bfseries}{\thesubsection}{0.2cm}{}
+\titlespacing*{\paragraph}{0pt}{0.5cm}{0.1cm}
+
+\titleformat{\subsubsection}
+{\normalfont\large\bfseries}{\thesubsubsection}{0.2cm}{}
+\titlespacing*{\paragraph}{0pt}{0.5cm}{0.1cm}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{0.2cm}{}
+\titlespacing*{\paragraph}{0pt}{0.5cm}{0.1cm}
+
+% ------------------------------- Front Page ---------------------------------------
+
+\begin{document}
+
+% --------------------------Aggiunta firma finale ------------------------
+\begin{textblock*}{\textwidth}(0.85\textwidth, 1.16\textheight)
+    Il responsabile: Alessio Zanella
+\end{textblock*}
+% ------------------------------------------------------------------------
+
+\flushleft
+\renewcommand{\arraystretch}{3.5}
+
+\pagestyle{fancy}
+\begin{center}
+\fontsize{24}{10}\selectfont \textbf{Centro Sportivo SportLab} \\
+\vspace{0.5cm}
+\includegraphics[width = 0.2\textwidth]{../assets/logo_white.png} \\
+\vspace{1cm}
+\fontsize{16}{6}\selectfont Relazione progetto Tecnologie Web $\cdot$  Anno: 2025/2026\\
+\vspace{1cm}
+
+\textbf{Email referente}
+\vspace{0.3cm}
+
+alessio.zanella.2@studenti.unipd.it
+
+\vspace{1cm}
+\textbf{Team di Sviluppo}
+\vspace{0.3cm}
+
+\begin{tabular}{|C{8cm}|C{4cm}|}
+\hline
+\textbf{Nome} & \textbf{Matricola} \\
+\hline
+Leonardo Preo & 2101092\\
+\hline
+Alessio Zanella & 2101079 \\
+\hline
+Leonardo Salviato & 2101086 \\
+\hline
+Romascu Mihaela-Mariana & 2079726\\
+\hline
+\end{tabular}
+
+\vspace{1cm}
+
+\textbf{Credenziali di Accesso}
+\vspace{0.3cm}
+
+\begin{tabular}{|C{4cm}|C{5cm}|C{4cm}|}
+\hline
+\textbf{Ruolo} & \textbf{Email} & \textbf{Password} \\
+\hline
+Cliente & user@email.com & User \\
+\hline
+Admin & admin@email.com & Admin \\
+\hline
+\end{tabular}
+\end{center}
+\pagebreak 
+
+% ------------------------- Generazione automatica indice ----------------------
+\setstretch{1.5}
+\maketitle
+\thispagestyle{fancy}
+\tableofcontents
+\setstretch{1.2}
+\pagebreak
+
+% ------------------------ INIZIO DOCUMENTO ----------------------
+\flushleft
+
+\section{Introduzione}
+
+Il progetto sviluppato è un'applicazione web per la pubblicizzazione dei servizi forniti dal centro sportivo SportLab, e funge allo stesso tempo da gestionale per le prenotazioni di campi presso il centro sportivo stesso. Facilitando il lavoro della segreteria del centro e consentendo una gestione efficiente e corretta delle prenotazioni, evitando sovrapposizioni grazie a controlli automatizzati. Permette inoltre di modificare, cancellare e consultare facilmente le prenotazioni in tempo reale. L'obiettivo principale è fornire un'interfaccia intuitiva e accessibile che consenta ai clienti di prenotare campi sportivi e agli amministratori di gestire tali prenotazioni. 
+
+Il progetto è stato sviluppato ponendo particolare attenzione all'accessibilità, all'esperienza utente e alla facile fruibilità del sito anche da dispositivi mobile.
+
+\subsection{Analisi dell'utenza}
+Il sito sarà utilizzato da un pubblico eterogeneo, che comprende utenti con diversa familiarità con le tecnologie digitali. Per questo motivo l’interfaccia dovrà essere progettata in modo semplice, intuitivo e accessibile, così da risultare facilmente utilizzabile anche dagli utenti meno esperti.
+
+Per gestire questa criticità si è adottata la metafora della pesca per creare la struttura del sito: 
+
+Il \textbf{tiro perfetto} è rappresentato dalla segnalazione delle funzionalità principali (es. \textit{Prenota}) con un bottone di dimensioni maggiori e colore più appariscente rispetto al resto delle voci presenti nel menù.
+
+La \textbf{trappola per aragoste} si può individuare nel menù che espone in modo ordinato i contenuti presenti, e nelle sezioni a fine pagina che offrono un accesso veloce alle funzionalità principali del sito.
+
+La caratteristica della \textbf{pesca a strascico} è garantita dalla struttura di dimensioni ridotte e intuitiva dell'applicativo.
+
+La \textbf{boa di segnalazione} è incarnata dal breadcrumb presente in ogni pagina del sito web, che permette all'utente di potersi orientare durante la navigazione del sito.
+
+\newpage
+\section{Funzionalità del sistema}
+
+\subsection{Funzionalità per gli Utenti Registrati}
+
+Gli utenti registrati e autenticati hanno accesso alle seguenti funzionalità:
+
+\begin{itemize}
+    \item \textbf{Prenota:} Gli utenti possono effettuare prenotazioni presso il centro sportivo. Per completare una prenotazione, devono indicare il tipo di sport desiderato (Tennis, Basket, Calcio a 5), la data e l'orario di prenotazione (con fasce orarie predefinite). Il sistema calcola automaticamente il prezzo sulla base del tipo di sport selezionato.
+    
+    \item \textbf{Account:} Gli utenti hanno accesso a una sezione dedicata dove possono visualizzare e modificare le loro informazioni personali (nome, cognome, email e data di nascita). Dalla pagina dell'account, gli utenti hanno la possibilità di effettuare il logout dalla propria sessione.
+    Nella medesima pagina è possibile consultare una tabella contenente tutte le prenotazioni effettuate dall'utente, oltre alla visualizzazione, la tabella permette di eliminare e modificare le prenotazioni con almeno 24 ore d'anticipo.
+    La tabella dispone di filtri per rendere più semplice la ricerca della prenotazione interessata.
+    Questa pagina è protetta da verifica di autenticazione e reindirizza gli utenti non loggati alla pagina di login.
+\end{itemize}
+
+\subsection{Funzionalità per gli Amministratori}
+
+Gli amministratori hanno accesso a funzionalità avanzate di gestione:
+
+\begin{itemize}
+    \item \textbf{Prenotazioni:} Gli amministratori possono consultare tutte le prenotazioni ricevute in una tabella riepilogativa. Possono modificare i dettagli delle prenotazioni (sport, campo, data, orario) e eliminare prenotazioni quando necessario per gestire al meglio la disponibilità dei campi.
+    
+    \item \textbf{Account:} Come gli utenti ordinari, gli amministratori hanno la possibilità di effettuare il logout dalla propria sessione, modificare i dati dell'account e gestire le proprie prenotazioni.
+\end{itemize}
+
+\subsection{Funzionalità per gli Utenti Generici (Non Autenticati)}
+
+Gli utenti che non hanno effettuato l'accesso possono:
+
+\begin{itemize}
+    \item Visualizzare la pagina home con informazioni sulla struttura e i servizi offerti.
+    
+    \item Accedere alla pagina "Servizi" per conoscere i diversi tipi di sport disponibili e le relative tariffe.
+    
+    \item Navigare alla pagina di login per effettuare l'accesso o alla pagina di registrazione per creare un nuovo account.
+\end{itemize}
+
+\section{DESIGN DEL SITO}
+
+L'interfaccia è stata progettata seguendo i principi di usabilità e accessibilità. Gli utenti possono orientarsi facilmente attraverso un header con logo, menù di navigazione principale e breadcrumb che mostra il nome della pagina corrente. Il menù di navigazione è accessibile da dispositivi mobile tramite un pulsante di toggle che commuta lo stato aria-expanded. La struttura utilizza tag HTML semantici (header, nav, section, article, footer) per organizzare il contenuto in modo logico e migliorare la comprensione da parte degli screen reader.
+
+\subsection{Strutturazione del Contenuto Specifico delle Pagine}
+
+Di seguito viene presentata la strutturazione del contenuto specifico di ogni pagina:
+
+\begin{itemize}
+    \item \textbf{Home:} In questa pagina viene presentato il centro sportivo ``SportLab''. Viene raccontata la storia del centro, di come è stato creato e come è arrivato fino a oggi. Nel testo è presente un link che permette di raggiungere la pagina dei servizi offerti. Le immagini informative presenti nella pagina hanno attributi \texttt{alt} descrittivi, fornendo descrizioni meaningful per gli screen reader.
+    
+    \item \textbf{Servizi:} In questa pagina vengono presentati i servizi del centro sportivo ``SportLab'', permettendo così ai clienti di verificare cosa è possibile prenotare. Esso è stato suddiviso in tre principali categorie: Tennis, Calcio5 e Basket. Ogni elemento di ogni categoria viene presentato con un'icona rappresentativa, il nome e il costo orario.
+    
+    \item \textbf{Prenotazioni:} Agli utenti registrati, in questa pagina, il form permette di effettuare delle prenotazioni selezionando il tipo di sport desiderato (Tennis, Basket, Calcio5 con icone rappresentative), la data desiderata e la fascia oraria (con opzioni predefinite). Il prezzo viene calcolato automaticamente in base al tipo di sport scelto e visualizzato prima della conferma. Agli amministratori, in questa pagina, vengono presentate tutte le prenotazioni in una tabella riepilogativa con i dettagli (utente, sport, campo, numero, data, orario, prezzo). Essi hanno la possibilità di modificare e eliminare le prenotazioni. Questa pagina è accessibile solo agli utenti autenticati.
+    
+    \item \textbf{Accedi:} In questa pagina l'utente registrato può effettuare l'autenticazione con le proprie credenziali valide oppure in caso contrario può entrare sulla pagina di registrazione per creare un nuovo account. Il form di login richiede l'email e la password, mentre il form per la registrazione, oltre a questi, richiede nome, cognome e data di nascita.
+    
+    \item \textbf{Account:} In questa pagina gli utenti autenticati possono visualizzare le loro informazioni personali (nome, cognome, email e data di nascita) e hanno la possibilità di effettuare il logout dalla propria sessione.
+    
+    \item \textbf{Errore 404:} Questa pagina contiene un messaggio chiaro che informa l'utente che ``La pagina che stai cercando non esiste o è stata spostata''. Il design è semplice e intuitivo, con un link ben visibile che reindirizza l'utente alla pagina principale del sito.
+\end{itemize}
+
+\section{SICUREZZA}
+
+La sicurezza dei dati è stata una priorità fondamentale nello sviluppo del progetto. Il progetto implementa un approccio multi-livello per proteggere i dati degli utenti:
+
+\begin{itemize}
+    \item \textbf{Hashing delle password:} Le password degli utenti vengono hashate utilizzando l'algoritmo bcrypt prima di essere memorizzate nel database, garantendo che le credenziali rimangono protette anche in caso di accesso non autorizzato al database.
+    
+    \item \textbf{Protezione contro SQL Injection:} Le query critiche che coinvolgono input utente (login, registrazione, creazione prenotazioni, modifica dati utente) utilizzano prepared statements con \texttt{mysqli\_prepare()} e \texttt{mysqli\_stmt\_bind\_param()} nel file \texttt{model/database/database.php}. Ad esempio, la funzione \texttt{getUserByEmail()} utilizza prepared statements per prevenire attacchi injection. Tuttavia, alcune query per operazioni amministrative (come la visualizzazione e eliminazione di prenotazioni) utilizzano ancora concatenazione di stringhe e richiederebbero maggiore attenzione.
+    
+    \item \textbf{Protezione contro XSS:} Nei form di login e registrazione, i dati inseriti dagli utenti vengono processati tramite \texttt{password\_hash()} per la password (nel file \texttt{controller/registerController.php}) e i dati sono gestiti in modo sicuro. Nel file \texttt{controller/loginController.php}, i dati POST vengono utilizzati direttamente con \texttt{password\_verify()}, garantendo una verifica sicura della password senza esporre il valore in chiaro.
+    
+    \item \textbf{Gestione delle Sessioni:} L'autenticazione è gestita tramite sessioni PHP\newline (\texttt{session\_start()}) con controllo del ruolo utente. I dati di sessione includono ID utente, nome, cognome, email e data di nascita, permettendo un controllo granulare dei permessi. Ad esempio, la pagina \texttt{views/account.php} verifica l'autenticazione dell'utente e, se non loggato, lo reindirizza al login.
+\end{itemize}
+
+\section{OTTIMIZZAZIONE PER I MOTORI DI RICERCA (SEO)}
+
+\subsection{Meta Tag e Keyword}
+
+Ogni pagina del sito include il meta tag \texttt{<description>} con una descrizione specifica:
+
+\begin{itemize}
+    \item \texttt{views/pages/home.html}: ``SportLab - Presentazione, orari, contatti e annunci speciali''
+    \item \texttt{views/pages/service.html}: ``SportLab - Scopri i nostri campi e le discipline sportive: calcio a 5, tennis e basket''
+    \item \texttt{views/pages/login.html}: ``SportLab - Pagina di login''
+    \item \texttt{views/pages/register.html}: ``SportLab - Pagina di registrazione''
+    \item \texttt{views/pages/account.html}: ``SportLab - Profilo utente''
+    \item \texttt{views/pages/reservationUser.html}: ``SportLab - Pagina di prenotazione''
+    \item \texttt{views/pages/404.html}: ``Errore 404: Pagina non trovata''
+    \item \texttt{views/pages/500.html}: ``Errore 500: Errore del server''
+\end{itemize}
+
+Sebbene il meta tag description non influisca direttamente sul ranking dei motori di ricerca, una descrizione ben scritta aumenta il tasso di click-through (CTR) e migliora la percezione del sito da parte degli utenti.
+
+\section{DATABASE}
+
+Il database del progetto è basato su MySQL ed è strutturato per supportare la gestione di utenti, campi sportivi e prenotazioni.
+
+\subsection{Struttura delle Tabelle}
+
+\begin{itemize}
+    \item \textbf{Utente:} Contiene i dati degli utenti registrati (id, nome, cognome, email, data di nascita, password hashata, ruolo).
+    
+    \item \textbf{TipoCampo:} Contiene i tipi di campi disponibili (Tennis, Calcio5, Basket) con il relativo costo orario.
+    
+    \item \textbf{Campo:} Contiene i dettagli dei campi sportivi disponibili, incluso il numero del campo e il tipo di sport.
+    
+    \item \textbf{Prenotazione:} Contiene le informazioni sulle prenotazioni (id, utente, numero campo, tipo di campo, data, ora inizio, ora fine, prezzo).
+\end{itemize}
+
+\subsection{Relazioni}
+
+Le tabelle sono collegate attraverso relazioni di chiave esterna, assicurando l'integrità referenziale e facilitando la gestione dei dati. Ad esempio, ogni prenotazione è collegata a un utente e a un campo specifico.
+
+\section{TECNOLOGIE UTILIZZATE}
+
+Il progetto è stato sviluppato utilizzando le seguenti tecnologie:
+
+\begin{itemize}
+    \item \textbf{PHP:} Per la logica server-side, la gestione delle sessioni e l'accesso al database.
+    
+    \item \textbf{MySQL:} Per la gestione del database relazionale.
+    
+    \item \textbf{HTML5:} Per la struttura semantica delle pagine.
+    
+    \item \textbf{CSS3:} Per lo styling responsive e l'adattamento a diversi dispositivi.
+    
+    \item \textbf{JavaScript:} Per l'interattività lato client e la validazione dei form.
+    
+    \item \textbf{Fetch API:} Per le operazioni asincrone senza ricaricamento della pagina.
+\end{itemize}
+
+\section{CONFIGURAZIONE E SETUP}
+
+Il progetto utilizza la struttura standard PHP/MySQL con le seguenti cartelle principali: \texttt{views/} (pagine HTML/PHP), \texttt{controller/} (logica operazioni), \texttt{model/} (database), \texttt{style/} (CSS), \texttt{scripts/} (JavaScript), \texttt{assets/} (risorse).
+
+Il database viene configurato in \texttt{model/database/database.php} (host: localhost, database: alzanell, username: root, password: vuota). Per l'inizializzazione, eseguire \texttt{SportLab.sql}. Le credenziali di accesso predefinite sono: Admin (\texttt{admin@email.com}/\texttt{Admin}) e User (\texttt{user@email.com}/\texttt{User}).
+
+Il progetto richiede PHP 7.4+, MySQL 5.7+ (MariaDB 10.6) e un browser moderno con supporto HTML5/CSS3.
+
+\section{TEST EFFETTUATI}
+
+\subsection{Test delle Funzionalità Implementate}
+
+Sono state testate le varie funzionalità implementate all'interno del sito web utilizzando diversi browser (Chrome, Firefox, Safari, Opera, Edge). In particolare si è verificato che:
+
+\begin{itemize}
+    \item La visualizzazione di tutte le pagine avvenisse in modo corretto.
+    
+    \item La funzionalità di prenotazione memorizzi correttamente i dati nel database.
+    
+    \item La modifica e l'eliminazione delle prenotazioni (da parte dell'admin) vengano eseguite correttamente.
+    
+    \item La funzionalità di login e la conseguente gestione dei permessi funzionino in modo adeguato.
+    
+    \item Il layout sia responsive e si adatti correttamente a diversi tagli di schermo.
+\end{itemize}
+
+\subsection{Test di Accessibilità delle Pagine}
+
+\subsubsection{Accessibilità Generale}
+
+Per garantire che il sito sia accessibile a persone con un ampio raggio di capacità, sono stati implementati i seguenti accorgimenti:
+
+\begin{itemize}
+    \item Utilizzo di tag semantici HTML5 (\texttt{<header>}, \texttt{<nav>}, \texttt{<main>}, \texttt{<section>}, \texttt{<article>}, \texttt{<footer>})
+    \item Attributi \texttt{aria-label} e \texttt{aria-labelledby} per una migliore descrizione degli elementi
+    \item Attributi \texttt{role} per elementi non semantici (es. \texttt{role='alert'} per i messaggi di errore)
+    \item Attributi \texttt{alt} significativi per tutte le immagini decorative e informative
+    \item Corrette intestazioni logiche con \texttt{<h1>}, \texttt{<h2>}, \texttt{<h3>}
+    \item Contrasti di colore verificati secondo gli standard WCAG AA
+\end{itemize}
+
+La navigazione tramite tastiera è completamente supportata, permettendo agli utenti di navigare l'intera applicazione senza l'uso del mouse.
+
+\subsubsection{Scelta della Palette dei Colori e Verifica dei Contrasti}
+
+La palette cromatica è stata selezionata per trasmettere energia e dinamismo, con colori equilibrati e contrasti verificati secondo gli standard WCAG AA per garantire l'accessibilità a tutti gli utenti.
+
+\section{CONCLUSIONI}
+
+SportLab rappresenta un'applicazione web completa e funzionale per la gestione delle prenotazioni presso un centro sportivo. Il progetto è stato sviluppato con attenzione particolare ai principi di accessibilità, usabilità e sicurezza, garantendo un'esperienza utente inclusiva e intuitiva.
+
+I principali risultati raggiunti includono:
+
+\begin{itemize}
+    \item Un'interfaccia responsiva che si adatta perfettamente a dispositivi di diverse dimensioni (desktop, tablet, mobile)
+    \item Implementazione completa delle funzionalità di autenticazione, gestione account e prenotazioni
+    \item Misure di sicurezza robuste per proteggere i dati degli utenti tramite hashing delle password e prepared statements SQL
+    \item Accessibilità verificata attraverso l'uso appropriato di tag semantici e attributi ARIA
+    \item Meta tag SEO implementati in tutte le pagine per migliorare la visibilità nei motori di ricerca
+    \item Messaggi di errore specifici e user-friendly che guidano gli utenti verso soluzioni
+\end{itemize}
+
+Il progetto è stato testato su molteplici browser (Chrome, Firefox, Safari, Opera, Edge) e la validazione del codice HTML e CSS è stata eseguita tramite i tool ufficiali del W3C. Sebbene il progetto sia completamente funzionale, future migliorie potrebbero includere:
+
+\begin{itemize}
+    \item Implementazione di prepared statements per tutte le query database, comprese quelle amministrative
+    \item Aggiunta di funzionalità di ricerca e filtraggio avanzato per le prenotazioni
+    \item Sistema di notifiche email per le prenotazioni e i cambiamenti di stato
+    \item Dashboard amministrativa più completa con statistiche e rapporti
+    \item Implementazione di autenticazione a due fattori per maggiore sicurezza
+\end{itemize}
+
+\end{document}
