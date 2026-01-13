@@ -203,7 +203,7 @@ Gli utenti che non hanno effettuato l'accesso possono:
     \item Navigare alla pagina di login per effettuare l'accesso o alla pagina di registrazione per creare un nuovo account.
 \end{itemize}
 
-\section{DESIGN DEL SITO}
+\section{Design del sito}
 
 L'interfaccia è stata progettata seguendo i principi di usabilità e accessibilità. Gli utenti possono orientarsi facilmente attraverso un header con logo, menù di navigazione principale e breadcrumb che mostra il nome della pagina corrente. Il menù di navigazione è accessibile da dispositivi mobile tramite un pulsante di toggle che commuta lo stato aria-expanded. La struttura utilizza tag HTML semantici (header, nav, section, article, footer) per organizzare il contenuto in modo logico e migliorare la comprensione da parte degli screen reader.
 
@@ -212,17 +212,21 @@ L'interfaccia è stata progettata seguendo i principi di usabilità e accessibil
 Di seguito viene presentata la strutturazione del contenuto specifico di ogni pagina:
 
 \begin{itemize}
-    \item \textbf{Home:} In questa pagina viene presentato il centro sportivo ``SportLab''. Viene raccontata la storia del centro, di come è stato creato e come è arrivato fino a oggi. Nel testo è presente un link che permette di raggiungere la pagina dei servizi offerti. Le immagini informative presenti nella pagina hanno attributi \texttt{alt} descrittivi, fornendo descrizioni meaningful per gli screen reader.
+    \item \textbf{Home:} In questa pagina viene presentato il centro sportivo \textit{SportLab}. Viene raccontata la storia del centro, i benefici dello sport e l'attrezzatura presente nel centro. Inoltre sono esposti gli orari di apertura durante la settimana ed eventuali annunci straordinari recenti.
     
-    \item \textbf{Servizi:} In questa pagina vengono presentati i servizi del centro sportivo ``SportLab'', permettendo così ai clienti di verificare cosa è possibile prenotare. Esso è stato suddiviso in tre principali categorie: Tennis, Calcio5 e Basket. Ogni elemento di ogni categoria viene presentato con un'icona rappresentativa, il nome e il costo orario.
+    \item \textbf{Servizi:} In questa pagina vengono presentati i servizi del centro sportivo \textit{SportLab}, permettendo così ai clienti di verificare cosa è possibile prenotare. Sono descritti i campi degli sport disponibili: Tennis, Calcio a 5 e Basket. Ogni sport è presentato tramite una card descrittiva nella quale vengono mostrati: i costi di prenotazione, le immagini dei campi, l'attrezzatura disponibile in ogni campo e altre informazioni utili. A fine pagina si trova una mappa della struttura per facilitare l'identificazione della struttura e dei vari campi.
     
-    \item \textbf{Prenotazioni:} Agli utenti registrati, in questa pagina, il form permette di effettuare delle prenotazioni selezionando il tipo di sport desiderato (Tennis, Basket, Calcio5 con icone rappresentative), la data desiderata e la fascia oraria (con opzioni predefinite). Il prezzo viene calcolato automaticamente in base al tipo di sport scelto e visualizzato prima della conferma. Agli amministratori, in questa pagina, vengono presentate tutte le prenotazioni in una tabella riepilogativa con i dettagli (utente, sport, campo, numero, data, orario, prezzo). Essi hanno la possibilità di modificare e eliminare le prenotazioni. Questa pagina è accessibile solo agli utenti autenticati.
+    \item \textbf{Prenotazioni:} Agli utenti registrati, in questa pagina, il form permette di effettuare delle prenotazioni selezionando: sport, campo, data e fascia oraria. Il prezzo viene calcolato automaticamente in base al tipo di sport scelto. Agli amministratori, in questa pagina, vengono presentate tutte le prenotazioni, in una tabella riepilogativa con i dettagli (utente, sport, campo, numero, data, orario, prezzo), ordinate in ordine decrescente per data di prenotazione. Essi hanno la possibilità di modificare e eliminare le prenotazioni, e vengono messi a loro disposizione una serie di filtri per facilitare la ricerca delle prenotazioni desiderate.
     
-    \item \textbf{Accedi:} In questa pagina l'utente registrato può effettuare l'autenticazione con le proprie credenziali valide oppure in caso contrario può entrare sulla pagina di registrazione per creare un nuovo account. Il form di login richiede l'email e la password, mentre il form per la registrazione, oltre a questi, richiede nome, cognome e data di nascita.
+    \item \textbf{Login:} In questa pagina l'utente registrato può effettuare l'autenticazione con le proprie credenziali. Il form di login richiede l'email e la password, nel caso in cui l'utente non abbia effettuato la registrazione è possibile usare il link apposito a fine form per passare alla pagina di registrazione.
+
+    \item \textbf{Registrazione:} La seguente pagina contiene il form di registrazione nel quale vengono richiesti: Nome, Cognome, Email, Data di nascita e Password. Nel caso in cui l'utente sia già registrato, può usufruire del link a fine form per essere portato al form di login. 
     
-    \item \textbf{Account:} In questa pagina gli utenti autenticati possono visualizzare le loro informazioni personali (nome, cognome, email e data di nascita) e hanno la possibilità di effettuare il logout dalla propria sessione.
+    \item \textbf{Account:} In questa pagina gli utenti autenticati possono visualizzare e modificare le loro informazioni personali (nome, cognome, email e data di nascita) e hanno la possibilità di effettuare il logout dalla propria sessione. A seguire è presente anche la tabella delle prenotazioni effettuate dall'utente. La tabella permette di modificare o eliminare le prenotazioni che hanno una data di prenotazione superiore alle 24 ore dalla data odierna.
     
-    \item \textbf{Errore 404:} Questa pagina contiene un messaggio chiaro che informa l'utente che ``La pagina che stai cercando non esiste o è stata spostata''. Il design è semplice e intuitivo, con un link ben visibile che reindirizza l'utente alla pagina principale del sito.
+    \item \textbf{Errore 404:} Questa pagina contiene un messaggio chiaro che informa l'utente che " La pagina che stai cercando non esiste o è stata spostata ". Il design è semplice e intuitivo, con un link ben visibile che reindirizza l'utente alla pagina principale del sito.
+
+    \item \textbf{Errore 500:} Come per l'errore 404, la pagina mostra un messaggio di errore, in questo caso causato dal server, e mette a disposizione un link per tornare alla home.
 \end{itemize}
 
 \section{SICUREZZA}
