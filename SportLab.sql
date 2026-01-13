@@ -58,31 +58,5 @@ INSERT INTO Campo (numero, tipo) VALUES
 (2, 'Tennis'),
 (3, 'Tennis'),
 (1, 'Calcio5'),
-(1, 'Basket'),
+(2, 'Calcio5'),
 (2, 'Basket');
-
-
--- -- Prenotazione per Tennis (Campo 1, 2 o 3)
--- INSERT INTO prenotazione (utente, numero_campo, tipo_campo, data, ora_inizio, ora_fine, prezzo) 
--- VALUES (1, 3, 'Tennis', '2024-06-15', '8:00:00', '9:30:00', 12.00);
-
--- -- Prenotazione per Calcio5 (Campo 1 o 2)
--- INSERT INTO prenotazione (utente, numero_campo, tipo_campo, data, ora_inizio, ora_fine, prezzo) 
--- VALUES (2, 1, 'Calcio5', '2024-06-15', '9:30:00', '11:00:00', 20.00);
-
--- -- Prenotazione per Basket (Solo Campo 1)
--- INSERT INTO prenotazione (utente, numero_campo, tipo_campo, data, ora_inizio, ora_fine, prezzo) 
--- VALUES (3, 1, 'Basket', '2024-06-16', '11:00:00', '12:30:00', 10.00);
-
-
--- CREATE TABLE Prenotazione (
---     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
---     utente INTEGER NOT NULL,
---     numero_campo INTEGER NOT NULL,
---     tipo_campo VARCHAR(20) NOT NULL,
---     dataora_inizio DATETIME NOT NULL,
---     dataora_fine DATETIME NOT NULL,
-
---     FOREIGN KEY (utente) REFERENCES Utente(id) ON DELETE CASCADE,
---     FOREIGN KEY (numero_campo, tipo_campo) REFERENCES Campo(numero, tipo) ON DELETE CASCADE
--- );
