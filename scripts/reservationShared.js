@@ -414,11 +414,6 @@ function resetTime() {
     changeDateDialog();
 }
 
-function resetDate() {
-    document.getElementById('editData').value = '';
-    resetTime();
-}
-
 function confirmEdit() {
     const sport = document.getElementById('editSport').value;
     const court = document.getElementById('editCampo').value;
