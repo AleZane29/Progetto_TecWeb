@@ -152,6 +152,35 @@ Il progetto sviluppato è un'applicazione web per la pubblicizzazione dei serviz
 
 Il progetto è stato sviluppato ponendo particolare attenzione all'accessibilità, all'esperienza utente e alla facile fruibilità del sito anche da dispositivi mobile.
 
+\section{Progettazione}
+
+L'interfaccia è stata progettata seguendo i principi di usabilità e accessibilità. Gli utenti possono orientarsi facilmente attraverso un header con menù di navigazione principale e breadcrumb che mostra il nome della pagina corrente. Ogni pagina e componente del sito sono stati studiati per essere accessibili da dispositivi mobile come cellulari o tablet. Per realizzare ciò sono stati implementati stili di tipo responsive e sono state utilizzate le media query, per adattare la visualizzazione delle pagine in base alla dimensione del dispositivo utilizzato per l'accesso al sito.
+
+\subsection{Architettura progetto}
+Il progetto è stato sviluppato seguendo il pattern architetturale MVC (Model-View-Controller). Nella sezione View è possibile trovare tutte le pagine HTML sviluppate con i relativi stylesheets CSS e i file PHP dedicati alla corretta visualizzazione delle pagine. Il componente Controller si occupa della ricezione dei dati e richieste dalla View e li gestisce tramite l'Application Logic ed eventuali chiamate al Model. Il Model si occupa delle chiamate al DB e dunque tutta la gestione delle query e i relativi risultati prodotti da esse.
+
+\subsection{Struttura contenuto delle pagine}
+
+Di seguito viene presentata la strutturazione del contenuto specifico di ogni pagina:
+
+\begin{itemize}
+    \item \textbf{Home:} In questa pagina viene presentato il centro sportivo \textit{SportLab}. Viene raccontata la storia del centro, i benefici dello sport e l'attrezzatura presente nel centro. Inoltre sono esposti gli orari di apertura durante la settimana ed eventuali annunci straordinari recenti.
+    
+    \item \textbf{Servizi:} In questa pagina vengono presentati i servizi del centro sportivo \textit{SportLab}, permettendo così ai clienti di verificare cosa è possibile prenotare. Sono descritti i campi degli sport disponibili: Tennis, Calcio a 5 e Basket. Ogni sport è presentato tramite una card descrittiva nella quale vengono mostrati: i costi di prenotazione, le immagini dei campi, l'attrezzatura disponibile in ogni campo e altre informazioni utili. A fine pagina si trova una mappa della struttura per facilitare l'identificazione della struttura e dei vari campi.
+    
+    \item \textbf{Prenotazioni:} Agli utenti registrati, in questa pagina, il form permette di effettuare delle prenotazioni selezionando: sport, campo, data e fascia oraria. Il prezzo viene calcolato automaticamente in base al tipo di sport scelto. Agli amministratori, in questa pagina, vengono presentate tutte le prenotazioni, in una tabella riepilogativa con i dettagli (utente, sport, campo, numero, data, orario, prezzo), ordinate in ordine decrescente per data di prenotazione. Essi hanno la possibilità di modificare e eliminare le prenotazioni, e vengono messi a loro disposizione una serie di filtri per facilitare la ricerca delle prenotazioni desiderate.
+    
+    \item \textbf{Login:} In questa pagina l'utente registrato può effettuare l'autenticazione con le proprie credenziali. Il form di login richiede l'email e la password, nel caso in cui l'utente non abbia effettuato la registrazione è possibile usare il link apposito a fine form per passare alla pagina di registrazione.
+
+    \item \textbf{Registrazione:} La seguente pagina contiene il form di registrazione nel quale vengono richiesti: Nome, Cognome, Email, Data di nascita e Password. Nel caso in cui l'utente sia già registrato, può usufruire del link a fine form per essere portato al form di login. 
+    
+    \item \textbf{Account:} In questa pagina gli utenti autenticati possono visualizzare e modificare le loro informazioni personali (nome, cognome, email e data di nascita) e hanno la possibilità di effettuare il logout dalla propria sessione. A seguire è presente anche la tabella delle prenotazioni effettuate dall'utente. La tabella permette di modificare o eliminare le prenotazioni che hanno una data di prenotazione superiore alle 24 ore dalla data odierna.
+    
+    \item \textbf{Errore 404:} Questa pagina contiene un messaggio chiaro che informa l'utente che " La pagina che stai cercando non esiste o è stata spostata ". Il design è semplice e intuitivo, con un link ben visibile che reindirizza l'utente alla pagina principale del sito.
+
+    \item \textbf{Errore 500:} Come per l'errore 404, la pagina mostra un messaggio di errore, in questo caso causato dal server, e mette a disposizione un link per tornare alla home.
+\end{itemize}
+
 \subsection{Analisi dell'utenza}
 Il sito sarà utilizzato da un pubblico eterogeneo, che comprende utenti con diversa familiarità con le tecnologie digitali. Per questo motivo l’interfaccia dovrà essere progettata in modo semplice, intuitivo e accessibile, così da risultare facilmente utilizzabile anche dagli utenti meno esperti.
 
@@ -165,7 +194,43 @@ La caratteristica della \textbf{pesca a strascico} è garantita dalla struttura 
 
 La \textbf{boa di segnalazione} è incarnata dal breadcrumb presente in ogni pagina del sito web, che permette all'utente di potersi orientare durante la navigazione del sito.
 
-\newpage
+\subsection{Suddivisione del lavoro}
+La realizzazione del progetto ha richiesto la collaborazione di tutti i membri durante gran parte delle attività. Allo stesso tempo però ogni membro si è focalizzato nello sviluppo di determinati componenti e funzionalità nel seguente modo:
+\begin{itemize}
+    \item \textbf{Alessio Zanella:}
+    \begin{itemize}
+        \item Progettazione DB
+        \item Componente Header (HTML + CSS + JS)
+        \item Pagina Registrazione (HTML + CSS + JS + PHP)
+        \item Pagina Prenotazioni Admin (HTML + CSS + JS + PHP)
+        \item Stesura relazione
+    \end{itemize}
+    \item \textbf{Leonardo Preo:}
+    \begin{itemize}
+        \item Pagina Error404 (HTML + CSS + JS + PHP)
+        \item Pagina Error500 (HTML + CSS + JS + PHP)
+        \item Pagina Account (HTML + CSS + JS + PHP)
+        \item Controlli automatizzati form di registrazione (es. hash password, età minima, ecc.)
+        \item Stesura relazione
+    \end{itemize}
+    \item \textbf{Leonardo Salviato:}
+    \begin{itemize}
+        \item Pagina Home (HTML + CSS + JS + PHP)
+        \item Pagina Servizi (HTML + CSS + PHP)
+        \item Pagina Prenota User (HTML + CSS + JS + PHP)
+        \item Sviluppo servizio PHP builder per assemblare i componenti delle singole pagine
+        \item Stesura relazione
+    \end{itemize}
+    \item \textbf{Mihaela-Mariana Romascu:}
+     \begin{itemize}
+        \item Implementazione accessibilità
+        \item Pagina Login (HTML + CSS + JS + PHP)
+        \item Componente Footer (HTML + CSS + JS)
+        \item Testing funzionalità
+        \item Stesura relazione
+    \end{itemize}
+\end{itemize}
+
 \section{Funzionalità del sistema}
 
 \subsection{Funzionalità per gli Utenti Registrati}
@@ -203,45 +268,19 @@ Gli utenti che non hanno effettuato l'accesso possono:
     \item Navigare alla pagina di login per effettuare l'accesso o alla pagina di registrazione per creare un nuovo account.
 \end{itemize}
 
-\section{Design del sito}
 
-L'interfaccia è stata progettata seguendo i principi di usabilità e accessibilità. Gli utenti possono orientarsi facilmente attraverso un header con logo, menù di navigazione principale e breadcrumb che mostra il nome della pagina corrente. Il menù di navigazione è accessibile da dispositivi mobile tramite un pulsante di toggle che commuta lo stato aria-expanded. La struttura utilizza tag HTML semantici (header, nav, section, article, footer) per organizzare il contenuto in modo logico e migliorare la comprensione da parte degli screen reader.
+\subsection{Sicurezza}
 
-\subsection{Strutturazione del Contenuto Specifico delle Pagine}
-
-Di seguito viene presentata la strutturazione del contenuto specifico di ogni pagina:
+Durante lo sviluppo del progetto si è dedicata una parte del tempo alla realizzazione di controlli riguardanti l'hashing delle password ed eventuali attacchi di tipo SQL Injection:
 
 \begin{itemize}
-    \item \textbf{Home:} In questa pagina viene presentato il centro sportivo \textit{SportLab}. Viene raccontata la storia del centro, i benefici dello sport e l'attrezzatura presente nel centro. Inoltre sono esposti gli orari di apertura durante la settimana ed eventuali annunci straordinari recenti.
+    \item \textbf{Hashing delle password:} Le password degli utenti vengono hashate utilizzando l'algoritmo bcrypt prima di essere memorizzate nel database, garantendo che le credenziali rimangano protette anche in caso di accesso non autorizzato al database.
     
-    \item \textbf{Servizi:} In questa pagina vengono presentati i servizi del centro sportivo \textit{SportLab}, permettendo così ai clienti di verificare cosa è possibile prenotare. Sono descritti i campi degli sport disponibili: Tennis, Calcio a 5 e Basket. Ogni sport è presentato tramite una card descrittiva nella quale vengono mostrati: i costi di prenotazione, le immagini dei campi, l'attrezzatura disponibile in ogni campo e altre informazioni utili. A fine pagina si trova una mappa della struttura per facilitare l'identificazione della struttura e dei vari campi.
-    
-    \item \textbf{Prenotazioni:} Agli utenti registrati, in questa pagina, il form permette di effettuare delle prenotazioni selezionando: sport, campo, data e fascia oraria. Il prezzo viene calcolato automaticamente in base al tipo di sport scelto. Agli amministratori, in questa pagina, vengono presentate tutte le prenotazioni, in una tabella riepilogativa con i dettagli (utente, sport, campo, numero, data, orario, prezzo), ordinate in ordine decrescente per data di prenotazione. Essi hanno la possibilità di modificare e eliminare le prenotazioni, e vengono messi a loro disposizione una serie di filtri per facilitare la ricerca delle prenotazioni desiderate.
-    
-    \item \textbf{Login:} In questa pagina l'utente registrato può effettuare l'autenticazione con le proprie credenziali. Il form di login richiede l'email e la password, nel caso in cui l'utente non abbia effettuato la registrazione è possibile usare il link apposito a fine form per passare alla pagina di registrazione.
-
-    \item \textbf{Registrazione:} La seguente pagina contiene il form di registrazione nel quale vengono richiesti: Nome, Cognome, Email, Data di nascita e Password. Nel caso in cui l'utente sia già registrato, può usufruire del link a fine form per essere portato al form di login. 
-    
-    \item \textbf{Account:} In questa pagina gli utenti autenticati possono visualizzare e modificare le loro informazioni personali (nome, cognome, email e data di nascita) e hanno la possibilità di effettuare il logout dalla propria sessione. A seguire è presente anche la tabella delle prenotazioni effettuate dall'utente. La tabella permette di modificare o eliminare le prenotazioni che hanno una data di prenotazione superiore alle 24 ore dalla data odierna.
-    
-    \item \textbf{Errore 404:} Questa pagina contiene un messaggio chiaro che informa l'utente che " La pagina che stai cercando non esiste o è stata spostata ". Il design è semplice e intuitivo, con un link ben visibile che reindirizza l'utente alla pagina principale del sito.
-
-    \item \textbf{Errore 500:} Come per l'errore 404, la pagina mostra un messaggio di errore, in questo caso causato dal server, e mette a disposizione un link per tornare alla home.
+    \item \textbf{Protezione contro SQL Injection:} Le query critiche che coinvolgono input utente (login, registrazione, creazione prenotazioni, modifica dati utente) utilizzano prepared statements con \texttt{mysqli\_prepare()} e \texttt{mysqli\_stmt\_bind\_param()} nel file \texttt{model/database/database.php}. Ad esempio, la funzione \texttt{getUserByEmail()} utilizza prepared statements per prevenire attacchi injection. Tuttavia, alcune query per operazioni amministrative (come la visualizzazione e eliminazione di prenotazioni) utilizzano ancora concatenazione di stringhe.
 \end{itemize}
 
-\section{SICUREZZA}
+%---------- CONTINUARE RISCRITTURA DELLE SUCCESSIVE SEZIONI ------
 
-La sicurezza dei dati è stata una priorità fondamentale nello sviluppo del progetto. Il progetto implementa un approccio multi-livello per proteggere i dati degli utenti:
-
-\begin{itemize}
-    \item \textbf{Hashing delle password:} Le password degli utenti vengono hashate utilizzando l'algoritmo bcrypt prima di essere memorizzate nel database, garantendo che le credenziali rimangono protette anche in caso di accesso non autorizzato al database.
-    
-    \item \textbf{Protezione contro SQL Injection:} Le query critiche che coinvolgono input utente (login, registrazione, creazione prenotazioni, modifica dati utente) utilizzano prepared statements con \texttt{mysqli\_prepare()} e \texttt{mysqli\_stmt\_bind\_param()} nel file \texttt{model/database/database.php}. Ad esempio, la funzione \texttt{getUserByEmail()} utilizza prepared statements per prevenire attacchi injection. Tuttavia, alcune query per operazioni amministrative (come la visualizzazione e eliminazione di prenotazioni) utilizzano ancora concatenazione di stringhe e richiederebbero maggiore attenzione.
-    
-    \item \textbf{Protezione contro XSS:} Nei form di login e registrazione, i dati inseriti dagli utenti vengono processati tramite \texttt{password\_hash()} per la password (nel file \texttt{controller/registerController.php}) e i dati sono gestiti in modo sicuro. Nel file \texttt{controller/loginController.php}, i dati POST vengono utilizzati direttamente con \texttt{password\_verify()}, garantendo una verifica sicura della password senza esporre il valore in chiaro.
-    
-    \item \textbf{Gestione delle Sessioni:} L'autenticazione è gestita tramite sessioni PHP\newline (\texttt{session\_start()}) con controllo del ruolo utente. I dati di sessione includono ID utente, nome, cognome, email e data di nascita, permettendo un controllo granulare dei permessi. Ad esempio, la pagina \texttt{views/account.php} verifica l'autenticazione dell'utente e, se non loggato, lo reindirizza al login.
-\end{itemize}
 
 \section{OTTIMIZZAZIONE PER I MOTORI DI RICERCA (SEO)}
 
