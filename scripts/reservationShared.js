@@ -377,9 +377,6 @@ function changeDateDialog() {
     .then(response => response.json())
     .then(bookedSlots => {
 
-        const currentVal = timeSelect.value;
-        let currentValIsValid = true;
-
         Array.from(timeSelect.options).forEach((option) => {
             
             const isBooked = bookedSlots.some(slot => slot.trim() === option.value.trim());
@@ -398,9 +395,8 @@ function changeDateDialog() {
 
             // SE È OCCUPATO OPPURE È TROPPO PRESTO -> NASCONDI
             if (isBooked || isTooSoon) {
-                option.disabled = true;
-                option.hidden = true;         
-                option.style.display = 'none'; 
+                option.disabled = true;         
+                option.style.display = ''; 
 
             } else {
                 // LIBERO E VALIDO
@@ -409,12 +405,18 @@ function changeDateDialog() {
                 option.style.display = ''; 
             }
         });
-
-        if (!currentValIsValid) {
-            timeSelect.value = '';
-        }
     })
     .catch(err => console.error("Errore recupero orari:", err));
+}
+
+function resetTime() {
+    document.getElementById('editOrario').value = '';
+    changeDateDialog();
+}
+
+function resetDate() {
+    document.getElementById('editData').value = '';
+    resetTime();
 }
 
 function confirmEdit() {
