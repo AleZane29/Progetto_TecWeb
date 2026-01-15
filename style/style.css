@@ -235,20 +235,3 @@ button {
 		font-size: 2rem;
 	}
 }
-
-.dialog-box.type-success {
-	border-top: 5px solid #28a745; /* Barra verde in alto */
-}
-.dialog-box.type-error {
-	border-top: 5px solid #dc3545; /* Barra rossa in alto */
-}
-
-/* Colori bottone dinamici */
-.dialog-box.type-success .btn-confirm {
-	background-color: #28a745;
-	color: white;
-}
-.dialog-box.type-error .btn-confirm {
-	background-color: #dc3545;
-	color: white;
-}

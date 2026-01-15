@@ -238,7 +238,6 @@ function deleteReservation() {
     })
     .then(() => {
         location.reload();
-        alert('Prenotazione eliminata con successo!');
     })
     .catch((error) => console.error('Error:', error));
     
@@ -447,7 +446,6 @@ function editReservation(sport, court, date, timeStart, timeEnd) {
     .then(async (response) => {
         if (response.ok) {
             location.reload();
-            alert('Prenotazione modificata con successo!');
         } else {
             try {
                 const errorData = await response.json();
