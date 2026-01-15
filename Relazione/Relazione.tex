@@ -127,9 +127,9 @@ Romascu Mihaela-Mariana & 2079726\\
 \hline
 \textbf{Ruolo} & \textbf{Email} & \textbf{Password} \\
 \hline
-Cliente & user@email.com & User \\
+Cliente & user@email.com & user \\
 \hline
-Admin & admin@email.com & Admin \\
+Admin & admin@email.com & admin \\
 \hline
 \end{tabular}
 \end{center}
@@ -231,7 +231,7 @@ La realizzazione del progetto ha richiesto la collaborazione di tutti i membri d
     \end{itemize}
 \end{itemize}
 
-\section{Funzionalità del sistema}
+\section{Implementazione}
 
 \subsection{Funzionalità per gli Utenti Registrati}
 
@@ -279,29 +279,19 @@ Durante lo sviluppo del progetto si è dedicata una parte del tempo alla realizz
     \item \textbf{Protezione contro SQL Injection:} Le query critiche che coinvolgono input utente (login, registrazione, creazione prenotazioni, modifica dati utente) utilizzano prepared statements con \texttt{mysqli\_prepare()} e \texttt{mysqli\_stmt\_bind\_param()} nel file \texttt{model/database/database.php}. Ad esempio, la funzione \texttt{getUserByEmail()} utilizza prepared statements per prevenire attacchi injection. Tuttavia, alcune query per operazioni amministrative (come la visualizzazione e eliminazione di prenotazioni) utilizzano ancora concatenazione di stringhe.
 \end{itemize}
 
-%---------- CONTINUARE RISCRITTURA DELLE SUCCESSIVE SEZIONI ------
 
 
-\section{OTTIMIZZAZIONE PER I MOTORI DI RICERCA (SEO)}
-
-\subsection{Meta Tag e Keyword}
-
-Ogni pagina del sito include il meta tag \texttt{<description>} con una descrizione specifica:
-
+\section{SEO e Prestazioni} 
+Per ottimizzare le prestazioni e il SEO del sito, sia da Desktop che da Mobile, sono state adottate le seguenti tecniche:
 \begin{itemize}
-    \item \texttt{views/pages/home.html}: ``SportLab - Presentazione, orari, contatti e annunci speciali''
-    \item \texttt{views/pages/service.html}: ``SportLab - Scopri i nostri campi e le discipline sportive: calcio a 5, tennis e basket''
-    \item \texttt{views/pages/login.html}: ``SportLab - Pagina di login''
-    \item \texttt{views/pages/register.html}: ``SportLab - Pagina di registrazione''
-    \item \texttt{views/pages/account.html}: ``SportLab - Profilo utente''
-    \item \texttt{views/pages/reservationUser.html}: ``SportLab - Pagina di prenotazione''
-    \item \texttt{views/pages/404.html}: ``Errore 404: Pagina non trovata''
-    \item \texttt{views/pages/500.html}: ``Errore 500: Errore del server''
+    \item \textbf{Riduzione delle dimensioni delle immagini}: per ridurre il più possibile lo spazio richiesto senza però ridurre eccessivamente la qualità.
+    \item \textbf{htaccess}: Impostato regole di caching più efficaci per i contenuti statici nel file di configurazione htaccess.
+    \item \textbf{Consigli Lighthouse}: Per controllare le metriche di Prestazioni e SEO abbiamo utilizzato i consigli di Google Lighthouse (rispettando la separazione tra contenuto e presentazione, ad esempio: no inlining di regole CSS). Durante i test abbiamo sempre ottenuto il punteggio massimo, 100\%, in tutte le categorie tranne nella sezione prestazioni nella quale abbiamo ottenuto il 100\% in tutte le pagine tranne un 96\% in Home e 99\% in Servizi.
+    \item Minimizzare tutti i file Javascript e CSS, per ridurre il loro tempo di caricamento.
 \end{itemize}
 
-Sebbene il meta tag description non influisca direttamente sul ranking dei motori di ricerca, una descrizione ben scritta aumenta il tasso di click-through (CTR) e migliora la percezione del sito da parte degli utenti.
-
-\section{DATABASE}
+%---------- CONTINUARE RISCRITTURA DELLE SUCCESSIVE SEZIONI ------
+\section{Database}
 
 Il database del progetto è basato su MySQL ed è strutturato per supportare la gestione di utenti, campi sportivi e prenotazioni.
 
