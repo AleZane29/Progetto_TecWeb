@@ -26,7 +26,7 @@
 		<nav aria-labelledby="breadcrumb-label" id="breadcrumb">
 			<p>Ti trovi in: <span lang="en" class="breadcrumb-page">Account</span></p>
 		</nav>
-		<main id="main-content" tabindex="-1">
+		<main id="main-content" class="main-account" tabindex="-1">
 			<div class="info-container">
 				<form
 					class="info-form"
@@ -108,57 +108,62 @@
 				</form>
 			</div>
 
-            <div class="filters">
-                <div class="filter-group">
-                    <label for="filterSport">Sport</label>
-                    <select id="filterSport" onchange="changeSport()">
-                        <option value="">Tutti</option>
-                        [sports]
-                    </select>
+
+            <div class="reservation-container">
+                <div class="reservation-header">
+                    <h1>Le mie prenotazioni</h1>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="filterSport">Sport</label>
+                        <select id="filterSport" onchange="changeSport()">
+                            <option value="">Tutti</option>
+                            [sports]
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterCourt">Campo</label>
+                        <select id="filterCourt" onchange="filterTable()">
+                            <option value="">Tutti</option>
+                            [courts]
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterDate">Data</label>
+                        <input type="date" id="filterDate" onchange="filterTable()" />
+                    </div>
+                    <button class="filter-button" onclick="resetFilters()">Resetta filtri</button>
                 </div>
-                <div class="filter-group">
-                    <label for="filterCourt">Campo</label>
-                    <select id="filterCourt" onchange="filterTable()">
-                        <option value="">Tutti</option>
-                        [courts]
-                    </select>
+                <div class="table-container-account">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sport</th>
+                                    <th>Campo</th>
+                                    <th>Data</th>
+                                    <th>Orario</th>
+                                    <th>Prezzo</th>
+                                    <th>Azioni</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                [userReservations]
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="filter-group">
-                    <label for="filterDate">Data</label>
-                    <input type="date" id="filterDate" onchange="filterTable()" />
-                </div>
-                <button class="filter-button" onclick="resetFilters()">Resetta filtri</button>
-            </div>
-            <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Sport</th>
-                                <th>Campo</th>
-                                <th>Data</th>
-                                <th>Orario</th>
-                                <th>Prezzo</th>
-                                <th>Azioni</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody">
-                            [userReservations]
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="pagination-container">
-                <div class="pagination-info">
-                    Mostrando <strong id="showingFrom">1</strong>-<strong id="showingTo">10</strong> di <strong id="totalRecords">24</strong> prenotazioni
-                </div>
-                <div class="pagination-controls">
-                    <button class="pagination-btn" id="prevBtn" onclick="goToPreviousPage()">
-                        ← Precedente
-                    </button>
-                    <div id="pageNumbers"></div>
-                    <button class="pagination-btn" id="nextBtn" onclick="goToNextPage()">
-                        Successivo →
-                    </button>
+                <div class="pagination-container">
+                    <div class="pagination-info">
+                        Mostrando <strong id="showingFrom">1</strong>-<strong id="showingTo">10</strong> di <strong id="totalRecords">24</strong> prenotazioni
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" id="prevBtn" onclick="goToPreviousPage()">
+                            ← Precedente
+                        </button>
+                        <div id="pageNumbers"></div>
+                        <button class="pagination-btn" id="nextBtn" onclick="goToNextPage()">
+                            Successivo →
+                        </button>
+                    </div>
                 </div>
             </div>
         </main>

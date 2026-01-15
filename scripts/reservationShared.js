@@ -478,18 +478,12 @@ function disableLateReservations() {
     const limitMs = tableConfig.isAdmin ? 0 : (24 * 60 * 60 * 1000);
 
     allRows.forEach((row) => {
-        // 1. Recuperiamo Data e Ora dalla riga
         const dateStr = row.cells[indices.date].textContent; 
         const timeStr = row.cells[indices.time].textContent.split(' - ')[0];
 
-        // 2. Creiamo l'oggetto Date della prenotazione
-        const isoDate = convertDate(dateStr); // Usa la tua funzione helper
+        const isoDate = convertDate(dateStr); 
         const reservationDate = new Date(`${isoDate}T${timeStr}:00`);
-
-        // 3. Calcoliamo quanto manca (Differenza in millisecondi)
         const diff = reservationDate - now;
-
-        // 4. Troviamo il bottone "Modifica" in questa riga
         const editBtn = row.querySelector('.btn-edit');
 
         if (editBtn) {
@@ -497,16 +491,13 @@ function disableLateReservations() {
             if (diff < limitMs) {
                 editBtn.disabled = true;
                 
-                // Stile visivo per far capire che è disabilitato
-                editBtn.style.opacity = "0.4";        // Sbiadito
-                editBtn.style.cursor = "not-allowed"; // Cursore col divieto
+                editBtn.style.opacity = "0.4";
+                editBtn.style.cursor = "not-allowed"; 
                 
-                // Tooltip che spiega perché
                 editBtn.title = tableConfig.isAdmin 
                     ? "Evento già terminato" 
-                    : "Non modificabile: mancano meno di 24 ore";
+                    : "Non modificabile";
             } else {
-                // Assicuriamoci che sia abilitato (utile se ricarichi o filtri)
                 editBtn.disabled = false;
                 editBtn.style.opacity = "1";
                 editBtn.style.cursor = "pointer";
