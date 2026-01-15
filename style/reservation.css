@@ -3,7 +3,7 @@ main {
 	padding: 2rem;
 }
 
-.main-user{
+.main-user {
 	display: grid;
 	place-items: center;
 	padding: 3rem;
@@ -11,7 +11,7 @@ main {
 
 .info-container {
 	max-width: 700px;
-width: 100%;
+	width: 100%;
 }
 .info-form {
 	background: var(--neutral-0);
@@ -19,7 +19,6 @@ width: 100%;
 	border-radius: 12px;
 	box-shadow: 0 4px 20px var(--shadow-primary);
 }
-
 
 .info-header {
 	text-align: center;
@@ -32,7 +31,6 @@ width: 100%;
 	margin-bottom: 0.5rem;
 	font-weight: 700;
 }
-
 
 .table-container {
 	overflow-x: auto;
@@ -198,13 +196,17 @@ tbody tr.pagination-hidden {
 		padding: 1rem;
 	}
 
-	.info-form {
-		padding: 1.5rem;}
-
-	.main-user{
-		padding: 1rem;
+	fieldset {
+		margin: 0 0 2rem 0 !important;
 	}
 
+	.info-form {
+		padding: 1.5rem;
+	}
+
+	.main-user {
+		padding: 1rem;
+	}
 
 	h1 {
 		font-size: 1.5rem;
@@ -299,21 +301,20 @@ form {
 	text-align: center;
 }
 
-
 .date-form label {
-    display: flex;       
-    width: 100%;        
-    align-items: center; 
-    gap: 10px;          
+	display: flex;
+	width: 100%;
+	align-items: center;
+	gap: 10px;
 }
 
-.date-form input[type="date"] {
-    flex-grow: 1;       
-    width: 100%;        
-    padding: 0.5rem;    
-    font-size: 1rem;    
-    border: 1px solid #ccc; 
-    border-radius: 6px;
+.date-form input[type='date'] {
+	flex-grow: 1;
+	width: 100%;
+	padding: 0.5rem;
+	font-size: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 6px;
 }
 
 .form-separation {

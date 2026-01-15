@@ -161,8 +161,9 @@ body {
 .banner {
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url('../assets/bannerhome.jpg');
+	/* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url('../assets/bannerhome.jpg'); */
+	background: var(--primary-600);
 	background-size: cover;
 	background-position: center;
 	color: var(--neutral-0);
@@ -236,18 +237,18 @@ button {
 }
 
 .dialog-box.type-success {
-    border-top: 5px solid #28a745; /* Barra verde in alto */
+	border-top: 5px solid #28a745; /* Barra verde in alto */
 }
 .dialog-box.type-error {
-    border-top: 5px solid #dc3545; /* Barra rossa in alto */
+	border-top: 5px solid #dc3545; /* Barra rossa in alto */
 }
 
 /* Colori bottone dinamici */
 .dialog-box.type-success .btn-confirm {
-    background-color: #28a745;
-    color: white;
+	background-color: #28a745;
+	color: white;
 }
 .dialog-box.type-error .btn-confirm {
-    background-color: #dc3545;
-    color: white;
+	background-color: #dc3545;
+	color: white;
 }
