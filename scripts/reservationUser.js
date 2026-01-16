@@ -152,8 +152,8 @@ function clearInput(app) {
 
         switch (app) {
             case "tennis": j = 3; break;
-            case "basket": j = 2; break;
-            case "calcetto": j = 1; break;
+            case "basket": j = 1; break;
+            case "calcetto": j = 2; break;
             default: console.log("Errore: sport non riconosciuto"); return; 
         }
 

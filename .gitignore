@@ -1,0 +1,16 @@
+# File ausiliari e di log generati da LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.dvi
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# File temporanei dell'editor (opzionale, ma consigliato per VS Code)
+.vscode/
