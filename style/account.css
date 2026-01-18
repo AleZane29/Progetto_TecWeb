@@ -180,6 +180,7 @@ a.logout-button[href*="logout"]:hover {
 .reservation-container {
     width: 100%; 
     min-width: 0;
+    padding-bottom: 5rem;
 }
 
 .table-container-account {

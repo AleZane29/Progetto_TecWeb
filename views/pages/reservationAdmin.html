@@ -53,10 +53,11 @@
                 <button class="filter-button" onclick="resetFilters()">Resetta filtri</button>
             </div>
             <div class="table-container">
-                <p id="sum">
+                <p id="sum" class="sr-only">
                     Questa tabella mostra le prenotazioni effettuate dai clienti. Usa i filtri per cercare prenotazioni specifiche.
                 </p>
                     <table aria-describedby="sum">
+                        <caption class="sr-only">Tabella registrazioni</caption>
                         <thead>
                             <tr>
                                 <th scope="col">Cliente</th>
