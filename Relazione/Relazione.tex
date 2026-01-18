@@ -287,14 +287,8 @@ Per ottimizzare le prestazioni e il SEO del sito, sia da Desktop che da Mobile, 
     \item \textbf{Riduzione delle dimensioni delle immagini}: per ridurre il più possibile lo spazio richiesto senza però ridurre eccessivamente la qualità.
     \item \textbf{htaccess}: Impostato regole di caching più efficaci per i contenuti statici nel file di configurazione htaccess.
     \item \textbf{Consigli Lighthouse}: Per controllare le metriche di Prestazioni e SEO abbiamo utilizzato i consigli di Google Lighthouse (rispettando la separazione tra contenuto e presentazione, ad esempio: no inlining di regole CSS). Durante i test abbiamo sempre ottenuto il punteggio massimo, 100\%, in tutte le categorie tranne nella sezione prestazioni nella quale abbiamo ottenuto il 100\% in tutte le pagine tranne un 96\% in Home e 99\% in Servizi.
-    \item Minimizzare tutti i file Javascript e CSS, per ridurre il loro tempo di caricamento.
+    \item \textbf{Minimizzazione JS e CSS}: Sono stati minimizzati tutti i file Javascript e CSS, eliminando spazi e indentazioni, per ridurre il loro tempo di caricamento.
 \end{itemize}
-
-%---------- CONTINUARE RISCRITTURA DELLE SUCCESSIVE SEZIONI ------
-
-
-
-
 
 \section{Database}
 
@@ -316,7 +310,7 @@ Il database del progetto è stato sviluppato in forma normale ed è strutturato 
 
 Le tabelle sono collegate attraverso relazioni di chiave esterna, assicurando l'integrità referenziale e facilitando la gestione dei dati. Ad esempio, ogni prenotazione è collegata a un utente e a un campo specifico.
 
-\section{TECNOLOGIE UTILIZZATE}
+\section{Tecnologie Utilizzate}
 
 Il progetto è stato sviluppato utilizzando le seguenti tecnologie:
 
@@ -334,35 +328,7 @@ Il progetto è stato sviluppato utilizzando le seguenti tecnologie:
     \item \textbf{Fetch API:} Per le operazioni asincrone senza ricaricamento della pagina.
 \end{itemize}
 
-\section{CONFIGURAZIONE E SETUP}
-
-Il progetto utilizza la struttura standard PHP/MySQL con le seguenti cartelle principali: \texttt{views/} (pagine HTML/PHP), \texttt{controller/} (logica operazioni), \texttt{model/} (database), \texttt{style/} (CSS), \texttt{scripts/} (JavaScript), \texttt{assets/} (risorse).
-
-Il database viene configurato in \texttt{model/database/database.php} (host: localhost, database: alzanell, username: root, password: vuota). Per l'inizializzazione, eseguire \texttt{SportLab.sql}. Le credenziali di accesso predefinite sono: Admin (\texttt{admin@email.com}/\texttt{Admin}) e User (\texttt{user@email.com}/\texttt{User}).
-
-Il progetto richiede PHP 7.4+, MySQL 5.7+ (MariaDB 10.6) e un browser moderno con supporto HTML5/CSS3.
-
-\section{TEST EFFETTUATI}
-
-\subsection{Test delle Funzionalità Implementate}
-
-Sono state testate le varie funzionalità implementate all'interno del sito web utilizzando diversi browser (Chrome, Firefox, Safari, Opera, Edge). In particolare si è verificato che:
-
-\begin{itemize}
-    \item La visualizzazione di tutte le pagine avvenisse in modo corretto.
-    
-    \item La funzionalità di prenotazione memorizzi correttamente i dati nel database.
-    
-    \item La modifica e l'eliminazione delle prenotazioni (da parte dell'admin) vengano eseguite correttamente.
-    
-    \item La funzionalità di login e la conseguente gestione dei permessi funzionino in modo adeguato.
-    
-    \item Il layout sia responsive e si adatti correttamente a diversi tagli di schermo.
-\end{itemize}
-
-\subsection{Test di Accessibilità delle Pagine}
-
-\subsubsection{Accessibilità Generale}
+\section{Accessibilità}
 
 Per garantire che il sito sia accessibile a persone con un ampio raggio di capacità, sono stati implementati i seguenti accorgimenti:
 
@@ -377,11 +343,39 @@ Per garantire che il sito sia accessibile a persone con un ampio raggio di capac
 
 La navigazione tramite tastiera è completamente supportata, permettendo agli utenti di navigare l'intera applicazione senza l'uso del mouse.
 
-\subsubsection{Scelta della Palette dei Colori e Verifica dei Contrasti}
+\subsection{Scelta della Palette dei Colori e Verifica dei Contrasti}
 
 La palette cromatica è stata selezionata per trasmettere energia e dinamismo, con colori equilibrati e contrasti verificati secondo gli standard WCAG AA per garantire l'accessibilità a tutti gli utenti.
 
-\section{CONCLUSIONI}
+\subsection{Test di Accessibilità delle Pagine}
+Per effettuare i test di accessibilità che sono automatizzabili abbiamo utilizzato Silktide, mentre per i test che richiedono un intervento manuale come la verifica del contenuto degli alt o delle description, sono stati effettuati personalmente dagli sviluppatori.  
+
+\section{Test Effettuati}
+
+\subsection{Test delle Funzionalità Implementate}
+
+Sono state testate le varie funzionalità implementate all'interno del sito web utilizzando diversi browser (Chrome, Firefox, Safari, Opera, Edge). In particolare si è verificato che:
+
+\begin{itemize}
+    \item La visualizzazione di tutte le pagine avvenisse in modo corretto.
+    
+    \item La funzionalità di prenotazione memorizzi correttamente i dati nel database.
+    
+    \item La modifica e l'eliminazione delle prenotazioni (da parte dell'admin) vengano eseguite correttamente.
+
+    \item La creazione o la modifica delle prenotazioni verifichi la presenza di altre prenotazioni che alteri la disponibilità dei campi, ed impedisca la sovrapposizione di più prenotazioni.
+    
+    \item La funzionalità di login e la conseguente gestione dei permessi funzionino in modo adeguato.
+
+    \item Durante la creazione di un nuovo account si verifichi l'età  minima di 14 anni per potersi registrare e che non venga fatto uso di una email già utilizzata.
+    
+    \item Il layout sia responsive e si adatti correttamente a diverse dimensioni di schermo.
+
+    \item Gli input testuali inseriti dall'utente non possano creare problemi di SQL Injection.
+\end{itemize}
+
+
+\section{Conclusioni}
 
 SportLab rappresenta un'applicazione web completa e funzionale per la gestione delle prenotazioni presso un centro sportivo. Il progetto è stato sviluppato con attenzione particolare ai principi di accessibilità, usabilità e sicurezza, garantendo un'esperienza utente inclusiva e intuitiva.
 
@@ -396,7 +390,10 @@ I principali risultati raggiunti includono:
     \item Messaggi di errore specifici e user-friendly che guidano gli utenti verso soluzioni
 \end{itemize}
 
-Il progetto è stato testato su molteplici browser (Chrome, Firefox, Safari, Opera, Edge) e la validazione del codice HTML e CSS è stata eseguita tramite i tool ufficiali del W3C. Sebbene il progetto sia completamente funzionale, future migliorie potrebbero includere:
+Il progetto è stato testato su molteplici browser (Chrome, Firefox, Safari, Opera, Edge) e la validazione del codice HTML e CSS è stata eseguita tramite i tool ufficiali del W3C. 
+
+\subsection{Sviluppi futuri}
+Sebbene il progetto sia completamente funzionale, future migliorie potrebbero includere:
 
 \begin{itemize}
     \item Implementazione di prepared statements per tutte le query database, comprese quelle amministrative
