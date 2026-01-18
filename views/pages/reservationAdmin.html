@@ -53,23 +53,26 @@
                 <button class="filter-button" onclick="resetFilters()">Resetta filtri</button>
             </div>
             <div class="table-container">
-                    <table>
+                <p id="sum">
+                    Questa tabella mostra le prenotazioni effettuate dai clienti. Usa i filtri per cercare prenotazioni specifiche.
+                </p>
+                    <table aria-describedby="sum">
                         <thead>
                             <tr>
-                                <th>Cliente</th>
-                                <th>Sport</th>
-                                <th>Campo</th>
-                                <th>Data</th>
-                                <th>Orario</th>
-                                <th>Prezzo</th>
-                                <th>Azioni</th>
+                                <th scope="col">Cliente</th>
+                                <th scope="col">Sport</th>
+                                <th scope="col">Campo</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Orario</th>
+                                <th scope="col">Prezzo</th>
+                                <th scope="col">Azioni</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody">
                             [adminReservations]
                         </tbody>
                     </table>
-                </div>
+                </p>
             </div>
             <div class="pagination-container">
                 <div class="pagination-info">

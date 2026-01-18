@@ -34,8 +34,8 @@ if ($connessioneOK) {
                         <td>" . $res["prezzo"] . "€</td>
                         <td>
                             <div class='actions'>
-                                <button class='action-btn btn-edit' onclick='openEditDialog(" . $res["id"] . ", this)'>Modifica</button>
-                                <button class='action-btn btn-delete' onclick='openDeleteDialog(" . $res["id"] . ")'>Elimina</button>
+                                <button class='action-btn btn-edit' role='button' onclick='openEditDialog(" . $res["id"] . ", this)'>Modifica</button>
+                                <button class='action-btn btn-delete' role='button' yonclick='openDeleteDialog(" . $res["id"] . ")'>Elimina</button>
                             </div>
                         </td>
                     </tr>";

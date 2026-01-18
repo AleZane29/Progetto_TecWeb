@@ -163,6 +163,7 @@
 .facility-map {
 	background: white;
 	padding: 4rem 2rem;
+	text-align: center;
 }
 
 .facility-map h2 {
@@ -182,41 +183,11 @@
 	margin-right: auto;
 }
 
-.map-placeholder {
-	max-width: 1000px;
-	margin: 0 auto;
-	background: var(--neutral-100);
-	border: 2px dashed var(--neutral-300);
-	border-radius: 8px;
-	padding: 4rem 2rem;
-	min-height: 400px;
+.map_image img{
 	display: flex;
-	align-items: center;
 	justify-content: center;
-}
-
-.map-placeholder-content {
-	text-align: center;
-	color: var(--neutral-400);
-}
-
-.map-placeholder-content svg {
-	color: var(--primary-600);
-	margin-bottom: 1rem;
-	opacity: 0.6;
-}
-
-.map-placeholder-content p {
-	font-size: 1.25rem;
-	font-weight: 600;
-	color: var(--text-bold);
-	margin-bottom: 0.5rem;
-}
-
-.map-placeholder-note {
-	font-size: 0.95rem;
-	color: var(--neutral-600);
-	font-style: italic;
+	align-items: center;
+	border-radius: 5%;
 }
 
 /* Responsive Design */

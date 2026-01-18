@@ -134,15 +134,19 @@
                     <button class="filter-button" onclick="resetFilters()">Resetta filtri</button>
                 </div>
                 <div class="table-container-account">
-                        <table>
+                    <p id="sum" class="sr-only">
+                    Questa tabella mostra tutte le tue prenotazioni. Puoi utilizzare i filtri sopra per cercare prenotazioni specifiche in base allo sport, al campo o alla data. Inoltre, puoi modificare o eliminare le prenotazioni direttamente dalla tabella.
+                </p>
+                        <table aria-describedby="sum">
+                            <caption class="sr-only">Le tue prenotazioni</caption>
                             <thead>
                                 <tr>
-                                    <th>Sport</th>
-                                    <th>Campo</th>
-                                    <th>Data</th>
-                                    <th>Orario</th>
-                                    <th>Prezzo</th>
-                                    <th>Azioni</th>
+                                    <th scope="col">Sport</th>
+                                    <th scope="col">Campo</th>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Orario</th>
+                                    <th scope="col">Prezzo</th>
+                                    <th scope="col">Azioni</th>
                                 </tr>
                             </thead>
                             <tbody id="tableBody">
