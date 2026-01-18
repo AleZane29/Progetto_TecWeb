@@ -9,8 +9,16 @@ use DB\DBConn;
 
 
 $HTMLPage = file_get_contents('../views/pages/account.html');
+$reservationTable = file_get_contents("../views/pages/reservationTable.html");
+
 
 $user_id = $_SESSION['user'];
+
+if ($_SESSION["roleUser"] != "Admin") {
+
+$HTMLPage = str_replace("<<-RESERVATIONTABLE->>", $reservationTable, $HTMLPage);
+
+
 
 $conn = new DBConn();
 $connessioneOK = $conn->openConnection();
@@ -59,6 +67,10 @@ if ($reservationResult == '') {
 $HTMLPage = str_replace("[sports]", $sportsResult, $HTMLPage);
 $HTMLPage = str_replace("[courts]", $courtsResult, $HTMLPage);
 $HTMLPage = str_replace("[userReservations]", $reservationResult, $HTMLPage);
+
+}else{
+  $HTMLPage = str_replace("<<-RESERVATIONTABLE->>", '', $HTMLPage);
+}
 
 return $HTMLPage;
 ?>
