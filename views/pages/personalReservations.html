@@ -25,66 +25,67 @@
             <p>Ti trovi in: <span lang="en" class="breadcrumb-page">Le mie prenotazioni</span></p>
         </nav>
         <main id="main-content" class="reservation-title" tabindex="-1">
-                        <h1>Le mie prenotazioni</h1>
-                        <div class="filters">
-                            <div class="filter-group">
-                                <label for="filterSport">Sport</label>
-                                <select id="filterSport" onchange="changeSport()">
-                                    <option value="">Tutti</option>
-                                    [sports]
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label for="filterCourt">Campo</label>
-                                <select id="filterCourt" onchange="filterTable()">
-                                    <option value="">Tutti</option>
-                                    [courts]
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label for="filterDate">Data</label>
-                                <input type="date" id="filterDate" onchange="filterTable()" />
-                            </div>
-                            <button class="filter-button" onclick="resetFilters()">Resetta filtri</button>
-                        </div>
-                        <div class="table-container">
-                            <p id="sum" class="sr-only">
-                                Questa tabella mostra tutte le tue prenotazioni. Puoi utilizzare i filtri sopra per
-                                cercare prenotazioni specifiche in base allo sport, al campo o alla data. Inoltre, puoi
-                                modificare o eliminare le prenotazioni direttamente dalla tabella.
-                            </p>
-                            <table aria-describedby="sum">
-                                <caption class="sr-only">Le tue prenotazioni</caption>
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Sport</th>
-                                        <th scope="col">Campo</th>
-                                        <th scope="col">Data</th>
-                                        <th scope="col">Orario</th>
-                                        <th scope="col">Prezzo</th>
-                                        <th scope="col">Azioni</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tableBody">
-                                    [userReservations]
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="pagination-container">
-                        <div class="pagination-info">
-                            Mostrando <strong id="showingFrom">1</strong>-<strong id="showingTo">10</strong> di <strong id="totalRecords">24</strong> prenotazioni
-                        </div>
-                        <div class="pagination-controls">
-                            <button class="pagination-btn" id="prevBtn" onclick="goToPreviousPage()">
-                                ← Precedente
-                            </button>
-                            <div id="pageNumbers"></div>
-                            <button class="pagination-btn" id="nextBtn" onclick="goToNextPage()">
-                                Successivo →
-                            </button>
-                        </div>
-                    </div>
+            <h1>Le mie prenotazioni</h1>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="filterSport">Sport</label>
+                    <select id="filterSport" onchange="changeSport()">
+                        <option value="">Tutti</option>
+                        [sports]
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filterCourt">Campo</label>
+                    <select id="filterCourt" onchange="filterTable()">
+                        <option value="">Tutti</option>
+                        [courts]
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filterDate">Data</label>
+                    <input type="date" id="filterDate" onchange="filterTable()" />
+                </div>
+                <button class="filter-button" onclick="resetFilters()">Resetta filtri</button>
+            </div>
+            <div class="table-container">
+                <p id="sum" class="sr-only">
+                    Questa tabella mostra tutte le tue prenotazioni. Puoi utilizzare i filtri sopra per
+                    cercare prenotazioni specifiche in base allo sport, al campo o alla data. Inoltre, puoi
+                    modificare o eliminare le prenotazioni direttamente dalla tabella.
+                </p>
+                <table aria-describedby="sum">
+                    <caption class="sr-only">Le tue prenotazioni</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Sport</th>
+                            <th scope="col">Campo</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Orario</th>
+                            <th scope="col">Prezzo</th>
+                            <th scope="col">Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        [userReservations]
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <div class="pagination-container">
+                <div class="pagination-info">
+                    Mostrando <strong id="showingFrom">1</strong>-<strong id="showingTo">10</strong> di <strong
+                        id="totalRecords">24</strong> prenotazioni
+                </div>
+                <div class="pagination-controls">
+                    <button class="pagination-btn" id="prevBtn" onclick="goToPreviousPage()">
+                        ← Precedente
+                    </button>
+                    <div id="pageNumbers"></div>
+                    <button class="pagination-btn" id="nextBtn" onclick="goToNextPage()">
+                        Successivo →
+                    </button>
+                </div>
+            </div>
         </main>
         <div class="overlay" id="dialogDelete">
             <div class="dialog">
@@ -98,7 +99,7 @@
             </div>
         </div>
 
-        <!-- Dialog Modifica Prenotazione -->        
+        <!-- Dialog Modifica Prenotazione -->
         <div class="overlay" id="editDialog">
             <div class="dialog-box dialog-edit">
                 <div class="dialog-header">
