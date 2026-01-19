@@ -45,7 +45,7 @@ if (!isset($_GET['sport']) || !isset($_GET['campo']) || !isset($_GET['data'])) {
 
     $reservationResult = $conn->createReservation($user_id, $sport, $court, $date, $timeStart, $timeEnd, $price);
 
-    header("Location: ../views/account.php");
+    header("Location: ../views/personalReservations.php");
   } else {
 
     header("Location: ../views/500.php");

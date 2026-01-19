@@ -165,11 +165,13 @@ Di seguito viene presentata la strutturazione del contenuto specifico di ogni pa
     
     \item \textbf{Prenotazioni:} Agli utenti registrati, in questa pagina, il form permette di effettuare delle prenotazioni selezionando: sport, campo, data e fascia oraria. Il prezzo viene calcolato automaticamente in base al tipo di sport scelto. Agli amministratori, in questa pagina, vengono presentate tutte le prenotazioni, in una tabella riepilogativa con i dettagli (utente, sport, campo, numero, data, orario, prezzo), ordinate in ordine decrescente per data di prenotazione. Essi hanno la possibilità di modificare e eliminare le prenotazioni, e vengono messi a loro disposizione una serie di filtri per facilitare la ricerca delle prenotazioni desiderate.
     
+    \item \textbf{Le mie prenotazioni:} In questa pagina l'utente registrato può visualizzare tutte le sue prenotazioni effettuate, in una tabella riepilogativa con i dettagli (sport, campo, data, orario, prezzo), ordinate in ordine decrescente per data di prenotazione. Ha la possibilità di modificare o eliminare le prenotazioni che hanno una data di prenotazione superiore alle 24 ore dalla data odierna.
+
     \item \textbf{Login:} In questa pagina l'utente registrato può effettuare l'autenticazione con le proprie credenziali. Il form di login richiede l'email e la password, nel caso in cui l'utente non abbia effettuato la registrazione è possibile usare il link apposito a fine form per passare alla pagina di registrazione.
 
     \item \textbf{Registrazione:} La seguente pagina contiene il form di registrazione nel quale vengono richiesti: Nome, Cognome, Email, Data di nascita e Password. Nel caso in cui l'utente sia già registrato, può usufruire del link a fine form per essere portato al form di login. 
     
-    \item \textbf{Account:} In questa pagina gli utenti autenticati possono visualizzare e modificare le loro informazioni personali (nome, cognome, email e data di nascita) e hanno la possibilità di effettuare il logout dalla propria sessione. A seguire è presente anche la tabella delle prenotazioni effettuate dall'utente. La tabella permette di modificare o eliminare le prenotazioni che hanno una data di prenotazione superiore alle 24 ore dalla data odierna.
+    \item \textbf{Account:} In questa pagina gli utenti autenticati possono visualizzare e modificare le loro informazioni personali (nome, cognome, email e data di nascita) e hanno la possibilità di effettuare il logout dalla propria sessione. 
     
     \item \textbf{Errore 404:} Questa pagina contiene un messaggio chiaro che informa l'utente che " La pagina che stai cercando non esiste o è stata spostata ". Il design è semplice e intuitivo, con un link ben visibile che reindirizza l'utente alla pagina principale del sito.
 
@@ -247,9 +249,11 @@ Gli utenti registrati e autenticati hanno accesso alle seguenti funzionalità:
     \item \textbf{Prenota:} Gli utenti possono effettuare prenotazioni presso il centro sportivo. Per completare una prenotazione, devono indicare il tipo di sport desiderato (Tennis, Basket, Calcio a 5), la data e l'orario di prenotazione (con fasce orarie predefinite). Il sistema calcola automaticamente il prezzo sulla base del tipo di sport selezionato.
     
     \item \textbf{Account:} Gli utenti hanno accesso a una sezione dedicata dove possono visualizzare e modificare le loro informazioni personali (nome, cognome, email e data di nascita). Dalla pagina dell'account, gli utenti hanno la possibilità di effettuare il logout dalla propria sessione.
-    Nella medesima pagina è possibile consultare una tabella contenente tutte le prenotazioni effettuate dall'utente, oltre alla visualizzazione, la tabella permette di eliminare e modificare le prenotazioni con almeno 24 ore d'anticipo.
-    La tabella dispone di filtri per rendere più semplice la ricerca della prenotazione interessata.
-    Questa pagina è protetta da verifica di autenticazione e reindirizza gli utenti non loggati alla pagina di login.
+    
+    \item \textbf{Le mie prenotazioni:} Gli utenti possono visualizzare tutte le loro prenotazioni effettuate in una tabella riepilogativa con i dettagli (sport, campo, data, orario, prezzo), ordinate in ordine decrescente per data di prenotazione. Hanno la possibilità di modificare o eliminare le prenotazioni che hanno una data di prenotazione superiore alle 24 ore dalla data odierna.
+    
+
+
 \end{itemize}
 
 \subsection{Funzionalità per gli Amministratori}
@@ -259,7 +263,7 @@ Gli amministratori hanno accesso a funzionalità avanzate di gestione:
 \begin{itemize}
     \item \textbf{Prenotazioni:} Gli amministratori possono consultare tutte le prenotazioni ricevute in una tabella riepilogativa. Possono modificare i dettagli delle prenotazioni (sport, campo, data, orario) e eliminare prenotazioni quando necessario per gestire al meglio la disponibilità dei campi.
     
-    \item \textbf{Account:} Come gli utenti ordinari, gli amministratori hanno la possibilità di effettuare il logout dalla propria sessione, modificare i dati dell'account e gestire le proprie prenotazioni.
+    \item \textbf{Account:} Come gli utenti ordinari, gli amministratori hanno la possibilità di effettuare il logout dalla propria sessione e modificare i dati dell'account.
 \end{itemize}
 
 \subsection{Funzionalità per gli Utenti Generici (Non Autenticati)}

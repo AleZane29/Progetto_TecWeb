@@ -509,5 +509,26 @@ function disableLateReservations() {
                 editBtn.removeAttribute('title');
             }
         }
+
+        const deleteBtn = row.querySelector('.btn-delete');
+
+        if (deleteBtn) {
+            // SE SIAMO SOTTO IL LIMITE (Troppo tardi o già passato)
+            if (diff < limitMs) {
+                deleteBtn.disabled = true;
+                
+                deleteBtn.style.opacity = "0.4";
+                deleteBtn.style.cursor = "not-allowed"; 
+                
+                deleteBtn.title = tableConfig.isAdmin 
+                    ? "Evento già terminato" 
+                    : "Non modificabile";
+            } else {
+                deleteBtn.disabled = false;
+                deleteBtn.style.opacity = "1";
+                deleteBtn.style.cursor = "pointer";
+                deleteBtn.removeAttribute('title');
+            }
+        }
     });
 }
