@@ -9,9 +9,9 @@
     <meta name="language" content="it" />
     <title>Account - SportLab</title>
     <link href="../style/style.css" rel="stylesheet" />
+    <link href="../style/reservation.css" rel="stylesheet" />
     <link href="../style/header.css" rel="stylesheet" />
     <link href="../style/footer.css" rel="stylesheet" />
-    <link href="../style/reservation.css" rel="stylesheet" />
     <script src="../scripts/reservationShared.js"></script>
     <script src="../scripts/reservationViewer.js" defer></script>
 </head>
@@ -24,10 +24,7 @@
         <nav aria-labelledby="breadcrumb-label" id="breadcrumb">
             <p>Ti trovi in: <span lang="en" class="breadcrumb-page">Le mie prenotazioni</span></p>
         </nav>
-        <main id="main-content" class="main-account" tabindex="-1">
-            <div class="info-container">
-                <div class="reservation-container">
-                    <div class="reservation-header">
+        <main id="main-content" class="reservation-title" tabindex="-1">
                         <h1>Le mie prenotazioni</h1>
                         <div class="filters">
                             <div class="filter-group">
@@ -50,7 +47,7 @@
                             </div>
                             <button class="filter-button" onclick="resetFilters()">Resetta filtri</button>
                         </div>
-                        <div class="table-container-account">
+                        <div class="table-container">
                             <p id="sum" class="sr-only">
                                 Questa tabella mostra tutte le tue prenotazioni. Puoi utilizzare i filtri sopra per
                                 cercare prenotazioni specifiche in base allo sport, al campo o alla data. Inoltre, puoi
@@ -76,8 +73,7 @@
                     </div>
                     <div class="pagination-container">
                         <div class="pagination-info">
-                            Mostrando <strong id="showingFrom">1</strong>-<strong id="showingTo">10</strong> di <strong
-                                id="totalRecords">24</strong> prenotazioni
+                            Mostrando <strong id="showingFrom">1</strong>-<strong id="showingTo">10</strong> di <strong id="totalRecords">24</strong> prenotazioni
                         </div>
                         <div class="pagination-controls">
                             <button class="pagination-btn" id="prevBtn" onclick="goToPreviousPage()">
@@ -89,10 +85,6 @@
                             </button>
                         </div>
                     </div>
-                </div>
-
-
-            </div>
         </main>
         <div class="overlay" id="dialogDelete">
             <div class="dialog">
