@@ -1,28 +1,31 @@
-// Variabili Globali
+
 let reservation = null;
 let currentRow = null;
 let currentPage = 1;
 let rowsPerPage = 10;
 let allRows = [];
 
-// Configurazione di default (sarà sovrascritta dalla funzione init)
+// Configurazione standard della tabella: gli indici possono variare in base alla presenza o meno della colonna Nome del Cliente
+// In base alla configurazione che viene poi richiamata questi parametri possono cambiare.
+// (Non so se nel caso del viewer serva veramente riscriverli, perchè sono uguali a quelli di default)
 let tableConfig = {
     colIndices: {
-        name: null,   // Indice colonna nome (null se non esiste)
-        sport: 0,     // Indice colonna sport
-        court: 1,     // Indice colonna campo
-        date: 2,      // Indice colonna data
-        time: 3       // Indice colonna orario
+        name: null,   
+        sport: 0,     
+        court: 1,     
+        date: 2,      
+        time: 3       
     },
-    hasNameSearch: false // Se vero, attiva il filtro sul nome
+    hasNameSearch: false, // Parametro inserito per abilitare o disabilitare il filtro per nome
+    isAdmin: false // Parametro che indica se l'utente utilizzatore ha ruolo di Admin o meno
 };
 
 /**
- * Funzione di inizializzazione da chiamare nei file specifici
+ * Funzione di inizializzazione configurazione da chiamare nei file specifici (non ho cancora capito se serva anche per user)
  * @param {Object} config - La configurazione delle colonne
  */
 function initReservations(config) {
-    // Uniamo la configurazione passata con quella di default
+    // Bisogna sovrascrivere i parametri di default
     tableConfig = { ...tableConfig, ...config };
     
     document.addEventListener('DOMContentLoaded', function () {
@@ -36,75 +39,82 @@ function initReservations(config) {
 
 function updatePagination() {
     const filteredRows = allRows.filter((row) => row.style.display !== 'none');
-    const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+	const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
 
-    allRows.forEach((row) => row.classList.add('pagination-hidden'));
+	allRows.forEach((row) => row.classList.add('pagination-hidden'));
 
-    const start = (currentPage - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-    const rowsToShow = filteredRows.slice(start, end);
-    rowsToShow.forEach((row) => row.classList.remove('pagination-hidden'));
+	const start = (currentPage - 1) * rowsPerPage;
+	const end = start + rowsPerPage;
+	const rowsToShow = filteredRows.slice(start, end);
+	rowsToShow.forEach((row) => row.classList.remove('pagination-hidden'));
 
-    const showingFromFn = document.getElementById('showingFrom');
-    if(showingFromFn) showingFromFn.textContent = filteredRows.length > 0 ? start + 1 : 0;
-    
-    const showingToFn = document.getElementById('showingTo');
-    if(showingToFn) showingToFn.textContent = Math.min(end, filteredRows.length);
-    
-    const totalRecordsFn = document.getElementById('totalRecords');
-    if(totalRecordsFn) totalRecordsFn.textContent = filteredRows.length;
+	document.getElementById('showingFrom').textContent =
+		filteredRows.length > 0 ? start + 1 : 0;
+	document.getElementById('showingTo').textContent = Math.min(
+		end,
+		filteredRows.length
+	);
+	document.getElementById('totalRecords').textContent = filteredRows.length;
 
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    
-    if(prevBtn) prevBtn.disabled = currentPage === 1;
-    if(nextBtn) nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+	document.getElementById('prevBtn').disabled = currentPage === 1;
+	document.getElementById('nextBtn').disabled =
+		currentPage === totalPages || totalPages === 0;
 
-    generatePageNumbers(totalPages);
+	generatePageNumbers(totalPages);
 
     disableLateReservations();
 }
 
 function generatePageNumbers(totalPages) {
     const pageNumbersDiv = document.getElementById('pageNumbers');
-    if(!pageNumbersDiv) return;
-    
-    pageNumbersDiv.innerHTML = '';
+	pageNumbersDiv.innerHTML = '';
 
-    if (totalPages <= 7) {
-        for (let i = 1; i <= totalPages; i++) {
-            pageNumbersDiv.appendChild(createPageButton(i));
-        }
-    } else {
-        pageNumbersDiv.appendChild(createPageButton(1));
-        if (currentPage > 3) pageNumbersDiv.appendChild(createDots());
+	if (totalPages <= 7) {
+		for (let i = 1; i <= totalPages; i++) {
+			pageNumbersDiv.appendChild(createPageButton(i));
+		}
+	} else {
+		pageNumbersDiv.appendChild(createPageButton(1));
 
-        let startPage = Math.max(2, currentPage - 1);
-        let endPage = Math.min(totalPages - 1, currentPage + 1);
+		if (currentPage > 3) {
+			pageNumbersDiv.appendChild(createDots());
+		}
 
-        for (let i = startPage; i <= endPage; i++) {
-            pageNumbersDiv.appendChild(createPageButton(i));
-        }
+		let startPage = Math.max(2, currentPage - 1);
+		let endPage = Math.min(totalPages - 1, currentPage + 1);
 
-        if (currentPage < totalPages - 2) pageNumbersDiv.appendChild(createDots());
-        if (totalPages > 1) pageNumbersDiv.appendChild(createPageButton(totalPages));
-    }
+		for (let i = startPage; i <= endPage; i++) {
+			pageNumbersDiv.appendChild(createPageButton(i));
+		}
+
+		if (currentPage < totalPages - 2) {
+			pageNumbersDiv.appendChild(createDots());
+		}
+
+		if (totalPages > 1) {
+			pageNumbersDiv.appendChild(createPageButton(totalPages));
+		}
+	}
 }
 
 function createPageButton(pageNum) {
     const button = document.createElement('button');
-    button.className = 'pagination-btn page-number';
-    button.textContent = pageNum;
-    button.onclick = () => goToPage(pageNum);
-    if (pageNum === currentPage) button.classList.add('active');
-    return button;
+	button.className = 'pagination-btn page-number';
+	button.textContent = pageNum;
+	button.onclick = () => goToPage(pageNum);
+
+	if (pageNum === currentPage) {
+		button.classList.add('active');
+	}
+
+	return button;
 }
 
 function createDots() {
     const span = document.createElement('span');
-    span.className = 'pagination-dots';
-    span.textContent = '...';
-    return span;
+	span.className = 'pagination-dots';
+	span.textContent = '...';
+	return span;
 }
 
 function goToPage(page) {
@@ -114,11 +124,12 @@ function goToPage(page) {
 
 function goToNextPage() {
     const filteredRows = allRows.filter((row) => row.style.display !== 'none');
-    const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
-    if (currentPage < totalPages) {
-        currentPage++;
-        updatePagination();
-    }
+	const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+
+	if (currentPage < totalPages) {
+		currentPage++;
+		updatePagination();
+	}
 }
 
 function goToPreviousPage() {
@@ -130,24 +141,27 @@ function goToPreviousPage() {
 
 
 function filterTable() {
-    // Gestione input Search Name 
+    // Gestione input Search Name: se sta sulla comnfigurazione e nel filtro è stato caricato anche il parametro
     let searchName = '';
     const searchInput = document.getElementById('searchName');
     if (tableConfig.hasNameSearch && searchInput) {
         searchName = searchInput.value.toLowerCase();
     }
 
-    const filterSport = document.getElementById('filterSport').value.toLowerCase();
-    const filterCourt = document.getElementById('filterCourt').value.toLowerCase();
-    const filterDate = document.getElementById('filterDate').value;
+    const filterSport = document
+		.getElementById('filterSport')
+		.value.toLowerCase();
+	const filterCourt = document
+		.getElementById('filterCourt')
+		.value.toLowerCase();
+	const filterDate = document.getElementById('filterDate').value;
 
-    allRows.forEach((row) => {
-        // Recupero i dati dalle celle usando gli indici configurati
+    const rows = document.querySelectorAll('#tableBody tr');
+    rows.forEach((row) => {
         const sport = row.cells[tableConfig.colIndices.sport].textContent.toLowerCase();
         const court = row.cells[tableConfig.colIndices.court].textContent.toLowerCase();
         const date = row.cells[tableConfig.colIndices.date].textContent;
 
-        // Gestione Nome (se configurato)
         let matchName = true;
         if (tableConfig.hasNameSearch && tableConfig.colIndices.name !== null) {
             const name = row.cells[tableConfig.colIndices.name].textContent.toLowerCase();
@@ -195,11 +209,6 @@ function changeSport() {
 
     courtsSelect.value = '';
     courts.forEach((courtOption) => {
-        if (!courtOption.getAttribute("data-court-id") && courtOption.value === "") {
-             courtOption.style.display = '';
-             return;
-        }
-        
         if (!(courtOption.getAttribute("data-court-id")) || (sport != '' && courtOption.getAttribute("data-court-id").includes(sport))) {
             courtOption.style.display = '';
         } else {
@@ -211,45 +220,53 @@ function changeSport() {
 
 function openDeleteDialog(id) {
     reservation = id;
-    const dialog = document.getElementById('dialogDelete');
-    dialog.classList.add('active');
+	document.getElementById('dialogDelete').classList.add('active');
 
+	document
+		.getElementById('dialogDelete')
+		.addEventListener('click', function (e) {
+			if (e.target === this) {
+				closeDeleteDialog();
+			}
+		});
 
-    dialog.onclick = function (e) {
-        if (e.target === this) closeDeleteDialog();
-    };
-
-    document.onkeydown = function (e) {
-        if (e.key === 'Escape') closeDeleteDialog();
-    };
+	document.addEventListener('keydown', function (e) {
+		if (e.key === 'Escape') {
+			closeDeleteDialog();
+		}
+	});
 }
 
 function closeDeleteDialog() {
     document.getElementById('dialogDelete').classList.remove('active');
     reservation = null;
-    document.onkeydown = null;
 }
 
 function deleteReservation() {
     fetch('../controller/deleteReservation.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'idPrenotazione=' + encodeURIComponent(reservation)
-    })
-    .then(() => {
-        location.reload();
-    })
-    .catch((error) => console.error('Error:', error));
-    
-    closeDeleteDialog();
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		body: 'idPrenotazione=' + encodeURIComponent(reservation)
+	})
+		.then(() => {
+			location.reload();
+		})
+		.catch((error) => {
+			console.error('Error:', error);
+		});
+	closeDeleteDialog();
 }
 
 function openEditDialog(id, button) {
-    const row = button.closest('tr');
-    const cells = row.cells;
+    const currentRow = button.closest('tr');
+    const cells = currentRow.cells;
     const indices = tableConfig.colIndices;
+    reservation = id;
 
     // Se NON Admin, non puoi aprire una prenotazione che inizia entro 24 ore
+    // Controllo ulteriore perchè si potrebbe bypassare la disabilitazione del pulsante
     if (!tableConfig.isAdmin) {
         const dateStrCheck = cells[indices.date].textContent;
         const timeStrCheck = cells[indices.time].textContent.split(' - ')[0];
@@ -260,21 +277,15 @@ function openEditDialog(id, button) {
 
         if ((reservationDate - now) < limitMs) {
             alert("⚠️ Non modificabile: mancano meno di 24 ore all'evento.");
-            return; // Blocca l'apertura
+            return;
         }
     }
-
-    reservation = id;
-    currentRow = row;
 
     
     const today = new Date();
     let minDateObj = new Date(today);
 
-    if (tableConfig.isAdmin) {
-        // ADMIN: Può selezionare da OGGI in poi
-    } else {
-        // UTENTE: Può selezionare solo da DOMANI in poi
+    if (!tableConfig.isAdmin) {
         minDateObj.setDate(today.getDate() + 1);
     }
     
@@ -319,7 +330,6 @@ function closeEditDialog() {
     document.getElementById('editDialog').classList.remove('active');
     currentRow = null;
     reservation = null;
-    document.onkeydown = null;
 }
 
 function changeSportDialog() {
@@ -342,13 +352,14 @@ function changeSportDialog() {
 }
 
 function changeDateDialog() {
-    const dateInput = document.getElementById('editData').value;
-    const courtInput = document.getElementById('editCampo').value;
-    const timeSelect = document.getElementById('editOrario');
+    const date = document.getElementById('editData').value;
+    const court = document.getElementById('editCampo').value;
+    const sport = document.getElementById('editSport').value;
+    const timeOptions = document.getElementById('editOrario');
     
     // Se non ho data o campo, resetto tutto
-    if (!dateInput || !courtInput) {
-        Array.from(timeSelect.options).forEach(opt => {
+    if (!date || !court) {
+        Array.from(timeOptions.options).forEach(opt => {
             opt.disabled = false;
             opt.hidden = false;
             opt.style.display = '';
@@ -362,8 +373,9 @@ function changeDateDialog() {
 
     const formData = new FormData();
     formData.append('action', 'get_slots');
-    formData.append('court', courtInput);
-    formData.append('date', dateInput);
+    formData.append('court', court);
+    formData.append('date', date);
+    formData.append('sport', sport);
     
     if (reservation) {
         formData.append('excludeId', reservation);
@@ -376,7 +388,7 @@ function changeDateDialog() {
     .then(response => response.json())
     .then(bookedSlots => {
 
-        Array.from(timeSelect.options).forEach((option) => {
+        Array.from(timeOptions.options).forEach((option) => {
             
             const isBooked = bookedSlots.some(slot => slot.trim() === option.value.trim());
 
@@ -384,7 +396,7 @@ function changeDateDialog() {
             const startTimeString = option.value.split(' - ')[0]; 
             if (startTimeString) {
 
-                const slotDate = new Date(`${dateInput}T${startTimeString}`);
+                const slotDate = new Date(`${date}T${startTimeString}`);
                 
                 // Se la data dello slot è precedente al limite delle 24 ore, è troppo presto
                 if (slotDate < limitTime) {
@@ -446,33 +458,28 @@ function editReservation(sport, court, date, timeStart, timeEnd) {
     .then(async (response) => {
         if (response.ok) {
             location.reload();
-        } else {
-            try {
-                const errorData = await response.json();
-                alert("IMPOSSIBILE MODIFICARE: " + (errorData.message || "Errore sconosciuto"));
-            } catch(e) {
-                alert("Errore server generico.");
-            }
         }
     })
-    .catch((error) => console.error('Error:', error));
+    .catch((error) => {
+			console.error('Error:', error);
+		});
 }
 
 /**
- * Scansiona la tabella e disabilita i bottoni modifica in base alle regole:
- * - ADMIN: Disabilita solo se l'evento è già passato.
- * - UTENTE: Disabilita se mancano meno di 24 ore.
+ * Pe chi non capisse, la funzione scansiona la tabella e disabilita i bottoni modifica in base alle regole:
+ * - ADMIN: Disabilita solo se l'evento è già passato, abbiamo deciso che admin può modificare ogni prenotazione, meno quelle già concluse.
+ * - UTENTE: Disabilita se mancano meno di 24 ore, ci vuole un minimo di tempo di prevviso. Dato che è stata aggiunta questa cosa non ha senso far prenotare
+ * all'ulttimo minuto. Vedi gestione 24h in reservationUser.js
  */
 function disableLateReservations() {
-    // Se non ci sono righe, non fare nulla
     if (!allRows || allRows.length === 0) return;
 
     const indices = tableConfig.colIndices;
     const now = new Date();
 
     // CALCOLO DEL LIMITE
-    // Se isAdmin è true -> limite 0 (basta che non sia passato)
-    // Se isAdmin è false -> limite 86400000 ms (24 ore)
+    // Se isAdmin è true -> limite 0 (basta che non sia prenotazione passata)
+    // Se isAdmin è false -> limite 24*60*60*1000 = 86400000 ms (24 ore)
     const limitMs = tableConfig.isAdmin ? 0 : (24 * 60 * 60 * 1000);
 
     allRows.forEach((row) => {

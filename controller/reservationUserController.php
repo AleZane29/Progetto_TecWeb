@@ -31,7 +31,6 @@ if (!isset($_GET['sport']) || !isset($_GET['campo']) || !isset($_GET['data'])) {
         
         $limitTimestamp = time() + (24 * 60 * 60);
 
-        // Se la prenotazione è prima del limite, blocca tutto
         if ($bookingTimestamp < $limitTimestamp) {
             exit;
         }
@@ -66,7 +65,7 @@ if (!isset($_GET['sport']) || !isset($_GET['campo']) || !isset($_GET['data'])) {
             $inizio = date('H:i', strtotime($row['ora_inizio']));
             $fine   = date('H:i', strtotime($row['ora_fine']));
 
-            $listaOrariOccupati[] = $inizio . "-" . $fine;
+            $listaOrariOccupati[] = $inizio . " - " . $fine;
         }
     }
 }

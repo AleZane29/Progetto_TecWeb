@@ -302,15 +302,23 @@ class DBConn
 		return true;
 	}
 
-	public function getSelectedReservations($sport, $campo, $data)
+	public function getSelectedReservations($sport, $campo, $data, $excludeId = null)
 	{
 
 		$resultArray = array();
 
 		$query = "SELECT * FROM Prenotazione WHERE tipo_campo = ? AND numero_campo = ? AND data = ?";
 
+		if ($excludeId) {
+        $query .= " AND id != ?";
+    }
+
 		if ($stmt = $this->connection->prepare($query)) {
-			$stmt->bind_param("sss", $sport, $campo, $data);
+			if ($excludeId) {
+				$stmt->bind_param("sssi", $sport, $campo, $data, $excludeId);
+			} else {
+				$stmt->bind_param("sss", $sport, $campo, $data);
+			}
 			$stmt->execute();
 			$result = $stmt->get_result();
 			while ($row = $result->fetch_assoc()) {
@@ -322,16 +330,16 @@ class DBConn
 		return $resultArray;
 	}
 
-	public function checkOverlap($court, $date, $startTime, $endTime, $excludeId = null)
+	public function checkOverlap($sport, $court, $date, $startTime, $endTime, $excludeId = null)
     {
-        // Query base: Cerca prenotazioni nello stesso campo e stessa data
-        // che iniziano prima che la nuova finisca E finiscono dopo che la nuova inizi.
+        // Cerca prenotazioni nello stesso campo e stessa data
+        // che iniziano prima che la nuova finisca e finiscono dopo che la nuova inizi.
         $query = "SELECT COUNT(*) as total FROM Prenotazione 
-                  WHERE numero_campo = ? 
+                  WHERE tipo_campo = ?
+				  AND numero_campo = ? 
                   AND data = ? 
                   AND (ora_inizio < ? AND ora_fine > ?)";
 
-        // Se stiamo modificando, dobbiamo escludere noi stessi dal controllo
         if ($excludeId) {
             $query .= " AND id != ?";
         }
@@ -339,11 +347,9 @@ class DBConn
         $stmt = mysqli_prepare($this->connection, $query);
 
         if ($excludeId) {
-            // Se c'è l'ID: ssss i (string, string, string, string, integer)
-            mysqli_stmt_bind_param($stmt, "ssssi", $court, $date, $endTime, $startTime, $excludeId);
+            mysqli_stmt_bind_param($stmt, "sssssi", $sport, $court, $date, $endTime, $startTime, $excludeId);
         } else {
-            // Se non c'è l'ID: ssss
-            mysqli_stmt_bind_param($stmt, "ssss", $court, $date, $endTime, $startTime);
+            mysqli_stmt_bind_param($stmt, "sssss", $sport, $court, $date, $endTime, $startTime);
         }
 
         mysqli_stmt_execute($stmt);
@@ -352,41 +358,9 @@ class DBConn
         
         mysqli_stmt_close($stmt);
 
-        // Se total > 0, significa che c'è almeno una sovrapposizione
         return $row['total'] > 0;
     }
 
-	public function getBookedSlots($court, $date, $excludeId = null)
-	{
-		$query = "SELECT ora_inizio, ora_fine FROM Prenotazione 
-				WHERE numero_campo = ? AND data = ?";
-
-		if ($excludeId) {
-			$query .= " AND id != ?";
-		}
-
-		$stmt = mysqli_prepare($this->connection, $query);
-
-		if ($excludeId) {
-			mysqli_stmt_bind_param($stmt, "ssi", $court, $date, $excludeId);
-		} else {
-			mysqli_stmt_bind_param($stmt, "ss", $court, $date);
-		}
-
-		mysqli_stmt_execute($stmt);
-		$result = mysqli_stmt_get_result($stmt);
-		
-		$bookedSlots = [];
-		while ($row = mysqli_fetch_assoc($result)) {
-			$start = substr($row['ora_inizio'], 0, 5); 
-			$end = substr($row['ora_fine'], 0, 5);
-			
-			$bookedSlots[] = $start . " - " . $end;
-		}
-		
-		mysqli_stmt_close($stmt);
-		return $bookedSlots;
-	}
 
 	public function getReservationById($id)
     {

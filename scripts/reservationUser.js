@@ -1,62 +1,84 @@
+
 const availableTimeSlots = [
-    "08:00-09:30",
-    "09:30-11:00",
-    "11:00-12:30",
-    "13:00-14:30",
-    "14:30-16:00",
-    "16:00-17:30",
-    "17:30-19:00",
-    "19:00-20:30",
-    "20:30-22:00",
+    "08:00 - 09:30",
+    "09:30 - 11:00",
+    "11:00 - 12:30",
+    "13:00 - 14:30",
+    "14:30 - 16:00",
+    "16:00 - 17:30",
+    "17:30 - 19:00",
+    "19:00 - 20:30",
+    "20:30 - 22:00",
 ];
 
+// Numero di ore di prevviso: se vogliamo possiamo cambiarle
+const ore_preavviso = 24;
+
+
+// Logica di calcolo data e ora minima (esportata per riutilizzarla)
+function dataOraMinima() {
+
+    const now = new Date();
+
+    return new Date(now.getTime() + (ore_preavviso * 60 * 60 * 1000));
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    setMinDate();
+    setDataMinima();
 });
 
-/**
- * Imposta la data minima del calendario a DOMANI.
- * Poiché serve un preavviso di 24h, oggi non è mai prenotabile.
- */
-function setMinDate() {
-    const dateInput = document.getElementById("date");
-    if (dateInput) {
-        const today = new Date();
-        
-        const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
+/*
+Imposto la data minima selezionabile nel campo data
+Dato che mi serve di nuovo per il controllo dell'orario esporto 
+la logica di calcolo data e ora minima
+*/
+function setDataMinima() {
+    const date = document.getElementById("date");
 
-        const yyyy = tomorrow.getFullYear();
-        const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
-        const dd = String(tomorrow.getDate()).padStart(2, '0');
+
+    if (date) {
+        const minDateTime = dataOraMinima();
+
+        const m = minDateTime.getMonth() + 1;
+        const d = minDateTime.getDate();
+
+        const year = minDateTime.getFullYear();
+        const month = m < 10 ? `0${m}` : m;
+        const day = d < 10 ? `0${d}` : d;
         
-        dateInput.min = `${yyyy}-${mm}-${dd}`;
+        date.min = `${year}-${month}-${day}`;
     }
 }
 
 /**
- * Renderizza la tabella orari controllando prenotazioni e limite 24h
+ * 
  * @param {Array} bookedSlots 
  */
 function renderTimetable(bookedSlots = []) {
+
+
+
     const container = document.getElementById("timetable-container");
-    const dateValue = document.getElementById("date").value; 
+    const date = document.getElementById("date").value; 
     
     container.innerHTML = "";
 
-    const now = new Date();
-    const limitTime = new Date(now.getTime() + (24 * 60 * 60 * 1000));
+    const minDateTime = dataOraMinima();
 
     availableTimeSlots.forEach((time) => {
         const isBooked = bookedSlots.includes(time);
         let isTooSoon = false;
 
-        if (dateValue) {
+        /*
+        Per ogni fascia orario controllo se mancano meno di 24h al suo arrivo:
+        riutilizzo minDateTime per il confronto
+        */
+        if (date) {
             const startTime = time.split('-')[0];
-            
-            const slotDate = new Date(`${dateValue}T${startTime}:00`);
+            const timeSlot = new Date(`${date}T${startTime}:00`);
 
-            if (slotDate < limitTime) {
+
+            if (timeSlot < minDateTime) {
                 isTooSoon = true;
             }
         }
@@ -69,22 +91,19 @@ function renderTimetable(bookedSlots = []) {
         input.name = "timetable";
         input.value = time;
 
-        // LOGICA DI DISABILITAZIONE
-        // 1. Se è già prenotato (dal DB) -> Disabilita
-        // 2. Se è troppo presto (< 24h) -> Disabilita
-        // 3. Se non ha selezionato una data -> Disabilita tutto (per sicurezza)
-        if (isBooked || isTooSoon || !dateValue) {
+
+        // Disabilito le fascie orarie occupae, quelle a cui mancano meno di 24h
+        // Se non è stata selzionata una data disabilito tutte
+        if (isBooked || isTooSoon || !date) {
             input.disabled = true;
             label.classList.add("disabled");
-            
-            // Feedback visivo (opzionale, utile per debugging)
+
             if(isTooSoon) {
                 label.style.opacity = "0.5"; 
                 label.title = "Prenotabile solo con 24h di anticipo";
             }
         } else {
             input.required = true;
-            label.style.cursor = "pointer"; // Cursore mano se attivo
         }
 
         span.textContent = ` ${time}`;
@@ -101,9 +120,8 @@ function getReservations() {
     let campoSelezionato = document.querySelector('input[name="campo"]:checked');
     let dataSelezionata = document.getElementById("date").value;
 
-    // Se manca qualcosa, pulisci la tabella e esci
     if (!sportSelezionato || !campoSelezionato || !dataSelezionata) {
-        renderTimetable([]); // Ridisegna vuoto/disabilitato
+        renderTimetable([]);
         return;
     }
 
@@ -113,9 +131,12 @@ function getReservations() {
         if (this.status === 200) {
             try {
                 const response = JSON.parse(this.responseText);
+
                 renderTimetable(response);
+
             } catch (e) {
                 console.error("ERRORE DI PARSING JSON:", e);
+                console.log("Cosa ha risposto il server:", this.responseText);
                 alert("Errore nel caricamento dati.");
             }
         } else {
@@ -136,25 +157,35 @@ function getReservations() {
 }
 
 function clearInput(app) {
-    setMinDate();
+    setDataMinima();
 
     if (app != "none") {
         let campi_label = document.getElementsByClassName("campo-label");
         let campi_input = document.getElementsByName("campo");
         let j = 0;
 
-        // Disabilita tutto prima di riabilitare quelli giusti
         for (var i = 0; i < campi_input.length; i++) {
             campi_input[i].checked = false;
+
             campi_input[i].disabled = true;
             campi_label[i].classList.add("disabled");
         }
 
         switch (app) {
-            case "tennis": j = 3; break;
-            case "basket": j = 1; break;
-            case "calcetto": j = 2; break;
-            default: console.log("Errore: sport non riconosciuto"); return; 
+            case "tennis":
+                j = 3;
+                break;
+                
+            case "basket":
+                j = 1;
+                break;
+
+            case "calcetto":
+                j = 2;
+                break;
+            default:
+                console.log("Errore: sport non riconosciuto");
+                return; 
         }
 
         for (var i = 0; i < j; i++) {
@@ -163,6 +194,7 @@ function clearInput(app) {
         }
     }
 
+    //Resetta la data
     document.getElementById("date").value = "";
     
     renderTimetable([]); 

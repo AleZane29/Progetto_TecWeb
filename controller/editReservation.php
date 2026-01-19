@@ -11,6 +11,7 @@ header('Content-Type: application/json');
 
 $conn = new DBConn();
 $connessioneOK = $conn->openConnection();
+$listaOrariOccupati = [];
 
 if ($connessioneOK) {
     $action = isset($_POST['action']) ? $_POST['action'] : 'save';
@@ -18,10 +19,19 @@ if ($connessioneOK) {
     if ($action === 'get_slots') {
         $court = $_POST['court'];
         $date = $_POST['date'];
+        $sport = $_POST['sport'];
         $excludeId = isset($_POST['excludeId']) ? $_POST['excludeId'] : null;
 
-        $slots = $conn->getBookedSlots($court, $date, $excludeId);
-        echo json_encode($slots);
+        $reservationResult = $conn->getSelectedReservations($sport, $court, $date, $excludeId);
+        if ($reservationResult) {
+            foreach ($reservationResult as $row) {
+                $inizio = date('H:i', strtotime($row['ora_inizio']));
+                $fine   = date('H:i', strtotime($row['ora_fine']));
+
+                $listaOrariOccupati[] = $inizio . " - " . $fine;
+            }
+        }
+        echo json_encode($listaOrariOccupati);
         
         $conn->closeConnection();
         exit; 
@@ -93,7 +103,7 @@ if ($connessioneOK) {
             exit;
         }
         
-        $isOverlapping = $conn->checkOverlap($court, $date, $timeStart, $timeEnd, $id);
+        $isOverlapping = $conn->checkOverlap($sport, $court, $date, $timeStart, $timeEnd, $id);
 
         if ($isOverlapping) {
             http_response_code(409);
