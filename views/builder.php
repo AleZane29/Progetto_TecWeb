@@ -8,6 +8,7 @@ class Builder
   // Properties
   public $headerHTML;
   public $footerHTML;
+  public $personalReservationsLinkHTML;
 
   function __construct()
   {
@@ -16,14 +17,19 @@ class Builder
     }
 
     $this->headerHTML = file_get_contents("components/header.html");
+    $this->personalReservationsLinkHTML = file_get_contents("components/personalReservationsLink.html");
+
     if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
       $this->headerHTML = str_replace("<<-ACCOUNT->>", $_SESSION["nameUser"], $this->headerHTML);
       if ($_SESSION["roleUser"] === "Admin") {
+        $this->headerHTML = str_replace("<<-PERSONALRESERVATIONSLINK->>", ' ', $this->headerHTML);
         $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenotazioni", $this->headerHTML);
       } else {
+        $this->headerHTML = str_replace("<<-PERSONALRESERVATIONSLINK->>", $this->personalReservationsLinkHTML, $this->headerHTML);
         $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenota", $this->headerHTML);
       }
     } else {
+      $this->headerHTML = str_replace("<<-PERSONALRESERVATIONSLINK->>", ' ', $this->headerHTML);
       $this->headerHTML = str_replace("<<-ACCOUNT->>", "Account", $this->headerHTML);
       $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenota", $this->headerHTML);
     }
@@ -59,7 +65,6 @@ class Builder
       header("Location: login.php");
     }
 
-    $paginaHTML = require '../controller/reservationViewerController.php';
     $page = str_replace("<<-NOME->>", $_SESSION["nameUser"], $paginaHTML);
     $page = str_replace("<<-COGNOME->>", $_SESSION["surnameUser"], $page);
     $page = str_replace("<<-DN->>", $_SESSION["dateUser"], $page);
@@ -134,4 +139,24 @@ class Builder
       return ($HTMLPage);
     }
   }
-}
+
+  function build_personalReservations($paginaHTML)
+  {
+
+    //Controllo se l'utente non è autenticato ed eventuale reindirizzamento a login
+    if (!(isset($_SESSION["user"]) && $_SESSION["user"] !== null)) {
+      header("Location: login.php");
+    }
+
+    $paginaHTML = require '../controller/reservationViewerController.php';
+
+    $page = str_replace("<<-HEADER->>", $this->headerHTML, $paginaHTML);
+    $page = str_replace("<<-FOOTER->>", $this->footerHTML, $page);
+
+    return $page;
+  }
+
+
+
+
+  }

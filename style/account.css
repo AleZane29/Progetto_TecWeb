@@ -176,39 +176,3 @@ a.logout-button[href*="logout"]:hover {
         padding: 1rem; 
     }
 }
-
-.reservation-container {
-    width: 100%; 
-    min-width: 0;
-    padding-bottom: 5rem;
-}
-
-.table-container-account {
-	width: 100%;
-	border-radius: 8px;
-	overflow-x: auto;
-	max-width: 1000px;
-	margin-top: 2rem;
-	border: 1px solid var(--neutral-250);
-}
-
-.table-container-account table {
-    width: 100%;
-    min-width: 400px; 
-    border-collapse: collapse;
-}
-
-.table-container-account th, 
-.table-container-account td {
-    white-space: nowrap;
-    padding: 1rem; 
-}
-
-.reservation-header,
-.filters,
-.table-container-account,
-.pagination-container {
-    max-width: 1000px; 
-    margin-left: auto; 
-    margin-right: auto; 
-}
