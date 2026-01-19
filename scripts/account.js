@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	const saveBtn = document.getElementById('saveBtn');
 
 	const editableInputs = document.querySelectorAll(
-		'#profileForm input:not(#email)'
+		'#profileForm input:not(#email, #username)'
 	);
 
 	if (editBtn) {

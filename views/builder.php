@@ -64,6 +64,7 @@ class Builder
     $page = str_replace("<<-COGNOME->>", $_SESSION["surnameUser"], $page);
     $page = str_replace("<<-DN->>", $_SESSION["dateUser"], $page);
     $page = str_replace("<<-EMAIL->>", $_SESSION["emailUser"], $page);
+    $page = str_replace("<<-USERNAME->>", $_SESSION["usernameUser"], $page);
 
     $page = str_replace("<<-HEADER->>", $this->headerHTML, $page);
     $page = str_replace("<<-FOOTER->>", $this->footerHTML, $page);
