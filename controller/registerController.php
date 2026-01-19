@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = password_hash($passwordInChiaro, PASSWORD_DEFAULT);
     $name = $_POST["name"] ?? "";
     $surname = $_POST["surname"] ?? "";
+    $username = $_POST["username"] ?? "";
     $birth = $_POST["birth"] ?? "";
 
     $minAge = 14;
@@ -40,17 +41,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     try {
-      $conn->createUser($name, $surname, $email, $birth, $password);
+      if($conn->getUserByEmail($email)){
+      $registerResult = "<p class='error-message' role='alert'>Email già utilizzata</p>";
+      } else {
+      $conn->createUser($name, $surname, $username, $email, $birth, $password);
       $user = $conn->getUserByEmail($email);
       $_SESSION["user"] = $user["id"];
       $_SESSION["nameUser"] = $name;
       $_SESSION["surnameUser"] = $surname;
+      $_SESSION["usernameUser"] = $username;
       $_SESSION["emailUser"] = $email;
       $_SESSION["dateUser"] = $birth;
       $_SESSION["roleUser"] = $user["ruolo"];
       return $HTMLPage = '';
+      }
     } catch (Exception $e) {
-      $registerResult = "<p class='error-message' role='alert'>Email già utilizzata</p>";
+      $registerResult = "<p class='error-message' role='alert'>Username già utilizzato</p>";
     }
   } else {
     $registerResult = "<p class='error-message' role='alert'>Non è stato possibile effettuare la registrazione, riprovare più tardi</p>";

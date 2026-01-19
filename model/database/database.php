@@ -73,13 +73,28 @@ class DBConn
 		mysqli_stmt_close($stmt);
 		return $found;
 	}
-
-	public function createUser($name, $surname, $email, $birth, $password)
+	
+	public function getUserByUsername($username)
 	{
-		$query = "INSERT INTO Utente (nome, cognome, email, data_nascita, password) VALUES
-(?,?,?,?,?)";
+		$query = "SELECT * FROM Utente WHERE username=? ";
+
 		$stmt = mysqli_prepare($this->connection, $query);
-		mysqli_stmt_bind_param($stmt, "sssss", $name, $surname, $email, $birth, $password);
+		mysqli_stmt_bind_param($stmt, "s", $username);
+		mysqli_stmt_execute($stmt);
+
+		$result = mysqli_stmt_get_result($stmt);
+		$found = mysqli_fetch_assoc($result);
+
+		mysqli_stmt_close($stmt);
+		return $found;
+	}
+
+	public function createUser($name, $surname, $username, $email, $birth, $password)
+	{
+		$query = "INSERT INTO Utente (nome, cognome, username, email, data_nascita, password) VALUES
+(?,?,?,?,?,?)";
+		$stmt = mysqli_prepare($this->connection, $query);
+		mysqli_stmt_bind_param($stmt, "ssssss", $name, $surname, $username, $email, $birth, $password);
 		mysqli_stmt_execute($stmt);
 
 		if (mysqli_stmt_affected_rows($stmt) < 0) {

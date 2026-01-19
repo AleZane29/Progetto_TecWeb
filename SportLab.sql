@@ -1,4 +1,4 @@
-USE DATABASE alzanell;
+USE alzanell;
 DROP TABLE IF EXISTS Campo;
 DROP TABLE IF EXISTS TipoCampo;
 DROP TABLE IF EXISTS Prenotazione;
@@ -8,6 +8,7 @@ CREATE TABLE Utente (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     cognome VARCHAR(100) NOT NULL,
+    username VARCHAR(100) UNIQUE NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     data_nascita DATE NOT NULL,
     password TEXT NOT NULL,
@@ -42,9 +43,9 @@ CREATE TABLE Prenotazione (
 );
 
 
-INSERT INTO Utente (nome, cognome, email, data_nascita, password, ruolo) VALUES
-('User', 'User', 'user@email.com', '1990-01-01', '$2y$10$VbcD96fPgs3zxKy0GxRg9.gEaFQ2.kNGRl9n3OoLP0aVG8VbdbDyO', 'Cliente'),
-('Admin', 'Admin', 'admin@email.com', '1985-05-10', '$2y$10$HOmpkThH3.WDpI9OmDqW3uU/NYq7p9JhT3maUZg5QjIM1HH.Shivm', 'Admin');
+INSERT INTO Utente (nome, cognome, username, email, data_nascita, password, ruolo) VALUES
+('User', 'User', 'user', 'user@email.com', '1990-01-01', '$2y$10$VbcD96fPgs3zxKy0GxRg9.gEaFQ2.kNGRl9n3OoLP0aVG8VbdbDyO', 'Cliente'),
+('Admin', 'Admin', 'admin', 'admin@email.com', '1985-05-10', '$2y$10$HOmpkThH3.WDpI9OmDqW3uU/NYq7p9JhT3maUZg5QjIM1HH.Shivm', 'Admin');
 
 INSERT INTO TipoCampo (nome, costo_orario) VALUES
 ('Tennis', 25),
