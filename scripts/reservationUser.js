@@ -68,13 +68,14 @@ function renderTimetable(bookedSlots = []) {
     availableTimeSlots.forEach((time) => {
         const isBooked = bookedSlots.includes(time);
         let isTooSoon = false;
+        
 
         /*
         Per ogni fascia orario controllo se mancano meno di 24h al suo arrivo:
         riutilizzo minDateTime per il confronto
         */
         if (date) {
-            const startTime = time.split('-')[0];
+            const startTime = time.split(' - ')[0];
             const timeSlot = new Date(`${date}T${startTime}:00`);
 
 
