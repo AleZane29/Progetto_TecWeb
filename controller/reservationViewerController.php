@@ -9,7 +9,7 @@ use DB\DBConn;
 
 
 $HTMLPage = file_get_contents('../views/pages/account.html');
-$reservationTable = file_get_contents("../views/pages/reservationTable.html");
+$reservationTable = file_get_contents("../views/components/reservationTable.html");
 
 
 $user_id = $_SESSION['user'];
