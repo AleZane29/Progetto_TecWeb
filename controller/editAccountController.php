@@ -19,11 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $age = $todaydate->diff($birthdate);
 
     if($age->y < $minAge) {
-    
-    $registerResult = "<p class='error-message' role='alert'>Devi avere almeno $minAge anni per registrarti.</p>";
-    
-    $HTMLPage = str_replace("[registerResult]", $registerResult, $HTMLPage);
-    return $HTMLPage;
+        header("Location: ../views/account.php"); 
+        exit;
     }
     
     if (!isset($_SESSION['user'])) {
