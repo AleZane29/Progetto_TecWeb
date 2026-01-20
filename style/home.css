@@ -11,6 +11,10 @@
 	gap: 8rem;
 }
 
+.container-cards{
+	gap: 4rem;
+}
+
 .container-paragraph {
 	flex: 1;
 }
