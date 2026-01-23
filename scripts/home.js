@@ -1,4 +1,6 @@
 document.getElementById('navMenuHome').classList.add('active');
+document.getElementById('navMenuHome').removeAttribute('href');
+
 
 	let slideIndex = 1;
 	showSlides(slideIndex);

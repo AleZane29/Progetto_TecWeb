@@ -1,4 +1,6 @@
 // Configurazione dei parametri per l'Admin
+document.getElementById('navButtonPrenota').removeAttribute('href');
+
 
 initReservations({
     colIndices: {

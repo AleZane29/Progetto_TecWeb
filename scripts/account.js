@@ -1,4 +1,6 @@
 document.getElementById('navMenuAccount').classList.add('active');
+document.getElementById('navMenuAccount').removeAttribute('href');
+
 
 document.addEventListener('DOMContentLoaded', function () {
 	const editBtn = document.getElementById('editBtn');

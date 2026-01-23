@@ -1,4 +1,7 @@
 
+document.getElementById('navButtonPrenota').removeAttribute('href');
+
+
 const availableTimeSlots = [
     "08:00 - 09:30",
     "09:30 - 11:00",
