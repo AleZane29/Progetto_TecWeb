@@ -296,8 +296,8 @@ Per ottimizzare le prestazioni e il SEO del sito, sia da Desktop che da Mobile, 
 \begin{itemize}
     \item \textbf{Riduzione delle dimensioni delle immagini}: per ridurre il più possibile lo spazio richiesto senza però ridurre eccessivamente la qualità.
     \item \textbf{htaccess}: Impostato regole di caching più efficaci per i contenuti statici nel file di configurazione htaccess.
-    \item \textbf{Consigli Lighthouse}: Per controllare le metriche di Prestazioni e SEO abbiamo utilizzato i consigli di Google Lighthouse (rispettando la separazione tra contenuto e presentazione, ad esempio: no inlining di regole CSS). Durante i test abbiamo sempre ottenuto il punteggio massimo, 100\%, in tutte le categorie tranne nella sezione prestazioni nella quale abbiamo ottenuto il 100\% in tutte le pagine tranne un 96\% in Home e 99\% in Servizi.
-    \item \textbf{Minimizzazione JS e CSS}: Sono stati minimizzati tutti i file Javascript e CSS, eliminando spazi e indentazioni, per ridurre il loro tempo di caricamento.
+    \item \textbf{Consigli Lighthouse}: Per controllare le metriche di Prestazioni e SEO abbiamo utilizzato i consigli di Google Lighthouse (rispettando la separazione tra contenuto e presentazione, ad esempio: no inlining di regole CSS). Durante i test abbiamo sempre ottenuto il punteggio massimo, 100\%, in tutte le categorie tranne nella sezione prestazioni nella quale abbiamo ottenuto il 100\% in tutte le pagine tranne un 99\% in Home, e nelle pagine che mostrano la tabella delle prenotazioni (solo se visualizzate da mobile, altrimenti otteniamo 100\% anche in quelle).
+    \item \textbf{Minimizzazione JS e CSS}: I file JS e CSS sarebbero potuti essere minimizzati, ma visto le ottime prestazioni raggiunte anche senza la minimizzazione dei seguenti file, si è deciso di non modificarli, per rendere più semplice la lettura e la correzione per la docente dei file interessati.
 \end{itemize}
 
 \section{Database}
