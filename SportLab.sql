@@ -21,7 +21,7 @@ CREATE TABLE TipoCampo (
 );
 
 CREATE TABLE Campo (
-    numero INT NOT NULL AUTO_INCREMENT NOT NULL,
+    numero INT NOT NULL AUTO_INCREMENT,
     tipo VARCHAR(20),
     PRIMARY KEY (numero, tipo),
     FOREIGN KEY (tipo) REFERENCES TipoCampo(nome) ON DELETE CASCADE
@@ -62,6 +62,9 @@ INSERT INTO Campo (numero, tipo) VALUES
 
 INSERT INTO `prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
 (NULL, '1', '1', 'Tennis', '2026-02-10', '08:00:00', '09:30:00', '25');
+INSERT INTO `prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
 (NULL, '1', '2', 'Tennis', '2026-02-11', '08:00:00', '09:30:00', '25');
+INSERT INTO `prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
 (NULL, '1', '1', 'Basket', '2026-02-11', '11:00:00', '12:30:00', '70');
+INSERT INTO `prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
 (NULL, '1', '1', 'Calcio5', '2026-02-11', '11:00:00', '12:30:00', '60');
