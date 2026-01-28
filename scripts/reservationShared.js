@@ -1,3 +1,4 @@
+document.getElementById('navButtonPrenota').removeAttribute('href');
 
 let reservation = null;
 let currentRow = null;
@@ -9,15 +10,15 @@ let allRows = [];
 // In base alla configurazione che viene poi richiamata questi parametri possono cambiare.
 // (Non so se nel caso del viewer serva veramente riscriverli, perchè sono uguali a quelli di default)
 let tableConfig = {
-    colIndices: {
-        name: null,   
-        sport: 0,     
-        court: 1,     
-        date: 2,      
-        time: 3       
-    },
-    hasNameSearch: false, // Parametro inserito per abilitare o disabilitare il filtro per nome
-    isAdmin: false // Parametro che indica se l'utente utilizzatore ha ruolo di Admin o meno
+	colIndices: {
+		name: null,
+		sport: 0,
+		court: 1,
+		date: 2,
+		time: 3
+	},
+	hasNameSearch: false, // Parametro inserito per abilitare o disabilitare il filtro per nome
+	isAdmin: false // Parametro che indica se l'utente utilizzatore ha ruolo di Admin o meno
 };
 
 /**
@@ -25,20 +26,20 @@ let tableConfig = {
  * @param {Object} config - La configurazione delle colonne
  */
 function initReservations(config) {
-    // Bisogna sovrascrivere i parametri di default
-    tableConfig = { ...tableConfig, ...config };
-    
-    document.addEventListener('DOMContentLoaded', function () {
-        const tbody = document.getElementById('tableBody');
-        if (tbody) {
-            allRows = Array.from(tbody.querySelectorAll('tr'));
-            updatePagination();
-        }
-    });
+	// Bisogna sovrascrivere i parametri di default
+	tableConfig = { ...tableConfig, ...config };
+
+	document.addEventListener('DOMContentLoaded', function () {
+		const tbody = document.getElementById('tableBody');
+		if (tbody) {
+			allRows = Array.from(tbody.querySelectorAll('tr'));
+			updatePagination();
+		}
+	});
 }
 
 function updatePagination() {
-    const filteredRows = allRows.filter((row) => row.style.display !== 'none');
+	const filteredRows = allRows.filter((row) => row.style.display !== 'none');
 	const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
 
 	allRows.forEach((row) => row.classList.add('pagination-hidden'));
@@ -62,11 +63,11 @@ function updatePagination() {
 
 	generatePageNumbers(totalPages);
 
-    disableLateReservations();
+	disableLateReservations();
 }
 
 function generatePageNumbers(totalPages) {
-    const pageNumbersDiv = document.getElementById('pageNumbers');
+	const pageNumbersDiv = document.getElementById('pageNumbers');
 	pageNumbersDiv.innerHTML = '';
 
 	if (totalPages <= 7) {
@@ -98,7 +99,7 @@ function generatePageNumbers(totalPages) {
 }
 
 function createPageButton(pageNum) {
-    const button = document.createElement('button');
+	const button = document.createElement('button');
 	button.className = 'pagination-btn page-number';
 	button.textContent = pageNum;
 	button.onclick = () => goToPage(pageNum);
@@ -111,19 +112,19 @@ function createPageButton(pageNum) {
 }
 
 function createDots() {
-    const span = document.createElement('span');
+	const span = document.createElement('span');
 	span.className = 'pagination-dots';
 	span.textContent = '...';
 	return span;
 }
 
 function goToPage(page) {
-    currentPage = page;
-    updatePagination();
+	currentPage = page;
+	updatePagination();
 }
 
 function goToNextPage() {
-    const filteredRows = allRows.filter((row) => row.style.display !== 'none');
+	const filteredRows = allRows.filter((row) => row.style.display !== 'none');
 	const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
 
 	if (currentPage < totalPages) {
@@ -133,22 +134,21 @@ function goToNextPage() {
 }
 
 function goToPreviousPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        updatePagination();
-    }
+	if (currentPage > 1) {
+		currentPage--;
+		updatePagination();
+	}
 }
 
-
 function filterTable() {
-    // Gestione input Search Name: se sta sulla comnfigurazione e nel filtro è stato caricato anche il parametro
-    let searchName = '';
-    const searchInput = document.getElementById('searchName');
-    if (tableConfig.hasNameSearch && searchInput) {
-        searchName = searchInput.value.toLowerCase();
-    }
+	// Gestione input Search Name: se sta sulla comnfigurazione e nel filtro è stato caricato anche il parametro
+	let searchName = '';
+	const searchInput = document.getElementById('searchName');
+	if (tableConfig.hasNameSearch && searchInput) {
+		searchName = searchInput.value.toLowerCase();
+	}
 
-    const filterSport = document
+	const filterSport = document
 		.getElementById('filterSport')
 		.value.toLowerCase();
 	const filterCourt = document
@@ -156,70 +156,76 @@ function filterTable() {
 		.value.toLowerCase();
 	const filterDate = document.getElementById('filterDate').value;
 
-    const rows = document.querySelectorAll('#tableBody tr');
-    rows.forEach((row) => {
-        const sport = row.cells[tableConfig.colIndices.sport].textContent.toLowerCase();
-        const court = row.cells[tableConfig.colIndices.court].textContent.toLowerCase();
-        const date = row.cells[tableConfig.colIndices.date].textContent;
+	const rows = document.querySelectorAll('#tableBody tr');
+	rows.forEach((row) => {
+		const sport =
+			row.cells[tableConfig.colIndices.sport].textContent.toLowerCase();
+		const court =
+			row.cells[tableConfig.colIndices.court].textContent.toLowerCase();
+		const date = row.cells[tableConfig.colIndices.date].textContent;
 
-        let matchName = true;
-        if (tableConfig.hasNameSearch && tableConfig.colIndices.name !== null) {
-            const name = row.cells[tableConfig.colIndices.name].textContent.toLowerCase();
-            matchName = name.includes(searchName);
-        }
+		let matchName = true;
+		if (tableConfig.hasNameSearch && tableConfig.colIndices.name !== null) {
+			const name =
+				row.cells[tableConfig.colIndices.name].textContent.toLowerCase();
+			matchName = name.includes(searchName);
+		}
 
-        const matchSport = !filterSport || sport.includes(filterSport);
-        const matchCourt = !filterCourt || court.includes(filterCourt);
-        const matchDate = !filterDate || convertDate(date) === filterDate;
+		const matchSport = !filterSport || sport.includes(filterSport);
+		const matchCourt = !filterCourt || court.includes(filterCourt);
+		const matchDate = !filterDate || convertDate(date) === filterDate;
 
-        if (matchName && matchSport && matchCourt && matchDate) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    });
-    
-    currentPage = 1; 
-    updatePagination();
+		if (matchName && matchSport && matchCourt && matchDate) {
+			row.style.display = '';
+		} else {
+			row.style.display = 'none';
+		}
+	});
+
+	currentPage = 1;
+	updatePagination();
 }
 
 function convertDate(dateStr) {
-    const parts = dateStr.split('/');
-    if (parts.length === 3) {
-        return `${parts[2]}-${parts[1]}-${parts[0]}`;
-    }
-    return dateStr;
+	const parts = dateStr.split('/');
+	if (parts.length === 3) {
+		return `${parts[2]}-${parts[1]}-${parts[0]}`;
+	}
+	return dateStr;
 }
 
 function resetFilters() {
-    const searchName = document.getElementById('searchName');
-    if(searchName) searchName.value = '';
-    
-    document.getElementById('filterSport').value = '';
-    document.getElementById('filterCourt').value = '';
-    document.getElementById('filterDate').value = '';
-    filterTable();
+	const searchName = document.getElementById('searchName');
+	if (searchName) searchName.value = '';
+
+	document.getElementById('filterSport').value = '';
+	document.getElementById('filterCourt').value = '';
+	document.getElementById('filterDate').value = '';
+	filterTable();
 }
 
 function changeSport() {
-    const sportSelect = document.getElementById('filterSport');
-    const courtsSelect = document.getElementById('filterCourt');
-    const sport = sportSelect.value;
-    const courts = document.querySelectorAll('#filterCourt option');
+	const sportSelect = document.getElementById('filterSport');
+	const courtsSelect = document.getElementById('filterCourt');
+	const sport = sportSelect.value;
+	const courts = document.querySelectorAll('#filterCourt option');
 
-    courtsSelect.value = '';
-    courts.forEach((courtOption) => {
-        if (!(courtOption.getAttribute("data-court-id")) || (sport != '' && courtOption.getAttribute("data-court-id").includes(sport))) {
-            courtOption.style.display = '';
-        } else {
-            courtOption.style.display = 'none';
-        }
-    });
-    filterTable();
+	courtsSelect.value = '';
+	courts.forEach((courtOption) => {
+		if (
+			!courtOption.getAttribute('data-court-id') ||
+			(sport != '' && courtOption.getAttribute('data-court-id').includes(sport))
+		) {
+			courtOption.style.display = '';
+		} else {
+			courtOption.style.display = 'none';
+		}
+	});
+	filterTable();
 }
 
 function openDeleteDialog(id) {
-    reservation = id;
+	reservation = id;
 	document.getElementById('dialogDelete').classList.add('active');
 
 	document
@@ -238,12 +244,12 @@ function openDeleteDialog(id) {
 }
 
 function closeDeleteDialog() {
-    document.getElementById('dialogDelete').classList.remove('active');
-    reservation = null;
+	document.getElementById('dialogDelete').classList.remove('active');
+	reservation = null;
 }
 
 function deleteReservation() {
-    fetch('../controller/deleteReservation.php', {
+	fetch('../controller/deleteReservation.php', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
@@ -260,207 +266,207 @@ function deleteReservation() {
 }
 
 function openEditDialog(id, button) {
-    const currentRow = button.closest('tr');
-    const cells = currentRow.cells;
-    const indices = tableConfig.colIndices;
-    reservation = id;
+	const currentRow = button.closest('tr');
+	const cells = currentRow.cells;
+	const indices = tableConfig.colIndices;
+	reservation = id;
 
-    // Se NON Admin, non puoi aprire una prenotazione che inizia entro 24 ore
-    // Controllo ulteriore perchè si potrebbe bypassare la disabilitazione del pulsante
-    if (!tableConfig.isAdmin) {
-        const dateStrCheck = cells[indices.date].textContent;
-        const timeStrCheck = cells[indices.time].textContent.split(' - ')[0];
-        const isoDateCheck = convertDate(dateStrCheck);
-        const reservationDate = new Date(`${isoDateCheck}T${timeStrCheck}:00`);
-        const now = new Date();
-        const limitMs = 24 * 60 * 60 * 1000;
+	// Se NON Admin, non puoi aprire una prenotazione che inizia entro 24 ore
+	// Controllo ulteriore perchè si potrebbe bypassare la disabilitazione del pulsante
+	if (!tableConfig.isAdmin) {
+		const dateStrCheck = cells[indices.date].textContent;
+		const timeStrCheck = cells[indices.time].textContent.split(' - ')[0];
+		const isoDateCheck = convertDate(dateStrCheck);
+		const reservationDate = new Date(`${isoDateCheck}T${timeStrCheck}:00`);
+		const now = new Date();
+		const limitMs = 24 * 60 * 60 * 1000;
 
-        if ((reservationDate - now) < limitMs) {
-            alert("⚠️ Non modificabile: mancano meno di 24 ore all'evento.");
-            return;
-        }
-    }
+		if (reservationDate - now < limitMs) {
+			alert("⚠️ Non modificabile: mancano meno di 24 ore all'evento.");
+			return;
+		}
+	}
 
-    
-    const today = new Date();
-    let minDateObj = new Date(today);
+	const today = new Date();
+	let minDateObj = new Date(today);
 
-    if (!tableConfig.isAdmin) {
-        minDateObj.setDate(today.getDate() + 1);
-    }
-    
-    const minDateString = minDateObj.toISOString().split('T')[0];
-    
-    const dateInput = document.getElementById('editData');
-    if (dateInput) {
-        dateInput.setAttribute('min', minDateString);
-    }
+	if (!tableConfig.isAdmin) {
+		minDateObj.setDate(today.getDate() + 1);
+	}
 
-    const editCliente = document.getElementById('editCliente');
-    if (editCliente && indices.name !== null) {
-        editCliente.value = cells[indices.name].textContent;
-    }
+	const minDateString = minDateObj.toISOString().split('T')[0];
 
-    document.getElementById('editSport').value = cells[indices.sport].textContent;
-    changeSportDialog(); 
+	const dateInput = document.getElementById('editData');
+	if (dateInput) {
+		dateInput.setAttribute('min', minDateString);
+	}
 
-    document.getElementById('editCampo').value = cells[indices.court].textContent.split(' ')[1];
+	const editCliente = document.getElementById('editCliente');
+	if (editCliente && indices.name !== null) {
+		editCliente.value = cells[indices.name].textContent;
+	}
 
-    const dateStr = cells[indices.date].textContent;
-    const dateForInput = convertDate(dateStr); 
-    document.getElementById('editData').value = dateForInput;
+	document.getElementById('editSport').value = cells[indices.sport].textContent;
+	changeSportDialog();
 
-    document.getElementById('editOrario').value = cells[indices.time].textContent;
+	document.getElementById('editCampo').value =
+		cells[indices.court].textContent.split(' ')[1];
 
-    changeDateDialog(); 
+	const dateStr = cells[indices.date].textContent;
+	const dateForInput = convertDate(dateStr);
+	document.getElementById('editData').value = dateForInput;
 
-    const dialog = document.getElementById('editDialog');
-    dialog.classList.add('active');
+	document.getElementById('editOrario').value = cells[indices.time].textContent;
 
-    dialog.onclick = function (e) {
-        if (e.target === this) closeEditDialog();
-    };
+	changeDateDialog();
 
-    document.onkeydown = function (e) {
-        if (e.key === 'Escape') closeEditDialog();
-    };
+	const dialog = document.getElementById('editDialog');
+	dialog.classList.add('active');
+
+	dialog.onclick = function (e) {
+		if (e.target === this) closeEditDialog();
+	};
+
+	document.onkeydown = function (e) {
+		if (e.key === 'Escape') closeEditDialog();
+	};
 }
 
 function closeEditDialog() {
-    document.getElementById('editDialog').classList.remove('active');
-    currentRow = null;
-    reservation = null;
+	document.getElementById('editDialog').classList.remove('active');
+	currentRow = null;
+	reservation = null;
 }
 
 function changeSportDialog() {
-    const sportSelect = document.getElementById('editSport');
-    const courtsSelect = document.getElementById('editCampo');
-    const sport = sportSelect.value;
-    const courts = document.querySelectorAll('#editCampo option');
-    
-    // Reset selezione campo se cambia lo sport
-    courtsSelect.value = '';
+	const sportSelect = document.getElementById('editSport');
+	const courtsSelect = document.getElementById('editCampo');
+	const sport = sportSelect.value;
+	const courts = document.querySelectorAll('#editCampo option');
 
-    courts.forEach((court) => {
-        if (!(court.getAttribute("data-court-id")) || (sport != '' && court.getAttribute("data-court-id").includes(sport))) {
-            court.style.display = '';
-        } else {
-            court.style.display = 'none';
-        }
-    });
-    changeDateDialog();
+	// Reset selezione campo se cambia lo sport
+	courtsSelect.value = '';
+
+	courts.forEach((court) => {
+		if (
+			!court.getAttribute('data-court-id') ||
+			(sport != '' && court.getAttribute('data-court-id').includes(sport))
+		) {
+			court.style.display = '';
+		} else {
+			court.style.display = 'none';
+		}
+	});
+	changeDateDialog();
 }
 
 function changeDateDialog() {
-    const date = document.getElementById('editData').value;
-    const court = document.getElementById('editCampo').value;
-    const sport = document.getElementById('editSport').value;
-    const timeOptions = document.getElementById('editOrario');
-    
-    // Se non ho data o campo, resetto tutto
-    if (!date || !court) {
-        Array.from(timeOptions.options).forEach(opt => {
-            opt.disabled = false;
-            opt.hidden = false;
-            opt.style.display = '';
-        });
-        return;
-    }
+	const date = document.getElementById('editData').value;
+	const court = document.getElementById('editCampo').value;
+	const sport = document.getElementById('editSport').value;
+	const timeOptions = document.getElementById('editOrario');
 
-    const now = new Date(); 
-    const limitTime = new Date(now.getTime() + (24 * 60 * 60 * 1000)); 
+	// Se non ho data o campo, resetto tutto
+	if (!date || !court) {
+		Array.from(timeOptions.options).forEach((opt) => {
+			opt.disabled = false;
+			opt.hidden = false;
+			opt.style.display = '';
+		});
+		return;
+	}
 
+	const now = new Date();
+	const limitTime = new Date(now.getTime() + 24 * 60 * 60 * 1000);
 
-    const formData = new FormData();
-    formData.append('action', 'get_slots');
-    formData.append('court', court);
-    formData.append('date', date);
-    formData.append('sport', sport);
-    
-    if (reservation) {
-        formData.append('excludeId', reservation);
-    }
+	const formData = new FormData();
+	formData.append('action', 'get_slots');
+	formData.append('court', court);
+	formData.append('date', date);
+	formData.append('sport', sport);
 
-    fetch('../controller/editReservation.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(bookedSlots => {
+	if (reservation) {
+		formData.append('excludeId', reservation);
+	}
 
-        Array.from(timeOptions.options).forEach((option) => {
-            
-            const isBooked = bookedSlots.some(slot => slot.trim() === option.value.trim());
+	fetch('../controller/editReservation.php', {
+		method: 'POST',
+		body: formData
+	})
+		.then((response) => response.json())
+		.then((bookedSlots) => {
+			Array.from(timeOptions.options).forEach((option) => {
+				const isBooked = bookedSlots.some(
+					(slot) => slot.trim() === option.value.trim()
+				);
 
-            let isTooSoon = false;
-            const startTimeString = option.value.split(' - ')[0]; 
-            if (startTimeString) {
+				let isTooSoon = false;
+				const startTimeString = option.value.split(' - ')[0];
+				if (startTimeString) {
+					const slotDate = new Date(`${date}T${startTimeString}`);
 
-                const slotDate = new Date(`${date}T${startTimeString}`);
-                
-                // Se la data dello slot è precedente al limite delle 24 ore, è troppo presto
-                if (slotDate < limitTime) {
-                    isTooSoon = true;
-                }
-            }
+					// Se la data dello slot è precedente al limite delle 24 ore, è troppo presto
+					if (slotDate < limitTime) {
+						isTooSoon = true;
+					}
+				}
 
-            // SE È OCCUPATO OPPURE È TROPPO PRESTO -> NASCONDI
-            if (isBooked || isTooSoon) {
-                option.disabled = true;         
-                option.style.display = ''; 
-
-            } else {
-                // LIBERO E VALIDO
-                option.disabled = false;
-                option.hidden = false;
-                option.style.display = ''; 
-            }
-        });
-    })
-    .catch(err => console.error("Errore recupero orari:", err));
+				// SE È OCCUPATO OPPURE È TROPPO PRESTO -> NASCONDI
+				if (isBooked || isTooSoon) {
+					option.disabled = true;
+					option.style.display = '';
+				} else {
+					// LIBERO E VALIDO
+					option.disabled = false;
+					option.hidden = false;
+					option.style.display = '';
+				}
+			});
+		})
+		.catch((err) => console.error('Errore recupero orari:', err));
 }
 
 function resetTime() {
-    document.getElementById('editOrario').value = '';
-    changeDateDialog();
+	document.getElementById('editOrario').value = '';
+	changeDateDialog();
 }
 
 function confirmEdit() {
-    const sport = document.getElementById('editSport').value;
-    const court = document.getElementById('editCampo').value;
-    const data = document.getElementById('editData').value;
-    const timeVal = document.getElementById('editOrario').value;
-    
-    if(!timeVal) return false; 
+	const sport = document.getElementById('editSport').value;
+	const court = document.getElementById('editCampo').value;
+	const data = document.getElementById('editData').value;
+	const timeVal = document.getElementById('editOrario').value;
 
-    const timeStart = timeVal.split(' - ')[0];
-    const timeEnd = timeVal.split(' - ')[1];
-    
-    editReservation(sport, court, data, timeStart, timeEnd);
-    return false; 
+	if (!timeVal) return false;
+
+	const timeStart = timeVal.split(' - ')[0];
+	const timeEnd = timeVal.split(' - ')[1];
+
+	editReservation(sport, court, data, timeStart, timeEnd);
+	return false;
 }
 
 function editReservation(sport, court, date, timeStart, timeEnd) {
-    const data = new URLSearchParams();
-    data.append('action', 'save');
-    data.append('idPrenotazione', reservation);
-    data.append('sport', sport);
-    data.append('court', court);
-    data.append('date', date);
-    data.append('timeStart', timeStart);
-    data.append('timeEnd', timeEnd);
+	const data = new URLSearchParams();
+	data.append('action', 'save');
+	data.append('idPrenotazione', reservation);
+	data.append('sport', sport);
+	data.append('court', court);
+	data.append('date', date);
+	data.append('timeStart', timeStart);
+	data.append('timeEnd', timeEnd);
 
-    fetch('../controller/editReservation.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: data
-    })
-    .then(async (response) => {
-        if (response.ok) {
-            location.reload();
-        }
-    })
-    .catch((error) => {
+	fetch('../controller/editReservation.php', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		body: data
+	})
+		.then(async (response) => {
+			if (response.ok) {
+				location.reload();
+			}
+		})
+		.catch((error) => {
 			console.error('Error:', error);
 		});
 }
@@ -472,63 +478,63 @@ function editReservation(sport, court, date, timeStart, timeEnd) {
  * all'ulttimo minuto. Vedi gestione 24h in reservationUser.js
  */
 function disableLateReservations() {
-    if (!allRows || allRows.length === 0) return;
+	if (!allRows || allRows.length === 0) return;
 
-    const indices = tableConfig.colIndices;
-    const now = new Date();
+	const indices = tableConfig.colIndices;
+	const now = new Date();
 
-    // CALCOLO DEL LIMITE
-    // Se isAdmin è true -> limite 0 (basta che non sia prenotazione passata)
-    // Se isAdmin è false -> limite 24*60*60*1000 = 86400000 ms (24 ore)
-    const limitMs = tableConfig.isAdmin ? 0 : (24 * 60 * 60 * 1000);
+	// CALCOLO DEL LIMITE
+	// Se isAdmin è true -> limite 0 (basta che non sia prenotazione passata)
+	// Se isAdmin è false -> limite 24*60*60*1000 = 86400000 ms (24 ore)
+	const limitMs = tableConfig.isAdmin ? 0 : 24 * 60 * 60 * 1000;
 
-    allRows.forEach((row) => {
-        const dateStr = row.cells[indices.date].textContent; 
-        const timeStr = row.cells[indices.time].textContent.split(' - ')[0];
+	allRows.forEach((row) => {
+		const dateStr = row.cells[indices.date].textContent;
+		const timeStr = row.cells[indices.time].textContent.split(' - ')[0];
 
-        const isoDate = convertDate(dateStr); 
-        const reservationDate = new Date(`${isoDate}T${timeStr}:00`);
-        const diff = reservationDate - now;
-        const editBtn = row.querySelector('.btn-edit');
+		const isoDate = convertDate(dateStr);
+		const reservationDate = new Date(`${isoDate}T${timeStr}:00`);
+		const diff = reservationDate - now;
+		const editBtn = row.querySelector('.btn-edit');
 
-        if (editBtn) {
-            // SE SIAMO SOTTO IL LIMITE (Troppo tardi o già passato)
-            if (diff < limitMs) {
-                editBtn.disabled = true;
-                
-                editBtn.style.opacity = "0.4";
-                editBtn.style.cursor = "not-allowed"; 
-                
-                editBtn.title = tableConfig.isAdmin 
-                    ? "Evento già terminato" 
-                    : "Non modificabile";
-            } else {
-                editBtn.disabled = false;
-                editBtn.style.opacity = "1";
-                editBtn.style.cursor = "pointer";
-                editBtn.removeAttribute('title');
-            }
-        }
+		if (editBtn) {
+			// SE SIAMO SOTTO IL LIMITE (Troppo tardi o già passato)
+			if (diff < limitMs) {
+				editBtn.disabled = true;
 
-        const deleteBtn = row.querySelector('.btn-delete');
+				editBtn.style.opacity = '0.4';
+				editBtn.style.cursor = 'not-allowed';
 
-        if (deleteBtn) {
-            // SE SIAMO SOTTO IL LIMITE (Troppo tardi o già passato)
-            if (diff < limitMs) {
-                deleteBtn.disabled = true;
-                
-                deleteBtn.style.opacity = "0.4";
-                deleteBtn.style.cursor = "not-allowed"; 
-                
-                deleteBtn.title = tableConfig.isAdmin 
-                    ? "Evento già terminato" 
-                    : "Non modificabile";
-            } else {
-                deleteBtn.disabled = false;
-                deleteBtn.style.opacity = "1";
-                deleteBtn.style.cursor = "pointer";
-                deleteBtn.removeAttribute('title');
-            }
-        }
-    });
+				editBtn.title = tableConfig.isAdmin
+					? 'Evento già terminato'
+					: 'Non modificabile';
+			} else {
+				editBtn.disabled = false;
+				editBtn.style.opacity = '1';
+				editBtn.style.cursor = 'pointer';
+				editBtn.removeAttribute('title');
+			}
+		}
+
+		const deleteBtn = row.querySelector('.btn-delete');
+
+		if (deleteBtn) {
+			// SE SIAMO SOTTO IL LIMITE (Troppo tardi o già passato)
+			if (diff < limitMs) {
+				deleteBtn.disabled = true;
+
+				deleteBtn.style.opacity = '0.4';
+				deleteBtn.style.cursor = 'not-allowed';
+
+				deleteBtn.title = tableConfig.isAdmin
+					? 'Evento già terminato'
+					: 'Non modificabile';
+			} else {
+				deleteBtn.disabled = false;
+				deleteBtn.style.opacity = '1';
+				deleteBtn.style.cursor = 'pointer';
+				deleteBtn.removeAttribute('title');
+			}
+		}
+	});
 }

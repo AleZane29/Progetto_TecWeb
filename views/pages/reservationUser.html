@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html data-theme="light" lang="it">
 	<head>
 		<meta charset="UTF-8" />
@@ -11,7 +11,7 @@
 		<link href="../style/reservation.css" rel="stylesheet" />
 		<link href="../style/header.css" rel="stylesheet" />
 		<link href="../style/footer.css" rel="stylesheet" />
-		<script src="../scripts/reservationUser.js"></script>
+		<script src="../scripts/reservationUser.js" defer></script>
 	</head>
 
 	<body onload="renderTimetable()">
@@ -24,116 +24,121 @@
 		</nav>
 		<main id="main-content" class="main-user" tabindex="-1">
 			<div class="info-container">
-
-			<form class="info-form" action="../controller/reservationUserController.php" method="post">
-				<div class="info-header">
-					<h1>Prenota un campo!</h1>
-				</div>
-				<div class="form-separation">
-					<div class="separation">
-						<fieldset>
-							<legend>1. Scegli lo sport</legend>
-							<div class="sport-form">
-								<label>
-									<input
-										type="radio"
-										tabindex="0"
-										name="sport"
-										value="Tennis"
-										onclick="clearInput('tennis')"
-										required />
-									<img
-										src="../assets/icon-tennis.png"
-										alt=""
-										aria-hidden="true" />
-									<span class="visually-hidden">Tennis</span>
-								</label>
-								<label>
-									<input
-										type="radio"
-										tabindex="0"
-										name="sport"
-										value="Basket"
-										onclick="clearInput('basket')" required/>
-										
-									<img
-										src="../assets/icon-basketball.png"
-										alt=""
-										aria-hidden="true" />
-									<span class="visually-hidden">Basket</span>
-								</label>
-								<label>
-									<input
-										type="radio"
-										name="sport"
-										value="Calcio5"
-										onclick="clearInput('calcetto')" required/>
-									<img
-										src="../assets/icon-soccer.png"
-										alt=""
-										aria-hidden="true" />
-									<span class="visually-hidden">Calcetto</span>
-								</label>
-							</div>
-						</fieldset>
-						<fieldset>
-							<legend>2. Scegli il campo</legend>
-							<div class="sport-form">
-								<label class="campo-label">
-									<input
-										type="radio"
-										name="campo"
-										value="1"
-										onclick="clearInput('none')"
-										required />
-									1
-									<span class="visually-hidden">1</span>
-								</label>
-								<label class="campo-label">
-									<input
-										type="radio"
-										name="campo"
-										value="2"
-										onclick="clearInput('none')" required/>
-									2
-									<span class="visually-hidden">2</span>
-								</label>
-								<label class="campo-label">
-									<input
-										type="radio"
-										name="campo"
-										value="3"
-										onclick="clearInput('none')" required/>
-									3
-									<span class="visually-hidden">3</span>
-								</label>
-							</div>
-						</fieldset>
-						<fieldset>
-							<label for="date">3. Scegli la data</label>
-							<div class="date-form">
-								<label>
-									<input
-										id="date"
-										type="date"
-										name="date"
-										value=""
-										onchange="getReservations()"
-										required />
-									</label
-								>
-							</div>
-						</fieldset>
-
-						<fieldset>
-							<legend>4. Scegli la fascia oraria</legend>
-							<div class="timetable-form" id="timetable-container"></div>
-						</fieldset>
+				<form
+					class="info-form"
+					action="../controller/reservationUserController.php"
+					method="post">
+					<div class="info-header">
+						<h1>Prenota un campo!</h1>
 					</div>
-				</div>
+					<div class="form-separation">
+						<div class="separation">
+							<fieldset>
+								<legend>1. Scegli lo sport</legend>
+								<div class="sport-form">
+									<label>
+										<input
+											type="radio"
+											tabindex="0"
+											name="sport"
+											value="Tennis"
+											onclick="clearInput('tennis')"
+											required />
+										<img
+											src="../assets/icon-tennis.png"
+											alt=""
+											aria-hidden="true" />
+										<span class="visually-hidden">Tennis</span>
+									</label>
+									<label>
+										<input
+											type="radio"
+											tabindex="0"
+											name="sport"
+											value="Basket"
+											onclick="clearInput('basket')"
+											required />
 
-				<input class="submit-button" type="submit" value="Conferma" />
-			</form>
+										<img
+											src="../assets/icon-basketball.png"
+											alt=""
+											aria-hidden="true" />
+										<span class="visually-hidden">Basket</span>
+									</label>
+									<label>
+										<input
+											type="radio"
+											name="sport"
+											value="Calcio5"
+											onclick="clearInput('calcetto')"
+											required />
+										<img
+											src="../assets/icon-soccer.png"
+											alt=""
+											aria-hidden="true" />
+										<span class="visually-hidden">Calcetto</span>
+									</label>
+								</div>
+							</fieldset>
+							<fieldset>
+								<legend>2. Scegli il campo</legend>
+								<div class="sport-form">
+									<label class="campo-label">
+										<input
+											type="radio"
+											name="campo"
+											value="1"
+											onclick="clearInput('none')"
+											required />
+										1
+										<span class="visually-hidden">1</span>
+									</label>
+									<label class="campo-label">
+										<input
+											type="radio"
+											name="campo"
+											value="2"
+											onclick="clearInput('none')"
+											required />
+										2
+										<span class="visually-hidden">2</span>
+									</label>
+									<label class="campo-label">
+										<input
+											type="radio"
+											name="campo"
+											value="3"
+											onclick="clearInput('none')"
+											required />
+										3
+										<span class="visually-hidden">3</span>
+									</label>
+								</div>
+							</fieldset>
+							<fieldset>
+								<label for="date">3. Scegli la data</label>
+								<div class="date-form">
+									<label>
+										<input
+											id="date"
+											type="date"
+											name="date"
+											value=""
+											onchange="getReservations()"
+											required />
+									</label>
+								</div>
+							</fieldset>
+
+							<fieldset>
+								<legend>4. Scegli la fascia oraria</legend>
+								<div class="timetable-form" id="timetable-container"></div>
+							</fieldset>
+						</div>
+					</div>
+
+					<input class="submit-button" type="submit" value="Conferma" />
+				</form>
 			</div>
 		</main>
 
