@@ -1,3 +1,5 @@
+document.getElementById('navButtonPrenota').removeAttribute('href');
+
 initReservations({
 	colIndices: {
 		name: 0,
