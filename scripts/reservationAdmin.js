@@ -1,5 +1,3 @@
-// Configurazione dei parametri per l'Admin
-
 initReservations({
 	colIndices: {
 		name: 0,

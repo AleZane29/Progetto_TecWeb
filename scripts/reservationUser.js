@@ -12,10 +12,8 @@ const availableTimeSlots = [
 	'20:30 - 22:00'
 ];
 
-// Numero di ore di prevviso: se vogliamo possiamo cambiarle
 const ore_preavviso = 24;
 
-// Logica di calcolo data e ora minima (esportata per riutilizzarla)
 function dataOraMinima() {
 	const now = new Date();
 
@@ -26,11 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	setDataMinima();
 });
 
-/*
-Imposto la data minima selezionabile nel campo data
-Dato che mi serve di nuovo per il controllo dell'orario esporto 
-la logica di calcolo data e ora minima
-*/
 function setDataMinima() {
 	const date = document.getElementById('date');
 
@@ -48,10 +41,6 @@ function setDataMinima() {
 	}
 }
 
-/**
- *
- * @param {Array} bookedSlots
- */
 function renderTimetable(bookedSlots = []) {
 	const container = document.getElementById('timetable-container');
 	const date = document.getElementById('date').value;
@@ -64,10 +53,6 @@ function renderTimetable(bookedSlots = []) {
 		const isBooked = bookedSlots.includes(time);
 		let isTooSoon = false;
 
-		/*
-        Per ogni fascia orario controllo se mancano meno di 24h al suo arrivo:
-        riutilizzo minDateTime per il confronto
-        */
 		if (date) {
 			const startTime = time.split(' - ')[0];
 			const timeSlot = new Date(`${date}T${startTime}:00`);
@@ -85,8 +70,6 @@ function renderTimetable(bookedSlots = []) {
 		input.name = 'timetable';
 		input.value = time;
 
-		// Disabilito le fascie orarie occupae, quelle a cui mancano meno di 24h
-		// Se non è stata selzionata una data disabilito tutte
 		if (isBooked || isTooSoon || !date) {
 			input.disabled = true;
 			label.classList.add('disabled');
@@ -186,7 +169,6 @@ function clearInput(app) {
 		}
 	}
 
-	//Resetta la data
 	document.getElementById('date').value = '';
 
 	renderTimetable([]);

@@ -201,7 +201,6 @@ main {
 	margin-left: 1rem;
 }
 
-/* Responsive */
 @media (max-width: 480px) {
 	.login-form {
 		padding: 2rem 1.5rem;
@@ -212,7 +211,6 @@ main {
 	}
 }
 
-/* Animation per feedback */
 @keyframes shake {
 	0%,
 	100% {

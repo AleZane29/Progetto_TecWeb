@@ -6,9 +6,6 @@ let currentPage = 1;
 let rowsPerPage = 10;
 let allRows = [];
 
-// Configurazione standard della tabella: gli indici possono variare in base alla presenza o meno della colonna Nome del Cliente
-// In base alla configurazione che viene poi richiamata questi parametri possono cambiare.
-// (Non so se nel caso del viewer serva veramente riscriverli, perchè sono uguali a quelli di default)
 let tableConfig = {
 	colIndices: {
 		name: null,
@@ -17,16 +14,11 @@ let tableConfig = {
 		date: 2,
 		time: 3
 	},
-	hasNameSearch: false, // Parametro inserito per abilitare o disabilitare il filtro per nome
-	isAdmin: false // Parametro che indica se l'utente utilizzatore ha ruolo di Admin o meno
+	hasNameSearch: false,
+	isAdmin: false
 };
 
-/**
- * Funzione di inizializzazione configurazione da chiamare nei file specifici (non ho cancora capito se serva anche per user)
- * @param {Object} config - La configurazione delle colonne
- */
 function initReservations(config) {
-	// Bisogna sovrascrivere i parametri di default
 	tableConfig = { ...tableConfig, ...config };
 
 	document.addEventListener('DOMContentLoaded', function () {
@@ -141,7 +133,6 @@ function goToPreviousPage() {
 }
 
 function filterTable() {
-	// Gestione input Search Name: se sta sulla comnfigurazione e nel filtro è stato caricato anche il parametro
 	let searchName = '';
 	const searchInput = document.getElementById('searchName');
 	if (tableConfig.hasNameSearch && searchInput) {
@@ -271,8 +262,6 @@ function openEditDialog(id, button) {
 	const indices = tableConfig.colIndices;
 	reservation = id;
 
-	// Se NON Admin, non puoi aprire una prenotazione che inizia entro 24 ore
-	// Controllo ulteriore perchè si potrebbe bypassare la disabilitazione del pulsante
 	if (!tableConfig.isAdmin) {
 		const dateStrCheck = cells[indices.date].textContent;
 		const timeStrCheck = cells[indices.time].textContent.split(' - ')[0];
@@ -344,7 +333,6 @@ function changeSportDialog() {
 	const sport = sportSelect.value;
 	const courts = document.querySelectorAll('#editCampo option');
 
-	// Reset selezione campo se cambia lo sport
 	courtsSelect.value = '';
 
 	courts.forEach((court) => {
@@ -366,7 +354,6 @@ function changeDateDialog() {
 	const sport = document.getElementById('editSport').value;
 	const timeOptions = document.getElementById('editOrario');
 
-	// Se non ho data o campo, resetto tutto
 	if (!date || !court) {
 		Array.from(timeOptions.options).forEach((opt) => {
 			opt.disabled = false;
@@ -405,18 +392,15 @@ function changeDateDialog() {
 				if (startTimeString) {
 					const slotDate = new Date(`${date}T${startTimeString}`);
 
-					// Se la data dello slot è precedente al limite delle 24 ore, è troppo presto
 					if (slotDate < limitTime) {
 						isTooSoon = true;
 					}
 				}
 
-				// SE È OCCUPATO OPPURE È TROPPO PRESTO -> NASCONDI
 				if (isBooked || isTooSoon) {
 					option.disabled = true;
 					option.style.display = '';
 				} else {
-					// LIBERO E VALIDO
 					option.disabled = false;
 					option.hidden = false;
 					option.style.display = '';
@@ -471,21 +455,12 @@ function editReservation(sport, court, date, timeStart, timeEnd) {
 		});
 }
 
-/**
- * Pe chi non capisse, la funzione scansiona la tabella e disabilita i bottoni modifica in base alle regole:
- * - ADMIN: Disabilita solo se l'evento è già passato, abbiamo deciso che admin può modificare ogni prenotazione, meno quelle già concluse.
- * - UTENTE: Disabilita se mancano meno di 24 ore, ci vuole un minimo di tempo di prevviso. Dato che è stata aggiunta questa cosa non ha senso far prenotare
- * all'ulttimo minuto. Vedi gestione 24h in reservationUser.js
- */
 function disableLateReservations() {
 	if (!allRows || allRows.length === 0) return;
 
 	const indices = tableConfig.colIndices;
 	const now = new Date();
 
-	// CALCOLO DEL LIMITE
-	// Se isAdmin è true -> limite 0 (basta che non sia prenotazione passata)
-	// Se isAdmin è false -> limite 24*60*60*1000 = 86400000 ms (24 ore)
 	const limitMs = tableConfig.isAdmin ? 0 : 24 * 60 * 60 * 1000;
 
 	allRows.forEach((row) => {
@@ -498,7 +473,6 @@ function disableLateReservations() {
 		const editBtn = row.querySelector('.btn-edit');
 
 		if (editBtn) {
-			// SE SIAMO SOTTO IL LIMITE (Troppo tardi o già passato)
 			if (diff < limitMs) {
 				editBtn.disabled = true;
 
@@ -519,7 +493,6 @@ function disableLateReservations() {
 		const deleteBtn = row.querySelector('.btn-delete');
 
 		if (deleteBtn) {
-			// SE SIAMO SOTTO IL LIMITE (Troppo tardi o già passato)
 			if (diff < limitMs) {
 				deleteBtn.disabled = true;
 

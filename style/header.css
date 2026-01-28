@@ -128,7 +128,6 @@ header {
 	transition: 0.3s;
 }
 
-/*Navbar responsive*/
 @media (max-width: 768px) {
 	.menu-toggle {
 		display: flex;
@@ -146,18 +145,18 @@ header {
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 		transform: translateY(-100%);
 		opacity: 0;
-		visibility: hidden;  
-    pointer-events: none;
-    transition:
-      transform 0.3s,
-      opacity 0.3s,
-      visibility 0.3s;  
-    }
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			transform 0.3s,
+			opacity 0.3s,
+			visibility 0.3s;
+	}
 
-  .nav-menu.active {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;  
-    pointer-events: all;
-  }
+	.nav-menu.active {
+		transform: translateY(0);
+		opacity: 1;
+		visibility: visible;
+		pointer-events: all;
+	}
 }
