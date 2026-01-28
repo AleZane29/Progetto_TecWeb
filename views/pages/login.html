@@ -1,96 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html data-theme="light" lang="it">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="../assets/logo_white.png" rel="icon" />
-        <meta name="description" content="SportLab - Pagina di login" />
-        <meta name="language" content="it" />
-        <title>Login - SportLab</title>
-        <link href="../style/style.css" rel="stylesheet" />
-        <link href="../style/login.css" rel="stylesheet" />
-        <link href="../style/header.css" rel="stylesheet" />
-        <link href="../style/footer.css" rel="stylesheet" />
-        <script src="../scripts/togglePassword.js"></script>
-    </head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="../assets/logo_white.png" rel="icon" />
+		<meta name="description" content="SportLab - Pagina di login" />
+		<meta name="language" content="it" />
+		<title>Login - SportLab</title>
+		<link href="../style/style.css" rel="stylesheet" />
+		<link href="../style/login.css" rel="stylesheet" />
+		<link href="../style/header.css" rel="stylesheet" />
+		<link href="../style/footer.css" rel="stylesheet" />
+		<link href="../style/print.css" rel="stylesheet" media="print" />
+		<script src="../scripts/togglePassword.js"></script>
+	</head>
 
-    <body>
-        <<-HEADER->>
+	<body>
+		<<-HEADER->>
 
-        <div class="sr-only" id="breadcrumb-label">
-            <span lang="en">breadcrumb</span>
-        </div>
-        <nav aria-labelledby="breadcrumb-label" id="breadcrumb">
-            <p>Ti trovi in: <span lang="en" class="breadcrumb-page">Login</span></p>
-        </nav>
-        <main id="main-content" tabindex="-1">
-            <div class="login-container">
-                <form
-                    class="login-form"
-                    id="loginForm"
-                    method="POST"
-                    action="login.php">
-                    <div class="login-header">
-                        <h1>Benvenuto in SportLab</h1>
-                        <p>Accedi al tuo account</p>
-                    </div>
-                    
-                    [loginResult]
+		<div class="sr-only" id="breadcrumb-label">
+			<span lang="en">breadcrumb</span>
+		</div>
+		<nav aria-labelledby="breadcrumb-label" id="breadcrumb">
+			<p>Ti trovi in: <span lang="en" class="breadcrumb-page">Login</span></p>
+		</nav>
+		<main id="main-content" tabindex="-1">
+			<div class="login-container">
+				<form
+					class="login-form"
+					id="loginForm"
+					method="POST"
+					action="login.php">
+					<div class="login-header">
+						<h1>Benvenuto in SportLab</h1>
+						<p>Accedi al tuo account</p>
+					</div>
 
-                    <div class="form-group">
-                        <label for="email_username"><span lang="en">Email</span> o <span lang="en">Username</span></label>
-                        <div class="form-input">
-                            <input
-                                id="email_username"
-                                type="text"
-                                name="email_username"
-                                placeholder="Inserisci email o username"
-                                autocomplete="username"
-                                required
-                                aria-describedby="email_username-error" 
-                            />
-                        </div>
-                        <span id="email_username-error" class="error-message" aria-live="polite">
-                            </span>
-                    </div>
+					[loginResult]
 
-                    <div class="form-group">
-                        <label for="password" lang="en">Password</label>
-                        <div class="form-input">
-                            <input
-                                id="password"
-                                type="password"
-                                name="password"
-                                placeholder="Inserisci la tua password"
-                                autocomplete="current-password"
-                                required
-                                aria-describedby="password-error" 
-                            />
-                            <button
-                                type="button"
-                                class="toggle-password"
-                                onclick="togglePassword()"
-                                aria-label="Mostra password"
-                                style="background:none; border:none; cursor:pointer;"
-                                >
-                                👁️
-                            </button>
-                        </div>
-                         <span id="password-error" class="error-message" aria-live="polite">
-                             </span>
-                    </div>
+					<div class="form-group">
+						<label for="email_username"
+							><span lang="en">Email</span> o
+							<span lang="en">Username</span></label
+						>
+						<div class="form-input">
+							<input
+								id="email_username"
+								type="text"
+								name="email_username"
+								placeholder="Inserisci email o username"
+								autocomplete="username"
+								required
+								aria-describedby="email_username-error" />
+						</div>
+						<span
+							id="email_username-error"
+							class="error-message"
+							aria-live="polite">
+						</span>
+					</div>
 
-                    <button type="submit" class="btn-login">Accedi</button>
+					<div class="form-group">
+						<label for="password" lang="en">Password</label>
+						<div class="form-input">
+							<input
+								id="password"
+								type="password"
+								name="password"
+								placeholder="Inserisci la password"
+								autocomplete="current-password"
+								required
+								aria-describedby="password-error" />
+							<button
+								type="button"
+								class="toggle-password"
+								onclick="togglePassword()"
+								aria-label="Mostra password"
+								style="background: none; border: none; cursor: pointer">
+								<img class="eye-icon" src="../assets/eye.png" alt="Mostra password"></img>
+							</button>
+						</div>
+						<span id="password-error" class="error-message" aria-live="polite">
+						</span>
+					</div>
 
-                    <div class="divider">oppure</div>
+					<button type="submit" class="btn-login">Accedi</button>
 
-                    <div class="form-footer">
-                        <span>Non hai un account? </span>
-                        <a href="./register.php">Registrati ora</a>
-                    </div>
-                </form>
-            </div>
-        </main>
-        <<-FOOTER->>
-    </body>
+					<div class="divider">oppure</div>
+
+					<div class="form-footer">
+						<span>Non hai un account? </span>
+						<a href="./register.php">Registrati ora</a>
+					</div>
+				</form>
+			</div>
+		</main>
+		<<-FOOTER->>
+	</body>
 </html>

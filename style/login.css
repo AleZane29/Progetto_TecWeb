@@ -87,10 +87,17 @@ main {
 	font-size: 1.25rem;
 	user-select: none;
 	transition: transform 0.2s;
+	height: 26px;
+	width: 26px;
 }
 
 .toggle-password:hover {
 	transform: scale(1.1);
+}
+
+.eye-icon {
+	height: 26px;
+	width: 26px;
 }
 
 .error-message {

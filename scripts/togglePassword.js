@@ -1,12 +1,12 @@
 function togglePassword() {
-			const passwordInput = document.getElementById('password');
-			const toggleIcon = document.querySelector('.toggle-password');
+	const passwordInput = document.getElementById('password');
+	const toggleIcon = document.querySelector('.eye-icon');
 
-			if (passwordInput.type === 'password') {
-				passwordInput.type = 'text';
-				toggleIcon.textContent = '🙈';
-			} else {
-				passwordInput.type = 'password';
-				toggleIcon.textContent = '👁️';
-			}
-		}
+	if (passwordInput.type === 'password') {
+		passwordInput.type = 'text';
+		toggleIcon.src = '../assets/eyeClosed.png';
+	} else {
+		passwordInput.type = 'password';
+		toggleIcon.src = '../assets/eye.png';
+	}
+}

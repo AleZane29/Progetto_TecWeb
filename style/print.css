@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+/* Base */
+
+* {
+	font-family: 'Roboto Slab', serif;
+}
+
+header,
+footer,
+.subscribe-section {
+	display: none;
+}
+
+p,
+button,
+a,
+th,
+td {
+	color: var(--text) !important;
+}
+
+.container-info {
+	flex-direction: column;
+
+	gap: 2rem;
+	padding: 0 1rem;
+}
+
+.about-section:nth-of-type(odd) .container-info {
+	flex-direction: column-reverse;
+}
+
+.container-paragraph {
+	width: 100%;
+}
+
+.container-image {
+	width: 100%;
+	text-align: center;
+}
+
+.container-image img {
+	max-width: 300px;
+	max-height: 300px;
+}
+
+.about-section,
+.hours-section,
+.notices-section,
+.subscribe-section {
+	padding: 3rem 1rem;
+}
+
+.about-section h2,
+.hours-section h2,
+.notices-section h2 {
+	font-size: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.subscribe-section h2 {
+	font-size: 1.5rem;
+}
+
+.subscribe-section p {
+	font-size: 1rem;
+}
+
+.hours-section h2 {
+	margin-bottom: 2rem;
+}
+
+.notice-card {
+	padding: 1.5rem;
+}
+
+.notice-card h3 {
+	font-size: 1.1rem;
+}
+
+.dot {
+	height: 12px;
+	width: 12px;
+}
