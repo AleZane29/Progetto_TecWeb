@@ -1,14 +1,15 @@
-@import url('https: css2?family=Roboto+Slab&display=swap');
 
 * {
-	font-family: 'Roboto Slab', serif;
+	background-color: white;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: medium;
 }
 
 p,
 button,
 a,
 th,
-td {
+td, #banner-title, .subscribe-button {
 	color: var(--text) !important;
 }
 
@@ -71,7 +72,18 @@ td {
 	font-size: 1.1rem;
 }
 
-.dot {
-	height: 12px;
-	width: 12px;
-}
+.service-hero,
+	.cta-section {
+		background: white;
+		color: black;
+	}
+
+	.service-badge {
+		border: 2px solid black;
+		color: black;
+		background: white;
+	}
+
+	.map-placeholder {
+		border: 1px solid black;
+	}

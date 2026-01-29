@@ -167,8 +167,3 @@ button {
 		Cantarell, sans-serif;
 }
 
-@media screen and (max-width: 480px) {
-	.banner-container h1 {
-		font-size: 2rem;
-	}
-}

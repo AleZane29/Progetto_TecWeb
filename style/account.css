@@ -152,27 +152,3 @@ a.logout-button[href*="logout"] {
 a.logout-button[href*="logout"]:hover {
     background-color: var(--error);
 }
-
-@media (max-width: 768px) {
-    main {
-        padding: 1rem;
-    }
-    
-    .info-container {
-        margin-bottom: 40px;
-    }
-}
-
-@media (max-width: 480px) {
-	.info-form {
-        padding: 1.5rem 1rem; 
-    }
-
-    .info-header h1 {
-        font-size: 1.5rem;
-    }
-    
-    .logout-button {
-        padding: 1rem; 
-    }
-}

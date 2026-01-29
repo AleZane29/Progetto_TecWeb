@@ -201,16 +201,6 @@ main {
 	margin-left: 1rem;
 }
 
-@media (max-width: 480px) {
-	.login-form {
-		padding: 2rem 1.5rem;
-	}
-
-	.login-header h1 {
-		font-size: 1.5rem;
-	}
-}
-
 @keyframes shake {
 	0%,
 	100% {
