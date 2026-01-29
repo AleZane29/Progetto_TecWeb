@@ -1,5 +1,3 @@
-document.getElementById('navButtonPrenota').removeAttribute('href');
-
 let reservation = null;
 let currentRow = null;
 let currentPage = 1;
