@@ -867,7 +867,7 @@ main {
 .main-user {
 	display: grid;
 	place-items: center;
-	padding: 3rem;
+	padding: 2rem;
 }
 
 .info-container {
