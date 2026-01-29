@@ -5,11 +5,20 @@
 	font-size: medium;
 }
 
+body, main{
+	min-height: unset !important;
+}
+
+header{
+	position: absolute !important;
+	width: 100% !important;
+}
+
 p,
 button,
 a,
 th,
-td, #banner-title, .subscribe-button {
+td, #banner-title, .subscribe-button, #subscribe-title {
 	color: var(--text) !important;
 }
 
@@ -86,4 +95,68 @@ td, #banner-title, .subscribe-button {
 
 	.map-placeholder {
 		border: 1px solid black;
+	}
+
+	/* SERVICE */
+	.service-hero-container h1 {
+		font-size: 2rem;
+	}
+
+	.service-hero-subtitle {
+		font-size: 1rem;
+	}
+
+	.service-hero {
+		padding: 3.5rem 1.5rem;
+	}
+
+	.service-intro,
+	.service-detail,
+	.facility-map {
+		padding: 2rem 1.5rem;
+	}
+
+	.service-card {
+		padding: 1.5rem;
+	}
+
+	.service-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.service-header h2 {
+		font-size: 1.5rem;
+	}
+
+	.service-badge {
+		align-self: flex-start;
+	}
+
+	.service-info h3 {
+		font-size: 1.1rem;
+	}
+
+	.map-placeholder {
+		padding: 3rem 1.5rem;
+		min-height: 300px;
+	}
+
+	.facility-map h2 {
+		font-size: 1.75rem;
+	}
+	.service-hero-container h1 {
+		font-size: 1.75rem;
+	}
+
+	.grid-wrapper .wide {
+		grid-column: span 1 !important;
+	}
+
+	.service-info li {
+		padding-left: 1.5rem;
+	}
+
+	.service-card {
+		padding: 1.25rem;
 	}
