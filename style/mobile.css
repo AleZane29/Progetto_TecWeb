@@ -1,23 +1,22 @@
 /* ACCOUNT */
 @media (max-width: 768px) {
-  
-  .info-container {
-      margin-bottom: 40px;
-  }
+	.info-container {
+		margin-bottom: 40px;
+	}
 }
 
 @media (max-width: 480px) {
-.info-form {
-      padding: 1.5rem 1rem; 
-  }
+	.info-form {
+		padding: 1.5rem 1rem;
+	}
 
-  .info-header h1 {
-      font-size: 1.5rem;
-  }
-  
-  .logout-button {
-      padding: 1rem; 
-  }
+	.info-header h1 {
+		font-size: 1.5rem;
+	}
+
+	.logout-button {
+		padding: 1rem;
+	}
 }
 
 /* FOOTER */
@@ -86,7 +85,6 @@
 		gap: 1rem;
 	}
 }
-
 
 /* HEADER */
 
@@ -375,7 +373,6 @@
 
 /* SERVICE */
 
-
 @media (max-width: 768px) {
 	.service-hero-container h1 {
 		font-size: 2rem;
@@ -443,7 +440,6 @@
 		padding: 1.25rem;
 	}
 }
-
 
 @media (max-width: 1024px) {
 	.service-gallery {

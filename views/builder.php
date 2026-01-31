@@ -21,6 +21,7 @@ class Builder
 
     if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
       $this->headerHTML = str_replace("<<-ACCOUNT->>", $_SESSION["nameUser"], $this->headerHTML);
+      $this->headerHTML = str_replace("<<-ACCOUNTARIA->>", $_SESSION["nameUser"], $this->headerHTML);
       if ($_SESSION["roleUser"] === "Admin") {
         $this->headerHTML = str_replace("<<-PERSONALRESERVATIONSLINK->>", ' ', $this->headerHTML);
         $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenotazioni", $this->headerHTML);
@@ -31,6 +32,7 @@ class Builder
     } else {
       $this->headerHTML = str_replace("<<-PERSONALRESERVATIONSLINK->>", ' ', $this->headerHTML);
       $this->headerHTML = str_replace("<<-ACCOUNT->>", "<span lang=\"en\">Account</span>", $this->headerHTML);
+      $this->headerHTML = str_replace("<<-ACCOUNTARIA->>", " ", $this->headerHTML);
       $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenota", $this->headerHTML);
     }
 
@@ -155,8 +157,4 @@ class Builder
 
     return $page;
   }
-
-
-
-
-  }
+}

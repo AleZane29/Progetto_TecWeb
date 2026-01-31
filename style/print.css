@@ -163,3 +163,7 @@ td,
 .service-card {
 	padding: 1.25rem;
 }
+
+.actions {
+	flex-direction: column;
+}
