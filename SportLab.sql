@@ -60,11 +60,11 @@ INSERT INTO Campo (numero, tipo) VALUES
 (2, 'Calcio5'),
 (1, 'Basket');
 
-INSERT INTO `prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
+INSERT INTO `Prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
 (NULL, '1', '1', 'Tennis', '2026-02-10', '08:00:00', '09:30:00', '25');
-INSERT INTO `prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
+INSERT INTO `Prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
 (NULL, '1', '2', 'Tennis', '2026-02-11', '08:00:00', '09:30:00', '25');
-INSERT INTO `prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
+INSERT INTO `Prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
 (NULL, '1', '1', 'Basket', '2026-02-11', '11:00:00', '12:30:00', '70');
-INSERT INTO `prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
+INSERT INTO `Prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
 (NULL, '1', '1', 'Calcio5', '2026-02-11', '11:00:00', '12:30:00', '60');
