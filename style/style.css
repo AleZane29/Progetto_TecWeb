@@ -1141,14 +1141,18 @@ fieldset {
 	margin: 0 2rem 2rem 2rem;
 }
 
+.sport-radio-label{
+	margin-top: 0.5rem;
+}
+
 .timetable-form label.disabled {
-	color: #ccc;
+	color: var(--neutral-400);
 	cursor: not-allowed;
 	text-decoration: line-through;
 }
 
 .sport-form label.disabled {
-	color: #ccc;
+	color: var(--neutral-400);
 	cursor: not-allowed;
 	text-decoration: line-through;
 }
