@@ -864,6 +864,10 @@ main {
 	min-height: 100vh;
 }
 
+main.reservation-title {
+	min-height: unset;
+}
+
 .main-user {
 	display: grid;
 	place-items: center;

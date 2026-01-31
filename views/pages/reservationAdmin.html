@@ -5,10 +5,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="../assets/logo_white.png" rel="icon" />
 		<meta name="description" content="SportLab - Pagina di prenotazione" />
-		<meta name="language" content="it" />
 		<title>Prenotazioni - SportLab</title>
 		<link href="../style/style.css" rel="stylesheet" />
-		<link href="../style/mobile.css" rel="stylesheet" media="screen and (max-width: 1024px)"/>
+		<link
+			href="../style/mobile.css"
+			rel="stylesheet"
+			media="screen and (max-width: 1024px)" />
 		<link href="../style/print.css" rel="stylesheet" media="print" />
 		<script src="../scripts/reservationShared.js" defer></script>
 		<script src="../scripts/reservationAdmin.js" defer></script>
@@ -94,11 +96,16 @@
 					<button
 						class="pagination-btn"
 						id="prevBtn"
+						aria-label="Passa alla pagina precedente"
 						onclick="goToPreviousPage()">
 						← Precedente
 					</button>
 					<div id="pageNumbers"></div>
-					<button class="pagination-btn" id="nextBtn" onclick="goToNextPage()">
+					<button
+						class="pagination-btn"
+						aria-label="Passa alla pagina successiva"
+						id="nextBtn"
+						onclick="goToNextPage()">
 						Successivo →
 					</button>
 				</div>
