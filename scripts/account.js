@@ -1,5 +1,7 @@
 document.getElementById('navMenuAccount').classList.add('active');
 document.getElementById('navMenuAccount').removeAttribute('href');
+document.getElementById('navMenuAccount').removeAttribute('aria-label');
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (nameInput) nameInput.focus();
 
 			editBtn.style.display = 'none';
-			saveBtn.style.display = 'block';
+			saveBtn.removeAttribute('disabled');
 		});
 	}
 });

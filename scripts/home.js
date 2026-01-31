@@ -1,5 +1,7 @@
 document.getElementById('navMenuHome').classList.add('active');
 document.getElementById('navMenuHome').removeAttribute('href');
+document.getElementById('navMenuHome').removeAttribute('aria-label');
+
 
 
 	let slideIndex = 1;

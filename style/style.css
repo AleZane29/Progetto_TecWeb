@@ -262,7 +262,7 @@ button {
 	box-shadow: 0 0 0 3px var(--shadow-primary);
 }
 
-.logout-button {
+.account-button {
 	width: 100%;
 	padding: 0.875rem;
 	border: none;
@@ -278,12 +278,12 @@ button {
 	color: white;
 }
 
-.logout-button:hover {
+.account-button:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.logout-button:active {
+.account-button:active {
 	transform: translateY(0);
 }
 
@@ -301,17 +301,18 @@ button {
 
 #saveBtn {
 	background-color: var(--primary-700);
-	display: none;
+	margin-top: 1rem;
+	display: block;
 	cursor: pointer;
 	border: none;
 }
 
-a.logout-button[href*='logout'] {
+a.account-button[href*='logout'] {
 	background-color: var(--delete);
 	margin-top: 1rem;
 }
 
-a.logout-button[href*='logout']:hover {
+a.account-button[href*='logout']:hover {
 	background-color: var(--error);
 }
 

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../assets/logo_white.png" rel="icon" />
     <meta name="description" content="SportLab - Profilo utente" />
-    <meta name="language" content="it" />
     <title>Le mie prenotazioni - SportLab</title>
     <link href="../style/style.css" rel="stylesheet" />
 	<link href="../style/mobile.css" rel="stylesheet" media="screen and (max-width: 1024px)"/>
@@ -44,13 +43,14 @@
                     <label for="filterDate">Data</label>
                     <input type="date" id="filterDate" onchange="filterTable()" />
                 </div>
-                <button class="filter-button" onclick="resetFilters()">Resetta filtri</button>
+                <button class="filter-button" onclick="resetFilters()">Togli filtri</button>
             </div>
             <div class="table-container">
                 <p id="sum" class="sr-only">
-                    Questa tabella mostra tutte le tue prenotazioni. Puoi utilizzare i filtri sopra per
-                    cercare prenotazioni specifiche in base allo sport, al campo o alla data. Inoltre, puoi
-                    modificare o eliminare le prenotazioni direttamente dalla tabella.
+                    Questa tabella mostra tutte le tue prenotazioni. 
+                    I campi sono visualizzati in ordine cronologico crescente, i campi riportati sono: sport,campo,data,orario,prezzo,azioni. 
+                    Inoltre, puoi modificare o eliminare le prenotazioni direttamente dalla tabella. 
+                    La tabella é riportata per righe, ogni riga rappresenta una prenotazione.
                 </p>
                 <table aria-describedby="sum">
                     <caption class="sr-only">Le tue prenotazioni</caption>
@@ -79,7 +79,7 @@
                     <button class="pagination-btn" id="prevBtn" onclick="goToPreviousPage()">
                         ← Precedente
                     </button>
-                    <div id="pageNumbers"></div>
+                    <div id="pageNumbers" aria-label="Numero di pagine tabella"></div>
                     <button class="pagination-btn" id="nextBtn" onclick="goToNextPage()">
                         Successivo →
                     </button>

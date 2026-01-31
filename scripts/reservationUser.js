@@ -1,4 +1,6 @@
 document.getElementById('navButtonPrenota').removeAttribute('href');
+document.getElementById('navButtonPrenota').removeAttribute('aria-label');
+
 
 const availableTimeSlots = [
 	'08:00 - 09:30',

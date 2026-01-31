@@ -1,5 +1,7 @@
 document.getElementById('navMenuPersonalReservations').classList.add('active');
 document.getElementById('navMenuPersonalReservations').removeAttribute('href');
+document.getElementById('navMenuPersonalReservations').removeAttribute('aria-label');
+
 
 
 
