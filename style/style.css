@@ -522,7 +522,7 @@ header {
 }
 
 .about-section {
-  background: var(--neutral-0);
+  background: var(--neutral-100);
   padding: 4rem 2rem;
   width: 100%;
 }
@@ -541,9 +541,9 @@ header {
 }
 
 .hours-section {
-  background: var(--neutral-100);
+  background: var(--neutral-0);
   padding: 4rem 2rem;
-  margin-bottom: 3rem;
+  width: 100%;
 }
 
 .hours-section h2 {
@@ -556,7 +556,7 @@ header {
 .notices-section {
   background: white;
   width: 100%;
-  padding: 4rem 2rem;
+  padding: 7rem 2rem;
 }
 
 .notices-section h2 {
