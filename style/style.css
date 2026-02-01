@@ -245,7 +245,7 @@ button {
 	font-weight: 500;
 }
 
-.form-input input#email[readonly] {
+.form-input input#email[readonly], input#username[readonly] {
 	cursor: not-allowed;
 }
 
@@ -299,12 +299,26 @@ button {
 	border: none;
 }
 
+#editBtn:disabled {
+	background-color: var(--neutral-300);
+	cursor: not-allowed;
+	transform: none;
+	box-shadow: none;
+}
+
 #saveBtn {
 	background-color: var(--primary-700);
 	margin-top: 1rem;
 	display: block;
 	cursor: pointer;
 	border: none;
+}
+
+#saveBtn:disabled {
+	background-color: var(--neutral-300);
+	cursor: not-allowed;
+	transform: none;
+	box-shadow: none;
 }
 
 a.account-button[href*='logout'] {

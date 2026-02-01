@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			const nameInput = document.getElementById('name');
 			if (nameInput) nameInput.focus();
 
-			editBtn.style.display = 'none';
+			editBtn.setAttribute('disabled', 'true');
 			saveBtn.removeAttribute('disabled');
 		});
 	}
