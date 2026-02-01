@@ -10,11 +10,9 @@ if (!isset($_SESSION['user']) || $_SESSION['user'] === null) {
     exit;
 }
 
-$paginaHTML = file_get_contents("pages/personalReservations.html"); // Assicurati che il percorso sia giusto
 
 $builder = new Builder();
-// Nota: qui immagino che build_account riempia i placeholder <<-NOME->> prendendoli dalla sessione o dal DB
-$page = $builder->build_personalReservations($paginaHTML);
+$page = $builder->build_personalReservations();
 
 echo $page;
 ?>

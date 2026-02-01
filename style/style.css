@@ -1101,6 +1101,15 @@ tbody tr.pagination-hidden {
   border-radius: 1em;
 }
 
+.create-announcement-form {
+  margin: 10rem 0;
+  padding: 2rem 0 0 0;
+}
+
+#createAnnouncementForm > * {
+  padding: 1rem;
+}
+
 .submit-button {
   background: var(--primary-600);
   color: white !important;

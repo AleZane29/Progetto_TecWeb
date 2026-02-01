@@ -1,14 +1,11 @@
 <?php
-
 require_once "builder.php";
 
 use Builder\Builder;
 
 
 $builder = new Builder();
-$page = $builder->build_service();
+$page = $builder->build_adminAnnouncements();
 
 
 echo $page;
-
-?>

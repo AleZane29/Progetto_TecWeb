@@ -73,7 +73,7 @@ class DBConn
 		mysqli_stmt_close($stmt);
 		return $found;
 	}
-	
+
 	public function getUserByUsername($username)
 	{
 		$query = "SELECT * FROM Utente WHERE username=? ";
@@ -91,8 +91,7 @@ class DBConn
 
 	public function createUser($name, $surname, $username, $email, $birth, $password)
 	{
-		$query = "INSERT INTO Utente (nome, cognome, username, email, data_nascita, password) VALUES
-(?,?,?,?,?,?)";
+		$query = "INSERT INTO Utente (nome, cognome, username, email, data_nascita, password) VALUES (?,?,?,?,?,?)";
 		$stmt = mysqli_prepare($this->connection, $query);
 		mysqli_stmt_bind_param($stmt, "ssssss", $name, $surname, $username, $email, $birth, $password);
 		mysqli_stmt_execute($stmt);
@@ -109,10 +108,10 @@ class DBConn
 	public function updateUser($id, $name, $surname, $birth)
 	{
 		$query = "
-    UPDATE Utente 
-    SET nome = ?, cognome = ?, data_nascita = ?
-    WHERE id = ?
-";
+    	UPDATE Utente 
+    	SET nome = ?, cognome = ?, data_nascita = ?
+    	WHERE id = ?
+		";
 
 		$stmt = mysqli_prepare($this->connection, $query);
 
@@ -175,7 +174,7 @@ class DBConn
         FROM Prenotazione AS P
         INNER JOIN Utente AS U ON P.utente = U.id
 				ORDER BY P.DATA DESC
-    ";
+    	";
 
 		$queryResult = mysqli_query($this->connection, $query)
 			or die("Errore in DBAccess: " . mysqli_error($this->connection));
@@ -276,7 +275,7 @@ class DBConn
 
 		// Se $result è FALSE, significa che c'è stato un errore SQL grave (sintassi, connessione persa, etc.)
 		if (!$result) {
-			
+
 			return false;
 		}
 
@@ -288,7 +287,7 @@ class DBConn
 	public function createReservation($userId, $sport, $court, $data, $timeStart, $timeEnd, $price)
 	{
 		$query = "INSERT INTO Prenotazione (utente, numero_campo, tipo_campo, data, ora_inizio, ora_fine, prezzo) 
-	VALUES (?,?,?,?,?,?,?)";
+		VALUES (?,?,?,?,?,?,?)";
 		$stmt = mysqli_prepare($this->connection, $query);
 		mysqli_stmt_bind_param($stmt, "issssss", $userId, $court, $sport, $data, $timeStart, $timeEnd, $price);
 		mysqli_stmt_execute($stmt);
@@ -310,8 +309,8 @@ class DBConn
 		$query = "SELECT * FROM Prenotazione WHERE tipo_campo = ? AND numero_campo = ? AND data = ?";
 
 		if ($excludeId) {
-        $query .= " AND id != ?";
-    }
+			$query .= " AND id != ?";
+		}
 
 		if ($stmt = $this->connection->prepare($query)) {
 			if ($excludeId) {
@@ -331,46 +330,135 @@ class DBConn
 	}
 
 	public function checkOverlap($sport, $court, $date, $startTime, $endTime, $excludeId = null)
-    {
-        // Cerca prenotazioni nello stesso campo e stessa data
-        // che iniziano prima che la nuova finisca e finiscono dopo che la nuova inizi.
-        $query = "SELECT COUNT(*) as total FROM Prenotazione 
+	{
+		// Cerca prenotazioni nello stesso campo e stessa data
+		// che iniziano prima che la nuova finisca e finiscono dopo che la nuova inizi.
+		$query = "SELECT COUNT(*) as total FROM Prenotazione 
                   WHERE tipo_campo = ?
 				  AND numero_campo = ? 
                   AND data = ? 
                   AND (ora_inizio < ? AND ora_fine > ?)";
 
-        if ($excludeId) {
-            $query .= " AND id != ?";
-        }
+		if ($excludeId) {
+			$query .= " AND id != ?";
+		}
 
-        $stmt = mysqli_prepare($this->connection, $query);
+		$stmt = mysqli_prepare($this->connection, $query);
 
-        if ($excludeId) {
-            mysqli_stmt_bind_param($stmt, "sssssi", $sport, $court, $date, $endTime, $startTime, $excludeId);
-        } else {
-            mysqli_stmt_bind_param($stmt, "sssss", $sport, $court, $date, $endTime, $startTime);
-        }
+		if ($excludeId) {
+			mysqli_stmt_bind_param($stmt, "sssssi", $sport, $court, $date, $endTime, $startTime, $excludeId);
+		} else {
+			mysqli_stmt_bind_param($stmt, "sssss", $sport, $court, $date, $endTime, $startTime);
+		}
 
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $row = mysqli_fetch_assoc($result);
-        
-        mysqli_stmt_close($stmt);
+		mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
+		$row = mysqli_fetch_assoc($result);
 
-        return $row['total'] > 0;
-    }
+		mysqli_stmt_close($stmt);
+
+		return $row['total'] > 0;
+	}
 
 
 	public function getReservationById($id)
-    {
-        $query = "SELECT * FROM Prenotazione WHERE id = ?";
-        $stmt = mysqli_prepare($this->connection, $query);
-        mysqli_stmt_bind_param($stmt, "i", $id);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $row = mysqli_fetch_assoc($result);
-        mysqli_stmt_close($stmt);
-        return $row;
-    }
+	{
+		$query = "SELECT * FROM Prenotazione WHERE id = ?";
+		$stmt = mysqli_prepare($this->connection, $query);
+		mysqli_stmt_bind_param($stmt, "i", $id);
+		mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
+		$row = mysqli_fetch_assoc($result);
+		mysqli_stmt_close($stmt);
+		return $row;
+	}
+
+	public function getAllAnnouncements()
+	{
+		$resultArray = array();
+
+		$query = "SELECT *, DATE(data) AS data FROM Annunci";
+
+		if ($stmt = $this->connection->prepare($query)) {
+
+			$stmt->execute();
+			$result = $stmt->get_result();
+			while ($row = $result->fetch_assoc()) {
+				$resultArray[] = $row;
+			}
+			$stmt->close();
+		}
+
+		return $resultArray;
+	}
+
+	public function howManyAnnouncements()
+	{
+		$query = "SELECT COUNT(*) as total FROM Annunci";
+
+		$stmt = mysqli_prepare($this->connection, $query);
+
+		mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
+		$row = mysqli_fetch_assoc($result);
+
+		mysqli_stmt_close($stmt);
+
+		return $row['total'];
+	}
+	
+	public function createAnnouncement($id, $title, $description)
+	{
+		if($this->howManyAnnouncements() >= 5){
+			return false;
+		}
+
+		$query = "INSERT INTO Annunci (idAdmin, titolo, descrizione) VALUES (?, ?, ?)";
+		$stmt = mysqli_prepare($this->connection, $query);
+		mysqli_stmt_bind_param($stmt, "iss", $id, $title, $description);
+		mysqli_stmt_execute($stmt);
+
+		if (mysqli_stmt_affected_rows($stmt) < 0) {
+			mysqli_stmt_close($stmt);
+			die("Errore SQL");
+		}
+
+		mysqli_stmt_close($stmt);
+		return true;
+	}
+
+	
+	public function removeAnnouncement($id)
+	{
+		$query = "DELETE FROM Annunci WHERE id = ?";
+		$stmt = mysqli_prepare($this->connection, $query);
+		mysqli_stmt_bind_param($stmt, "i", $id);
+		mysqli_stmt_execute($stmt);
+
+		if (mysqli_stmt_affected_rows($stmt) < 0) {
+			mysqli_stmt_close($stmt);
+			die("Errore SQL");
+		}
+
+		mysqli_stmt_close($stmt);
+		return true;
+	}
+
+	public function editAnnouncement($id, $title, $description)
+	{
+		$query = "UPDATE Annunci SET titolo = ?, descrizione = ? WHERE id = ?";
+		
+		$stmt = mysqli_prepare($this->connection, $query);
+			mysqli_stmt_bind_param($stmt, "ssi", $title, $description, $id);
+		
+		if (mysqli_stmt_execute($stmt)) {
+			$successo = true;
+		} else {
+			mysqli_stmt_close($stmt);
+			die("Errore SQL: " . mysqli_error($this->connection));
+		}
+
+		mysqli_stmt_close($stmt);
+		return $successo;
+	}
 }

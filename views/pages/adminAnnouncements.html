@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="it">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="../assets/logo_white.png" rel="icon" />
+	<meta name="description" content="SportLab - Profilo utente" />
+	<title>Le mie prenotazioni - SportLab</title>
+	<link href="../style/style.css" rel="stylesheet" />
+	<link href="../style/mobile.css" rel="stylesheet" media="screen and (max-width: 1024px)" />
+	<link href="../style/print.css" rel="stylesheet" media="print" />
+	<script src="../scripts/adminAnnouncements.js" defer></script>
+	<style>
+		.create-announcement-form {
+			max-width: 700px;
+			margin: 3rem auto;
+			padding: 2rem;
+			background: var(--neutral-0);
+			border-radius: 12px;
+			text-align: center;
+		}
+
+		.create-announcement-form .form-group {
+			margin-bottom: 1.5rem;
+		}
+
+		.create-announcement-form .form-group label {
+			display: block;
+			font-size: 0.95rem;
+			color: var(--text-bold);
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.create-announcement-form .form-input-announcement {
+			position: relative;
+			display: flex;
+			align-items: flex-start;
+		}
+
+		.create-announcement-form .form-input-announcement input,
+		.create-announcement-form .form-input-announcement textarea {
+			width: 100%;
+			padding: 0.5rem 1rem;
+			border: 2px solid var(--primary-600);
+			border-radius: 8px;
+			font-size: 1rem;
+			background: var(--neutral-0);
+			color: var(--text-bold);
+			font-family: inherit;
+			
+		}
+
+
+
+		.create-announcement-form textarea {
+			resize: none;
+			min-height: 110px;
+		}
+
+		.create-announcement-form .submit-button {
+			width: 100%;
+			padding: 0.875rem;
+			background: var(--primary-600);
+			color: white !important;
+			border: none;
+			border-radius: 8px;
+			font-size: 1rem;
+			font-weight: 600;
+			transition: all 0.3s ease;
+			cursor: pointer;
+			margin-top: 1rem;
+		}
+
+
+		/* Layout: affianca tabella e form in questa pagina */
+		.content-columns {
+			display: flex;
+			gap: 2rem;
+			align-items: flex-start;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			margin: 2rem 2rem 4rem 2rem;
+		}
+
+		.content-columns .table-container {
+			flex: 1 1 60%;
+			min-width: 320px;
+			max-height: 70vh;
+			overflow: auto;
+		}
+
+		.content-columns .create-announcement-form {
+			flex: 0 0 35%;
+			min-width: 280px;
+			margin: 0;
+		}
+
+		.announcement-action-title{
+			  font-size: 1.75rem;
+				margin-bottom: 1.5rem;
+				color: var(--primary-600);
+		}
+
+		#dialogDelete{
+			text-align: center;
+		}
+
+		@media (max-width: 900px) {
+			.content-columns {
+				flex-direction: column;
+			}
+
+			.content-columns .create-announcement-form {
+				width: 100%;
+				margin-top: 1.5rem;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<<-HEADER->>
+		<div class="sr-only" id="breadcrumb-label">
+			<span lang="en">breadcrumb</span>
+		</div>
+		<nav aria-labelledby="breadcrumb-label" id="breadcrumb">
+			<p>Ti trovi in: <span lang="en" class="breadcrumb-page">Annunci speciali</span></p>
+		</nav>
+		<main id="main-content" class="reservation-title" tabindex="-1">
+			<h1>Annunci speciali</h1>
+
+			<div class="content-columns">
+				<div class="table-container">
+					<p id="sum" class="sr-only">
+						Questa tabella mostra Gli annunci speciali creati dagli amministratori. Usa i
+						filtri per cercare annunci specifici. I campi presenti sono: Titolo e Descrizione.
+						La tabella é organizzata per righe.
+					</p>
+					<table aria-describedby="sum">
+						<caption class="sr-only">
+							Tabella annunci speciali
+						</caption>
+						<thead>
+							<tr>
+								<th scope="col">Titolo</th>
+								<th scope="col">Descrizione</th>
+								<th scope="col">Data di creazione</th>
+								<th scope="col">Azioni</th>
+							</tr>
+						</thead>
+						<tbody id="tableBody">
+							[adminAnnouncements]
+						</tbody>
+					</table>
+				</div>
+
+				<div class="create-announcement-form">
+					<h2 class="announcement-action-title">Crea un nuovo annuncio</h2>
+					<form id="createAnnouncementForm" method="POST" action="../controller/createAnnouncementController.php">
+						<div class="form-group">
+							<label for="title">Titolo:</label>
+							<div class="form-input-announcement">
+								<input type="text" id="title" name="title" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="description">Descrizione:</label>
+							<div class="form-input-announcement">
+								<textarea id="description" maxlength="236" name="description" required></textarea>
+							</div>
+						</div>
+						<button type="submit" class="submit-button">Crea</button>
+					</form>
+				</div>
+			</div>
+
+
+		</main>
+
+		<div class="overlay" id="dialogDelete">
+            <div class="dialog">
+                <div class="dialog-icon">⚠️</div>
+                <h2 class="h2-dialog">Conferma Eliminazione</h2>
+                <p>Sei sicuro di voler eliminare questo annuncio? Questa azione non può essere annullata.</p>
+                <div class="dialog-actions">
+                    <button class="btn btn-dl-cancel" onclick="closeDeleteDialog()">Annulla</button>
+                    <button class="btn btn-dl-delete" onclick="deleteAnnouncement()">Elimina</button>
+                </div>
+            </div>
+        </div>
+
+		<!-- Dialog Modifica Prenotazione -->
+		<div class="overlay" id="editDialog">
+			<div class="dialog-box dialog-edit create-announcement-form">
+				<div class="dialog-header">
+					<h2 class="h2-dialog">Modifica annuncio</h2>
+				</div>
+				<div class="dialog-content">
+					<form id="editAnnouncementForm" method="POST" action="../controller/editAnnouncementController.php">
+						<div class="form-group">
+							<label for="title">Titolo:</label>
+							<div class="form-input-announcement">
+								<input type="text" id="title" name="title" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="description">Descrizione:</label>
+							<div class="form-input-announcement">
+								<textarea id="description" maxlength="236" name="description" required></textarea>
+							</div>
+						</div>
+						<button type="submit" class="submit-button">Modifica</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+
+		<<-FOOTER->>
+</body>
+
+</html>

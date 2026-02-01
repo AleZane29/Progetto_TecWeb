@@ -9,6 +9,7 @@ class Builder
   public $headerHTML;
   public $footerHTML;
   public $personalReservationsLinkHTML;
+  public $announcementLinkHTML;
 
   function __construct()
   {
@@ -18,19 +19,20 @@ class Builder
 
     $this->headerHTML = file_get_contents("components/header.html");
     $this->personalReservationsLinkHTML = file_get_contents("components/personalReservationsLink.html");
+    $this->announcementLinkHTML = file_get_contents("components/announcementLink.html");
 
     if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
       $this->headerHTML = str_replace("<<-ACCOUNT->>", $_SESSION["nameUser"], $this->headerHTML);
       $this->headerHTML = str_replace("<<-ACCOUNTARIA->>", $_SESSION["nameUser"], $this->headerHTML);
       if ($_SESSION["roleUser"] === "Admin") {
-        $this->headerHTML = str_replace("<<-PERSONALRESERVATIONSLINK->>", ' ', $this->headerHTML);
+        $this->headerHTML = str_replace("<<-SPECIFICLINK->>", $this->announcementLinkHTML, $this->headerHTML);
         $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenotazioni", $this->headerHTML);
       } else {
-        $this->headerHTML = str_replace("<<-PERSONALRESERVATIONSLINK->>", $this->personalReservationsLinkHTML, $this->headerHTML);
+        $this->headerHTML = str_replace("<<-SPECIFICLINK->>", $this->personalReservationsLinkHTML, $this->headerHTML);
         $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenota", $this->headerHTML);
       }
     } else {
-      $this->headerHTML = str_replace("<<-PERSONALRESERVATIONSLINK->>", ' ', $this->headerHTML);
+      $this->headerHTML = str_replace("<<-SPECIFICLINK->>", ' ', $this->headerHTML);
       $this->headerHTML = str_replace("<<-ACCOUNT->>", "<span lang=\"en\">Account</span>", $this->headerHTML);
       $this->headerHTML = str_replace("<<-ACCOUNTARIA->>", " ", $this->headerHTML);
       $this->headerHTML = str_replace("<<-PRENOTA->>", "Prenota", $this->headerHTML);
@@ -41,8 +43,10 @@ class Builder
   }
 
   // Methods
-  function build_home($paginaHTML)
+  function build_home()
   {
+
+    $paginaHTML = require_once '../controller/announcementController.php';
 
     $page = str_replace("<<-HEADER->>", $this->headerHTML, $paginaHTML);
     $page = str_replace("<<-FOOTER->>", $this->footerHTML, $page);
@@ -50,8 +54,9 @@ class Builder
     return $page;
   }
 
-  function build_service($paginaHTML)
+  function build_service()
   {
+    $paginaHTML = file_get_contents("pages/service.html");
 
     $page = str_replace("<<-HEADER->>", $this->headerHTML, $paginaHTML);
     $page = str_replace("<<-FOOTER->>", $this->footerHTML, $page);
@@ -59,8 +64,9 @@ class Builder
     return $page;
   }
 
-  function build_account($paginaHTML)
+  function build_account()
   {
+    $paginaHTML = file_get_contents("pages/account.html");
 
     //Controllo se l'utente non è autenticato ed eventuale reindirizzamento a login
     if (!(isset($_SESSION["user"]) && $_SESSION["user"] !== null)) {
@@ -142,8 +148,10 @@ class Builder
     }
   }
 
-  function build_personalReservations($paginaHTML)
+  function build_personalReservations()
   {
+
+    $paginaHTML = file_get_contents("pages/personalReservations.html"); 
 
     //Controllo se l'utente non è autenticato ed eventuale reindirizzamento a login
     if (!(isset($_SESSION["user"]) && $_SESSION["user"] !== null)) {
@@ -151,6 +159,17 @@ class Builder
     }
 
     $paginaHTML = require '../controller/reservationViewerController.php';
+
+    $page = str_replace("<<-HEADER->>", $this->headerHTML, $paginaHTML);
+    $page = str_replace("<<-FOOTER->>", $this->footerHTML, $page);
+
+    return $page;
+  }
+
+  function build_adminAnnouncements()
+  {
+
+    $paginaHTML = require '../controller/adminAnnouncementController.php';
 
     $page = str_replace("<<-HEADER->>", $this->headerHTML, $paginaHTML);
     $page = str_replace("<<-FOOTER->>", $this->footerHTML, $page);

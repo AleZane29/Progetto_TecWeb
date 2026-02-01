@@ -42,6 +42,16 @@ CREATE TABLE Prenotazione (
     FOREIGN KEY (numero_campo, tipo_campo) REFERENCES Campo(numero, tipo) ON DELETE CASCADE
 );
 
+CREATE TABLE Annunci (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    idAdmin INT NOT NULL,
+    titolo VARCHAR(100) NOT NULL,
+    descrizione TEXT NOT NULL,
+    data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (idAdmin) REFERENCES Utente(id) ON DELETE CASCADE
+);
+
 
 INSERT INTO Utente (nome, cognome, username, email, data_nascita, password, ruolo) VALUES
 ('User', 'User', 'user', 'user@email.com', '1990-01-01', '$2y$10$VbcD96fPgs3zxKy0GxRg9.gEaFQ2.kNGRl9n3OoLP0aVG8VbdbDyO', 'Cliente'),
@@ -68,3 +78,13 @@ INSERT INTO `Prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`
 (NULL, '1', '1', 'Basket', '2026-02-11', '11:00:00', '12:30:00', '70');
 INSERT INTO `Prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`, `ora_inizio`, `ora_fine`, `prezzo`) VALUES 
 (NULL, '1', '1', 'Calcio5', '2026-02-11', '11:00:00', '12:30:00', '60');
+
+
+
+INSERT INTO Annunci (idAdmin, titolo, descrizione) VALUES 
+('2','Nuovi Orari Stagionali', 'Si comunica che a partire da lunedì prossimo entreranno in vigore i nuovi orari per l’accesso alle sale e ai campi da gioco. Consultate il sito per i dettagli.'),
+('2','Manutenzione Straordinaria Piscina', 'La vasca piccola rimarrà chiusa per interventi di manutenzione programmata dal 10 al 12 del mese. Ci scusiamo per il disagio.'),
+('2','Open Day Fitness', 'Sabato mattina il centro aprirà le porte a tutti per provare gratuitamente i nostri nuovi corsi di gruppo. Prenotazione obbligatoria in segreteria.')
+;
+
+
