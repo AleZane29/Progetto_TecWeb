@@ -6,6 +6,7 @@ spanPage.id = aNav.id;
 spanPage.setAttribute('aria-current', 'page');
 aNav.replaceWith(spanPage);
 
+limitAnnouncementCheck();
 
 let tableConfig = {
     colIndices: {
@@ -53,6 +54,14 @@ form.onsubmit = function (event) {
   editAnnouncement(title, description);
 };
 
+function limitAnnouncementCheck(){
+  const tbody = document.getElementById('tableBody');
+  let allRows = Array.from(tbody.querySelectorAll('tr'));
+  if(allRows.length >= 5){
+    document.getElementById("editBtn").setAttribute('disabled', 'true');
+  }
+}
+
 function openDeleteDialog(id) {
   announcement = id;
   document.getElementById("dialogDelete").classList.add("active");
@@ -83,8 +92,6 @@ function deleteAnnouncement() {
 }
 
 function openEditDialog(id, button) {
-
-
   const currentRow = button.closest("tr");
   const cells = currentRow.cells;
   const indices = tableConfig.colIndices;

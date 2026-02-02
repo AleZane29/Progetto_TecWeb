@@ -1,26 +1,122 @@
-/* ACCOUNT */
 @media (max-width: 768px) {
-	.info-container {
-		margin-bottom: 40px;
-	}
-}
-
-@media (max-width: 480px) {
-	.info-form {
-		padding: 1.5rem 1rem;
+	.gallery-grid {
+		gap: 1rem;
 	}
 
-	.info-header h1 {
+	.gallery-item img {
+		height: 220px;
+	}
+
+	.gallery-item figcaption {
+		padding: 0.75rem;
+		font-size: 0.9rem;
+	}
+	.service-hero-container h1 {
+		font-size: 2rem;
+	}
+
+	.service-hero-subtitle {
+		font-size: 1rem;
+	}
+
+	.service-hero {
+		padding: 3.5rem 1.5rem;
+	}
+
+	.service-intro,
+	.service-detail,
+	.facility-map {
+		padding: 2rem 1.5rem;
+	}
+
+	.service-card {
+		padding: 1.5rem;
+	}
+
+	.service-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.service-header h2 {
 		font-size: 1.5rem;
 	}
 
-	.logout-button {
+	.service-badge {
+		align-self: flex-start;
+	}
+
+	.service-info h3 {
+		font-size: 1.1rem;
+	}
+
+	.map-placeholder {
+		padding: 3rem 1.5rem;
+		min-height: 300px;
+	}
+
+	.facility-map h2 {
+		font-size: 1.75rem;
+	}
+	.container {
 		padding: 1rem;
 	}
-}
 
-/* FOOTER */
-@media (max-width: 768px) {
+	fieldset {
+		margin: 0 0 2rem 0 !important;
+	}
+
+	.info-form {
+		padding: 1.5rem;
+	}
+
+	.main-user {
+		padding: 1rem;
+	}
+
+	h1 {
+		font-size: 1.5rem;
+	}
+
+	.filters {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	th,
+	td {
+		padding: 0.75rem 0.5rem;
+		font-size: 0.85rem;
+	}
+
+	.actions {
+		flex-direction: column;
+	}
+
+	.pagination-container {
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.pagination-controls {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.dialog-box {
+		padding: 1.5rem;
+	}
+
+	.dialog-actions {
+		flex-direction: column;
+	}
+
+	.dialog-btn {
+		width: 100%;
+	}
+	.info-container {
+		margin-bottom: 40px;
+	}
 	.hero-container h1 {
 		font-size: 2rem;
 	}
@@ -48,9 +144,79 @@
 	.container {
 		padding: 0 1rem;
 	}
+
+	.menu-toggle {
+		display: flex;
+	}
+
+	.nav-menu {
+		position: absolute;
+		top: 70px;
+		left: 0;
+		right: 0;
+		background: white;
+		flex-direction: column;
+		padding: 2rem;
+		gap: 1.5rem;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		transform: translateY(-100%);
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			transform 0.3s,
+			opacity 0.3s,
+			visibility 0.3s;
+	}
+
+	.nav-menu.active {
+		transform: translateY(0);
+		opacity: 1;
+		visibility: visible;
+		pointer-events: all;
+	}
 }
 
 @media (max-width: 480px) {
+	.gallery-item img {
+		height: 240px;
+	}
+	.service-hero-container h1 {
+		font-size: 1.75rem;
+	}
+
+	.grid-wrapper .wide {
+		grid-column: span 1 !important;
+	}
+
+	.service-info li {
+		padding-left: 1.5rem;
+	}
+
+	.service-card {
+		padding: 1.25rem;
+	}
+	.banner-container h1 {
+		font-size: 2rem;
+	}
+	.login-form {
+		padding: 2rem 1.5rem;
+	}
+
+	.login-header h1 {
+		font-size: 1.5rem;
+	}
+	.info-form {
+		padding: 1.5rem 1rem;
+	}
+
+	.info-header h1 {
+		font-size: 1.5rem;
+	}
+
+	.logout-button {
+		padding: 1rem;
+	}
 	body {
 		font-size: 14px;
 	}
@@ -86,44 +252,18 @@
 	}
 }
 
-/* HEADER */
-
-@media (max-width: 768px) {
-	.menu-toggle {
-		display: flex;
-	}
-
-	.nav-menu {
-		position: absolute;
-		top: 70px;
-		left: 0;
-		right: 0;
-		background: white;
-		flex-direction: column;
-		padding: 2rem;
-		gap: 1.5rem;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-		transform: translateY(-100%);
-		opacity: 0;
-		visibility: hidden;
-		pointer-events: none;
-		transition:
-			transform 0.3s,
-			opacity 0.3s,
-			visibility 0.3s;
-	}
-
-	.nav-menu.active {
-		transform: translateY(0);
-		opacity: 1;
-		visibility: visible;
-		pointer-events: all;
-	}
-}
-
-/* HOME */
-
 @media screen and (max-width: 1024px) {
+	
+	.container-info.container-cards {
+		flex-direction: column;
+
+		gap: 2rem;
+		padding: 0 1rem;
+	}
+
+	.notice-card {
+		min-width: 100%;
+	}
 	.container-info {
 		gap: 4rem;
 		padding: 0 1.5rem;
@@ -139,19 +279,6 @@
 	.notices-section h2,
 	.subscribe-section h2 {
 		font-size: 1.75rem;
-	}
-}
-
-@media screen and (max-width: 1024px) {
-	.container-info.container-cards {
-		flex-direction: column;
-
-		gap: 2rem;
-		padding: 0 1rem;
-	}
-
-	.notice-card {
-		min-width: 100%;
 	}
 }
 
@@ -306,181 +433,11 @@
 	}
 }
 
-/* LOGIN */
-
-@media (max-width: 480px) {
-	.login-form {
-		padding: 2rem 1.5rem;
-	}
-
-	.login-header h1 {
-		font-size: 1.5rem;
-	}
-}
-/* RESERVATION */
-@media (max-width: 768px) {
-	.container {
-		padding: 1rem;
-	}
-
-	fieldset {
-		margin: 0 0 2rem 0 !important;
-	}
-
-	.info-form {
-		padding: 1.5rem;
-	}
-
-	.main-user {
-		padding: 1rem;
-	}
-
-	h1 {
-		font-size: 1.5rem;
-	}
-
-	.filters {
-		flex-direction: column;
-		align-items: stretch;
-	}
-
-	th,
-	td {
-		padding: 0.75rem 0.5rem;
-		font-size: 0.85rem;
-	}
-
-	.actions {
-		flex-direction: column;
-	}
-
-	.pagination-container {
-		flex-direction: column;
-		gap: 1rem;
-	}
-
-	.pagination-controls {
-		flex-wrap: wrap;
-		justify-content: center;
-	}
-
-	.dialog-box {
-		padding: 1.5rem;
-	}
-
-	.dialog-actions {
-		flex-direction: column;
-	}
-
-	.dialog-btn {
-		width: 100%;
-	}
-}
-
-/* GENERAL */
-@media screen and (max-width: 480px) {
-	.banner-container h1 {
-		font-size: 2rem;
-	}
-}
-
-/* SERVICE */
-
-@media (max-width: 768px) {
-	.service-hero-container h1 {
-		font-size: 2rem;
-	}
-
-	.service-hero-subtitle {
-		font-size: 1rem;
-	}
-
-	.service-hero {
-		padding: 3.5rem 1.5rem;
-	}
-
-	.service-intro,
-	.service-detail,
-	.facility-map {
-		padding: 2rem 1.5rem;
-	}
-
-	.service-card {
-		padding: 1.5rem;
-	}
-
-	.service-header {
-		flex-direction: column;
-		align-items: flex-start;
-	}
-
-	.service-header h2 {
-		font-size: 1.5rem;
-	}
-
-	.service-badge {
-		align-self: flex-start;
-	}
-
-	.service-info h3 {
-		font-size: 1.1rem;
-	}
-
-	.map-placeholder {
-		padding: 3rem 1.5rem;
-		min-height: 300px;
-	}
-
-	.facility-map h2 {
-		font-size: 1.75rem;
-	}
-}
-
-@media (max-width: 480px) {
-	.service-hero-container h1 {
-		font-size: 1.75rem;
-	}
-
-	.grid-wrapper .wide {
-		grid-column: span 1 !important;
-	}
-
-	.service-info li {
-		padding-left: 1.5rem;
-	}
-
-	.service-card {
-		padding: 1.25rem;
-	}
-}
-
 @media (max-width: 1024px) {
 	.service-gallery {
 		min-width: 100%;
 	}
 }
-@media (max-width: 768px) {
-	.gallery-grid {
-		gap: 1rem;
-	}
-
-	.gallery-item img {
-		height: 220px;
-	}
-
-	.gallery-item figcaption {
-		padding: 0.75rem;
-		font-size: 0.9rem;
-	}
-}
-
-@media (max-width: 480px) {
-	.gallery-item img {
-		height: 240px;
-	}
-}
-
-/* ANNOUNCEMENT */
 
 @media screen and (max-width: 450px) {
   main.main-announcement > *{
@@ -512,5 +469,3 @@
     padding: 8px 4px;
   }
 }
-
-

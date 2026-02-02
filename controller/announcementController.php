@@ -19,7 +19,7 @@ if ($connessioneOK) {
 							<h3>" . $res["titolo"] . "</h3>
 							<p>" . $res["descrizione"] . "
 							</p>
-							<time>" . $res["data"] . "</time>
+							<p><span class='creationDate'>Data creazione:</span> <time>" . $res["data"] . "</time></p>
 						</article>
 					</div>";
   }

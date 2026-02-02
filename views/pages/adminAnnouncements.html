@@ -23,10 +23,7 @@
 		</nav>
 		<main id="main-content" class="main-announcement" tabindex="-1">
 
-			<div class="disclaimer">
-				<h1>Gestione annunci</h1>
-				<p>La tabella per garantire che il sito sia accessibile la tabella ha un massimo di 5 annunci. Il titolo ha un massimo di 40 caratteri e la descrizione di 200 caratteri. </p>
-			</div>
+			<h1>Gestione annunci</h1>
 
 			<div class="content-columns">
 				<div class="table-container">
@@ -44,7 +41,7 @@
 							<tr>
 								<th scope="col">Titolo</th>
 								<th scope="col">Descrizione</th>
-								<th scope="col">Data di creazione</th>
+								<th scope="col" abbr="Data">Data di creazione</th>
 								<th scope="col">Azioni</th>
 							</tr>
 						</thead>
@@ -56,12 +53,13 @@
 
 				<div class="create-announcement-form">
 					<h2 class="announcement-action-title">Crea un nuovo annuncio</h2>
+					<p>È consentito creare al massimo 5 annunci</p>
 					<form
 						id="createAnnouncementForm"
 						method="POST"
 						action="../controller/createAnnouncementController.php">
 						<div class="form-group">
-							<label for="title">Titolo:</label>
+							<label for="title">Titolo (max 40 caratteri):</label>
 							<div class="form-input-announcement">
 								<input
 									type="text"
@@ -73,7 +71,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="description">Descrizione:</label>
+							<label for="description">Descrizione (max 200 caratteri):</label>
 							<div class="form-input-announcement">
 								<textarea
 									id="description"
@@ -82,7 +80,7 @@
 									required></textarea>
 							</div>
 						</div>
-						<button type="submit" class="submit-button">Crea</button>
+						<button type="submit" class="submit-button" id="editBtn">Crea</button>
 					</form>
 				</div>
 			</div>
@@ -139,7 +137,12 @@
 									required></textarea>
 							</div>
 						</div>
-						<button type="submit" class="submit-button">Modifica</button>
+						<div class="dialog-actions">
+							<button class="btn btn-dl-cancel" onclick="closeEditDialog()">
+								Annulla
+							</button>
+							<button type="submit" class="btn btn-dl-confirm">Modifica</button>
+						</div>
 					</form>
 				</div>
 			</div>
