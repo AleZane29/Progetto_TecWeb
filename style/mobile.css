@@ -480,6 +480,19 @@
 	}
 }
 
+/* ANNOUNCEMENT */
+
+@media screen and (max-width: 450px) {
+  main.main-announcement > *{
+	margin-right: 5%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  main.main-announcement > *{
+	margin-right: 10%;
+  }
+}
 
 @media screen and (max-width: 600px) {
   .table-container.announcement-table-container {

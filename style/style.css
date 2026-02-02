@@ -50,6 +50,7 @@
 
 html {
 	scroll-behavior: smooth;
+	width: 100%;
 }
 
 body {
@@ -586,6 +587,7 @@ header {
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	word-wrap: break-word;
 	word-break: break-word;
+	text-align: center
 }
 
 .notice-card h3 {
@@ -1918,4 +1920,17 @@ a.cta-primary-button:focus {
 .disclaimer{
   text-align: center;
   padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.disclaimer p {
+    background-color: var(--neutral-200);
+    color: var(--primary-300);
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    max-width: 600px;
+	font-weight: bold;
+	margin-top: 1.5rem;
 }
