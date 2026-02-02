@@ -61,6 +61,13 @@ body {
 	line-height: 1.6;
 	font-size: 16px;
 	min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+main {
+  flex: 1; 
 }
 
 .sr-only,
@@ -79,10 +86,11 @@ body {
 #breadcrumb {
 	background-color: var(--neutral-250);
 	margin: 1.5rem 0;
-	justify-self: center;
 	text-align: center;
 	border-radius: 12px;
 	padding: 4px 8px;
+  width: fit-content;
+  align-self: center;
 }
 
 #breadcrumb p {
