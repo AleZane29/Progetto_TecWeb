@@ -1,38 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html data-theme="light" lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="../assets/logo_white.png" rel="icon" />
+		<meta name="description" content="SportLab - Profilo utente" />
+		<title>Le mie prenotazioni - SportLab</title>
+		<link href="../style/style.css" rel="stylesheet" />
+		<link
+			href="../style/mobile.css"
+			rel="stylesheet"
+			media="screen and (max-width: 1024px)" />
+		<link href="../style/print.css" rel="stylesheet" media="print" />
+		<script src="../scripts/adminAnnouncements.js" defer></script>
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link href="../assets/logo_white.png" rel="icon" />
-	<meta name="description" content="SportLab - Profilo utente" />
-	<title>Le mie prenotazioni - SportLab</title>
-	<link href="../style/style.css" rel="stylesheet" />
-	<link href="../style/mobile.css" rel="stylesheet" media="screen and (max-width: 1024px)" />
-	<link href="../style/print.css" rel="stylesheet" media="print" />
-	<script src="../scripts/adminAnnouncements.js" defer></script>
-
-</head>
-
-<body>
-	<<-HEADER->>
+	<body>
+		<<-HEADER->>
 		<div class="sr-only" id="breadcrumb-label">
 			<span lang="en">breadcrumb</span>
 		</div>
 		<nav aria-labelledby="breadcrumb-label" id="breadcrumb">
-			<p>Ti trovi in: <span lang="en" class="breadcrumb-page">Annunci speciali</span></p>
+			<p>
+				Ti trovi in:
+				<span lang="en" class="breadcrumb-page">Annunci speciali</span>
+			</p>
 		</nav>
 		<main id="main-content" class="reservation-title" tabindex="-1">
 			<h1>Annunci speciali</h1>
 
 			<div class="content-columns">
-				<div class="table-container announcement-table-container">
+				<div class="table-container">
 					<p id="sum" class="sr-only">
-						Questa tabella mostra Gli annunci speciali creati dagli amministratori. Usa i
-						filtri per cercare annunci specifici. I campi presenti sono: Titolo e Descrizione.
-						La tabella é organizzata per righe.
+						Questa tabella mostra Gli annunci speciali creati dagli
+						amministratori. Usa i filtri per cercare annunci specifici. I campi
+						presenti sono: Titolo e Descrizione. La tabella é organizzata per
+						righe.
 					</p>
-					<table class="table-announcement" aria-describedby="sum">
+					<table aria-describedby="sum">
 						<caption class="sr-only">
 							Tabella annunci speciali
 						</caption>
@@ -52,37 +57,53 @@
 
 				<div class="create-announcement-form">
 					<h2 class="announcement-action-title">Crea un nuovo annuncio</h2>
-					<form id="createAnnouncementForm" method="POST"
+					<form
+						id="createAnnouncementForm"
+						method="POST"
 						action="../controller/createAnnouncementController.php">
 						<div class="form-group">
 							<label for="title">Titolo:</label>
 							<div class="form-input-announcement">
-								<input type="text" id="title" name="title" maxlength="40" required />
+								<input
+									type="text"
+									id="title"
+									name="title"
+									maxlength="40"
+									required />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label for="description">Descrizione:</label>
 							<div class="form-input-announcement">
-								<textarea id="description" name="description" maxlength="236" required></textarea>
+								<textarea
+									id="description"
+									name="description"
+									maxlength="236"
+									required></textarea>
 							</div>
 						</div>
 						<button type="submit" class="submit-button">Crea</button>
 					</form>
 				</div>
 			</div>
-
-
 		</main>
 
 		<div class="overlay" id="dialogDelete">
 			<div class="dialog">
 				<div class="dialog-icon">⚠️</div>
 				<h2 class="h2-dialog">Conferma Eliminazione</h2>
-				<p>Sei sicuro di voler eliminare questo annuncio? Questa azione non può essere annullata.</p>
+				<p>
+					Sei sicuro di voler eliminare questo annuncio? Questa azione non può
+					essere annullata.
+				</p>
 				<div class="dialog-actions">
-					<button class="btn btn-dl-cancel" onclick="closeDeleteDialog()">Annulla</button>
-					<button class="btn btn-dl-delete" onclick="deleteAnnouncement()">Elimina</button>
+					<button class="btn btn-dl-cancel" onclick="closeDeleteDialog()">
+						Annulla
+					</button>
+					<button class="btn btn-dl-delete" onclick="deleteAnnouncement()">
+						Elimina
+					</button>
 				</div>
 			</div>
 		</div>
@@ -94,17 +115,29 @@
 					<h2 class="h2-dialog">Modifica annuncio</h2>
 				</div>
 				<div class="dialog-content">
-					<form id="editAnnouncementForm" method="POST" action="../controller/editAnnouncementController.php">
+					<form
+						id="editAnnouncementForm"
+						method="POST"
+						action="../controller/editAnnouncementController.php">
 						<div class="form-group">
 							<label for="title-edit">Titolo:</label>
 							<div class="form-input-announcement">
-								<input type="text" id="title-edit" maxlength="40" name="title" required />
+								<input
+									type="text"
+									id="title-edit"
+									maxlength="40"
+									name="title"
+									required />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="description-edit">Descrizione:</label>
 							<div class="form-input-announcement">
-								<textarea id="description-edit" maxlength="236" name="description" required></textarea>
+								<textarea
+									id="description-edit"
+									maxlength="236"
+									name="description"
+									required></textarea>
 							</div>
 						</div>
 						<button type="submit" class="submit-button">Modifica</button>
@@ -113,8 +146,6 @@
 			</div>
 		</div>
 
-
 		<<-FOOTER->>
-</body>
-
+	</body>
 </html>
