@@ -20,7 +20,7 @@ if ($connessioneOK) {
                         <td>" . $res["descrizione"] . "</td>
                         <td>" . $res["data"] . "</td>
                         <td>
-                            <div class='actions'>
+                            <div class='actions ann'>
                                 <button class='action-btn btn-edit' aria-label='Modifica annuncio " . $res["id"] . "' onclick='openEditDialog(" . $res["id"] . ", this)'>Modifica</button>
                                 <button class='action-btn btn-delete' aria-label='Elimina annuncio " . $res["id"] . "' onclick='openDeleteDialog(" . $res["id"] . ")'>Elimina</button>
                             </div>

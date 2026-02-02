@@ -466,3 +466,25 @@
 		height: 240px;
 	}
 }
+
+
+@media screen and (max-width: 600px) {
+  .table-container.announcement-table-container {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+  }
+  
+  table.table-announcement {
+    display: table;
+    min-width: 300px;
+  }
+  
+  table.table-announcement th,
+  table.table-announcement td {
+    font-size: 14px;
+    padding: 8px 4px;
+  }
+}
+
+

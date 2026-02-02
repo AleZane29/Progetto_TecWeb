@@ -576,6 +576,8 @@ header {
     transform 0.3s,
     box-shadow 0.3s;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  word-wrap: break-word;
+			word-break: break-word;
 }
 
 .notice-card h3 {
@@ -587,7 +589,7 @@ header {
 .notice-card p {
   color: var(--text);
   line-height: 1.8;
-  margin-bottom: 1rem;
+  margin: 0rem 2rem 0rem 2rem;
 }
 
 .mySlides {
@@ -1784,4 +1786,172 @@ a.cta-primary-button:focus {
 .service-info {
   flex: 1;
   max-width: 100%;
+}
+
+.create-announcement-form {
+			max-width: 700px;
+			margin: 3rem auto;
+			padding: 2rem;
+			background: var(--neutral-0);
+			border-radius: 12px;
+			text-align: center;
+		}
+
+		.create-announcement-form .form-group {
+			margin-bottom: 1.5rem;
+		}
+
+		.create-announcement-form .form-group label {
+			display: block;
+			font-size: 0.95rem;
+			color: var(--text-bold);
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+
+		.create-announcement-form .form-input-announcement {
+			position: relative;
+			display: flex;
+			align-items: flex-start;
+		}
+
+		.create-announcement-form .form-input-announcement input,
+		.create-announcement-form .form-input-announcement textarea {
+			width: 100%;
+			padding: 0.5rem 1rem;
+			border: 2px solid var(--primary-600);
+			border-radius: 8px;
+			font-size: 1rem;
+			background: var(--neutral-0);
+			color: var(--text-bold);
+			font-family: inherit;
+
+		}
+
+
+
+		.create-announcement-form textarea {
+			resize: none;
+			min-height: 110px;
+		}
+
+		.create-announcement-form .submit-button {
+			width: 100%;
+			padding: 0.875rem;
+			background: var(--primary-600);
+			color: white !important;
+			border: none;
+			border-radius: 8px;
+			font-size: 1rem;
+			font-weight: 600;
+			transition: all 0.3s ease;
+			cursor: pointer;
+			margin-top: 1rem;
+		}
+
+
+		.content-columns {
+			display: flex;
+			gap: 2rem;
+			align-items: flex-start;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			margin: 2rem 2rem 4rem 2rem;
+			width: 90%;
+		}
+
+		.content-columns .table-container {
+			flex: 1 1 60%;
+			min-width: 320px;
+			max-height: 70vh;
+			overflow: auto;
+		}
+
+		.content-columns .create-announcement-form {
+			flex: 0 0 35%;
+			min-width: 280px;
+			margin: 0;
+			width: 100%;
+		}
+
+		.content-columns .table-container {
+			min-width: 280px;
+		}
+
+		.announcement-action-title {
+			font-size: 1.75rem;
+			margin-bottom: 1.5rem;
+			color: var(--primary-600);
+		}
+
+		#dialogDelete {
+			text-align: center;
+		}
+
+
+		table.table-announcement {
+			table-layout: fixed;
+			width: 100%;
+		}
+
+		table.table-announcement td,
+		table.table-announcement th {
+			word-wrap: break-word;
+			word-break: break-word;
+			overflow-wrap: break-word;
+			white-space: normal;
+		}
+
+		table.table-announcement th:nth-child(1),
+		table.table-announcement td:nth-child(1) {
+			width: 20%;
+		}
+
+		table.table-announcement th:nth-child(2),
+		table td:nth-child(2) {
+			width: 40%;
+		}
+
+		table.table-announcement th:nth-child(3),
+		table.table-announcement td:nth-child(3) {
+			width: 20%;
+		}
+
+		table.table-announcement th:nth-child(4),
+		table.table-announcement td:nth-child(4) {
+			width: 20%;
+		}
+
+    .table-container.announcement-table-container {
+      display: block;
+  width: 100%;     /* Il contenitore occupa tutto lo spazio disponibile */
+  overflow-x: auto; /* Attiva lo scroll solo orizzontale se necessario */
+}
+
+
+
+
+
+
+
+
+    /* ANNOUNCEMENT */
+@media (max-width: 1400px) {
+	.content-columns {
+		flex-direction: column;
+    align-items: center;
+	}
+
+	.content-columns .create-announcement-form {
+		width: 100%;
+		margin-top: 1.5rem;
+	}
+
+}
+
+@media (max-width: 1700px) {
+	.ann {
+		flex-direction: column;
+	}
+
 }

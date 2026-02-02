@@ -10,7 +10,10 @@ $connessioneOK = $conn->openConnection();
 
 $id = $_SESSION["user"];
 
+
+
 if ($connessioneOK && isset($_POST['title']) && isset($_POST['description'])) {
+
     
     $title = $_POST['title'];
     $description = $_POST['description'];
@@ -22,6 +25,7 @@ if ($connessioneOK && isset($_POST['title']) && isset($_POST['description'])) {
         header("Location: ../views/adminAnnouncements.php");
     } else {
         echo json_encode(["status" => "error", "message" => "Query fallita"]);
+        header("Location: ../views/adminAnnouncements.php");
     }
 
 } else {
