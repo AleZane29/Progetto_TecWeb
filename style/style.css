@@ -1361,13 +1361,14 @@ fieldset {
   width: 90%;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   animation: slideIn 0.3s ease-out;
+  text-align: center;
 }
 
 .dialog-edit .dialog-icon {
   background: #e6f3ff;
 }
 
-.dialog-edit .dialog-header h1 {
+.dialog-edit .dialog-header h2 {
   color: var(--primary-700);
   margin-bottom: 1rem;
   font-size: 1.5rem;
@@ -1794,7 +1795,6 @@ a.cta-primary-button:focus {
 			padding: 2rem;
 			background: var(--neutral-0);
 			border-radius: 12px;
-			text-align: center;
 		}
 
 		.create-announcement-form .form-group {
