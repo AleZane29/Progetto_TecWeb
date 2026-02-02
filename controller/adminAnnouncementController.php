@@ -16,7 +16,7 @@ if ($connessioneOK) {
   $announcements = $conn->getAllAnnouncements();
   foreach ($announcements as $res) {
     $announcementsResult .= "<tr>
-                        <td>" . $res["titolo"] . "</td>
+                        <th scope='row'>" . $res["titolo"] . "</th>
                         <td>" . $res["descrizione"] . "</td>
                         <td>" . $res["data"] . "</td>
                         <td>
