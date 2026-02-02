@@ -5,7 +5,6 @@ namespace Builder;
 
 class Builder
 {
-  // Properties
   public $headerHTML;
   public $footerHTML;
   public $personalReservationsLinkHTML;
@@ -42,7 +41,7 @@ class Builder
     $this->footerHTML = file_get_contents("components/footer.html");
   }
 
-  // Methods
+
   function build_home()
   {
 
@@ -68,7 +67,7 @@ class Builder
   {
     $paginaHTML = file_get_contents("pages/account.html");
 
-    //Controllo se l'utente non è autenticato ed eventuale reindirizzamento a login
+    
     if (!(isset($_SESSION["user"]) && $_SESSION["user"] !== null)) {
       header("Location: login.php");
     }
@@ -87,7 +86,7 @@ class Builder
 
   function build_reservation()
   {
-    //Controllo se l'utente non è autenticato ed eventuale reindirizzamento a login
+    
     if (!(isset($_SESSION["user"]) && $_SESSION["user"] !== null)) {
       header("Location: login.php");
     }
@@ -110,11 +109,11 @@ class Builder
     require '../controller/loginController.php';
 
 
-    //Controllo se l'utente è autenticato e viene reindirizzato alla sua pagina account
+    
     if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
       header("Location: account.php");
     } else {
-      //Aggiorno pagina in base ai risultati generati dal controller
+      
 
       if (!$HTMLPage) {
         $HTMLPage = file_get_contents('pages/login.html');
@@ -132,11 +131,11 @@ class Builder
     require '../controller/registerController.php';
 
 
-    //Controllo se l'utente è autenticato e viene reindirizzato alla sua pagina account
+  
     if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
       header("Location: account.php");
     } else {
-      //Aggiorno pagina in base ai risultati generati dal controller
+      
 
       if (!$HTMLPage) {
         $HTMLPage = file_get_contents('pages/register.html');
@@ -153,7 +152,7 @@ class Builder
 
     $paginaHTML = file_get_contents("pages/personalReservations.html"); 
 
-    //Controllo se l'utente non è autenticato ed eventuale reindirizzamento a login
+    
     if (!(isset($_SESSION["user"]) && $_SESSION["user"] !== null)) {
       header("Location: login.php");
     }
