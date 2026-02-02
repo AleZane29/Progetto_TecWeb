@@ -1,5 +1,8 @@
-	document.getElementById('navMenuServizi').classList.add('active');
-	document.getElementById('navMenuServizi').removeAttribute('href');
-	document.getElementById('navMenuServizi').removeAttribute('aria-label');
 
-
+const aNav = document.getElementById('navMenuServizi');
+const spanPage = document.createElement('span');
+spanPage.innerHTML = aNav.innerHTML;
+spanPage.className = aNav.className + ' active';
+spanPage.id = aNav.id;
+spanPage.setAttribute('aria-current', 'page');
+aNav.replaceWith(spanPage);

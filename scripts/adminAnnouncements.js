@@ -1,6 +1,11 @@
-document.getElementById("navMenuAdminAnnouncements").classList.add("active");
-document.getElementById("navMenuAdminAnnouncements").removeAttribute("href");
-document.getElementById("navMenuAdminAnnouncements").removeAttribute("aria-label");
+const aNav = document.getElementById('navMenuAdminAnnouncements');
+const spanPage = document.createElement('span');
+spanPage.innerHTML = aNav.innerHTML;
+spanPage.className = aNav.className + ' active';
+spanPage.id = aNav.id;
+spanPage.setAttribute('aria-current', 'page');
+aNav.replaceWith(spanPage);
+
 
 let tableConfig = {
     colIndices: {
@@ -92,14 +97,8 @@ function openEditDialog(id, button) {
 
   const title_edit = document.getElementById("title-edit");
   const description_edit = document.getElementById("description-edit");
-
-  if (indices.title !== undefined) {
-    title_edit.value = cells[indices.title].textContent.trim();
-  }
-
-  if (indices.description !== undefined) {
-    description_edit.value = cells[indices.description].textContent.trim();
-  }
+  title_edit.value = cells[indices.title].textContent.trim();
+  description_edit.value = cells[indices.description].textContent.trim();
 }
 
 function closeEditDialog() {

@@ -1,7 +1,10 @@
-document.getElementById('navMenuHome').classList.add('active');
-document.getElementById('navMenuHome').removeAttribute('href');
-document.getElementById('navMenuHome').removeAttribute('aria-label');
-
+const aNav = document.getElementById('navMenuHome');
+const spanPage = document.createElement('span');
+spanPage.innerHTML = aNav.innerHTML;
+spanPage.className = aNav.className + ' active';
+spanPage.id = aNav.id;
+spanPage.setAttribute('aria-current', 'page');
+aNav.replaceWith(spanPage);
 
 
 	let slideIndex = 1;

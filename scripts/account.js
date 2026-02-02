@@ -1,8 +1,10 @@
-document.getElementById('navMenuAccount').classList.add('active');
-document.getElementById('navMenuAccount').removeAttribute('href');
-document.getElementById('navMenuAccount').removeAttribute('aria-label');
-
-
+const aNav = document.getElementById('navMenuAccount');
+const spanPage = document.createElement('span');
+spanPage.innerHTML = aNav.innerHTML;
+spanPage.className = aNav.className + ' active';
+spanPage.id = aNav.id;
+spanPage.setAttribute('aria-current', 'page');
+aNav.replaceWith(spanPage);
 
 document.addEventListener('DOMContentLoaded', function () {
 	const editBtn = document.getElementById('editBtn');

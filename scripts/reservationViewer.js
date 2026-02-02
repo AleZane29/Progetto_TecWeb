@@ -1,8 +1,10 @@
-document.getElementById('navMenuPersonalReservations').classList.add('active');
-document.getElementById('navMenuPersonalReservations').removeAttribute('href');
-document.getElementById('navMenuPersonalReservations').removeAttribute('aria-label');
-
-
+const aNav = document.getElementById('navMenuPersonalReservations');
+const spanPage = document.createElement('span');
+spanPage.innerHTML = aNav.innerHTML;
+spanPage.className = aNav.className + ' active';
+spanPage.id = aNav.id;
+spanPage.setAttribute('aria-current', 'page');
+aNav.replaceWith(spanPage);
 
 
 initReservations({

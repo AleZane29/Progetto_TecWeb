@@ -122,13 +122,16 @@
                                 aria-describedby="password-error" />
                                 
                             <button
-                                type="button"
-                                class="toggle-password"
-                                onclick="togglePassword()"
-                                aria-label="Mostra password"
-                                style="background:none; border:none; cursor:pointer;">
-                                👁️
-                            </button>
+								type="button"
+								class="toggle-password"
+								onclick="togglePassword()"
+								aria-label="Mostra password"
+								style="background: none; border: none; cursor: pointer">
+								<img
+									class="eye-icon"
+									src="../assets/eye.png"
+									alt="Mostra password" />
+							</button>
                         </div>
                         <span id="password-error" class="error-message" aria-live="polite"></span>
                     </div>

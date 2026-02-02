@@ -1,5 +1,12 @@
-document.getElementById('navButtonPrenota').removeAttribute('href');
-document.getElementById('navButtonPrenota').removeAttribute('aria-label');
+const aNav = document.getElementById('navButtonPrenota');
+const spanPage = document.createElement('span');
+spanPage.innerHTML = aNav.innerHTML;
+
+spanPage.className = aNav.className + ' subscribe-button';
+
+spanPage.id = aNav.id;
+spanPage.setAttribute('aria-current', 'page');
+aNav.replaceWith(spanPage);
 
 
 initReservations({
