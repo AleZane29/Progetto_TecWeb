@@ -262,7 +262,7 @@
 	}
 
 	.notice-card {
-		min-width: 100%;
+		width: 100%;
 	}
 	.container-info {
 		gap: 4rem;
