@@ -51,6 +51,8 @@ form.onsubmit = function (event) {
 function openDeleteDialog(id) {
   announcement = id;
   document.getElementById("dialogDelete").classList.add("active");
+  dialog = document.getElementById('dialogDelete')
+  dialog.focus();
 }
 
 function closeDeleteDialog() {
@@ -76,12 +78,17 @@ function deleteAnnouncement() {
 }
 
 function openEditDialog(id, button) {
+
+
   const currentRow = button.closest("tr");
   const cells = currentRow.cells;
   const indices = tableConfig.colIndices;
 
   announcement = id;
   document.getElementById("editDialog").classList.add("active");
+
+  dialog = document.getElementById("editDialog");
+  dialog.focus();
 
   const title_edit = document.getElementById("title-edit");
   const description_edit = document.getElementById("description-edit");

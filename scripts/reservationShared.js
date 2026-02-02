@@ -216,6 +216,9 @@ function changeSport() {
 function openDeleteDialog(id) {
 	reservation = id;
 	document.getElementById('dialogDelete').classList.add('active');
+	dialog = document.getElementById('dialogDelete')
+	dialog.focus();
+
 
 	document
 		.getElementById('dialogDelete')
@@ -259,6 +262,7 @@ function openEditDialog(id, button) {
 	const cells = currentRow.cells;
 	const indices = tableConfig.colIndices;
 	reservation = id;
+  	
 
 	if (!tableConfig.isAdmin) {
 		const dateStrCheck = cells[indices.date].textContent;
@@ -309,6 +313,7 @@ function openEditDialog(id, button) {
 
 	const dialog = document.getElementById('editDialog');
 	dialog.classList.add('active');
+	dialog.focus();
 
 	dialog.onclick = function (e) {
 		if (e.target === this) closeEditDialog();
