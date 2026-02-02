@@ -269,7 +269,7 @@ function openEditDialog(id, button) {
 		const limitMs = 24 * 60 * 60 * 1000;
 
 		if (reservationDate - now < limitMs) {
-			alert("⚠️ Non modificabile: mancano meno di 24 ore all'evento.");
+			alert("Non modificabile: mancano meno di 24 ore all'evento.");
 			return;
 		}
 	}

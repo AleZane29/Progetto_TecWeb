@@ -94,7 +94,7 @@
 \textbf{Email referente}
 \vspace{0.3cm}
 
-alessio.zanella.2@studenti.unipd.it
+leonardo.preo@studenti.unipd.it
 
 \vspace{1cm}
 \textbf{Team di Sviluppo}
@@ -167,6 +167,8 @@ Di seguito viene presentata la strutturazione del contenuto specifico di ogni pa
     
     \item \textbf{Le mie prenotazioni:} In questa pagina l'utente registrato può visualizzare tutte le sue prenotazioni effettuate, in una tabella riepilogativa con i dettagli (sport, campo, data, orario, prezzo), ordinate in ordine decrescente per data di prenotazione. Ha la possibilità di modificare o eliminare le prenotazioni che hanno una data di prenotazione superiore alle 24 ore dalla data odierna.
 
+    \item \textbf{Gestione annunci:} In questa pagina gli admin possono gestire gli annunci speciali visualizzati dall'utente nella home. Nella pagina è presente una tabella con il titolo, la descrizione e la data di ogni annuncio. Per ciascun annuncio è possibile effettuare la modifica e la cancellazione. Tra le funzionalità l'admin ha la possibilità di creare nuovi annunci con un limite massimo di 5 per mantenere l'accessibilità. 
+
     \item \textbf{Login:} In questa pagina l'utente registrato può effettuare l'autenticazione con le proprie credenziali. Il form di login richiede l'email e la password, nel caso in cui l'utente non abbia effettuato la registrazione è possibile usare il link apposito a fine form per passare alla pagina di registrazione.
 
     \item \textbf{Registrazione:} La seguente pagina contiene il form di registrazione nel quale vengono richiesti: Nome, Cognome, Email, Data di nascita e Password. Nel caso in cui l'utente sia già registrato, può usufruire del link a fine form per essere portato al form di login. 
@@ -211,6 +213,7 @@ La realizzazione del progetto ha richiesto la collaborazione di tutti i membri d
         \item Componente Header (HTML + CSS + JS)
         \item Pagina Registrazione (HTML + CSS + JS + PHP)
         \item Pagina Prenotazioni Admin (HTML + CSS + JS + PHP)
+        \item Pagina Le mie prenotazioni (HTML + CSS + JS + PHP)
         \item Stesura relazione
     \end{itemize}
     \item \textbf{Leonardo Preo:}
@@ -218,6 +221,7 @@ La realizzazione del progetto ha richiesto la collaborazione di tutti i membri d
         \item Pagina Error404 (HTML + CSS + JS + PHP)
         \item Pagina Error500 (HTML + CSS + JS + PHP)
         \item Pagina Account (HTML + CSS + JS + PHP)
+        \item Pagina Le mie prenotazioni (HTML + CSS + JS + PHP)
         \item Controlli automatizzati form di registrazione (es. hash password, età minima, ecc.)
         \item Stesura relazione
     \end{itemize}
@@ -226,6 +230,7 @@ La realizzazione del progetto ha richiesto la collaborazione di tutti i membri d
         \item Pagina Home (HTML + CSS + JS + PHP)
         \item Pagina Servizi (HTML + CSS + PHP)
         \item Pagina Prenota User (HTML + CSS + JS + PHP)
+        \item Pagina Gestione annunci (HTML + CSS + JS + PHP)
         \item Sviluppo servizio PHP builder per assemblare i componenti delle singole pagine
         \item Stesura relazione
     \end{itemize}
@@ -264,6 +269,9 @@ Gli amministratori hanno accesso a funzionalità avanzate di gestione:
     \item \textbf{Prenotazioni:} Gli amministratori possono consultare tutte le prenotazioni ricevute in una tabella riepilogativa. Possono modificare i dettagli delle prenotazioni (sport, campo, data, orario) e eliminare prenotazioni quando necessario per gestire al meglio la disponibilità dei campi.
     
     \item \textbf{Account:} Come gli utenti ordinari, gli amministratori hanno la possibilità di effettuare il logout dalla propria sessione e modificare i dati dell'account.
+
+    \item \textbf{Gestione annunci:} Nella pagina home in primo piano sono presenti degli annunci. Un amministratore ha la possibilità di eliminare, modificare e aggiungere (con un massimo di 5 segnalato) questi annunci dalla pagina "Gestione annunci"
+
 \end{itemize}
 
 \subsection{Funzionalità per gli Utenti Generici (Non Autenticati)}
@@ -315,11 +323,16 @@ Il database del progetto è stato sviluppato in forma normale ed è strutturato 
     \item \textbf{Campo:} Contiene i dettagli dei campi sportivi disponibili, incluso il numero del campo e il tipo di sport.
     
     \item \textbf{Prenotazione:} Contiene le informazioni sulle prenotazioni (id, utente, numero campo, tipo di campo, data, ora inizio, ora fine, prezzo).
+
+    \item \textbf{Annunci:} Contiene le informazioni riguardanti gli annunci speciali presenti nella home e nella pagina di "Gestione annunci" (id, idAdmin, titolo, descrizione, data).
 \end{itemize}
 
 \subsection{Relazioni}
 
 Le tabelle sono collegate attraverso relazioni di chiave esterna, assicurando l'integrità referenziale e facilitando la gestione dei dati. Ad esempio, ogni prenotazione è collegata a un utente e a un campo specifico.
+Ad ogni annuncio é legato l'id di un amministratore.
+
+\newpage
 
 \section{Tecnologie Utilizzate}
 
@@ -337,6 +350,14 @@ Il progetto è stato sviluppato utilizzando le seguenti tecnologie:
     \item \textbf{JavaScript:} Per l'interattività lato client e la validazione dei form.
     
     \item \textbf{Fetch API:} Per le operazioni asincrone senza ricaricamento della pagina.
+    
+    \item \textbf{Silktide:} Estensione Google utilizzata per controllo del contrasto tra colori e screen reader
+
+    \item \textbf{Wave Evaluation Tool:} Estensione Google utilizzata per un preciso controllo delle aria-label
+
+    \item \textbf{Total Validator:} Strumento messo a disposizione dall'università per effettuare un controllo completo (accessibilità web, validazione HTML, validazione CSS, controllo link interrotti)
+
+
 \end{itemize}
 
 \section{Accessibilità}
@@ -359,7 +380,7 @@ La navigazione tramite tastiera è completamente supportata, permettendo agli ut
 La palette cromatica è stata selezionata per trasmettere energia e dinamismo, con colori equilibrati e contrasti verificati secondo gli standard WCAG AA per garantire l'accessibilità a tutti gli utenti.
 
 \subsection{Test di Accessibilità delle Pagine}
-Per effettuare i test di accessibilità che sono automatizzabili abbiamo utilizzato Silktide, mentre per i test che richiedono un intervento manuale come la verifica del contenuto degli alt o delle description, sono stati effettuati personalmente dagli sviluppatori.  
+Per effettuare i test di accessibilità che sono automatizzabili abbiamo utilizzato Silktide, Wave Evaluation Tool e Total Validator. Invece i test che richiedono un intervento manuale come la verifica del contenuto degli alt o delle description, sono stati effettuati personalmente dagli sviluppatori.  
 
 \section{Test Effettuati}
 

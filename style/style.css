@@ -1908,7 +1908,7 @@ a.cta-primary-button:focus {
 		}
 
 		table.table-announcement th:nth-child(2),
-		table td:nth-child(2) {
+		table.table-announcement td:nth-child(2) {
 			width: 40%;
 		}
 
@@ -1954,4 +1954,9 @@ a.cta-primary-button:focus {
 		flex-direction: column;
 	}
 
+}
+
+.disclaimer{
+  text-align: center;
+  padding: 1rem;
 }
