@@ -9,23 +9,19 @@ class DBConn
 
 	public function openConnection()
 	{
-		// 1. Impostazioni di default (per XAMPP / Localhost classico)
 		$db_host = "localhost";
 		$db_user = "root";
 		$db_pass = "";
-		$db_name = "alzanell"; // Il nome del tuo DB in XAMPP
+		$db_name = "alzanell"; 
 
-		// 2. Controllo se siamo dentro DOCKER
-		// (Questa variabile l'abbiamo settata nel file docker-compose.yml)
 		if (getenv('AM_I_IN_DOCKER')) {
-			$db_host = "db";            // Nome del servizio nel docker-compose
-			$db_user = "user";          // Utente definito nel docker-compose
-			$db_pass = "password";      // Password definita nel docker-compose
-			$db_name = "alzanell";      // ATTENZIONE: Nel docker-compose avevamo messo "SportLab"
+			$db_host = "db";            
+			$db_user = "user";          
+			$db_pass = "password";      
+			$db_name = "alzanell";      
 		}
 
 		try {
-			// 3. Uso le variabili dinamiche invece delle costanti
 			$this->connection = mysqli_connect(
 				$db_host,
 				$db_user,
