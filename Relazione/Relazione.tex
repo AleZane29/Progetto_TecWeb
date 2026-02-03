@@ -205,8 +205,6 @@ La \textbf{trappola per aragoste} si può individuare nel menù che espone in mo
 
 La caratteristica della \textbf{pesca a strascico} è garantita dalla struttura di dimensioni ridotte e intuitiva dell'applicativo.
 
-La \textbf{boa di segnalazione} è incarnata dal breadcrumb presente in ogni pagina del sito web, che permette all'utente di potersi orientare durante la navigazione del sito.
-
 \subsection{Suddivisione del lavoro}
 La realizzazione del progetto ha richiesto la collaborazione di tutti i membri durante gran parte delle attività. Allo stesso tempo però ogni membro si è focalizzato nello sviluppo di determinati componenti e funzionalità nel seguente modo:
 \begin{itemize}
@@ -308,7 +306,7 @@ Per ottimizzare le prestazioni e il SEO del sito, sia da Desktop che da Mobile, 
     \item \textbf{Riduzione delle dimensioni delle immagini}: per ridurre il più possibile lo spazio richiesto senza però ridurre eccessivamente la qualità.
     \item \textbf{htaccess}: Impostato regole di caching più efficaci per i contenuti statici nel file di configurazione htaccess.
     \item \textbf{Consigli Lighthouse}: Per controllare le metriche di Prestazioni e SEO abbiamo utilizzato i consigli di Google Lighthouse (rispettando la separazione tra contenuto e presentazione, ad esempio: no inlining di regole CSS). Durante i test abbiamo sempre ottenuto il punteggio massimo, 100\%, in tutte le categorie tranne nella sezione prestazioni nella quale abbiamo ottenuto valori intorno al 95\% durante i test per mobile nelle pagine di Home e Servizi, altrimenti 100\% in tutte le pagine nel controllo desktop.
-    \item \textbf{Minimizzazione JS e CSS}: Sono stati minimizzati tutti i file Javascript e CSS, eliminando spazi e indentazioni, per ridurre il loro tempo di caricamento.
+    \item \textbf{Minimizzazione JS e CSS}: Sono stati minimizzati tutti i file Javascript e CSS, eliminando spazi e indentazioni, per ridurre il loro tempo di caricamento. I file minimizzati sono presenti solo sulla consegna nel pc di laboratorio, mentre nella consegna Moodle sono stati lasciati i file originali per permettere una lettura e correzione semplificate.
 
 \end{itemize}
 
@@ -332,10 +330,8 @@ Il database del progetto è stato sviluppato in forma normale ed è strutturato 
 
 \subsection{Relazioni}
 
-Le tabelle sono collegate attraverso relazioni di chiave esterna, assicurando l'integrità referenziale e facilitando la gestione dei dati. Ad esempio, ogni prenotazione è collegata a un utente e a un campo specifico.
-Ad ogni annuncio é legato l'id di un amministratore.
+Le tabelle sono interconnesse tramite relazioni di chiave esterna, che garantiscono l’integrità referenziale e rendono più efficiente la gestione dei dati. Ad esempio, ogni prenotazione è associata a uno specifico utente e a un determinato campo, mentre ogni annuncio riporta l’identificativo dell’amministratore che lo ha creato.
 
-\newpage
 
 \section{Tecnologie Utilizzate}
 
