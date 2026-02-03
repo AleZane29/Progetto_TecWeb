@@ -10,16 +10,9 @@ class DBConn
 	public function openConnection()
 	{
 		$db_host = "localhost";
-		$db_user = "root";
-		$db_pass = "";
-		$db_name = "alzanell"; 
-
-		if (getenv('AM_I_IN_DOCKER')) {
-			$db_host = "db";            
-			$db_user = "user";          
-			$db_pass = "password";      
-			$db_name = "alzanell";      
-		}
+		$db_user = "lpreo";
+		$db_pass = "woNg5QueeteerooL";
+		$db_name = "lpreo";
 
 		try {
 			$this->connection = mysqli_connect(

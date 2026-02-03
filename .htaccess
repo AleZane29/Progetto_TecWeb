@@ -1,6 +1,6 @@
 RewriteEngine On
-ErrorDocument 404 /Progetto_TecWeb/views/404.php
-ErrorDocument 500 /Progetto_TecWeb/views/500.php
+ErrorDocument 404 /Progetto_tecweb/views/404.php
+ErrorDocument 500 /Progetto_tecweb/views/500.php
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
