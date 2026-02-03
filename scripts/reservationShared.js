@@ -131,6 +131,8 @@ function goToPreviousPage() {
 }
 
 function filterTable() {
+	if (!allRows || allRows[0].cells[0].textContent=="Nessuna prenotazione") return;
+
 	let searchName = '';
 	const searchInput = document.getElementById('searchName');
 	if (tableConfig.hasNameSearch && searchInput) {
@@ -459,7 +461,7 @@ function editReservation(sport, court, date, timeStart, timeEnd) {
 }
 
 function disableLateReservations() {
-	if (!allRows || allRows.length === 0) return;
+	if (!allRows || allRows[0].cells[0].textContent=="Nessuna prenotazione") return;
 
 	const indices = tableConfig.colIndices;
 	const now = new Date();
