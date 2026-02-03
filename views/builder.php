@@ -20,7 +20,6 @@ class Builder
     $this->basePath = str_replace('\\', '/', substr($scriptDir, strlen($_SERVER['DOCUMENT_ROOT']))) . '/';
 
     $htaccess = "RewriteEngine On\n"
-              . "Options -Indexes\n\n"
               . "ErrorDocument 404 " . $this->basePath . "404.php\n"
               . "ErrorDocument 500 " . $this->basePath . "500.php\n\n"
               . "RewriteCond %{REQUEST_FILENAME} !-d\n"
