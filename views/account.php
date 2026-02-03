@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 
 require_once "builder.php";
 use Builder\Builder;
