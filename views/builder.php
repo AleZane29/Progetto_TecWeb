@@ -19,7 +19,6 @@ class Builder
     $scriptDir = dirname($_SERVER['SCRIPT_FILENAME']);
     $this->basePath = str_replace('\\', '/', substr($scriptDir, strlen($_SERVER['DOCUMENT_ROOT']))) . '/';
 
-    // Scrivi l'htaccess dinamicamente
     $htaccess = "RewriteEngine On\n"
               . "Options -Indexes\n\n"
               . "ErrorDocument 404 " . $this->basePath . "404.php\n"
