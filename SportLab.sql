@@ -84,9 +84,9 @@ INSERT INTO `Prenotazione` (`id`, `utente`, `numero_campo`, `tipo_campo`, `data`
 
 INSERT INTO Annunci (idAdmin, titolo, descrizione) VALUES 
 ('2','Torneo Estivo di Calcetto', 'Sono aperte le iscrizioni per il torneo di calcio a 5. Squadre da minimo 5 giocatori, premi per i primi classificati. Iscrizioni in segreteria entro il 20.'),
-('2','Promo Abbonamento Annuale', 'Sconto del 20% se rinnovi o sottoscrivi un abbonamento annuale entro la fine del mese. Non perdere l’occasione di allenarti a un prezzo vantaggioso!'),
-('2','Nuovo Corso di Pilates', 'Da settembre parte il nuovo corso di Pilates: ogni martedì e giovedì alle 18:30. Migliora postura e flessibilità con i nostri istruttori certificati.'),
-('2','Visita Nutrizionale', 'Prenota il tuo primo controllo gratuito con il nutrizionista del centro. Disponibilità limitata per questo venerdì, contatta la reception per fissare l’orario.'),
+('2','Promo Carnet 10 Partite', 'Acquista un carnet da 10 partite entro la fine del mese e ricevi subito il 20% di sconto. La soluzione ideale per chi gioca regolarmente e vuole risparmiare sul costo orario del campo!'),
+('2','Corsi di Tennis e Basket', 'Sono aperte le iscrizioni per i nuovi corsi di Tennis e Basket, per adulti e ragazzi. Migliora la tecnica e la tattica di gioco direttamente in campo con i nostri istruttori qualificati.'),
+('2','Torneo Sociale del Weekend', "Iscrizioni aperte per il torneo amatoriale di questo fine settimana! Un'occasione perfetta per sfidare nuovi avversari e concludere la giornata con un aperitivo presso il nostro bar. Posti limitati, contatta la reception."),
 ('2','Chiusura per Festività', 'Il centro sportivo rimarrà chiuso per l’intera giornata del 15 agosto. Le attività riprenderanno regolarmente il giorno successivo con i soliti orari.')
 ;
 
