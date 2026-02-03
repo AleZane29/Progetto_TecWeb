@@ -9,7 +9,7 @@
         <link href="../style/style.min.css" rel="stylesheet" />
 		<link href="../style/mobile.min.css" rel="stylesheet" media="screen and (max-width: 1024px)"/>
 		<link href="../style/print.min.css" rel="stylesheet" media="print" />
-        <script src="../scripts/togglePassword.min.js"></script>
+        <script src="../scripts/togglePassword.min.js" defer></script>
         <script src="../scripts/ageCheck.min.js" defer></script>
     </head>
 
@@ -118,6 +118,7 @@
                                 name="password"
                                 placeholder="Inserisci la tua password"
                                 autocomplete="new-password"
+                                minlength="8"
                                 required
                                 aria-describedby="password-error" />
                                 
