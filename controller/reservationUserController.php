@@ -3,17 +3,14 @@ session_start();
 
 
 require_once "../model/database/database.php";
-// require_once "../model/reservationModel.php";
 
 use DB\DBConn;
-// use reservationModel\reservationModel;
 
 header('Content-Type: application/json');
 
 $conn = new DBConn();
 $connessioneOK = $conn->openConnection();
 
-// Controllo parametri
 if (!isset($_GET['sport']) || !isset($_GET['campo']) || !isset($_GET['data'])) {
   if ($connessioneOK) {
     $user_id = $_SESSION["user"];

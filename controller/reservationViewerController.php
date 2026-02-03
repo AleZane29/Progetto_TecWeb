@@ -1,6 +1,5 @@
 <?php
 
-// Usato per la visualizzazione delle prenotazioni nella pagina account
 
 require_once "../model/database/database.php";
 
@@ -30,7 +29,6 @@ if ($connessioneOK) {
 
   $reservations = $conn->getUserReservations($user_id);
 
-  // Controllo di sicurezza: se è null, diventa un array vuoto
   if (is_null($reservations)) {
       $reservations = [];
   }

@@ -1,10 +1,8 @@
 <?php
 
 require_once "../model/database/database.php";
-// require_once "../model/reservationModel.php";
 
 use DB\DBConn;
-// use reservationModel\reservationModel;
 
 $conn = new DBConn();
 $connessioneOK = $conn->openConnection();

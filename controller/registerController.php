@@ -6,7 +6,6 @@ use DB\DBConn;
 
 $HTMLPage = file_get_contents('../views/pages/register.html');
 
-//Controllo se utente già autenticato
 if (isset($_SESSION["user"]) && $_SESSION["user"] !== null) {
   return $HTMLPage = '';
 }

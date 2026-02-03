@@ -1,10 +1,8 @@
 <?php
 
 require_once "../model/database/database.php";
-// require_once "../model/reservationModel.php";
 
 use DB\DBConn;
-// use reservationModel\reservationModel;
 
 $HTMLPage = file_get_contents('../views/pages/reservationAdmin.html');
 
