@@ -17,12 +17,12 @@ class Builder
       session_start();
     }
 
-    $scriptDir = dirname($_SERVER['SCRIPT_FILENAME']);
-    $this->basePath = str_replace('\\', '/', substr($scriptDir, strlen($_SERVER['DOCUMENT_ROOT']))) . '/';
+    $dir = dirname(dirname($_SERVER['REQUEST_URI']));
+    $this->basePath = ($dir === '.') ? '/' : rtrim($dir, '/') . '/';
 
     $htaccess = "RewriteEngine On\n"
-              . "ErrorDocument 404 " . $this->basePath . "404.php\n"
-              . "ErrorDocument 500 " . $this->basePath . "500.php\n\n"
+              . "ErrorDocument 404 " . $this->basePath . "views/404.php\n"
+              . "ErrorDocument 500 " . $this->basePath . "views/500.php\n\n"
               . "RewriteCond %{REQUEST_FILENAME} !-d\n"
               . "RewriteCond %{REQUEST_FILENAME}.php -f\n"
               . "RewriteRule ^(.*)$ $1.php [L]\n";
