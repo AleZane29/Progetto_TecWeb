@@ -143,8 +143,11 @@ Admin & admin & admin \\
 
 \section{Introduzione}
 
-Il progetto sviluppato è un'applicazione web per la pubblicizzazione dei servizi forniti dal centro sportivo SportLab, e funge allo stesso tempo da gestionale per le prenotazioni di campi presso il centro sportivo stesso. Facilitando il lavoro della segreteria del centro e consentendo una gestione efficiente e corretta delle prenotazioni, evitando sovrapposizioni grazie a controlli automatizzati. Permette inoltre di modificare, cancellare e consultare facilmente le prenotazioni in tempo reale. L'obiettivo principale è fornire un'interfaccia intuitiva e accessibile che consenta ai clienti di prenotare campi sportivi e agli amministratori di gestire tali prenotazioni. 
+Il progetto sviluppato è un'applicazione web per la pubblicizzazione dei servizi forniti dal centro sportivo SportLab, e funge allo stesso tempo da gestionale per le prenotazioni di campi presso il centro sportivo stesso. Facilitando il lavoro della segreteria del centro e consentendo una gestione efficiente e corretta delle prenotazioni, evitando sovrapposizioni grazie a controlli automatizzati. Permette inoltre di modificare, cancellare e consultare facilmente le prenotazioni in tempo reale. 
 
+Per poter comunicare alla clientela eventuali aggiornamenti è stata introdotta la sezione \textit{annunci speciali}, visualizzabile nella pagina Home. Gli annunci sono modificabili dagli amministratori nella pagina apposita, permettendo un massimo di 5 annunci pubblicati.
+
+L'obiettivo principale è fornire un'interfaccia intuitiva e accessibile che consenta ai clienti di rimanere aggiornati sulle novità del centro, prenotare campi sportivi e agli amministratori di gestire tali prenotazioni e annunci.
 Il progetto è stato sviluppato ponendo particolare attenzione all'accessibilità, all'esperienza utente e alla facile fruibilità del sito anche da dispositivi mobile.
 
 \section{Progettazione}
@@ -152,7 +155,7 @@ Il progetto è stato sviluppato ponendo particolare attenzione all'accessibilit�
 L'interfaccia è stata progettata seguendo i principi di usabilità e accessibilità. Gli utenti possono orientarsi facilmente attraverso un header con menù di navigazione principale e breadcrumb che mostra il nome della pagina corrente. Ogni pagina e componente del sito sono stati studiati per essere accessibili da dispositivi mobile come cellulari o tablet. Per realizzare ciò sono stati implementati stili di tipo responsive e sono state utilizzate le media query, per adattare la visualizzazione delle pagine in base alla dimensione del dispositivo utilizzato per l'accesso al sito.
 
 \subsection{Architettura progetto}
-Il progetto è stato sviluppato seguendo il pattern architetturale MVC (Model-View-Controller). Nella sezione View è possibile trovare tutte le pagine HTML sviluppate con i relativi stylesheets CSS e i file PHP dedicati alla corretta visualizzazione delle pagine. Il componente Controller si occupa della ricezione dei dati e richieste dalla View e li gestisce tramite l'Application Logic ed eventuali chiamate al Model. Il Model si occupa delle chiamate al DB e dunque tutta la gestione delle query e i relativi risultati prodotti da esse.
+Il progetto è stato sviluppato seguendo il pattern architetturale MVC (Model-View-Controller). Nella sezione View è possibile trovare tutte le pagine HTML sviluppate con i relativi stylesheets CSS e i file PHP dedicati alla corretta visualizzazione delle pagine. Il componente Controller si occupa della ricezione dei dati e richieste dalla View e li gestisce tramite l'Application Logic ed eventuali chiamate al Model . Il Model si occupa delle chiamate al DB e dunque tutta la gestione delle query e i relativi risultati prodotti da esse.
 
 \subsection{Struttura contenuto delle pagine}
 
@@ -294,7 +297,7 @@ Durante lo sviluppo del progetto si è dedicata una parte del tempo alla realizz
 \begin{itemize}
     \item \textbf{Hashing delle password:} Le password degli utenti vengono hashate utilizzando l'algoritmo bcrypt prima di essere memorizzate nel database, garantendo che le credenziali rimangano protette anche in caso di accesso non autorizzato al database.
     
-    \item \textbf{Protezione contro SQL Injection:} Le query critiche che coinvolgono input utente (login, registrazione, creazione prenotazioni, modifica dati utente) utilizzano prepared statements con \texttt{mysqli\_prepare()} e \texttt{mysqli\_stmt\_bind\_param()} nel file \texttt{model/database/database.php}. Ad esempio, la funzione \texttt{getUserByEmail()} utilizza prepared statements per prevenire attacchi injection. Tuttavia, alcune query per operazioni amministrative (come la visualizzazione e eliminazione di prenotazioni) utilizzano ancora concatenazione di stringhe.
+    \item \textbf{Protezione contro SQL Injection:} Le query critiche che coinvolgono input utente (login, registrazione, creazione prenotazioni, modifica dati utente) utilizzano prepared statements con \texttt{mysqli\_prepare()} e \texttt{mysqli\_stmt\_bind\_param()} nel file \texttt{model/database/database.php}. Ad esempio, la funzione \texttt{getUserByEmail()} utilizza prepared statements per prevenire attacchi injection. Tuttavia, alcune query per operazioni amministrative, che non devono gestire input testuali inviati da utenti (come la visualizzazione e eliminazione di prenotazioni), utilizzano ancora concatenazione di stringhe.
 \end{itemize}
 
 
@@ -304,14 +307,14 @@ Per ottimizzare le prestazioni e il SEO del sito, sia da Desktop che da Mobile, 
 \begin{itemize}
     \item \textbf{Riduzione delle dimensioni delle immagini}: per ridurre il più possibile lo spazio richiesto senza però ridurre eccessivamente la qualità.
     \item \textbf{htaccess}: Impostato regole di caching più efficaci per i contenuti statici nel file di configurazione htaccess.
-    \item \textbf{Consigli Lighthouse}: Per controllare le metriche di Prestazioni e SEO abbiamo utilizzato i consigli di Google Lighthouse (rispettando la separazione tra contenuto e presentazione, ad esempio: no inlining di regole CSS). Durante i test abbiamo sempre ottenuto il punteggio massimo, 100\%, in tutte le categorie tranne nella sezione prestazioni nella quale abbiamo ottenuto valori intorno al 95\% nel controllo mobile nelle pagine di Home e Servizi, altrimenti 100\% in tutte le pagine nel controllo desktop.
+    \item \textbf{Consigli Lighthouse}: Per controllare le metriche di Prestazioni e SEO abbiamo utilizzato i consigli di Google Lighthouse (rispettando la separazione tra contenuto e presentazione, ad esempio: no inlining di regole CSS). Durante i test abbiamo sempre ottenuto il punteggio massimo, 100\%, in tutte le categorie tranne nella sezione prestazioni nella quale abbiamo ottenuto valori intorno al 95\% durante i test per mobile nelle pagine di Home e Servizi, altrimenti 100\% in tutte le pagine nel controllo desktop.
     \item \textbf{Minimizzazione JS e CSS}: Sono stati minimizzati tutti i file Javascript e CSS, eliminando spazi e indentazioni, per ridurre il loro tempo di caricamento.
 
 \end{itemize}
 
 \section{Database}
 
-Il database del progetto è stato sviluppato in forma normale ed è strutturato per supportare la gestione di utenti, campi sportivi e prenotazioni.
+Il database del progetto è stato sviluppato in forma normale ed è strutturato per supportare la gestione di utenti, campi sportivi, prenotazioni e annunci speciali.
 
 \subsection{Struttura delle Tabelle}
 
@@ -371,6 +374,8 @@ Per garantire che il sito sia accessibile a persone con un ampio raggio di capac
     \item Attributi \texttt{alt} significativi per tutte le immagini decorative e informative
     \item Corrette intestazioni logiche con \texttt{<h1>}, \texttt{<h2>}, \texttt{<h3>}
     \item Contrasti di colore verificati secondo gli standard WCAG AA
+    \item Attributi \texttt{abbr} e \texttt{scope} per l'accessibilità delle tabelle presenti
+    \item Gestione attributi \texttt{lang} per evidenziare le parole e/o frasi in lingue diverse dall'italiano
 \end{itemize}
 
 La navigazione tramite tastiera è completamente supportata, permettendo agli utenti di navigare l'intera applicazione senza l'uso del mouse.
@@ -404,6 +409,10 @@ Sono state testate le varie funzionalità implementate all'interno del sito web 
     \item Il layout sia responsive e si adatti correttamente a diverse dimensioni di schermo.
 
     \item Gli input testuali inseriti dall'utente non possano creare problemi di SQL Injection.
+
+    \item Gli annunci vengano visualizzati correttamente in Home, rispettando le modifiche effettuate dagli amministratori.
+
+    \item La pagina Annunci non permetta la creazione di più di 5 annunci, ciascuno dei quali sia composto al più da 40 caratteri per il titolo e 200 per la descrizione.
 \end{itemize}
 
 
@@ -414,12 +423,12 @@ SportLab rappresenta un'applicazione web completa e funzionale per la gestione d
 I principali risultati raggiunti includono:
 
 \begin{itemize}
-    \item Un'interfaccia responsiva che si adatta perfettamente a dispositivi di diverse dimensioni (desktop, tablet, mobile)
-    \item Implementazione completa delle funzionalità di autenticazione, gestione account e prenotazioni
-    \item Misure di sicurezza robuste per proteggere i dati degli utenti tramite hashing delle password e prepared statements SQL
-    \item Accessibilità verificata attraverso l'uso appropriato di tag semantici e attributi ARIA
-    \item Meta tag SEO implementati in tutte le pagine per migliorare la visibilità nei motori di ricerca
-    \item Messaggi di errore specifici e user-friendly che guidano gli utenti verso soluzioni
+    \item Un'interfaccia responsiva che si adatta perfettamente a dispositivi di diverse dimensioni (desktop, tablet, mobile).
+    \item Implementazione completa delle funzionalità di autenticazione, gestione account, prenotazioni e annunci.
+    \item Misure di sicurezza robuste per proteggere i dati degli utenti tramite hashing delle password e prepared statements SQL.
+    \item Accessibilità verificata attraverso l'uso appropriato di tag semantici e attributi ARIA.
+    \item Meta tag SEO implementati in tutte le pagine per migliorare la visibilità nei motori di ricerca.
+    \item Messaggi di errore specifici e user-friendly che guidano gli utenti verso soluzioni.
 \end{itemize}
 
 Il progetto è stato testato su molteplici browser (Chrome, Firefox, Safari, Opera, Edge) e la validazione del codice HTML e CSS è stata eseguita tramite i tool ufficiali del W3C. 
@@ -428,11 +437,11 @@ Il progetto è stato testato su molteplici browser (Chrome, Firefox, Safari, Ope
 Sebbene il progetto sia completamente funzionale, future migliorie potrebbero includere:
 
 \begin{itemize}
-    \item Implementazione di prepared statements per tutte le query database, comprese quelle amministrative
-    \item Aggiunta di funzionalità di ricerca e filtraggio avanzato per le prenotazioni
-    \item Sistema di notifiche email per le prenotazioni e i cambiamenti di stato
-    \item Dashboard amministrativa più completa con statistiche e rapporti
-    \item Implementazione di autenticazione a due fattori per maggiore sicurezza
+    \item Implementazione di prepared statements per tutte le query database, comprese quelle amministrative.
+    \item Aggiunta di funzionalità di ricerca e filtraggio avanzato per le prenotazioni.
+    \item Sistema di notifiche email per le prenotazioni e i cambiamenti di stato.
+    \item Dashboard amministrativa più completa con statistiche e rapporti.
+    \item Implementazione di autenticazione a due fattori per maggiore sicurezza.
 \end{itemize}
 
 \end{document}
