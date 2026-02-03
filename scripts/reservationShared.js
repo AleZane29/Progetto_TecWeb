@@ -131,7 +131,7 @@ function goToPreviousPage() {
 }
 
 function filterTable() {
-	if (!allRows || allRows[0].cells[0].textContent=="Nessuna prenotazione") return;
+	if (!allRows || allRows[0].cells[0].textContent=="Nessuna prenotazione" || allRows[0].cells[0].textContent=="Non è possibile visualizzare le prenotazioni, riprovare più tardi") return;
 
 	let searchName = '';
 	const searchInput = document.getElementById('searchName');
@@ -461,7 +461,7 @@ function editReservation(sport, court, date, timeStart, timeEnd) {
 }
 
 function disableLateReservations() {
-	if (!allRows || allRows[0].cells[0].textContent=="Nessuna prenotazione") return;
+	if (!allRows || allRows[0].cells[0].textContent=="Nessuna prenotazione" || allRows[0].cells[0].textContent=="Non è possibile visualizzare le prenotazioni, riprovare più tardi") return;
 
 	const indices = tableConfig.colIndices;
 	const now = new Date();
