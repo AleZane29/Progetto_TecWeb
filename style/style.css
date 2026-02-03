@@ -67,10 +67,6 @@ body {
   margin: 0;
 }
 
-main {
-  flex: 1; 
-}
-
 .sr-only,
 .skip-to-content {
 	position: absolute;
@@ -679,6 +675,7 @@ header {
 main {
 	display: grid;
 	place-items: center;
+  flex: 1; 
 }
 
 main.main-login {
@@ -899,11 +896,6 @@ main.main-login {
 
 .shake {
 	animation: shake 0.5s;
-}
-
-/* RESERVATION */
-main {
-	min-height: 100vh;
 }
 
 main.reservation-title {
