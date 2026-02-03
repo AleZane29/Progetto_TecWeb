@@ -9,6 +9,7 @@ class Builder
   public $footerHTML;
   public $personalReservationsLinkHTML;
   public $announcementLinkHTML;
+  public $basePath;
 
   function __construct()
   {
