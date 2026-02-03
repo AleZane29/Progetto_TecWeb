@@ -57,6 +57,7 @@ if ($connessioneOK) {
 if ($reservationResult == '') {
   $reservationResult = "<tr><td>Nessuna prenotazione</td></tr>";
 }
+
 $HTMLPage = str_replace("[sports]", $sportsResult, $HTMLPage);
 $HTMLPage = str_replace("[courts]", $courtsResult, $HTMLPage);
 $HTMLPage = str_replace("[userReservations]", $reservationResult, $HTMLPage);
