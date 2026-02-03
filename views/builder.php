@@ -16,6 +16,18 @@ class Builder
       session_start();
     }
 
+    $scriptDir = dirname($_SERVER['SCRIPT_FILENAME']);
+    $this->basePath = str_replace('\\', '/', substr($scriptDir, strlen($_SERVER['DOCUMENT_ROOT']))) . '/';
+
+    $htaccess = "RewriteEngine On\n"
+              . "ErrorDocument 404 " . $this->basePath . "404.php\n"
+              . "ErrorDocument 500 " . $this->basePath . "500.php\n\n"
+              . "RewriteCond %{REQUEST_FILENAME} !-d\n"
+              . "RewriteCond %{REQUEST_FILENAME}.php -f\n"
+              . "RewriteRule ^(.*)$ $1.php [L]\n";
+
+    file_put_contents(__DIR__ . '../../.htaccess', $htaccess);
+
     $this->headerHTML = file_get_contents("components/header.html");
     $this->personalReservationsLinkHTML = file_get_contents("components/personalReservationsLink.html");
     $this->announcementLinkHTML = file_get_contents("components/announcementLink.html");
