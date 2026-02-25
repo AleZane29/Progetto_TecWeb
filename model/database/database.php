@@ -11,7 +11,7 @@ class DBConn
 	{
 		$db_host = "localhost";
 		$db_user = "lpreo";
-		$db_pass = "woNg5QueeteerooL";
+		$db_pass = "Iemaimahw6boo9fa";
 		$db_name = "lpreo";
 
 		try {
